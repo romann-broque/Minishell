@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - "main"
+      - "MVE1"
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
