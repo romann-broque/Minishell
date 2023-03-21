@@ -45,6 +45,7 @@ vpath %.h $(PATH_HEADERS)
 
 LIBFT_FOLDER =	libft/
 LIBFT		 =	$(LIBFT_FOLDER)/libft.a
+INIT_LIBFT	 =	git submodule init; git submodule update
 
 #####################
 #### COMPILATION ####
@@ -92,8 +93,7 @@ endif
 all 	:	$(LIBFT) $(NAME)
 
 $(LIBFT):
-	git submodule init
-	git submodule update
+	$(INIT_LIBFT)
 	echo -e $(BLUE) "\n====> Building libft.a <===="$(NC)"\n"
 	$(MAKE) -sC $(LIBFT_FOLDER)
 	echo -e $(BLUE) "\n====> Building $(NAME) <===="$(NC)"\n"
@@ -109,11 +109,13 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 
 clean	:
 	$(RM) -r $(PATH_OBJS)
+	$(INIT_LIBFT)
 	$(MAKE) -sC $(LIBFT_FOLDER) clean > /dev/null
 	$(ECHOC) $(GREEN) "--> .o files deleted !"$(NC)"\n"
 
 fclean	:	clean
 	$(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
+	$(INIT_LIBFT)
 	$(MAKE) -sC $(LIBFT_FOLDER) fclean > /dev/null
 	$(RM) $(NAME)
 	$(ECHOC) $(GREEN) "--> $(NAME) deleted !"$(NC)"\n"
