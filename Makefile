@@ -92,6 +92,8 @@ endif
 all 	:	$(LIBFT) $(NAME)
 
 $(LIBFT):
+	git submodule init
+	git submodule update
 	echo -e $(BLUE) "\n====> Building libft.a <===="$(NC)"\n"
 	$(MAKE) -sC $(LIBFT_FOLDER)
 	echo -e $(BLUE) "\n====> Building $(NAME) <===="$(NC)"\n"
