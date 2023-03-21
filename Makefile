@@ -10,7 +10,7 @@ SHELL		= /usr/bin/bash
 
 PATH_SRCS	+=	srcs/
 
-SRCS	 	+=	main.c
+SRCS	 	+=	minishell.c
 SRCS	 	+=	prompt.c
 
 vpath %.c $(PATH_SRCS)
@@ -54,6 +54,10 @@ CC			=	gcc
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Werror
 CFLAGS		+=	-Wextra
+
+ifeq ($(debug), true)
+	CFLAGS	+= -fsanitize=address,undefined -g3
+endif
 
 ##############
 #### NAME ####

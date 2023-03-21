@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/21 16:42:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/21 18:29:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ static bool	get_command(void)
 	free(command);
 	return (command != NULL);
 }
-
-/*
-** then, execute the command
-*/
 
 void	prompt(void)
 {
