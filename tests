@@ -1,2 +1,7 @@
 #!/bin/bash
-echo TESTS
+
+cc -Wall -Werror -Wextra main.c
+./a.out
+ret_val=$?
+rm ./a.out
+exit $ret_val
