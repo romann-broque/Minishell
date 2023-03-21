@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 14:07:50 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/21 16:00:58 by rbroque          ###   ########.fr       */
+/*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
+/*   Updated: 2023/03/21 16:14:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-int	main(void)
-{
-	prompt();
-	return (EXIT_SUCCESS);
-}
+////////////////
+/// INCLUDES ///
+////////////////
+
+# include "libft.h"
+
+///////////////
+/// DEFINES ///
+///////////////
+
+# define PROMPT "minishell $ "
+
+// prompt.c
+
+void	prompt(void);
+
+#endif

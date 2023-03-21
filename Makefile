@@ -9,7 +9,9 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+=	srcs/
+
 SRCS	 	+=	main.c
+SRCS	 	+=	prompt.c
 
 vpath %.c $(PATH_SRCS)
 
@@ -20,12 +22,29 @@ vpath %.c $(PATH_SRCS)
 PATH_OBJS	+=	objs/
 OBJS		+=	$(patsubst %.c, $(PATH_OBJS)/%.o, $(SRCS))
 
+##################
+#### INCLUDES ####
+##################
+
+INCLUDES	+=	-I includes/
+INCLUDES	+=	-I $(LIBFT_FOLDER)/includes
+
+#################
+#### HEADERS ####
+#################
+
+PATH_HEADERS +=	includes/
+
+HEADERS		+=	minishell.h
+
+vpath %.h $(PATH_HEADERS)
+
 ###############
 #### LIBFT ####
 ###############
 
-LIBFT_FOLDER = libft/
-LIBFT		 = $(LIBFT_FOLDER)/libft.a
+LIBFT_FOLDER =	libft/
+LIBFT		 =	$(LIBFT_FOLDER)/libft.a
 
 #####################
 #### COMPILATION ####
@@ -74,13 +93,13 @@ $(LIBFT):
 	echo -e $(BLUE) "\n====> Building $(NAME) <===="$(NC)"\n"
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $< -o $@ $(LIBFT)
+	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT)
 	$(ECHOC) $(GREEN) "--> $(NAME) COMPILED !"$(NC)"\n\n"
 
-$(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile
+$(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 	$(ECHO) $(ORANGE) "Compiling $<"
 	mkdir -p $(PATH_OBJS)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean	:
 	$(RM) -r $(PATH_OBJS)
