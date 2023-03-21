@@ -1,0 +1,16 @@
+name: learn-github-actions
+on:
+  push:
+  pull_request:
+    branches:
+      - "main"
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: 42 Norminette
+        uses: alexandregv/norminette-action@v3
+      - name: Test
+        if: github.event_name == 'pull_request' # only run for merges
+        run: ./tests
