@@ -1,0 +1,72 @@
+==12643== Memcheck, a memory error detector
+==12643== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==12643== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
+==12643== Command: ./minishell
+==12643== Parent PID: 12642
+==12643== 
+--12643-- 
+--12643-- Valgrind options:
+--12643--    --leak-check=full
+--12643--    --show-leak-kinds=all
+--12643--    --track-origins=yes
+--12643--    --verbose
+--12643--    --log-file=valgrind-out.txt
+--12643-- Contents of /proc/version:
+--12643--   Linux version 5.15.0-67-generic (buildd@bos02-arm64-073) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #74-Ubuntu SMP Wed Feb 22 14:14:39 UTC 2023
+--12643-- 
+--12643-- Arch and hwcaps: ARM64, LittleEndian, v8-fhm-dpbcvadp-sha3-rdm-atomics-fp16-vfp16
+--12643-- Page sizes: currently 4096, max supported 65536
+--12643-- Valgrind library directory: /usr/libexec/valgrind
+--12643-- Reading syms from /home/mat/Desktop/42/Minishell/repo/minishell
+--12643-- Reading syms from /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+--12643--   Considering /usr/lib/debug/.build-id/a8/daca28288575ffc8c7641d40901b0148958fb1.debug ..
+--12643--   .. build-id is valid
+--12643-- Reading syms from /usr/libexec/valgrind/memcheck-arm64-linux
+--12643--    object doesn't have a symbol table
+--12643--    object doesn't have a dynamic symbol table
+--12643-- Scheduler: using generic scheduler lock implementation.
+--12643-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==12643== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-12643-by-mat-on-???
+==12643== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-12643-by-mat-on-???
+==12643== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-12643-by-mat-on-???
+==12643== 
+==12643== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==12643== don't want to do, unless you know exactly what you're doing,
+==12643== or are doing some strange experiment):
+==12643==   /usr/bin/vgdb --pid=12643 ...command...
+==12643== 
+==12643== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==12643==   /path/to/gdb ./minishell
+==12643== and then give GDB the following command
+==12643==   target remote | /usr/bin/vgdb --pid=12643
+==12643== --pid is optional if only one valgrind process is running
+==12643== 
+--12643-- REDIR: 0x401ee00 (ld-linux-aarch64.so.1:strlen) redirected to 0x580b918c (???)
+--12643-- REDIR: 0x401de00 (ld-linux-aarch64.so.1:strcmp) redirected to 0x580b91e0 (???)
+--12643-- REDIR: 0x401dd40 (ld-linux-aarch64.so.1:index) redirected to 0x580b91b4 (???)
+--12643-- Reading syms from /usr/libexec/valgrind/vgpreload_core-arm64-linux.so
+--12643--    object doesn't have a symbol table
+--12643-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so
+--12643--    object doesn't have a symbol table
+--12643-- Reading syms from /usr/lib/aarch64-linux-gnu/libc.so.6
+--12643--   Considering /usr/lib/debug/.build-id/4c/414febb48863e7ed248ade5a2ebbfc8fe10dca.debug ..
+--12643--   .. build-id is valid
+==12643== WARNING: new redirection conflicts with existing -- ignoring it
+--12643--     old: 0x0492e340 (memalign            ) R-> (1011.0) 0x0486a540 memalign
+--12643--     new: 0x0492e340 (memalign            ) R-> (1017.0) 0x0486a520 aligned_alloc
+==12643== WARNING: new redirection conflicts with existing -- ignoring it
+--12643--     old: 0x0492e340 (memalign            ) R-> (1011.0) 0x0486a540 memalign
+--12643--     new: 0x0492e340 (memalign            ) R-> (1017.0) 0x0486a500 aligned_alloc
+--12643-- REDIR: 0x4931620 (libc.so.6:memchr) redirected to 0x4840710 (_vgnU_ifunc_wrapper)
+--12643-- REDIR: 0x4930650 (libc.so.6:strlen) redirected to 0x4840710 (_vgnU_ifunc_wrapper)
+--12643-- REDIR: 0x4930a40 (libc.so.6:rindex) redirected to 0x486ac40 (rindex)
+--12643-- REDIR: 0x492d640 (libc.so.6:malloc) redirected to 0x4864fe0 (malloc)
+--12643-- REDIR: 0x492dbd4 (libc.so.6:free) redirected to 0x4867a60 (free)
+==12643== 
+==12643== HEAP SUMMARY:
+==12643==     in use at exit: 0 bytes in 0 blocks
+==12643==   total heap usage: 25 allocs, 25 frees, 4,700 bytes allocated
+==12643== 
+==12643== All heap blocks were freed -- no leaks are possible
+==12643== 
+==12643== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
