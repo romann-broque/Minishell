@@ -10,6 +10,7 @@ SHELL		= /usr/bin/bash
 
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/exit/
+PATH_SRCS	+=	srcs/prompt/
 
 ### srcs/
 
@@ -18,7 +19,7 @@ SRCS	 	+=	prompt.c
 
 ### srcs/exit/
 
-SRCS	 	+=	exit_print.c
+SRCS	 	+=	exit_shell.c
 
 vpath %.c $(PATH_SRCS)
 

@@ -6,11 +6,17 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/22 16:12:42 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/22 16:51:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	exec_command(const char *command)
+{
+	if (streq(command, "exit"))
+		exit_shell(LAST_RETVAL);
+}
 
 static void	get_command(void)
 {
@@ -18,10 +24,10 @@ static void	get_command(void)
 	char *const	command = ft_strtrim(line, SEPARATORS);
 
 	free(line);
-	if (streq(command, "exit"))
-		exit_shell(EXIT_SUCCESS);
 	if (command == NULL)
-		exit_shell(EXIT_SUCCESS);
+		exit_shell(LAST_RETVAL);
+	else
+		exec_command(command);
 	free(command);
 }
 
