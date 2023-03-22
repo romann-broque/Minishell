@@ -16,10 +16,9 @@ jobs:
       - name: Initialize libft submodule
         run: git submodule update --init libft
 
-      # - name: Update libft submodule
-      #   run: git submodule update --remote libft
-      - name: Check commit
-        run: norminette -v
+      - name: Update libft submodule
+        run: git submodule update --remote libft
+
       - name: 42 Norminette
         uses: alexandregv/norminette-action@v3
 
