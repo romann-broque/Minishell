@@ -19,6 +19,8 @@ jobs:
       - name: Update libft submodule
         run: git submodule update --remote libft
 
+      - name: DEBUG LIBFT
+        run: cat libft/srcs/ft_printf/converters/type/char_type.c -te
       - name: 42 Norminette
         uses: alexandregv/norminette-action@v3
 
