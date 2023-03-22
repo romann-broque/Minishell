@@ -1,7 +1,6 @@
 #!/bin/bash
 
-cc -Wall -Werror -Wextra main.c
-./a.out
+make re
 ret_val=$?
-rm ./a.out
+make fclean
 exit $ret_val

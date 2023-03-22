@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 14:07:50 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/21 14:08:24 by rbroque          ###   ########.fr       */
+/*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
+/*   Updated: 2023/03/21 18:29:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "minishell.h"
 
-int	main(void)
+static bool	get_command(void)
 {
-	return (EXIT_SUCCESS);
+	char *const	command = get_next_line(STDIN_FILENO);
+
+	free(command);
+	return (command != NULL);
+}
+
+void	prompt(void)
+{
+	while (true)
+	{
+		ft_printf("%s", PROMPT);
+		while (get_command() == false)
+			;
+	}
 }

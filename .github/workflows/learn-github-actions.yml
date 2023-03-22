@@ -10,8 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: 42 Norminette
-        uses: alexandregv/norminette-action@v3
+        with:
+          submodules: 'recursive' # Include submodules when checking out the repository
+
+      - name: Initialize libft submodule
+        run: git submodule update --init libft
+
+      - name: Update libft submodule
+        run: git submodule update --remote libft
+
+      # - name: 42 NORM
+      #   run: python3 -m venv venv
+      #        source venv/bin/activate
+      #        pip install norminette
+
       - name: Test
-        if: github.event_name == 'pull_request' # only run for merges
+        if: github.event_name == 'pull_request'
         run: ./tests
