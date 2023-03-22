@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   exit_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/22 12:41:02 by rbroque          ###   ########.fr       */
+/*   Created: 2023/03/22 12:35:37 by rbroque           #+#    #+#             */
+/*   Updated: 2023/03/22 12:35:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	get_command(void)
+void	exit_shell(const int exit_value)
 {
-	char *const	command = readline(PROMPT);
-
-	if (command == NULL)
-		exit_shell(EXIT_SUCCESS);
-	free(command);
-}
-
-void	prompt(void)
-{
-	while (true)
-		get_command();
+	ft_dprintf(STDERR_FILENO, "%s\n", EXIT_MESSAGE);
+	exit(exit_value);
 }

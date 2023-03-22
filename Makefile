@@ -9,9 +9,16 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+=	srcs/
+PATH_SRCS	+=	srcs/exit/
+
+### srcs/
 
 SRCS	 	+=	minishell.c
 SRCS	 	+=	prompt.c
+
+### srcs/exit/
+
+SRCS	 	+=	exit_print.c
 
 vpath %.c $(PATH_SRCS)
 
@@ -45,6 +52,12 @@ vpath %.h $(PATH_HEADERS)
 
 LIBFT_FOLDER =	libft/
 LIBFT		 =	$(LIBFT_FOLDER)/libft.a
+
+###############
+#### LINKS ####
+###############
+
+LINKS += -lreadline
 
 #####################
 #### COMPILATION ####
@@ -97,7 +110,7 @@ $(LIBFT):
 	echo -e $(BLUE) "\n====> Building $(NAME) <===="$(NC)"\n"
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT)
+	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(LINKS)
 	$(ECHOC) $(GREEN) "--> $(NAME) COMPILED !"$(NC)"\n\n"
 
 $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
