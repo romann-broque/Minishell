@@ -16,6 +16,8 @@ static void	get_command(void)
 {
 	char *const	command = readline(PROMPT);
 
+	if (streq(command, "exit"))
+		exit_shell(EXIT_SUCCESS);
 	if (command == NULL)
 		exit_shell(EXIT_SUCCESS);
 	free(command);
