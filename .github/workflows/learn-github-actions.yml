@@ -21,8 +21,11 @@ jobs:
 
       - name: DEBUG LIBFT
         run: cat libft/srcs/ft_printf/converters/type/char_type.c -te
-      - name: 42 Norminette
-        uses: alexandregv/norminette-action@v3
+
+      - name: 42 NORM
+        run: python3 -m venv venv
+             source venv/bin/activate
+             pip install norminette
 
       - name: Test
         if: github.event_name == 'pull_request'
