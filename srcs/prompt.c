@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/22 11:23:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/22 11:46:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static bool	get_command(void)
 {
 	char *const	command = get_next_line(STDIN_FILENO);
-	const char	eof[] = {EOF, '\0'};
+	const char	eof[] = {0x04, '\0'};
+
 	printf("\n[%s]\n", command);
 	printf("\n[%s]\n", eof);
 	if (command == NULL)
