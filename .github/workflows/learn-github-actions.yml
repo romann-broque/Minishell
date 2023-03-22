@@ -19,7 +19,7 @@ jobs:
       # - name: Update libft submodule
       #   run: git submodule update --remote libft
       - name: Check commit
-        run: cd libft; git log -1 | cat; cd ..
+        run: norminette -v
       - name: 42 Norminette
         uses: alexandregv/norminette-action@v3
 
