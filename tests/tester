@@ -1,0 +1,6 @@
+#!/bin/bash
+
+make re
+ret_val=$?
+make fclean
+exit $ret_val
