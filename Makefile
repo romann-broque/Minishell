@@ -11,11 +11,19 @@ SHELL		= /usr/bin/bash
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/prompt/
+PATH_SRCS	+=	srcs/signal/
 
 ### srcs/
 
 SRCS	 	+=	minishell.c
+
+### srcs/prompt/
+
 SRCS	 	+=	prompt.c
+
+### srcs/signal/
+
+SRCS		+=	signal.c
 
 ### srcs/exit/
 
