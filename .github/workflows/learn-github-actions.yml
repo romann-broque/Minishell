@@ -26,4 +26,4 @@ jobs:
 
       - name: Test
         if: github.event_name == 'pull_request'
-        run: ./tests
+        run: ./tests/tester
