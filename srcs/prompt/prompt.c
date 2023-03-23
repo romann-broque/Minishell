@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/23 14:18:09 by mat              ###   ########.fr       */
+/*   Updated: 2023/03/23 14:30:01 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	exec_command(const char *command)
 		exit_shell(LAST_RETVAL);
 }
 
-void	get_command(void)
+static void	get_command(void)
 {
 	char *const	line = readline(PROMPT);
 	char *const	command = ft_strtrim(line, SEPARATORS);

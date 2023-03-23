@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/23 12:48:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/03/23 14:31:57 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	exit_shell(const int exit_value);
 // prompt.c
 
 void	prompt(void);
-void	get_command(void);
 
 // signal.c
 

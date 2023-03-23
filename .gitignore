@@ -1,6 +1,14 @@
 # Prerequisites
 *.d
 
+# Folder
+
+./objs/
+
+# Executable
+
+./minishell
+
 # Object files
 *.o
 *.ko
