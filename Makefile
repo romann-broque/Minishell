@@ -12,6 +12,7 @@ PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/signal/
+PATH_SRCS	+=	srcs/print/
 
 ### srcs/
 
@@ -28,6 +29,11 @@ SRCS		+=	signal.c
 ### srcs/exit/
 
 SRCS	 	+=	exit_shell.c
+
+### srcs/print/
+
+SRCS		+=	test_print.c
+
 
 vpath %.c $(PATH_SRCS)
 
