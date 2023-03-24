@@ -5,6 +5,7 @@ on:
     branches:
       - "main"
       - "MVE1"
+      - "MVE2"
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
