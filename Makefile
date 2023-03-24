@@ -68,6 +68,13 @@ LIBFT		 =	$(LIBFT_FOLDER)/libft.a
 
 LINKS += -lreadline
 
+################
+#### TESTER ####
+################
+
+TESTER_FOLDER	= ./tests/tester_dir/
+TESTER			= $(TESTER_FOLDER)/tester
+
 #####################
 #### COMPILATION ####
 #####################
@@ -127,6 +134,11 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 	mkdir -p $(PATH_OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
+test	:
+	$(MAKE) -s
+	echo -e $(BLUE) "\n====> TESTS <===="$(NC)"\n"
+	$(TESTER)
+
 clean	:
 	$(RM) -r $(PATH_OBJS)
 	$(MAKE) -sC $(LIBFT_FOLDER) clean > /dev/null
@@ -142,5 +154,5 @@ re 		: fclean
 	echo -e $(YELLOW) "\nRebuilding..." $(NC)
 	$(MAKE) -s
 
-.PHONY	: all clean fclean re
-.SILENT	: all clean fclean re $(NAME) $(OBJS) $(LIBFT)
+.PHONY	: all test clean fclean re
+.SILENT	: all test clean fclean re $(NAME) $(OBJS) $(LIBFT)
