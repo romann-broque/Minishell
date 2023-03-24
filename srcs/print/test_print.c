@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:48 by mat               #+#    #+#             */
-/*   Updated: 2023/03/24 13:37:03 by mat              ###   ########.fr       */
+/*   Updated: 2023/03/24 13:45:30 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_command(char **command)
 	i = 0;
 	while (command[i] != NULL)
 	{
-		printf("Element %zu : %s\n", i, command[i]);
+		printf("Element %zu : [%s]\n", i, command[i]);
 		i++;
 	}
 }
