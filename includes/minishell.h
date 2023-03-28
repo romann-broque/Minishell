@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/23 14:31:57 by mat              ###   ########.fr       */
+/*   Updated: 2023/03/24 15:11:39 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,9 @@ void	prompt(void);
 // signal.c
 
 void	set_catcher(void);
+
+// test_print.c
+
+void	print_command(char **const command);
 
 #endif
