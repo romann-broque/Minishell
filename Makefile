@@ -21,6 +21,8 @@ SRCS	 	+=	minishell.c
 ### srcs/prompt/
 
 SRCS	 	+=	prompt.c
+SRCS		+=	var.c
+SRCS		+=	var2.c
 
 ### srcs/signal/
 
