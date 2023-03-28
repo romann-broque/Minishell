@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/24 15:10:34 by mat              ###   ########.fr       */
+/*   Updated: 2023/03/28 09:33:11 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	exec_command(char **const token_array)
 {
-	if (streq(token_array[0], "exit"))
+	if (token_array[0] != NULL && streq(token_array[0], "exit"))
 		exit_shell(LAST_RETVAL);
 }
 
