@@ -10,21 +10,14 @@ SHELL		= /usr/bin/bash
 
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/exit/
+PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/signal/
-PATH_SRCS	+=	srcs/print/
+PATH_SRCS	+=	srcs/token/
 
 ### srcs/
 
 SRCS	 	+=	minishell.c
-
-### srcs/prompt/
-
-SRCS	 	+=	prompt.c
-
-### srcs/signal/
-
-SRCS		+=	signal.c
 
 ### srcs/exit/
 
@@ -34,6 +27,19 @@ SRCS	 	+=	exit_shell.c
 
 SRCS		+=	test_print.c
 
+### srcs/prompt/
+
+SRCS	 	+=	prompt.c
+
+### srcs/signal/
+
+SRCS		+=	signal.c
+
+### srcs/token/
+
+SRCS		+=	get_tokens.c
+SRCS		+=	parse_states.c
+SRCS		+=	token_list.c
 
 vpath %.c $(PATH_SRCS)
 
