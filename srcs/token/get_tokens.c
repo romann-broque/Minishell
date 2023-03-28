@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:29:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/28 19:29:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/28 19:44:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	init_qmachine(t_qmachine *machine, const char *str)
 {
 	machine->state = E_SEPARATOR;
-	machine->abs_index = 0;
 	machine->index = 0;
 	machine->str = str;
 	machine->tokens = NULL;
