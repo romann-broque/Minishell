@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/28 19:44:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/28 22:26:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,16 @@ char	**get_tokens(const char *str);
 
 // parse_states.c
 
-void	separator_state(t_qmachine *machine);
-void	single_quote_state(t_qmachine *machine);
-void	double_quote_state(t_qmachine *machine);
-void	word_state(t_qmachine *machine);
+void	separator_state(t_qmachine *const machine);
+void	single_quote_state(t_qmachine *const machine);
+void	double_quote_state(t_qmachine *const machine);
+void	word_state(t_qmachine *const machine);
 
-// token_list.c
+// strs_from_lst.c
+
+char	**dup_strs_from_lst(t_list *lst);
+
+// strs_to_lst.c
 
 void	add_token(t_qmachine *machine);
 

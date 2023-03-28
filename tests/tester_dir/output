@@ -1,2 +1,23 @@
 minishell $ wouah
+[wouah]
+minishell $ ech"o"
+[ech"o"]
+minishell $ ""
+[""]
+minishell $ ec"ho" he"l"lo
+[ec"ho"]
+[he"l"lo]
+minishell $ ec"ho" he'"'l"lo"
+[ec"ho"]
+[he'"'l"lo"]
+minishell $ "''       '' "'''"
+["''       '' "'''"]
+minishell $    heeey les   ""  '  ''''       amis
+[heeey]
+[les]
+[""]
+['  '''']
+[amis]
+minishell $ 
+minishell $              
 minishell $ exit

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:41:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/28 21:42:59 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/28 22:25:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static bool	is_separator(const char c)
 	return (ft_strchr(SEPARATORS, c));
 }
 
-void	separator_state(t_qmachine *machine)
+void	separator_state(t_qmachine *const machine)
 {
 	const char	curr_char = machine->str[0];
 
@@ -36,7 +36,7 @@ void	separator_state(t_qmachine *machine)
 	}
 }
 
-void	single_quote_state(t_qmachine *machine)
+void	single_quote_state(t_qmachine *const machine)
 {
 	const char		curr_char = machine->str[0];
 	const size_t	curr_index = machine->index;
@@ -59,7 +59,7 @@ void	single_quote_state(t_qmachine *machine)
 	}
 }
 
-void	double_quote_state(t_qmachine *machine)
+void	double_quote_state(t_qmachine *const machine)
 {
 	const char		curr_char = machine->str[0];
 	const size_t	curr_index = machine->index;
@@ -82,7 +82,7 @@ void	double_quote_state(t_qmachine *machine)
 	}
 }
 
-void	word_state(t_qmachine *machine)
+void	word_state(t_qmachine *const machine)
 {
 	const char	curr_char = machine->str[0];
 

@@ -39,7 +39,8 @@ SRCS		+=	signal.c
 
 SRCS		+=	get_tokens.c
 SRCS		+=	parse_states.c
-SRCS		+=	token_list.c
+SRCS		+=	strs_from_lst.c
+SRCS		+=	strs_to_lst.c
 
 vpath %.c $(PATH_SRCS)
 
