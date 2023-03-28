@@ -10,13 +10,11 @@ INPUT=${FOLDER}inputs
 OUTPUT_REF=${FOLDER}output_ref
 OUTPUT=${FOLDER}/output
 
-cat ${INPUT} | ${PROGRAM} &> ${OUTPUT}; diff ${OUTPUT} ${OUTPUT_REF}
+cat ${INPUT} | ${PROGRAM} &> ${OUTPUT}
 
-ret_val=$?
-
-if [ "${ret_val}" == "0" ]; then
-	echo -e "${GREEN}OK\n${NC}"
-else
-	cat ${CACHE}
+if ! diff ${OUTPUT} ${OUTPUT_REF}; then
 	echo -e "${RED}KO\n${NC}"
+	exit 1
+else
+	echo -e "${GREEN}OK\n${NC}"
 fi
