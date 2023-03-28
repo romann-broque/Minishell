@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:29:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/28 18:46:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/28 19:29:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,20 @@ static void	init_qmachine(t_qmachine *machine, const char *str)
 	machine->tokens = NULL;
 }
 
-// static void	print_list(t_list *lst)
-// {
-// 	while (lst != NULL)
-// 	{
-// 		printf("[%s]\n", (char *)(lst->content));
-// 		lst = lst->next;
-// 	}
-// }
+static void	print_list(t_list *lst)
+{
+	while (lst != NULL)
+	{
+		printf("[%s]\n", (char *)(lst->content));
+		lst = lst->next;
+	}
+}
 
 char	**get_tokens(const char *str)
 {
 	static void	(*state_fct[])(t_qmachine *) = {
 		separator_state,
-		simple_quote_state,
+		single_quote_state,
 		double_quote_state,
 		word_state,
 	};
@@ -43,6 +43,6 @@ char	**get_tokens(const char *str)
 	init_qmachine(&machine, str);
 	while (machine.state != E_EOF)
 		state_fct[machine.state](&machine);
+	print_list(machine.tokens);
 	return (ft_split_set(str, SEPARATORS));
 }
-//	print_list(machine.tokens);
