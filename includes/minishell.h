@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/24 15:11:39 by mat              ###   ########.fr       */
+/*   Updated: 2023/03/28 19:29:14 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ void	exit_shell(const int exit_value);
 // prompt.c
 
 void	prompt(void);
+
+// var.c
+
+char	*expand_var(char *line);
+
+// var2.c
+
+void	fill_new_line(char *line, char *n_line, char *value, size_t n_l_len);
 
 // signal.c
 
