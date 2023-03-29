@@ -14,6 +14,7 @@ PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/signal/
 PATH_SRCS	+=	srcs/token/
+PATH_SRCS	+=	srcs/token/get_token
 
 ### srcs/
 
@@ -36,6 +37,8 @@ SRCS	 	+=	prompt.c
 SRCS		+=	signal.c
 
 ### srcs/token/
+
+### srcs/token/get_token/
 
 SRCS		+=	get_tokens.c
 SRCS		+=	parse_states.c
