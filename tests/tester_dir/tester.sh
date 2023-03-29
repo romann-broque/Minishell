@@ -12,9 +12,15 @@ REF_FOLDER="${FOLDER}"ref/
 
 # Define the input, output, and output reference files
 
-inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"quotes.in)
-outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"quotes.out )
-output_refs=( "${REF_FOLDER}"basic.ref "${REF_FOLDER}"quotes.ref )
+inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"var.in )
+outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"var.out )
+output_refs=( "${REF_FOLDER}"basic.ref "${REF_FOLDER}"var.ref )
+
+# set test variables
+
+export single=var1
+export multiple2=var2
+export multiple=$multiple2
 
 # Iterate over the arrays using a for loop
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:15:43 by mdorr             #+#    #+#             */
-/*   Updated: 2023/03/28 19:26:25 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/03/29 10:06:03 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ char	*expand_var(char *line)
 		if (new_line == NULL)
 			return (line);
 	}
+	printf("coucou\n");
 	while (ft_strchr(new_line, '$') != NULL)
 	{
 		new_line_tmp = get_new_line(new_line);

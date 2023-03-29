@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:26:48 by mat               #+#    #+#             */
-/*   Updated: 2023/03/24 15:09:58 by mat              ###   ########.fr       */
+/*   Updated: 2023/03/29 08:33:56 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_command(char **const token_array)
 	i = 0;
 	while (token_array[i] != NULL)
 	{
-		printf("Element %zu : [%s]\n", i, token_array[i]);
+		printf("Element %zu : [%s]\n", i + 1, token_array[i]);
 		i++;
 	}
 }
