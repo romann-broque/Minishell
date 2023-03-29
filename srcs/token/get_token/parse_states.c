@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:41:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/28 22:25:10 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/29 10:59:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,18 @@ void	separator_state(t_qmachine *const machine)
 		machine->state = E_EOF;
 	else if (is_separator(curr_char) == true)
 		++(machine->str);
+	else if (curr_char == '\'')
+		machine->state = E_QUOTE;
+	else if (curr_char == '\"')
+		machine->state = E_DQUOTE;
 	else
-	{
-		if (curr_char == '\'')
-			machine->state = E_QUOTE;
-		else if (curr_char == '\"')
-			machine->state = E_DQUOTE;
-		else
-			machine->state = E_WORD;
-	}
+		machine->state = E_WORD;
 }
 
 void	single_quote_state(t_qmachine *const machine)
 {
 	const char		curr_char = machine->str[0];
-	const size_t	curr_index = machine->index;
+	const size_t	curr_len = machine->word_len;
 
 	if (curr_char == '\0')
 	{
@@ -48,9 +45,9 @@ void	single_quote_state(t_qmachine *const machine)
 	}
 	else
 	{
-		++(machine->index);
+		++(machine->word_len);
 		++(machine->str);
-		if (curr_index > 0 && curr_char == '\'')
+		if (curr_len > 0 && curr_char == '\'')
 		{
 			if (is_separator(machine->str[0]) == true)
 				add_token(machine);
@@ -62,7 +59,7 @@ void	single_quote_state(t_qmachine *const machine)
 void	double_quote_state(t_qmachine *const machine)
 {
 	const char		curr_char = machine->str[0];
-	const size_t	curr_index = machine->index;
+	const size_t	curr_len = machine->word_len;
 
 	if (curr_char == '\0')
 	{
@@ -71,9 +68,9 @@ void	double_quote_state(t_qmachine *const machine)
 	}
 	else
 	{
-		++(machine->index);
+		++(machine->word_len);
 		++(machine->str);
-		if (curr_index > 0 && curr_char == '\"')
+		if (curr_len > 0 && curr_char == '\"')
 		{
 			if (is_separator(machine->str[0]) == true)
 				add_token(machine);
@@ -97,6 +94,6 @@ void	word_state(t_qmachine *const machine)
 		machine->state = E_SEPARATOR;
 	}
 	else
-		++(machine->index);
+		++(machine->word_len);
 	++(machine->str);
 }

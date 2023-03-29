@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/28 22:26:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/29 10:58:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef enum e_quote_state
 typedef struct s_qmachine
 {
 	t_qstate	state;
-	size_t		index;
+	size_t		word_len;
 	const char	*str;
 	t_list		*tokens;
 }				t_qmachine;
