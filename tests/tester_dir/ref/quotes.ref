@@ -21,4 +21,8 @@ minishell $
 minishell $ echo """ "
 [echo]
 [""" "]
+minishell $       he"l"   "o" 
+[he"l"]
+["o"]
+minishell $       "hel "   " lo" 
 minishell $ exit

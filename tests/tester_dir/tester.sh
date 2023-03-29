@@ -6,7 +6,7 @@
 #    By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 09:44:14 by rbroque           #+#    #+#              #
-#    Updated: 2023/03/29 09:50:23 by rbroque          ###   ########.fr        #
+#    Updated: 2023/03/29 16:46:39 by rbroque          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ for i in "${!inputs[@]}"; do
 	filename=$(basename "${inputs[$i]}")
 
 	# Compare the output file with the corresponding reference file using diff
-	if diff "${outputs[$i]}" "${output_refs[$i]}"; then
+	if diff -a "${outputs[$i]}" "${output_refs[$i]}"; then
 		echo -e "${GREEN}${filename} : OK${NC}"
 	else
 		ret_val+=$?
