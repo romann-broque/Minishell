@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/29 10:58:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/29 15:52:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,10 @@ char	**dup_strs_from_lst(t_list *lst);
 // strs_to_lst.c
 
 void	add_token(t_qmachine *machine);
+
+// token_util.c
+
+bool	is_separator(const char c);
+bool	is_last_quote(t_qmachine *machine, const char quote);
 
 #endif
