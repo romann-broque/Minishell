@@ -6,11 +6,27 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:06:27 by mdorr             #+#    #+#             */
-/*   Updated: 2023/03/28 19:28:47 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/03/29 17:28:18 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int		get_var_nbr(char *line)
+{
+	size_t	i;
+	size_t	var_nbr;
+
+	i = 0;
+	var_nbr = 0;
+	if (line[i] == '$')
+	{
+		while (line[i] != ' ' && line[i] != '\t')
+			i++;
+		var_nbr++;
+	}
+	
+}
 
 void	fill_new_line(char *line, char *n_line, char *value, size_t n_l_len)
 {

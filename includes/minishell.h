@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/28 19:29:14 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/03/29 18:20:29 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	prompt(void);
 // var.c
 
 char	*expand_var(char *line);
+char	*get_var_name(char *line);
 
 // var2.c
 

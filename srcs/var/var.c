@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:15:43 by mdorr             #+#    #+#             */
-/*   Updated: 2023/03/29 10:06:03 by mat              ###   ########.fr       */
+/*   Updated: 2023/03/29 18:20:12 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static size_t	get_var_len(char *dollar_ptr)
 {
 	size_t	i;
 
-	i = 0;
-	while (dollar_ptr[i] != ' ')
+	i = 1;
+	while (ft_isalnum(dollar_ptr[i]) == 1 || dollar_ptr[i] == '_')
 		i++;
 	return (i);
 }
@@ -36,14 +36,14 @@ static int	get_new_line_len(char *line, char *var_name, char *var_value)
 
 //Question : Do we make an exit message specific for malloc faillure ?
 
-static char	*get_var_name(char *line)
+char	*get_var_name(char *line)
 {
 	char	*dollar_ptr;
 	char	*var;
 	size_t	var_len;
 	size_t	i;
 
-	dollar_ptr = ft_strrchr(line, '$');
+	dollar_ptr = ft_strchr(line, '$');
 	if (dollar_ptr == NULL)
 		return (NULL);
 	var_len = get_var_len(dollar_ptr);
@@ -91,28 +91,39 @@ static char	*get_new_line(char *line)
 	return (new_line);
 }
 
+//char	*expand_var(char *line)
+//{
+//	char	*new_line;
+//	char	*new_line_tmp;
+
+//	if (line == NULL)
+//		return (line);
+//	new_line = line;
+//	if (ft_strchr(line, '$') != NULL)
+//	{
+//		new_line = get_new_line(line);
+//		if (new_line == NULL)
+//			return (line);
+//	}
+//	while (ft_strchr(new_line, '$') != NULL)
+//	{
+//		printf("in the while loop\n");
+//		printf("new line is %s\n", new_line);
+//		new_line_tmp = get_new_line(new_line);
+//		free(new_line);
+//		if (new_line_tmp == NULL)
+//			return (NULL);
+//		new_line = new_line_tmp;
+//	}
+//	return (new_line);
+//}
+
 char	*expand_var(char *line)
 {
-	char	*new_line;
-	char	*new_line_tmp;
+	size_t	i;
+	char 	*new_line;
 
 	if (line == NULL)
 		return (line);
-	new_line = line;
-	if (ft_strchr(line, '$') != NULL)
-	{
-		new_line = get_new_line(line);
-		if (new_line == NULL)
-			return (line);
-	}
-	printf("coucou\n");
-	while (ft_strchr(new_line, '$') != NULL)
-	{
-		new_line_tmp = get_new_line(new_line);
-		free(new_line);
-		if (new_line_tmp == NULL)
-			return (NULL);
-		new_line = new_line_tmp;
-	}
-	return (new_line);
+	new_line = create_var_line(line);
 }
