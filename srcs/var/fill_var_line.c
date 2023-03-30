@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:06:27 by mdorr             #+#    #+#             */
-/*   Updated: 2023/03/30 08:45:49 by mat              ###   ########.fr       */
+/*   Updated: 2023/03/30 08:48:38 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	fill_new_line(char *line, char *n_line, char *value, size_t n_l_len)
 		value_len = 0;
 	else
 		value_len = ft_strlen(value);
-
 	while (line[i_line] != '$')
 		n_line[i_new_line++] = line[i_line++];
 	i_line++;
