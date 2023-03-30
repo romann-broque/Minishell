@@ -6,7 +6,7 @@
 #    By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 09:44:14 by rbroque           #+#    #+#              #
-#    Updated: 2023/03/30 15:18:40 by rbroque          ###   ########.fr        #
+#    Updated: 2023/03/30 22:10:05 by rbroque          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ GREEN="\033[32m"
 NC="\033[0m"
 
 PROGRAM=./minishell
-FOLDER=./tests/tester_dir/
+FOLDER=./tests/tester_folder/
 IN_FOLDER="${FOLDER}"in/
 OUT_FOLDER="${FOLDER}"out/
 REF_FOLDER="${FOLDER}"ref/

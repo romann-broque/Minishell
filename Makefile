@@ -92,7 +92,7 @@ LINKS += -lreadline
 #### TESTER ####
 ################
 
-TESTER_FOLDER	= ./tests/tester_dir/
+TESTER_FOLDER	= ./tests/tester_folder/
 TESTER			= $(TESTER_FOLDER)/tester.sh
 
 #####################

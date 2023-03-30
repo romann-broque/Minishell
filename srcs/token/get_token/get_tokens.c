@@ -6,14 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:29:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/30 11:14:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/30 22:09:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// get_tokens :
-//				Returns an array of tokens ready to be categorize by the lexer.
+// get_tokens :	Returns an array of tokens ready to be categorize by the lexer.
 //				It uses a finite state machine strategy
 
 char	**get_tokens(const char *str)
