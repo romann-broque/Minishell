@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:29:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/29 10:58:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/30 10:47:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,6 @@ static void	init_qmachine(t_qmachine *machine, const char *str)
 	machine->word_len = 0;
 	machine->str = str;
 	machine->tokens = NULL;
-}
-
-static void	print_list(t_list *lst)
-{
-	while (lst != NULL)
-	{
-		printf("[%s]\n", (char *)(lst->content));
-		lst = lst->next;
-	}
 }
 
 char	**get_tokens(const char *str)
@@ -46,7 +37,6 @@ char	**get_tokens(const char *str)
 		init_qmachine(&machine, str);
 		while (machine.state != E_EOF)
 			state_fct[machine.state](&machine);
-		print_list(machine.tokens);
 		tokens = dup_strs_from_lst(machine.tokens);
 		ft_lstclear(&(machine.tokens), free);
 	}

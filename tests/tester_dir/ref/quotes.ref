@@ -1,33 +1,33 @@
 minishell $ ech"o"
-[ech"o"]
+Element 1 : [ech"o"]
 minishell $ ""
-[""]
+Element 1 : [""]
 minishell $ ec"ho" he"l"lo
-[ec"ho"]
-[he"l"lo]
+Element 1 : [ec"ho"]
+Element 2 : [he"l"lo]
 minishell $ ec"ho" he'"'l"lo"
-[ec"ho"]
-[he'"'l"lo"]
+Element 1 : [ec"ho"]
+Element 2 : [he'"'l"lo"]
 minishell $ "''       '' "'''"
-["''       '' "'''"]
+Element 1 : ["''       '' "'''"]
 minishell $    heeey les   ""  '  '''       amis
-[heeey]
-[les]
-[""]
-['  ''']
-[amis]
+Element 1 : [heeey]
+Element 2 : [les]
+Element 3 : [""]
+Element 4 : ['  ''']
+Element 5 : [amis]
 minishell $ 
 minishell $              
 minishell $ echo """ "
-[echo]
-[""" "]
+Element 1 : [echo]
+Element 2 : [""" "]
 minishell $       he"l"   "o" 
-[he"l"]
-["o"]
+Element 1 : [he"l"]
+Element 2 : ["o"]
 minishell $ "hel "   " lo"
-["hel "]
-[" lo"]
+Element 1 : ["hel "]
+Element 2 : [" lo"]
 minishell $ "hel "   " lo"  
-["hel "]
-[" lo"]
+Element 1 : ["hel "]
+Element 2 : [" lo"]
 minishell $ exit

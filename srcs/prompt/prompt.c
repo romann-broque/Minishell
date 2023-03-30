@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/28 13:37:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/30 10:47:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	get_command(void)
 		exit_shell(LAST_RETVAL);
 	else
 		exec_command(token_array);
+	print_command(token_array);
 	free_strs(token_array);
 }
 
