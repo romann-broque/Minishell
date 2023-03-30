@@ -6,19 +6,15 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:29:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/30 10:47:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/30 11:14:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	init_qmachine(t_qmachine *machine, const char *str)
-{
-	machine->state = E_SEPARATOR;
-	machine->word_len = 0;
-	machine->str = str;
-	machine->tokens = NULL;
-}
+// get_tokens :
+//				Returns an array of tokens ready to be categorize by the lexer.
+//				It uses a finite state machine strategy
 
 char	**get_tokens(const char *str)
 {
