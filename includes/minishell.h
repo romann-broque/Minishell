@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/30 10:40:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/30 10:57:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,6 @@ void	add_token(t_qmachine *machine);
 // token_util.c
 
 bool	is_separator(const char c);
-void	change_state(t_qmachine *const machine);
+void	update_state(t_qmachine *const machine);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:41:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/30 10:45:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/30 10:57:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	separator_state(t_qmachine *const machine)
 {
-	change_state(machine);
+	update_state(machine);
 	if (machine->state == E_SEPARATOR)
 		++(machine->str);
 }
@@ -36,7 +36,7 @@ static void	quote_state(t_qmachine *const machine, const char quote)
 		++(machine->str);
 		if (is_first_quote == false && curr_char == quote)
 		{
-			change_state(machine);
+			update_state(machine);
 			if (machine->state == E_EOF || machine->state == E_SEPARATOR)
 				add_token(machine);
 			is_first_quote = true;
@@ -58,7 +58,7 @@ void	double_quote_state(t_qmachine *const machine)
 
 void	word_state(t_qmachine *const machine)
 {
-	change_state(machine);
+	update_state(machine);
 	if (machine->state == E_EOF || machine->state == E_SEPARATOR)
 		add_token(machine);
 	else if (machine->state == E_WORD)

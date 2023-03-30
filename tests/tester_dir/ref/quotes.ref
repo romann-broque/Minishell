@@ -30,4 +30,13 @@ Element 2 : [" lo"]
 minishell $ "hel "   " lo"  
 Element 1 : ["hel "]
 Element 2 : [" lo"]
+minishell $ hel" ' '"lo
+Element 1 : [hel" ' '"lo]
+minishell $ "'" ""
+Element 1 : ["'"]
+Element 2 : [""]
+minishell $ "'''" "" "''''"
+Element 1 : ["'''"]
+Element 2 : [""]
+Element 3 : ["''''"]
 minishell $ exit

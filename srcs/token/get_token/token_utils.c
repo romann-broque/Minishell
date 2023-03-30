@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:51:57 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/30 10:41:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/30 10:57:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	is_separator(const char c)
 	return (ft_strchr(SEPARATORS, c));
 }
 
-void	change_state(t_qmachine *const machine)
+void	update_state(t_qmachine *const machine)
 {
 	const char	c = machine->str[0];
 
