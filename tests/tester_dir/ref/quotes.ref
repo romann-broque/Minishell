@@ -10,11 +10,11 @@ minishell $ ec"ho" he'"'l"lo"
 [he'"'l"lo"]
 minishell $ "''       '' "'''"
 ["''       '' "'''"]
-minishell $    heeey les   ""  '  ''''       amis
+minishell $    heeey les   ""  '  '''       amis
 [heeey]
 [les]
 [""]
-['  '''']
+['  ''']
 [amis]
 minishell $ 
 minishell $              
@@ -24,5 +24,10 @@ minishell $ echo """ "
 minishell $       he"l"   "o" 
 [he"l"]
 ["o"]
-minishell $       "hel "   " lo" 
+minishell $ "hel "   " lo"
+["hel "]
+[" lo"]
+minishell $ "hel "   " lo"  
+["hel "]
+[" lo"]
 minishell $ exit

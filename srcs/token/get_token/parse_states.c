@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:41:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/29 15:52:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/30 10:45:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,68 +14,54 @@
 
 void	separator_state(t_qmachine *const machine)
 {
-	const char	curr_char = machine->str[0];
-
-	if (curr_char == '\0')
-		machine->state = E_EOF;
-	else if (is_separator(curr_char) == true)
+	change_state(machine);
+	if (machine->state == E_SEPARATOR)
 		++(machine->str);
-	else if (curr_char == '\'')
-		machine->state = E_QUOTE;
-	else if (curr_char == '\"')
-		machine->state = E_DQUOTE;
-	else
-		machine->state = E_WORD;
 }
 
 static void	quote_state(t_qmachine *const machine, const char quote)
 {
-	const char		curr_char = machine->str[0];
-	const size_t	curr_len = machine->word_len;
+	const char	curr_char = machine->str[0];
+	static bool	is_first_quote = true;
 
 	if (curr_char == '\0')
 	{
 		add_token(machine);
 		machine->state = E_EOF;
+		is_first_quote = true;
 	}
 	else
 	{
 		++(machine->word_len);
 		++(machine->str);
-		if (curr_len > 0 && curr_char == quote
-			&& is_last_quote(machine, quote) == true)
+		if (is_first_quote == false && curr_char == quote)
 		{
-			add_token(machine);
-			machine->state = E_SEPARATOR;
+			change_state(machine);
+			if (machine->state == E_EOF || machine->state == E_SEPARATOR)
+				add_token(machine);
+			is_first_quote = true;
 		}
+		else
+			is_first_quote = false;
 	}
 }
 
 void	single_quote_state(t_qmachine *const machine)
 {
-	quote_state(machine, '\'');
+	quote_state(machine, SINGLE_QUOTE);
 }
 
 void	double_quote_state(t_qmachine *const machine)
 {
-	quote_state(machine, '\"');
+	quote_state(machine, DOUBLE_QUOTE);
 }
 
 void	word_state(t_qmachine *const machine)
 {
-	const char	curr_char = machine->str[0];
-
-	if (curr_char == '\0')
-	{
+	change_state(machine);
+	if (machine->state == E_EOF || machine->state == E_SEPARATOR)
 		add_token(machine);
-		machine->state = E_EOF;
-	}
-	else if (is_separator(curr_char) == true)
-	{
-		add_token(machine);
-		machine->state = E_SEPARATOR;
-	}
-	else
+	else if (machine->state == E_WORD)
 	{
 		++(machine->word_len);
 		++(machine->str);

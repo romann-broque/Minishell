@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:51:57 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/29 15:52:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/30 10:41:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,18 @@ bool	is_separator(const char c)
 	return (ft_strchr(SEPARATORS, c));
 }
 
-bool	is_last_quote(t_qmachine *machine, const char quote)
+void	change_state(t_qmachine *const machine)
 {
-	const char	*str = machine->str - machine->word_len;
-	bool		is_end;
-	size_t		i;
+	const char	c = machine->str[0];
 
-	is_end = false;
-	i = 0;
-	while (i < machine->word_len)
-	{
-		if (str[i] == quote)
-		{
-			if (is_end == false && is_separator(str[i + 1]) == true)
-				is_end = true;
-			else
-				is_end = false;
-		}
-		++i;
-	}
-	return ((str[i] == '\0' || str[i + 1] != quote) && is_end);
+	if (c == END_CHAR)
+		machine->state = E_EOF;
+	else if (is_separator(c) == true)
+		machine->state = E_SEPARATOR;
+	else if (c == SINGLE_QUOTE)
+		machine->state = E_QUOTE;
+	else if (c == DOUBLE_QUOTE)
+		machine->state = E_DQUOTE;
+	else
+		machine->state = E_WORD;
 }
