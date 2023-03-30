@@ -9,7 +9,7 @@ minishell $ ec"ho" he'"'l"lo"
 Element 1 : [ec"ho"]
 Element 2 : [he'"'l"lo"]
 minishell $ "''       '' "'''"
-Element 1 : ["''       '' "'''"]
+Syntax error
 minishell $    heeey les   ""  '  '''       amis
 Element 1 : [heeey]
 Element 2 : [les]

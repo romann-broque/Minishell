@@ -6,14 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:41:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/30 11:34:06 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/30 21:59:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// quote_state:
-//				generic function for single quotes and double quotes
+// quote_state:	generic function for single quotes and double quotes
 
 static void	quote_state(t_qmachine *const machine, const char quote)
 {

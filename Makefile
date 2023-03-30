@@ -27,6 +27,7 @@ SRCS	 	+=	exit_shell.c
 ### srcs/print/
 
 SRCS		+=	test_print.c
+SRCS		+=	print_error.c
 
 ### srcs/prompt/
 
@@ -37,6 +38,8 @@ SRCS	 	+=	prompt.c
 SRCS		+=	signal.c
 
 ### srcs/token/
+
+SRCS		+=	are_quotes_closed.c
 
 ### srcs/token/get_token/
 

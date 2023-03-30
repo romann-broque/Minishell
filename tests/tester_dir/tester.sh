@@ -6,7 +6,7 @@
 #    By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 09:44:14 by rbroque           #+#    #+#              #
-#    Updated: 2023/03/29 16:46:39 by rbroque          ###   ########.fr        #
+#    Updated: 2023/03/30 15:18:40 by rbroque          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ REF_FOLDER="${FOLDER}"ref/
 
 # Define the input, output, and output reference files
 
-inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"quotes.in)
+inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"quotes.in )
 outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"quotes.out )
 output_refs=( "${REF_FOLDER}"basic.ref "${REF_FOLDER}"quotes.ref )
 

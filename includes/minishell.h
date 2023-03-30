@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/30 11:34:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/03/30 15:46:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@
 # define SINGLE_QUOTE	'\''
 # define DOUBLE_QUOTE	'\"'
 # define LAST_RETVAL	EXIT_SUCCESS
+
+// Errors
+
+# define SYNTAX_ERROR	"Syntax error"
 
 //////////////////
 /// STRUCTURES ///
@@ -70,6 +74,7 @@ void	exit_shell(const int exit_value);
 // print.c
 
 void	print_command(char **const command);
+void	print_error(const char *error_name);
 
 //// PROMPT ////
 
@@ -109,5 +114,9 @@ void	add_token(t_qmachine *machine);
 bool	is_separator(const char c);
 void	update_state(t_qmachine *const machine);
 void	init_qmachine(t_qmachine *const machine, const char *str);
+
+// are_quotes_closed.c
+
+bool	are_quotes_closed(const char *str);
 
 #endif
