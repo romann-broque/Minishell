@@ -30,5 +30,10 @@ minishell $ bonjour $single bonjour2 $multiple
 Element 1 : [bonjour]
 Element 2 : [var1]
 Element 3 : [bonjour2]
-Element 1 : [var2]
+Element 4 : [var2]
+minishell $ $$
+minishell $ $1bla
+Element 1 : [bla]
+minishell $ $?bla
+Element 1 : [bla]
 minishell $ exit

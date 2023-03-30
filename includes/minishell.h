@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/30 08:28:11 by mat              ###   ########.fr       */
+/*   Updated: 2023/03/30 14:18:08 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 /// DEFINES ///
 ///////////////
 
+# define MALLOC_ERROR	"Malloc error"
 # define PROMPT			"minishell $ "
 # define EXIT_MESSAGE	"exit"
 # define WHITESPACES	" \t\n\v\f\r"
@@ -36,27 +37,27 @@
 /// FUNCTIONS ///
 /////////////////
 
-// exit_shell.c
+// exit_shell
 
 void	exit_shell(const int exit_value);
 
-// prompt.c
+// prompt
 
 void	prompt(void);
 
-// var.c
+// var
 
 char	*expand_var(char *line);
-
-// var2.c
-
 void	fill_new_line(char *line, char *n_line, char *value, size_t n_l_len);
+size_t	get_var_len(char *line, ssize_t index);
+size_t	get_special_len(char *line, ssize_t index);
+bool	is_special_character(char c);
 
-// signal.c
+// signal
 
 void	set_catcher(void);
 
-// test_print.c
+// print
 
 void	print_command(char **const command);
 

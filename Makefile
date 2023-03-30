@@ -27,6 +27,7 @@ SRCS	 	+=	prompt.c
 
 SRCS		+=	get_var_line.c
 SRCS		+=	fill_var_line.c
+SRCS		+=	get_var_len.c
 
 ### srcs/signal/
 
@@ -92,9 +93,12 @@ TESTER			= $(TESTER_FOLDER)/tester.sh
 #####################
 
 CC			=	gcc
+
 CFLAGS		+=	-Wall
-CFLAGS		+=	-Werror
 CFLAGS		+=	-Wextra
+ifneq ($(no_error), true)
+	CFLAGS		+=	-Werror
+endif
 
 ifeq ($(debug), true)
 	CFLAGS	+= -fsanitize=address,undefined -g3

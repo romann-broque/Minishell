@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/28 19:23:54 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/03/30 14:16:57 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	get_command(void)
 	char *const		line_w_var = expand_var(line);
 	char **const	token_array = ft_split_set(line_w_var, SEPARATORS);
 
+	free(line);
+	free(line_w_var);
 	if (token_array == NULL)
 		exit_shell(LAST_RETVAL);
 	else

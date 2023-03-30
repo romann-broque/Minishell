@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   var.c                                              :+:      :+:    :+:   */
+/*   get_var_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:15:43 by mdorr             #+#    #+#             */
-/*   Updated: 2023/03/30 08:41:36 by mat              ###   ########.fr       */
+/*   Updated: 2023/03/30 15:36:57 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static size_t	get_var_len(char *dollar_ptr)
-{
-	size_t	i;
-
-	i = 0;
-	while (dollar_ptr[i] != ' ')
-		i++;
-	return (i);
-}
 
 static int	get_new_line_len(char *line, char *var_name, char *var_value)
 {
@@ -30,63 +20,53 @@ static int	get_new_line_len(char *line, char *var_name, char *var_value)
 
 	line_len = ft_strlen(line);
 	var_len = ft_strlen(var_name);
+	var_len++;
 	if (var_value == NULL)
 		value_len = 0;
 	else
 		value_len = ft_strlen(var_value);
-	return (line_len - var_len + value_len - 1);
+	return (line_len - var_len + value_len);
 }
-
-//Question : Do we make an exit message specific for malloc faillure ?
 
 static char	*get_var_name(char *line)
 {
-	char	*dollar_ptr;
 	char	*var;
+	ssize_t	i;
 	size_t	var_len;
-	size_t	i;
 
-	dollar_ptr = ft_strchr(line, '$');
-	if (dollar_ptr == NULL)
+	i = index_of(line, '$');
+	if (i == -1)
 		return (NULL);
-	var_len = get_var_len(dollar_ptr);
-	var = malloc(sizeof(char) * var_len + 1);
+	i++;
+	var_len = get_var_len(line, i);
+	var = ft_strndup(&line[i], var_len);
 	if (var == NULL)
 	{
 		free(line);
-		exit_shell(EXIT_FAILURE);
+		perror(MALLOC_ERROR);
+		return (NULL);
 	}
-	i = 0;
-	while (dollar_ptr[i + 1] != ' ')
-	{
-		var[i] = dollar_ptr[i + 1];
-		i++;
-	}
-	var[i] = '\0';
 	return (var);
 }
 
-static char	*get_new_line(char *line)
+static char	*get_new_line(char *old_line)
 {
 	size_t	new_line_len;
 	char	*new_line;
 	char	*var_name;
 	char	*var_value;
 
-	var_name = get_var_name(line);
+	var_name = get_var_name(old_line);
 	var_value = getenv(var_name);
-	if (var_value == NULL)
-		ft_dprintf(2, "Variable %s not found\n", var_name);
-	new_line_len = get_new_line_len(line, var_name, var_value);
+	new_line_len = get_new_line_len(old_line, var_name, var_value);
 	new_line = malloc(sizeof(char) * new_line_len + 1);
 	if (new_line == NULL)
 	{
-		free(line);
 		free(var_name);
-		free(var_value);
-		exit_shell(EXIT_FAILURE);
+		perror(MALLOC_ERROR);
+		return (NULL);
 	}
-	fill_new_line(line, new_line, var_value, new_line_len);
+	fill_new_line(old_line, new_line, var_value, new_line_len);
 	free(var_name);
 	return (new_line);
 }
@@ -98,14 +78,13 @@ char	*expand_var(char *line)
 
 	if (line == NULL)
 		return (line);
-	new_line = line;
-	if (ft_strchr(line, '$') != NULL)
+	new_line = ft_strdup(line);
+	if (new_line == NULL)
 	{
-		new_line = get_new_line(line);
-		if (new_line == NULL)
-			return (line);
+		perror(MALLOC_ERROR);
+		return (NULL);
 	}
-	while (ft_strchr(new_line, '$') != NULL)
+	while (is_in_str(new_line, '$') == true)
 	{
 		new_line_tmp = get_new_line(new_line);
 		free(new_line);
