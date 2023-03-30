@@ -39,4 +39,8 @@ minishell $ "'''" "" "''''"
 Element 1 : ["'''"]
 Element 2 : [""]
 Element 3 : ["''''"]
+minishell $       po"u'e't" o'k''' t"""rop r'igo'lo ce "test""    
+Element 1 : [po"u'e't"]
+Element 2 : [o'k''']
+Element 3 : [t"""rop r'igo'lo ce "test""]
 minishell $ exit
