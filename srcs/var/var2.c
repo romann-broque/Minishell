@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   var2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:06:27 by mdorr             #+#    #+#             */
-/*   Updated: 2023/03/29 17:28:18 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/03/30 08:45:49 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int		get_var_nbr(char *line)
-{
-	size_t	i;
-	size_t	var_nbr;
-
-	i = 0;
-	var_nbr = 0;
-	if (line[i] == '$')
-	{
-		while (line[i] != ' ' && line[i] != '\t')
-			i++;
-		var_nbr++;
-	}
-	
-}
 
 void	fill_new_line(char *line, char *n_line, char *value, size_t n_l_len)
 {
@@ -38,7 +22,11 @@ void	fill_new_line(char *line, char *n_line, char *value, size_t n_l_len)
 	i_line = 0;
 	i_new_line = 0;
 	i_value = 0;
-	value_len = ft_strlen(value);
+	if (value == NULL)
+		value_len = 0;
+	else
+		value_len = ft_strlen(value);
+
 	while (line[i_line] != '$')
 		n_line[i_new_line++] = line[i_line++];
 	i_line++;
