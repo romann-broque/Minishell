@@ -10,13 +10,24 @@ SHELL		= /usr/bin/bash
 
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/exit/
+PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/signal/
-PATH_SRCS	+=	srcs/print/
+PATH_SRCS	+=	srcs/token/
+PATH_SRCS	+=	srcs/token/get_token
 
 ### srcs/
 
 SRCS	 	+=	minishell.c
+
+### srcs/exit/
+
+SRCS	 	+=	exit_shell.c
+
+### srcs/print/
+
+SRCS		+=	test_print.c
+SRCS		+=	print_error.c
 
 ### srcs/prompt/
 
@@ -26,14 +37,17 @@ SRCS	 	+=	prompt.c
 
 SRCS		+=	signal.c
 
-### srcs/exit/
+### srcs/token/
 
-SRCS	 	+=	exit_shell.c
+SRCS		+=	are_quotes_closed.c
 
-### srcs/print/
+### srcs/token/get_token/
 
-SRCS		+=	test_print.c
-
+SRCS		+=	get_tokens.c
+SRCS		+=	parse_states.c
+SRCS		+=	strs_from_lst.c
+SRCS		+=	strs_to_lst.c
+SRCS		+=	token_utils.c
 
 vpath %.c $(PATH_SRCS)
 
@@ -78,7 +92,7 @@ LINKS += -lreadline
 #### TESTER ####
 ################
 
-TESTER_FOLDER	= ./tests/tester_dir/
+TESTER_FOLDER	= ./tests/tester_folder/
 TESTER			= $(TESTER_FOLDER)/tester.sh
 
 #####################
