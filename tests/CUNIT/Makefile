@@ -10,10 +10,16 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+=	srcs/
+PATH_SRCS	+=	srcs/tests/
 
 ### srcs/
 
 SRCS	 	+=	minishell.test.c
+SRCS	 	+=	test_utils.test.c
+
+### srcs/tests/
+
+SRCS	 	+=	are_quotes_closed.test.c
 
 vpath %.c $(PATH_SRCS)
 
@@ -29,6 +35,7 @@ OBJS		+=	$(patsubst %.c, $(PATH_OBJS)/%.o, $(SRCS))
 ##################
 
 INCLUDES	+=	-I includes/
+INCLUDES	+=	-I ../../includes/
 INCLUDES	+=	-I $(LIBFT_FOLDER)/includes
 
 #################
@@ -36,8 +43,10 @@ INCLUDES	+=	-I $(LIBFT_FOLDER)/includes
 #################
 
 PATH_HEADERS +=	../../includes/
+PATH_HEADERS +=	includes/
 
 HEADERS		+=	minishell.h
+HEADERS		+=	cunit.test.h
 
 vpath %.h $(PATH_HEADERS)
 
@@ -47,6 +56,14 @@ vpath %.h $(PATH_HEADERS)
 
 LIBFT_FOLDER =	../../libft/
 LIBFT		 =	$(LIBFT_FOLDER)/libft.a
+
+#######################
+#### MINISHELL_LIB ####
+#######################
+
+MIN_OBJS_ALL	=	$(wildcard ../../objs/*.o)
+MIN_OBJS		:=	$(filter-out ../../objs/minishell.o,$(MIN_OBJS_ALL))
+MINISHELL_LIB	=	libminishell.a
 
 ###############
 #### LINKS ####
@@ -97,15 +114,15 @@ endif
 #### RULES ####
 ###############
 
-all 	:	$(LIBFT) $(NAME)
+all 	:	$(MINISHELL_LIB) $(NAME)
 
-$(LIBFT):
-	echo -e $(BLUE) "\n====> Building libft.a <===="$(NC)"\n"
-	$(MAKE) -sC $(LIBFT_FOLDER)
-	echo -e $(BLUE) "\n====> Building $(NAME) <===="$(NC)"\n"
+$(MINISHELL_LIB): $(MIN_OBJS)
+	ar rcs $@ $^
+	$(ECHOC) $(GREEN) "--> $(MINISHELL_LIB) COMPILED !"$(NC)"\n"
+	echo -e $(BLUE) "\n====> Building CUNIT TESTS <===="$(NC)"\n"
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(LINKS)
+	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(LINKS) $(MINISHELL_LIB)
 	$(ECHOC) $(GREEN) "--> $(NAME) COMPILED !"$(NC)"\n\n"
 
 $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
@@ -123,6 +140,8 @@ fclean	:	clean
 	$(MAKE) -sC $(LIBFT_FOLDER) fclean > /dev/null
 	$(RM) $(NAME)
 	$(ECHOC) $(GREEN) "--> $(NAME) deleted !"$(NC)"\n"
+	$(RM) $(MINISHELL_LIB)
+	$(ECHOC) $(GREEN) "--> $(MINISHELL_LIB) deleted !"$(NC)"\n"
 
 re 		: fclean
 	echo -e $(YELLOW) "\nRebuilding..." $(NC)

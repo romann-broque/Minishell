@@ -161,19 +161,21 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 test	:
 	$(MAKE) -s
 	$(MAKE) -sC $(CUNIT_FOLDER)
-	echo -e $(BLUE) "\n====> CUNIT TESTS <===="$(NC)"\n"
+	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
 	$(CUNIT)
-	echo -e $(BLUE) "\n====> MINISHELL TESTS <===="$(NC)"\n"
+	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
 	$(TESTER)
 
 clean	:
 	$(RM) -r $(PATH_OBJS)
 	$(MAKE) -sC $(LIBFT_FOLDER) clean > /dev/null
+	$(MAKE) -sC $(CUNIT_FOLDER) clean > /dev/null
 	$(ECHOC) $(GREEN) "--> .o files deleted !"$(NC)"\n"
 
 fclean	:	clean
 	$(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
 	$(MAKE) -sC $(LIBFT_FOLDER) fclean > /dev/null
+	$(MAKE) -sC $(CUNIT_FOLDER) fclean > /dev/null
 	$(RM) $(NAME)
 	$(ECHOC) $(GREEN) "--> $(NAME) deleted !"$(NC)"\n"
 
