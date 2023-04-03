@@ -148,4 +148,4 @@ re 		: fclean
 	$(MAKE) -s
 
 .PHONY	: all clean fclean re
-.SILENT	: all clean fclean re $(NAME) $(OBJS) $(LIBFT)
+.SILENT	: all clean fclean re $(NAME) $(OBJS) $(MINISHELL_LIB)
