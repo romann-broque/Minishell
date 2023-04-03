@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/30 14:18:08 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 11:55:03 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,32 @@
 # define EXIT_MESSAGE	"exit"
 # define WHITESPACES	" \t\n\v\f\r"
 # define SEPARATORS		" \t\n"
+# define S_QUOTE		'\''
+# define D_QUOTE		'\"'
+# define SPEC_VAR_LEN	2
 # define LAST_RETVAL	EXIT_SUCCESS
+
+//////////////////
+/// STRUCTURES ///
+//////////////////
+
+typedef enum e_var_state
+{
+	E_STD,
+	E_DOUBLE_QUOTE,
+	E_SINGLE_QUOTE,
+	E_DOLLAR,
+	E_EOF
+}				t_vstate;
+
+typedef struct s_vmachine
+{
+	t_vstate	state;
+	t_vstate	prev_state;
+	size_t		word_len;
+	size_t		i;
+	char		*line;
+}			t_vmachine;
 
 /////////////////
 /// FUNCTIONS ///
@@ -47,11 +72,15 @@ void	prompt(void);
 
 // var
 
-char	*expand_var(char *line);
-void	fill_new_line(char *line, char *n_line, char *value, size_t n_l_len);
-size_t	get_var_len(char *line, ssize_t index);
-size_t	get_special_len(char *line, ssize_t index);
-bool	is_special_character(char c);
+void	std_state(t_vmachine *const machine);
+void	d_quote_state(t_vmachine *const machine);
+void	s_quote_state(t_vmachine *const machine);
+void	var_state(t_vmachine *const machine);
+bool	is_in_var_charset(char c);
+bool	is_special_var(char c);
+void	handle_var_start(t_vmachine *const machine);
+void	translate_var(t_vmachine *const machine);
+void	change_state(t_vstate new_state, t_vmachine *const machine);
 
 // signal
 
