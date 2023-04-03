@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 22:28:05 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 01:39:51 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/03 09:55:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	set_tests(void)
 {
-	t_suite const	suite_mapping[] = {
+	static t_suite	suite_mapping[] = {
 		{.suite = NULL, .sname = "Quotes", .tests = {
 			{.tname = "are_quotes_closed", are_quotes_closed__test},
-			}
+			},
 		},
 		{.suite = NULL, .sname = NULL}
 	};
