@@ -25,9 +25,10 @@ SRCS	 	+=	prompt.c
 
 ### scrs/var/
 
-SRCS		+=	get_var_line.c
-SRCS		+=	fill_var_line.c
-SRCS		+=	get_var_len.c
+SRCS		+=	handle_var.c
+SRCS		+=	var_machine.c
+SRCS		+=	var_state_func.c
+SRCS		+=	var_utils.c
 
 ### srcs/signal/
 

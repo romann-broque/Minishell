@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 11:55:03 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 14:10:16 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	prompt(void);
 
 // var
 
+char	*expand_var(char *line);
 void	std_state(t_vmachine *const machine);
 void	d_quote_state(t_vmachine *const machine);
 void	s_quote_state(t_vmachine *const machine);
@@ -81,6 +82,12 @@ bool	is_special_var(char c);
 void	handle_var_start(t_vmachine *const machine);
 void	translate_var(t_vmachine *const machine);
 void	change_state(t_vstate new_state, t_vmachine *const machine);
+char	*replace_and_free(
+			char *src,
+			char *replace,
+			size_t index,
+			size_t delete_len
+			);
 
 // signal
 
