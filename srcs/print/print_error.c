@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 14:07:50 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 17:29:45 by mat              ###   ########.fr       */
+/*   Created: 2023/03/30 15:43:47 by rbroque           #+#    #+#             */
+/*   Updated: 2023/03/30 15:45:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+void	print_error(const char *error_name)
 {
-	prompt();
-	return (EXIT_SUCCESS);
+	ft_dprintf(STDERR_FILENO, "%s\n", error_name);
 }

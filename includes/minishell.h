@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 17:10:04 by mat              ###   ########.fr       */
+/*   Created: 2023/04/03 17:40:45 by mat               #+#    #+#             */
+/*   Updated: 2023/04/03 17:42:12 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,13 @@
 # define D_QUOTE		'\"'
 # define SPECIAL_VAR	"?0"
 # define SPEC_VAR_LEN	2
+# define SINGLE_QUOTE	'\''
+# define DOUBLE_QUOTE	'\"'
 # define LAST_RETVAL	EXIT_SUCCESS
+
+// Errors
+
+# define SYNTAX_ERROR	"Syntax error"
 
 //////////////////
 /// STRUCTURES ///
@@ -49,7 +55,7 @@ typedef enum e_var_state
 	E_SINGLE_QUOTE,
 	E_DOLLAR,
 	E_EOF
-}				t_vstate;
+}			t_vstate;
 
 typedef struct s_vmachine
 {
@@ -60,19 +66,61 @@ typedef struct s_vmachine
 	char		*line;
 }			t_vmachine;
 
+typedef enum e_quote_state
+{
+	E_SEPARATOR,
+	E_QUOTE,
+	E_DQUOTE,
+	E_WORD,
+	E_EOF
+}			t_qstate;
+
+typedef struct s_qmachine
+{
+	t_qstate	state;
+	size_t		word_len;
+	const char	*str;
+	t_list		*tokens;
+}				t_qmachine;
+
 /////////////////
 /// FUNCTIONS ///
 /////////////////
 
-// exit_shell
+//// EXIT ////
+
+// exit_shell.c
 
 void	exit_shell(const int exit_value);
 
-// prompt
+//// PRINT ////
+
+// print.c
+
+void	print_command(char **const command);
+void	print_error(const char *error_name);
+
+//// PROMPT ////
+
+// prompt.c
 
 void	prompt(void);
 
-// var
+//// SIGNAL ////
+
+// signal.c
+
+void	set_catcher(void);
+
+//// VAR ////
+
+// handle_var.c
+
+// var_machine.c
+
+// var_state_func.c
+
+// var_utils.c
 
 char	*expand_var(char *line);
 void	reboot_vmachine(t_vmachine *const machine);
@@ -93,12 +141,35 @@ char	*replace_and_free(
 			size_t delete_len
 			);
 
-// signal
+//// TOKEN ////
 
-void	set_catcher(void);
+// get_tokens.c
 
-// print
+char	**get_tokens(const char *str);
 
-void	print_command(char **const command);
+// parse_states.c
+
+void	separator_state(t_qmachine *const machine);
+void	single_quote_state(t_qmachine *const machine);
+void	double_quote_state(t_qmachine *const machine);
+void	word_state(t_qmachine *const machine);
+
+// strs_from_lst.c
+
+char	**dup_strs_from_lst(t_list *lst);
+
+// strs_to_lst.c
+
+void	add_token(t_qmachine *machine);
+
+// token_util.c
+
+bool	is_separator(const char c);
+void	update_state(t_qmachine *const machine);
+void	init_qmachine(t_qmachine *const machine, const char *str);
+
+// are_quotes_closed.c
+
+bool	are_quotes_closed(const char *str);
 
 #endif

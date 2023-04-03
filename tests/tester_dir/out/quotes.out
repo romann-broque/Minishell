@@ -1,0 +1,8 @@
+minishell $ bonjour $single
+Element 1 : [bonjour]
+Element 2 : [var1]
+minishell $ bonjour $multiple
+Element 1 : [bonjour]
+minishell $ bonjour $single test $multiple
+Variable multip not found
+exit

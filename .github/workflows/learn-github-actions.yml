@@ -25,6 +25,8 @@ jobs:
       #        source venv/bin/activate
       #        pip install norminette
 
+      - name: Install CUnit
+        run: sudo apt-get update && sudo apt-get install -y libcunit1-dev
       - name: Test
         if: github.event_name == 'pull_request'
         run: make re test

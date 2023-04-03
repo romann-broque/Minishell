@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 14:29:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 17:32:17 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	exec_command(char **const token_array)
 		exit_shell(LAST_RETVAL);
 }
 
-static void	get_command(void)
+static void	handle_command(const char *command)
 {
 	char *const		line = readline(PROMPT);
 	char *const		line_w_var = expand_var(line);
-	char **const	token_array = ft_split_set(line_w_var, SEPARATORS);
+	char **const	token_array = get_tokens(command);
 
 	free(line);
 	free(line_w_var);
@@ -32,6 +32,17 @@ static void	get_command(void)
 		exec_command(token_array);
 	print_command(token_array);
 	free_strs(token_array);
+}
+
+static void	get_command(void)
+{
+	char *const	line = readline(PROMPT);
+
+	if (are_quotes_closed(line) == true)
+		handle_command(line);
+	else
+		print_error(SYNTAX_ERROR);
+	free(line);
 }
 
 void	prompt(void)
