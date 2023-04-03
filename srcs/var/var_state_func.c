@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:15:32 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 15:28:51 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 16:37:49 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	d_quote_state(t_vmachine *const machine)
 
 	if (c == D_QUOTE)
 		change_state(E_STD, machine);
-	if (c == '$')
+	else if (c == '$')
 		change_state(E_DOLLAR, machine);
 	machine->i++;
 }
@@ -60,14 +60,10 @@ void	var_state(t_vmachine *const machine)
 	if (machine->word_len == 0)
 		handle_var_start(machine);
 	else if (is_in_var_charset(c) == true)
-		machine->word_len++;
-	else
 	{
-		translate_var(machine);
-		change_state(E_STD, machine);
-		machine->i = 0;
-		machine->word_len = 0;
-		return ;
+		machine->i++;
+		machine->word_len++;
 	}
-	machine->i++;
+	else
+		translate_var(machine);
 }

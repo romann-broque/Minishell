@@ -7,7 +7,7 @@
 
 # Executable
 
-./minishell
+minishell
 
 # Object files
 *.o

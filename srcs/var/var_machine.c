@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:20:05 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 15:31:18 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 16:37:15 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ void	init_vmachine(t_vmachine *const machine, char *line)
 	machine->word_len = 0;
 	machine->i = 0;
 	machine->line = ft_strdup(line);
+}
+
+void	reboot_vmachine(t_vmachine *const machine)
+{
+	change_state(E_STD, machine);
+	machine->i = 0;
+	machine->word_len = 0;
 }
 
 char	*expand_var(char *line)

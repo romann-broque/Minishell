@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 14:10:16 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 17:10:04 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@
 # define MALLOC_ERROR	"Malloc error"
 # define PROMPT			"minishell $ "
 # define EXIT_MESSAGE	"exit"
+# define STR_LEN_MAX	50
 # define WHITESPACES	" \t\n\v\f\r"
 # define SEPARATORS		" \t\n"
 # define S_QUOTE		'\''
 # define D_QUOTE		'\"'
+# define SPECIAL_VAR	"?0"
 # define SPEC_VAR_LEN	2
 # define LAST_RETVAL	EXIT_SUCCESS
 
@@ -73,12 +75,14 @@ void	prompt(void);
 // var
 
 char	*expand_var(char *line);
+void	reboot_vmachine(t_vmachine *const machine);
 void	std_state(t_vmachine *const machine);
 void	d_quote_state(t_vmachine *const machine);
 void	s_quote_state(t_vmachine *const machine);
 void	var_state(t_vmachine *const machine);
-bool	is_in_var_charset(char c);
-bool	is_special_var(char c);
+bool	is_in_var_charset(const char c);
+bool	is_in_var_start_charset(const char c);
+bool	is_special_var(const char c);
 void	handle_var_start(t_vmachine *const machine);
 void	translate_var(t_vmachine *const machine);
 void	change_state(t_vstate new_state, t_vmachine *const machine);

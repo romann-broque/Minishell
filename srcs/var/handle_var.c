@@ -6,34 +6,45 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 15:29:09 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 17:18:16 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static void	replace_special_var(t_vmachine *const machine)
+{
+	const char		c = machine->line[machine->i];
+	static char		array_str[][STR_LEN_MAX + 1] = {
+		"LAST_REV_VAL",
+		"minishell"
+	};
+	const size_t	index = abs_index(SPECIAL_VAR, c);
+
+	machine->line = replace_and_free(machine->line, array_str[index],
+			machine->i - 1, SPEC_VAR_LEN);
+}
+
 void	handle_var_start(t_vmachine *const machine)
 {
 	const char	c = machine->line[machine->i];
 
-	if (is_in_var_charset(c) == true)
-		machine->word_len++;
-	else
+	if (is_in_var_start_charset(c) == true)
 	{
-		change_state(E_STD, machine);
+		machine->i++;
+		machine->word_len++;
+	}
+	else if (c != '\0' && is_in_str(SEPARATORS, c) == false)
+	{
 		if (is_special_var(c) == true)
-		{
-			if (c == '?')
-				machine->line = replace_and_free(machine->line, "LAST_REV_VAL",
-						machine->i - 1, SPEC_VAR_LEN);
-			if (c == '0')
-				machine->line = replace_and_free(machine->line, "minishell",
-						machine->i - 1, SPEC_VAR_LEN);
-		}
+			replace_special_var(machine);
 		else
 			machine->line = replace_and_free(machine->line, "",
 					machine->i - 1, SPEC_VAR_LEN);
+		reboot_vmachine(machine);
 	}
+	else
+		change_state(E_STD, machine);
 }
 
 static char	*get_var_name(t_vmachine *const machine)
@@ -60,4 +71,5 @@ void	translate_var(t_vmachine *const machine)
 	else
 		machine->line = replace_and_free(machine->line, var_value,
 				machine->i - 1 - machine->word_len, machine->word_len + 1);
+	reboot_vmachine(machine);
 }

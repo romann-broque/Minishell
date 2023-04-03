@@ -6,20 +6,23 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:59:54 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 14:08:57 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 16:06:11 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	is_in_var_charset(char c)
+bool	is_in_var_charset(const char c)
 {
-	if (ft_isalnum((int)c) == 1 || c == '_')
-		return (true);
-	return (false);
+	return (ft_isalnum(c) == 1 || c == '_');
 }
 
-bool	is_special_var(char c)
+bool	is_in_var_start_charset(const char c)
+{
+	return (ft_isalpha(c) == 1 || c == '_');
+}
+
+bool	is_special_var(const char c)
 {
 	if (c == '?' || c == '0' || c == '\0')
 		return (true);
