@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:20:05 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 14:33:29 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 15:31:18 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*expand_var(char *line)
 		init_vmachine(&machine, line);
 		while (machine.state != E_EOF)
 			s_var_func[machine.state](&machine);
-		printf("line is [%s]\n", machine.line);
 		new_line = machine.line;
 	}
 	return (new_line);

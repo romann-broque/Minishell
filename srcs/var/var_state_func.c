@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:15:32 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 14:31:05 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 15:28:51 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	var_state(t_vmachine *const machine)
 		translate_var(machine);
 		change_state(E_STD, machine);
 		machine->i = 0;
+		machine->word_len = 0;
 		return ;
 	}
 	machine->i++;

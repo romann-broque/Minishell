@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 14:08:36 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 15:29:09 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ void	handle_var_start(t_vmachine *const machine)
 		if (is_special_var(c) == true)
 		{
 			if (c == '?')
-				replace_and_free(machine->line, "LAST_REV_VAL",
-					machine->i - 1, SPEC_VAR_LEN);
+				machine->line = replace_and_free(machine->line, "LAST_REV_VAL",
+						machine->i - 1, SPEC_VAR_LEN);
 			if (c == '0')
-				replace_and_free(machine->line, "minishell",
-					machine->i - 1, SPEC_VAR_LEN);
+				machine->line = replace_and_free(machine->line, "minishell",
+						machine->i - 1, SPEC_VAR_LEN);
 		}
 		else
-			replace_str(machine->line, "", machine->i - 1, SPEC_VAR_LEN);
+			machine->line = replace_and_free(machine->line, "",
+					machine->i - 1, SPEC_VAR_LEN);
 	}
 }
 
@@ -52,7 +53,6 @@ void	translate_var(t_vmachine *const machine)
 
 	var_name = get_var_name(machine);
 	var_value = getenv(var_name);
-	printf("VAR value is [%s]\n", var_value);
 	free(var_name);
 	if (var_value == NULL)
 		machine->line = replace_and_free(machine->line, "",
