@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 22:28:05 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 09:55:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/03 11:57:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	set_tests(void)
 		},
 		{.suite = NULL, .sname = NULL}
 	};
+
 
 	map_suite(suite_mapping);
 }
