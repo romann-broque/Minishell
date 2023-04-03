@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   are_quotes_closed.test.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 14:07:50 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/31 18:43:42 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/03 00:48:53 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/03 09:55:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "cunit.test.h"
 
-int	main(void)
+void	are_quotes_closed__test(void)
 {
-	prompt();
-	return (EXIT_SUCCESS);
+	const char	str1[] = "hello";
+	const char	str2[] = "\"hello";
+	const char	str3[] = "\"hello\"";
+
+	CU_ASSERT_TRUE(are_quotes_closed(str1));
+	CU_ASSERT_FALSE(are_quotes_closed(str2));
+	CU_ASSERT_TRUE(are_quotes_closed(str3));
 }
