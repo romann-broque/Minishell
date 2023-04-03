@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:59:54 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 16:06:11 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 17:50:20 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ bool	is_in_var_start_charset(const char c)
 
 bool	is_special_var(const char c)
 {
-	if (c == '?' || c == '0' || c == '\0')
-		return (true);
-	else if (is_in_str(SEPARATORS, c) == 1)
-		return (true);
-	return (false);
+	return (is_in_str(SPECIAL_VAR, c) == true
+		|| is_in_str(SEPARATORS, c) == true);
 }
 
 char	*replace_and_free(

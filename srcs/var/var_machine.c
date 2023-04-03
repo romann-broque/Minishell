@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:20:05 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 16:37:15 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 17:47:27 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*expand_var(char *line)
 	if (new_line != NULL)
 	{
 		init_vmachine(&machine, line);
-		while (machine.state != E_EOF)
+		while (machine.state != E_EOL)
 			s_var_func[machine.state](&machine);
 		new_line = machine.line;
 	}

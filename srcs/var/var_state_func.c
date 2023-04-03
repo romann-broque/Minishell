@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:15:32 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 16:37:49 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 17:47:03 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	std_state(t_vmachine *const machine)
 {
 	const char	c = machine->line[machine->i];
 
-	if (c == '\0')
-		change_state(E_EOF, machine);
+	if (c == END_CHAR)
+		change_state(E_EOL, machine);
 	else if (c == S_QUOTE)
 		change_state(E_SINGLE_QUOTE, machine);
 	else if (c == D_QUOTE)

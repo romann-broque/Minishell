@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:40:45 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 17:42:12 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 17:46:16 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef enum e_var_state
 	E_DOUBLE_QUOTE,
 	E_SINGLE_QUOTE,
 	E_DOLLAR,
-	E_EOF
+	E_EOL
 }			t_vstate;
 
 typedef struct s_vmachine
