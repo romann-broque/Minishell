@@ -11,3 +11,10 @@ bonjour $single bonjour2 $multiple
 $$
 $1bla
 $?bla
+$
+$$   $
+$$$
+$?
+$0
+$USERNAME $USERNAME
+$single$single

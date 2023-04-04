@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:15:32 by mat               #+#    #+#             */
-/*   Updated: 2023/04/04 14:41:02 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/04 16:24:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ void	spec_var_state(t_vmachine *const machine)
 		machine->index++;
 	}
 	else
-		change_state(E_VAR, machine);
-
+		machine->state = E_VAR;
 }
 
 void	var_state(t_vmachine *const machine)

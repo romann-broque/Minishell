@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:40:45 by mat               #+#    #+#             */
-/*   Updated: 2023/04/04 14:59:04 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/04 16:19:25 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,41 @@
 /// DEFINES ///
 ///////////////
 
-# define MALLOC_ERROR	"Malloc error"
+// string
+
 # define PROMPT			"minishell $ "
 # define EXIT_MESSAGE	"exit"
-# define STR_LEN_MAX	50
+# define QMARK_VAR		"LAST_RET_VAL"
+# define ZERO_VAR		"minishell"
+
+// error string
+
+# define SYNTAX_ERROR	"Syntax error"
+# define MALLOC_ERROR	"Malloc error"
+
+// char types
+
 # define WHITESPACES	" \t\n\v\f\r"
 # define SEPARATORS		" \t\n"
 # define SPECIAL_VAR	"?0"
-# define SPEC_VAR_LEN	2
-# define WRONG_VAR_LEN	2
+# define EMPTY_STR		""
+
+// char
+
 # define SINGLE_QUOTE	'\''
 # define DOUBLE_QUOTE	'\"'
 # define DOLLAR_SIGN	'$'
 # define UNDERSCORE		'_'
-# define EMPTY_STR		""
+
+// len
+
+# define STR_LEN_MAX	50
+# define SPEC_VAR_LEN	2
+# define WRONG_VAR_LEN	2
+
+// return value
+
 # define LAST_RETVAL	EXIT_SUCCESS
-
-// Errors
-
-# define SYNTAX_ERROR	"Syntax error"
 
 //////////////////
 /// STRUCTURES ///
@@ -125,16 +141,16 @@ void	translate_var(t_vmachine *const machine);
 
 // var_machine.c
 
-char	*expand_var(char *line);
-void	reboot_vmachine(t_vmachine *const machine);
+char	*expand_var(const char *line);
+void	change_state(t_vstate new_state, t_vmachine *const machine);
 
 // var_state_func.c
 
 void	std_state(t_vmachine *const machine);
 void	d_quote_state(t_vmachine *const machine);
 void	s_quote_state(t_vmachine *const machine);
+void	spec_var_state(t_vmachine *const machine);
 void	var_state(t_vmachine *const machine);
-void	change_state(t_vstate new_state, t_vmachine *const machine);
 
 // var_utils.c
 

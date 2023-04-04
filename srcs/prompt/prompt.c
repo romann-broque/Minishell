@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 17:58:09 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/04 15:33:24 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	exec_command(char **const token_array)
 
 static void	handle_command(const char *command)
 {
-	char *const		line_w_var = expand_var((char *)command);
+	char *const		line_w_var = expand_var(command);
 	char **const	token_array = get_tokens(line_w_var);
 
 	free(line_w_var);
