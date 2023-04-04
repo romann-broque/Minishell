@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:59:54 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 17:50:20 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/04 10:51:46 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 bool	is_in_var_charset(const char c)
 {
-	return (ft_isalnum(c) == 1 || c == '_');
+	return (is_in_var_start_charset(c) || ft_isdigit(c));
 }
 
 bool	is_in_var_start_charset(const char c)
 {
-	return (ft_isalpha(c) == 1 || c == '_');
+	return (ft_isalpha(c) || c == UNDERSCORE);
 }
 
 bool	is_special_var(const char c)
 {
-	return (is_in_str(SPECIAL_VAR, c) == true
-		|| is_in_str(SEPARATORS, c) == true);
+	return (is_in_str(SPECIAL_VAR, c) || is_in_str(SEPARATORS, c));
 }
 
 char	*replace_and_free(

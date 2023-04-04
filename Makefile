@@ -13,7 +13,6 @@ PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/signal/
-PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/var/
 PATH_SRCS	+=	srcs/token/
 PATH_SRCS	+=	srcs/token/get_token

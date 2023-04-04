@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:40:45 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 17:46:16 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/04 10:50:06 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@
 # define STR_LEN_MAX	50
 # define WHITESPACES	" \t\n\v\f\r"
 # define SEPARATORS		" \t\n"
-# define S_QUOTE		'\''
-# define D_QUOTE		'\"'
 # define SPECIAL_VAR	"?0"
 # define SPEC_VAR_LEN	2
 # define SINGLE_QUOTE	'\''
 # define DOUBLE_QUOTE	'\"'
+# define DOLLAR_SIGN	'$'
+# define UNDERSCORE		'_'
 # define LAST_RETVAL	EXIT_SUCCESS
 
 // Errors
@@ -62,7 +62,7 @@ typedef struct s_vmachine
 	t_vstate	state;
 	t_vstate	prev_state;
 	size_t		word_len;
-	size_t		i;
+	size_t		index;
 	char		*line;
 }			t_vmachine;
 
@@ -116,24 +116,27 @@ void	set_catcher(void);
 
 // handle_var.c
 
+void	handle_var_start(t_vmachine *const machine);
+void	translate_var(t_vmachine *const machine);
+
 // var_machine.c
-
-// var_state_func.c
-
-// var_utils.c
 
 char	*expand_var(char *line);
 void	reboot_vmachine(t_vmachine *const machine);
+
+// var_state_func.c
+
 void	std_state(t_vmachine *const machine);
 void	d_quote_state(t_vmachine *const machine);
 void	s_quote_state(t_vmachine *const machine);
 void	var_state(t_vmachine *const machine);
+void	change_state(t_vstate new_state, t_vmachine *const machine);
+
+// var_utils.c
+
 bool	is_in_var_charset(const char c);
 bool	is_in_var_start_charset(const char c);
 bool	is_special_var(const char c);
-void	handle_var_start(t_vmachine *const machine);
-void	translate_var(t_vmachine *const machine);
-void	change_state(t_vstate new_state, t_vmachine *const machine);
 char	*replace_and_free(
 			char *src,
 			char *replace,

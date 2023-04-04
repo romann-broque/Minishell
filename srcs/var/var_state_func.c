@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:15:32 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 17:47:03 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 18:19:58 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,48 +20,48 @@ void	change_state(t_vstate new_state, t_vmachine *const machine)
 
 void	std_state(t_vmachine *const machine)
 {
-	const char	c = machine->line[machine->i];
+	const char	c = machine->line[machine->index];
 
 	if (c == END_CHAR)
 		change_state(E_EOL, machine);
-	else if (c == S_QUOTE)
+	else if (c == SINGLE_QUOTE)
 		change_state(E_SINGLE_QUOTE, machine);
-	else if (c == D_QUOTE)
+	else if (c == DOUBLE_QUOTE)
 		change_state(E_DOUBLE_QUOTE, machine);
-	else if (c == '$')
+	else if (c == DOLLAR_SIGN)
 		change_state(E_DOLLAR, machine);
-	machine->i++;
+	machine->index++;
 }
 
 void	d_quote_state(t_vmachine *const machine)
 {
-	const char	c = machine->line[machine->i];
+	const char	c = machine->line[machine->index];
 
-	if (c == D_QUOTE)
+	if (c == DOUBLE_QUOTE)
 		change_state(E_STD, machine);
-	else if (c == '$')
+	else if (c == DOLLAR_SIGN)
 		change_state(E_DOLLAR, machine);
-	machine->i++;
+	machine->index++;
 }
 
 void	s_quote_state(t_vmachine *const machine)
 {
-	const char	c = machine->line[machine->i];
+	const char	c = machine->line[machine->index];
 
-	if (c == S_QUOTE)
+	if (c == SINGLE_QUOTE)
 		change_state(E_STD, machine);
-	machine->i++;
+	machine->index++;
 }
 
 void	var_state(t_vmachine *const machine)
 {
-	const char	c = machine->line[machine->i];
+	const char	c = machine->line[machine->index];
 
 	if (machine->word_len == 0)
 		handle_var_start(machine);
 	else if (is_in_var_charset(c) == true)
 	{
-		machine->i++;
+		machine->index++;
 		machine->word_len++;
 	}
 	else

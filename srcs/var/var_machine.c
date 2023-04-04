@@ -6,24 +6,24 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:20:05 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 17:47:27 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/03 18:14:40 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_vmachine(t_vmachine *const machine, char *line)
+static void	init_vmachine(t_vmachine *const machine, char *line)
 {
 	machine->state = E_STD;
 	machine->word_len = 0;
-	machine->i = 0;
+	machine->index = 0;
 	machine->line = ft_strdup(line);
 }
 
 void	reboot_vmachine(t_vmachine *const machine)
 {
 	change_state(E_STD, machine);
-	machine->i = 0;
+	machine->index = 0;
 	machine->word_len = 0;
 }
 
