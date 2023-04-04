@@ -20,6 +20,7 @@ SRCS	 	+=	minishell.test.c
 ### srcs/tests/
 
 SRCS	 	+=	are_quotes_closed.test.c
+SRCS	 	+=	get_token.test.c
 
 ### srcs/utils/
 
@@ -127,7 +128,7 @@ $(MINISHELL_LIB): $(MIN_OBJS)
 	echo -e $(BLUE) "\n====> Building CUNIT TESTS <===="$(NC)"\n"
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(LINKS) $(MINISHELL_LIB)
+	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(LINKS) $(MINISHELL_LIB) $(LIBFT)
 	$(ECHOC) $(GREEN) "--> $(NAME) COMPILED !"$(NC)"\n\n"
 
 $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)

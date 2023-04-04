@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:43:02 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 00:45:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/04 11:49:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ void	map_suite(t_suite suite_mapping[])
 
 void	exit_tests(void)
 {
+	const int	exit_value = (CU_get_error() || (CU_get_number_of_failures() > 0));
+
 	CU_cleanup_registry();
-	exit(CU_get_error());
+	if (exit_value == 0)
+		dprintf(STDERR_FILENO, ANSI_COLOR_GREEN "OK\n" ANSI_COLOR_RESET);
+	else
+		dprintf(STDERR_FILENO, ANSI_COLOR_RED "KO\n" ANSI_COLOR_RESET);
+	exit(exit_value);
 }
