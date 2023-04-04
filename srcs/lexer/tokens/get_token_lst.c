@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_print.c                                       :+:      :+:    :+:   */
+/*   get_token_lst.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 01:08:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 01:10:07 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/05 00:45:18 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/05 00:55:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_token(t_token *token, const size_t index)
+t_list	*get_token_lst(const char *str)
 {
-	if (token->value != NULL)
-		printf("Element %lu : type=[%u]; value=[%s]\n",
-			index, token->type, token->value);
-}
+	char *const	line_w_var = expand_var(str);
+	t_list		*word_lst;
+	t_list		*tokens;
 
-void	print_command(t_list *token_lst)
-{
-	size_t	i;
-
-	i = 0;
-	while (token_lst != NULL)
-	{
-		if (token_lst->content != NULL)
-			printf("Element %zu : [%s]\n", i + 1,
-				((t_token *)(token_lst->content))->value);
-		token_lst = token_lst->next;
-		++i;
-	}
+	word_lst = get_words(line_w_var);
+	tokens = tokenizer(word_lst);
+	free(line_w_var);
+	ft_lstclear(&word_lst, free);
+	return (tokens);
 }

@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_print.c                                       :+:      :+:    :+:   */
+/*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 01:08:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 01:10:07 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/05 00:59:53 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/05 01:00:08 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_token(t_token *token, const size_t index)
+void	free_token(t_token *tok)
 {
-	if (token->value != NULL)
-		printf("Element %lu : type=[%u]; value=[%s]\n",
-			index, token->type, token->value);
-}
-
-void	print_command(t_list *token_lst)
-{
-	size_t	i;
-
-	i = 0;
-	while (token_lst != NULL)
-	{
-		if (token_lst->content != NULL)
-			printf("Element %zu : [%s]\n", i + 1,
-				((t_token *)(token_lst->content))->value);
-		token_lst = token_lst->next;
-		++i;
-	}
+	if (tok != NULL)
+		free(tok->value);
+	free(tok);
 }
