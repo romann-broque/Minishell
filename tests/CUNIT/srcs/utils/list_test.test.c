@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strs_from_lst.c                                    :+:      :+:    :+:   */
+/*   list_test.test.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 22:22:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/28 22:23:02 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/04 10:56:02 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/04 10:56:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "cunit.test.h"
 
 static void	cpy_strs_from_lst(char **dest_strs, t_list *lst, const size_t size)
 {

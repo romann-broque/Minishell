@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 14:58:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/04 10:56:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	exit_shell(const int exit_value);
 
 // print.c
 
-void	print_command(char **const command);
+void	print_command(t_list *token_lst);
 void	print_error(const char *error_name);
 
 //// PROMPT ////
@@ -92,7 +92,7 @@ void	set_catcher(void);
 
 // get_tokens.c
 
-char	**get_tokens(const char *str);
+t_list	*get_tokens(const char *str);
 
 // parse_states.c
 
@@ -100,10 +100,6 @@ void	separator_state(t_qmachine *const machine);
 void	single_quote_state(t_qmachine *const machine);
 void	double_quote_state(t_qmachine *const machine);
 void	word_state(t_qmachine *const machine);
-
-// strs_from_lst.c
-
-char	**dup_strs_from_lst(t_list *lst);
 
 // strs_to_lst.c
 

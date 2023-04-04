@@ -19,6 +19,10 @@ void	set_tests(void)
 			{.tname = "are_quotes_closed", are_quotes_closed__test},
 			},
 		},
+		// {.suite = NULL, .sname = "Lexer", .tests = {
+		// 	{.tname = "get_token", get_token__test},
+		// 	},
+		// },
 		{.suite = NULL, .sname = NULL}
 	};
 

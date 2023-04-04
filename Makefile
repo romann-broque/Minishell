@@ -45,7 +45,6 @@ SRCS		+=	are_quotes_closed.c
 
 SRCS		+=	get_tokens.c
 SRCS		+=	parse_states.c
-SRCS		+=	strs_from_lst.c
 SRCS		+=	strs_to_lst.c
 SRCS		+=	token_utils.c
 

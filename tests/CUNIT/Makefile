@@ -11,15 +11,20 @@ SHELL		= /usr/bin/bash
 
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/tests/
+PATH_SRCS	+=	srcs/utils/
 
 ### srcs/
 
 SRCS	 	+=	minishell.test.c
-SRCS	 	+=	test_utils.test.c
 
 ### srcs/tests/
 
 SRCS	 	+=	are_quotes_closed.test.c
+
+### srcs/utils/
+
+SRCS	 	+=	test_utils.test.c
+SRCS	 	+=	list_test.test.c
 
 vpath %.c $(PATH_SRCS)
 

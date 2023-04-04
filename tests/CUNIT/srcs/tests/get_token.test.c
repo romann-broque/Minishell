@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_print.c                                       :+:      :+:    :+:   */
+/*   get_token.test.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 13:26:48 by mat               #+#    #+#             */
-/*   Updated: 2023/04/04 11:05:31 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/04 10:35:01 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/04 10:37:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "cunit.test.h"
 
-void	print_command(t_list *token_lst)
+#define MAX_TOKEN_LEN 20
+
+void	get_token__test(void)
 {
-	size_t	i;
-
-	i = 0;
-	while (token_lst != NULL)
-	{
-		if (token_lst->content != NULL)
-			printf("Element %zu : [%s]\n", i + 1,
-				(char*)(token_lst->content));
-		token_lst = token_lst->next;
-		++i;
+	const char	*str = "hello my friend";
+	const char	token1[][MAX_TOKEN_LEN + 1] = {
+		"hello",
+		"my",
+		"friend"
 	}
 }

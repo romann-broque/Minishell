@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:44:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 09:54:45 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/04 10:58:01 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,15 @@ typedef struct s_suite
 
 void	are_quotes_closed__test(void);
 
+//// UTILS ////
+
 // test_utils.test.c
 
 void	map_suite(t_suite suite_mapping[]);
 void	exit_tests(void);
+
+// list_test.test.c
+
+char	**dup_strs_from_lst(t_list *lst);
 
 #endif
