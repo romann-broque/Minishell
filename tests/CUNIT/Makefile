@@ -20,7 +20,7 @@ SRCS	 	+=	minishell.test.c
 ### srcs/tests/
 
 SRCS	 	+=	are_quotes_closed.test.c
-SRCS	 	+=	get_token.test.c
+SRCS	 	+=	get_words.test.c
 
 ### srcs/utils/
 

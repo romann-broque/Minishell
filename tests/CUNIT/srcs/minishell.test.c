@@ -20,7 +20,7 @@ void	set_tests(void)
 			},
 		},
 		{.suite = NULL, .sname = "Lexer", .tests = {
-			{.tname = "get_token", get_token__test},
+			{.tname = "get_words", get_words__test},
 			},
 		},
 		{.suite = NULL, .sname = NULL}

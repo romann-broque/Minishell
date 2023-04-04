@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_token.test.c                                   :+:      :+:    :+:   */
+/*   get_words.test.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:35:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/04 14:54:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/04 17:01:42 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	compare_tok_lst(const char *str, const char exp_tok[][MAX_TOKEN_LEN 
 	size_t	i;
 
 	fail_count = 0;
-	tok_lst = get_tokens(str);
+	tok_lst = get_words(str);
 	ret_tok = dup_strs_from_lst(tok_lst);
 	i = 0;
 	while (i < size)
@@ -43,7 +43,7 @@ static void	compare_tok_lst_ptr(const char *str, const char *exp_tok[], const si
 	size_t	i;
 
 	fail_count = 0;
-	tok_lst = get_tokens(str);
+	tok_lst = get_words(str);
 	ret_tok = dup_strs_from_lst(tok_lst);
 	i = 0;
 	while (i < size)
@@ -56,7 +56,7 @@ static void	compare_tok_lst_ptr(const char *str, const char *exp_tok[], const si
 	free_strs(ret_tok);
 }
 
-void	get_token__test(void)
+void	get_words__test(void)
 {
 	const char		*str1 = "hello my friend";
 	const char		exp_tok1[][MAX_TOKEN_LEN + 1] = {

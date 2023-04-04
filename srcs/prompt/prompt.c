@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/04 16:19:55 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/04 17:03:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ static void	exec_command(t_list	const *word_lst)
 
 static void	handle_command(const char *command)
 {
-	t_list	*word_lst;
+	char *const	line_w_var = expand_var(command);
+	t_list		*word_lst;
 
-	word_lst = get_words(command);
+	word_lst = get_words(line_w_var);
+	free(line_w_var);
 	if (word_lst == NULL)
 		exit_shell(LAST_RETVAL);
 	else

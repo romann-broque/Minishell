@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:44:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/04 11:49:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/04 17:01:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include <CUnit/CUnit.h>
 # include <CUnit/Basic.h>
 
-# define ANSI_COLOR_GREEN   "\x1b[32m"
-# define ANSI_COLOR_RED     "\x1b[31m"
-# define ANSI_COLOR_RESET   "\x1b[0m"
-# define MAX_TESTS_COUNT 10
+# define ANSI_COLOR_GREEN	"\x1b[32m"
+# define ANSI_COLOR_RED		"\x1b[31m"
+# define ANSI_COLOR_RESET	"\x1b[0m"
+# define MAX_TESTS_COUNT	10
 
 typedef struct s_test
 {
@@ -39,9 +39,9 @@ typedef struct s_suite
 
 void	are_quotes_closed__test(void);
 
-// get_token.test.c
+// get_words.test.c
 
-void	get_token__test(void);
+void	get_words__test(void);
 
 //// UTILS ////
 
