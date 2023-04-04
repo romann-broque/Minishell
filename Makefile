@@ -102,9 +102,11 @@ LINKS += -lreadline
 TESTER_FOLDER	= ./tests/
 CUNIT_FOLDER	= $(TESTER_FOLDER)/CUNIT/
 MINTEST_FOLDER	= $(TESTER_FOLDER)/tester_folder/
+ENV_FOLDER		= $(TESTER_FOLDER)/env/
 
 TESTER			= $(MINTEST_FOLDER)/tester.sh
 CUNIT			= $(CUNIT_FOLDER)/cunit
+ENV				= $(TESTER_FOLDER)/env/env.sh
 
 #####################
 #### COMPILATION ####
@@ -172,9 +174,9 @@ test	:
 	$(MAKE) -s
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
-	$(CUNIT)
+	source $(ENV); $(CUNIT)
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
-	$(TESTER)
+	source $(ENV); $(TESTER)
 
 clean	:
 	$(RM) -r $(PATH_OBJS)

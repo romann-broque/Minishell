@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/04/04 16:09:21 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/04 17:48:01 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	translate_var(t_vmachine *const machine)
 	else
 		machine->line = replace_and_free(machine->line, var_value,
 				machine->index - 1 - machine->word_len, machine->word_len + 1);
-	machine->index += ft_strlen(var_value) - machine->word_len - 1;
+	machine->index += ft_strlen_safe(var_value) - machine->word_len - 1;
 	machine->word_len = 0;
 	change_state(machine->prev_state, machine);
 }
