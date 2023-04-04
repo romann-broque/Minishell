@@ -11,15 +11,21 @@ SHELL		= /usr/bin/bash
 
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/tests/
+PATH_SRCS	+=	srcs/utils/
 
 ### srcs/
 
 SRCS	 	+=	minishell.test.c
-SRCS	 	+=	test_utils.test.c
 
 ### srcs/tests/
 
 SRCS	 	+=	are_quotes_closed.test.c
+SRCS	 	+=	get_words.test.c
+
+### srcs/utils/
+
+SRCS	 	+=	test_utils.test.c
+SRCS	 	+=	list_test.test.c
 
 vpath %.c $(PATH_SRCS)
 
@@ -122,7 +128,7 @@ $(MINISHELL_LIB): $(MIN_OBJS)
 	echo -e $(BLUE) "\n====> Building CUNIT TESTS <===="$(NC)"\n"
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(LINKS) $(MINISHELL_LIB)
+	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(LINKS) $(MINISHELL_LIB) $(LIBFT)
 	$(ECHOC) $(GREEN) "--> $(NAME) COMPILED !"$(NC)"\n\n"
 
 $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/03 17:40:45 by mat               #+#    #+#             */
-/*   Updated: 2023/04/04 16:19:25 by mat              ###   ########.fr       */
+/*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/04 16:58:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef struct s_qmachine
 	t_qstate	state;
 	size_t		word_len;
 	const char	*str;
-	t_list		*tokens;
+	t_list		*words;
 }				t_qmachine;
 
 /////////////////
@@ -116,7 +116,7 @@ void	exit_shell(const int exit_value);
 
 // print.c
 
-void	print_command(char **const command);
+void	print_command(t_list *token_lst);
 void	print_error(const char *error_name);
 
 //// PROMPT ////
@@ -167,9 +167,9 @@ char	*replace_and_free(
 
 //// TOKEN ////
 
-// get_tokens.c
+// get_words.c
 
-char	**get_tokens(const char *str);
+t_list	*get_words(const char *str);
 
 // parse_states.c
 
@@ -178,15 +178,11 @@ void	single_quote_state(t_qmachine *const machine);
 void	double_quote_state(t_qmachine *const machine);
 void	word_state(t_qmachine *const machine);
 
-// strs_from_lst.c
-
-char	**dup_strs_from_lst(t_list *lst);
-
 // strs_to_lst.c
 
 void	add_token(t_qmachine *machine);
 
-// token_util.c
+// word_utils.c
 
 bool	is_separator(const char c);
 void	update_state(t_qmachine *const machine);

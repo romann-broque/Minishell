@@ -8,7 +8,10 @@
 # Executable
 
 minishell
+<<<<<<< HEAD
+=======
 cunit
+>>>>>>> 66cd47f541ed0daf3cdd4455722d0d9e5eb41c61
 
 # Object files
 *.o

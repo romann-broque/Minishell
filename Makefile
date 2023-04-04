@@ -15,7 +15,7 @@ PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/signal/
 PATH_SRCS	+=	srcs/var/
 PATH_SRCS	+=	srcs/token/
-PATH_SRCS	+=	srcs/token/get_token
+PATH_SRCS	+=	srcs/token/get_word/
 
 ### srcs/
 
@@ -51,11 +51,10 @@ SRCS		+=	are_quotes_closed.c
 
 ### srcs/token/get_token/
 
-SRCS		+=	get_tokens.c
+SRCS		+=	get_words.c
 SRCS		+=	parse_states.c
-SRCS		+=	strs_from_lst.c
 SRCS		+=	strs_to_lst.c
-SRCS		+=	token_utils.c
+SRCS		+=	word_utils.c
 
 vpath %.c $(PATH_SRCS)
 
