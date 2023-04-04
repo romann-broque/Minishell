@@ -6,13 +6,13 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 18:28:08 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/04 15:03:19 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	replace_special_var(t_vmachine *const machine)
+void	replace_special_var(t_vmachine *const machine)
 {
 	const char		c = machine->line[machine->index];
 	static char		array_str[][STR_LEN_MAX + 1] = {
@@ -21,8 +21,10 @@ static void	replace_special_var(t_vmachine *const machine)
 	};
 	const size_t	index = abs_index(SPECIAL_VAR, c);
 
-	machine->line = replace_and_free(machine->line, array_str[index],
-			machine->index - 1, SPEC_VAR_LEN);
+	if (is_in_str(SEPARATORS, c) == false)
+		machine->line = replace_and_free(machine->line, array_str[index],
+				machine->index - 1, SPEC_VAR_LEN);
+	change_state(machine->prev_state, machine);
 }
 
 static char	*get_var_name(t_vmachine *const machine)
@@ -41,31 +43,27 @@ void	handle_var_start(t_vmachine *const machine)
 		machine->index++;
 		machine->word_len++;
 	}
-	else if (c != '\0' && is_in_str(SEPARATORS, c) == false)
-	{
-		if (is_special_var(c) == true)
-			replace_special_var(machine);
-		else
-			machine->line = replace_and_free(machine->line, "",
-					machine->index - 1, SPEC_VAR_LEN);
-		reboot_vmachine(machine);
-	}
 	else
-		change_state(E_STD, machine);
+	{
+		machine->line = cut_string_at(machine->line,
+				machine->index - 1, WRONG_VAR_LEN);
+		change_state(machine->prev_state, machine);
+	}
+
 }
 
 void	translate_var(t_vmachine *const machine)
 {
-	char const	*var_name = get_var_name(machine);
-	char const	*var_value = getenv(var_name);
+	char *const	var_name = get_var_name(machine);
+	char *const	var_value = getenv(var_name);
 
-	var_value = getenv(var_name);
 	free(var_name);
 	if (var_value == NULL)
-		machine->line = replace_and_free(machine->line, "",
-				machine->index - 1 - machine->word_len, machine->word_len + 1);
+		machine->line = cut_string_at(machine->line,
+				machine->index - 1, SPEC_VAR_LEN);
 	else
 		machine->line = replace_and_free(machine->line, var_value,
 				machine->index - 1 - machine->word_len, machine->word_len + 1);
-	reboot_vmachine(machine);
+	machine->word_len = 0;
+	change_state(machine->prev_state, machine);
 }

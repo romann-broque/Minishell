@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:40:45 by mat               #+#    #+#             */
-/*   Updated: 2023/04/04 10:50:06 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/04 14:59:04 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@
 # define SEPARATORS		" \t\n"
 # define SPECIAL_VAR	"?0"
 # define SPEC_VAR_LEN	2
+# define WRONG_VAR_LEN	2
 # define SINGLE_QUOTE	'\''
 # define DOUBLE_QUOTE	'\"'
 # define DOLLAR_SIGN	'$'
 # define UNDERSCORE		'_'
+# define EMPTY_STR		""
 # define LAST_RETVAL	EXIT_SUCCESS
 
 // Errors
@@ -53,7 +55,8 @@ typedef enum e_var_state
 	E_STD,
 	E_DOUBLE_QUOTE,
 	E_SINGLE_QUOTE,
-	E_DOLLAR,
+	E_SPEC_VAR,
+	E_VAR,
 	E_EOL
 }			t_vstate;
 
@@ -116,6 +119,7 @@ void	set_catcher(void);
 
 // handle_var.c
 
+void	replace_special_var(t_vmachine *const machine);
 void	handle_var_start(t_vmachine *const machine);
 void	translate_var(t_vmachine *const machine);
 
@@ -137,6 +141,7 @@ void	change_state(t_vstate new_state, t_vmachine *const machine);
 bool	is_in_var_charset(const char c);
 bool	is_in_var_start_charset(const char c);
 bool	is_special_var(const char c);
+char	*cut_string_at(char *src, const size_t index, const size_t del_len);
 char	*replace_and_free(
 			char *src,
 			char *replace,

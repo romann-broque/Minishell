@@ -6,11 +6,17 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:20:05 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 18:14:40 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/04 14:21:00 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	change_state(t_vstate new_state, t_vmachine *const machine)
+{
+	machine->prev_state = machine->state;
+	machine->state = new_state;
+}
 
 static void	init_vmachine(t_vmachine *const machine, char *line)
 {
