@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_state_func.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:15:32 by mat               #+#    #+#             */
-/*   Updated: 2023/04/04 16:24:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/04 21:50:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ void	spec_var_state(t_vmachine *const machine)
 {
 	const char	c = machine->line[machine->index];
 
-	if (is_special_var(c))
+	if (c == END_CHAR)
+		machine->state = machine->prev_state;
+	else if (is_special_var(c))
 	{
 		replace_special_var(machine);
 		machine->index++;
