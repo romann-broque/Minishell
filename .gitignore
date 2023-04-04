@@ -8,6 +8,7 @@
 # Executable
 
 minishell
+cunit
 
 # Object files
 *.o

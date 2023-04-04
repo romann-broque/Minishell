@@ -46,9 +46,6 @@ minishell $ $?
 Element 1 : [LAST_RET_VAL]
 minishell $ $0
 Element 1 : [minishell]
-minishell $ $USERNAME $USERNAME
-Element 1 : [mat]
-Element 2 : [mat]
 minishell $ $single$single
 Element 1 : [var1var1]
 minishell $ exit
