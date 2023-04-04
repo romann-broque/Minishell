@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/04 10:56:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/04 16:22:42 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_qmachine
 	t_qstate	state;
 	size_t		word_len;
 	const char	*str;
-	t_list		*tokens;
+	t_list		*words;
 }				t_qmachine;
 
 /////////////////
@@ -90,9 +90,9 @@ void	set_catcher(void);
 
 //// TOKEN ////
 
-// get_tokens.c
+// get_words.c
 
-t_list	*get_tokens(const char *str);
+t_list	*get_words(const char *str);
 
 // parse_states.c
 
@@ -105,7 +105,7 @@ void	word_state(t_qmachine *const machine);
 
 void	add_token(t_qmachine *machine);
 
-// token_util.c
+// word_utils.c
 
 bool	is_separator(const char c);
 void	update_state(t_qmachine *const machine);
