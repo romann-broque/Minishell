@@ -13,6 +13,7 @@ PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/signal/
+PATH_SRCS	+=	srcs/var/
 PATH_SRCS	+=	srcs/token/
 PATH_SRCS	+=	srcs/token/get_token
 
@@ -32,6 +33,13 @@ SRCS		+=	print_error.c
 ### srcs/prompt/
 
 SRCS	 	+=	prompt.c
+
+### scrs/var/
+
+SRCS		+=	handle_var.c
+SRCS		+=	var_machine.c
+SRCS		+=	var_state_func.c
+SRCS		+=	var_utils.c
 
 ### srcs/signal/
 
@@ -104,9 +112,12 @@ CUNIT			= $(CUNIT_FOLDER)/cunit
 #####################
 
 CC			=	gcc
+
 CFLAGS		+=	-Wall
-CFLAGS		+=	-Werror
 CFLAGS		+=	-Wextra
+ifneq ($(no_error), true)
+	CFLAGS		+=	-Werror
+endif
 
 ifeq ($(debug), true)
 	CFLAGS	+= -fsanitize=address,undefined -g3

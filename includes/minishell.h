@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 15:54:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 14:58:26 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/03 17:40:45 by mat               #+#    #+#             */
+/*   Updated: 2023/04/04 16:19:25 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,64 @@
 /// DEFINES ///
 ///////////////
 
+// string
+
 # define PROMPT			"minishell $ "
 # define EXIT_MESSAGE	"exit"
-# define WHITESPACES	" \t\n\v\f\r"
-# define SEPARATORS		" \t\n"
-# define SINGLE_QUOTE	'\''
-# define DOUBLE_QUOTE	'\"'
-# define LAST_RETVAL	EXIT_SUCCESS
+# define QMARK_VAR		"LAST_RET_VAL"
+# define ZERO_VAR		"minishell"
 
-// Errors
+// error string
 
 # define SYNTAX_ERROR	"Syntax error"
+# define MALLOC_ERROR	"Malloc error"
+
+// char types
+
+# define WHITESPACES	" \t\n\v\f\r"
+# define SEPARATORS		" \t\n"
+# define SPECIAL_VAR	"?0"
+# define EMPTY_STR		""
+
+// char
+
+# define SINGLE_QUOTE	'\''
+# define DOUBLE_QUOTE	'\"'
+# define DOLLAR_SIGN	'$'
+# define UNDERSCORE		'_'
+
+// len
+
+# define STR_LEN_MAX	50
+# define SPEC_VAR_LEN	2
+# define WRONG_VAR_LEN	2
+
+// return value
+
+# define LAST_RETVAL	EXIT_SUCCESS
 
 //////////////////
 /// STRUCTURES ///
 //////////////////
+
+typedef enum e_var_state
+{
+	E_STD,
+	E_DOUBLE_QUOTE,
+	E_SINGLE_QUOTE,
+	E_SPEC_VAR,
+	E_VAR,
+	E_EOL
+}			t_vstate;
+
+typedef struct s_vmachine
+{
+	t_vstate	state;
+	t_vstate	prev_state;
+	size_t		word_len;
+	size_t		index;
+	char		*line;
+}			t_vmachine;
 
 typedef enum e_quote_state
 {
@@ -87,6 +130,40 @@ void	prompt(void);
 // signal.c
 
 void	set_catcher(void);
+
+//// VAR ////
+
+// handle_var.c
+
+void	replace_special_var(t_vmachine *const machine);
+void	handle_var_start(t_vmachine *const machine);
+void	translate_var(t_vmachine *const machine);
+
+// var_machine.c
+
+char	*expand_var(const char *line);
+void	change_state(t_vstate new_state, t_vmachine *const machine);
+
+// var_state_func.c
+
+void	std_state(t_vmachine *const machine);
+void	d_quote_state(t_vmachine *const machine);
+void	s_quote_state(t_vmachine *const machine);
+void	spec_var_state(t_vmachine *const machine);
+void	var_state(t_vmachine *const machine);
+
+// var_utils.c
+
+bool	is_in_var_charset(const char c);
+bool	is_in_var_start_charset(const char c);
+bool	is_special_var(const char c);
+char	*cut_string_at(char *src, const size_t index, const size_t del_len);
+char	*replace_and_free(
+			char *src,
+			char *replace,
+			size_t index,
+			size_t delete_len
+			);
 
 //// TOKEN ////
 

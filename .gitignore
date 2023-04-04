@@ -7,7 +7,8 @@
 
 # Executable
 
-./minishell
+minishell
+cunit
 
 # Object files
 *.o

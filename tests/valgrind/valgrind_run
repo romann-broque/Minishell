@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CURR_FOLDER="./tests/"
+CURR_FOLDER="./tests/valgrind/"
 SUPPRESSION_FILE="${CURR_FOLDER}suppressions.supp"
 LOG_FILE="${CURR_FOLDER}valgrind-out.txt"
 EXEC="./minishell"

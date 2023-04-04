@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    tester.sh                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+         #
+#    By: mat <mat@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 09:44:14 by rbroque           #+#    #+#              #
-#    Updated: 2023/03/30 22:10:05 by rbroque          ###   ########.fr        #
+#    Updated: 2023/04/04 15:32:17 by mat              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,15 @@ REF_FOLDER="${FOLDER}"ref/
 
 # Define the input, output, and output reference files
 
-inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"quotes.in )
-outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"quotes.out )
-output_refs=( "${REF_FOLDER}"basic.ref "${REF_FOLDER}"quotes.ref )
+inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"quotes.in "${IN_FOLDER}"var.in)
+outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"quotes.out "${OUT_FOLDER}"var.out)
+output_refs=( "${REF_FOLDER}"basic.ref "${REF_FOLDER}"quotes.ref "${REF_FOLDER}"var.ref)
+
+# set test variables
+
+export single=var1
+export multiple2=var2
+export multiple=$multiple2
 
 # Iterate over the arrays using a for loop
 
