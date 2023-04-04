@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:56:02 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/04 10:56:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/04 14:17:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@ static void	cpy_strs_from_lst(char **dest_strs, t_list *lst, const size_t size)
 	i = 0;
 	while (i < size)
 	{
-		dest_strs[i] = ft_strdup((char *)(lst->content));
-		if (dest_strs[i] == NULL)
+		dest_strs[i] = lst->content;
+		if (lst->content != NULL)
 		{
-			free_strs(dest_strs);
-			break ;
+			dest_strs[i] = ft_strdup((char *)(lst->content));
+			if (dest_strs[i] == NULL)
+			{
+				free_strs(dest_strs);
+				break ;
+			}
 		}
 		lst = lst->next;
 		++i;
