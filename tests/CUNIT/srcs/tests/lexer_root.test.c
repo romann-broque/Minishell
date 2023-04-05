@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:12:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 16:43:36 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 17:27:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	compare_tok_lst(const char *str, const t_token exp_tok[], const size
 		++i;
 	}
 	CU_ASSERT_EQUAL(fail_count, 0);
-	ft_lstclear(&tmp_lst, free);
+	ft_lstclear(&tmp_lst, (void (*)(void *))free_token);
 }
 
 static void	compare_tok_lst_null(const char *str, const t_token *exp_tok[], const size_t size)
@@ -57,7 +57,7 @@ static void	compare_tok_lst_null(const char *str, const t_token *exp_tok[], cons
 		++i;
 	}
 	CU_ASSERT_EQUAL(fail_count, 0);
-	ft_lstclear(&tmp_lst, free);
+	ft_lstclear(&tmp_lst, (void (*)(void *))free_token);
 }
 
 void	lexer_root__test(void)
@@ -85,9 +85,18 @@ void	lexer_root__test(void)
 		{.type = T_PIPE, .value = "|"},
 		{.type = T_GENERIC, .value = "cat"}
 	};
+	const char				str5[] = "ls>wouah||cat";
+	static const t_token	tok_lst5[] = {
+		{.type = T_GENERIC, .value = "ls"},
+		{.type = T_RCHEVRON, .value = ">"},
+		{.type = T_GENERIC, .value = "wouah"},
+		{.type = T_OR, .value = "||"},
+		{.type = T_GENERIC, .value = "cat"}
+	};
 
 	compare_tok_lst(str1, tok_lst1, 1);
 	compare_tok_lst(str2, tok_lst2, 4);
 	compare_tok_lst_null(str3, tok_lst3, 1);
 	compare_tok_lst(str4, tok_lst4, 5);
+	compare_tok_lst(str5, tok_lst5, 5);
 }
