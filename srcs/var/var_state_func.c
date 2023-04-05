@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:15:32 by mat               #+#    #+#             */
-/*   Updated: 2023/04/04 21:50:57 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 09:49:39 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	spec_var_state(t_vmachine *const machine)
 {
 	const char	c = machine->line[machine->index];
 
-	if (c == END_CHAR)
+	if (is_separator(c))
 		machine->state = machine->prev_state;
 	else if (is_special_var(c))
 	{

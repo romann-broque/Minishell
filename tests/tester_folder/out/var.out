@@ -48,4 +48,7 @@ minishell $ $0
 Element 1 : [minishell]
 minishell $ $single$single
 Element 1 : [var1var1]
+minishell $ $    $
+Element 1 : [$]
+Element 2 : [$]
 minishell $ exit
