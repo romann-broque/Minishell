@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 15:47:30 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 19:38:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@
 # define DOUBLE_QUOTE	'\"'
 # define DOLLAR_SIGN	'$'
 # define UNDERSCORE		'_'
+# define AMPERSAND		'&'
 
 // len
 
@@ -69,7 +70,6 @@
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
 # define MAX_LEN_TYPE	2
-# define TYPE_COUNT		8
 
 // return value
 

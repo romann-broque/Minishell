@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:21:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 15:48:45 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 19:22:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	add_spec_token(t_qmachine *machine,
 	size_t	i;
 
 	i = 0;
-	while (i < TYPE_COUNT - 1)
+	while (i < T_GENERIC)
 	{
 		toklen = ft_strlen(spec_tok[i]);
 		if (ft_strncmp(spec_tok[i], machine->str, toklen) == 0)

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 23:28:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 15:53:45 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 19:39:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static t_toktype	get_type_array(
 	size_t	enum_index;
 
 	enum_index = 0;
-	while (enum_index < TYPE_COUNT - 1
+	while (enum_index < T_GENERIC
 		&& streq(type_str[enum_index], word) == false)
 		++enum_index;
-	if (enum_index == TYPE_COUNT - 1)
+	if (enum_index == T_GENERIC)
 		return (T_GENERIC);
 	return (enum_index);
 }
