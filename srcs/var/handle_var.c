@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/04/04 16:09:21 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/04 21:56:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,24 @@ void	handle_var_start(t_vmachine *const machine)
 	{
 		machine->line = cut_string_at(machine->line,
 				machine->index - 1, WRONG_VAR_LEN);
+		--(machine->index);
 		change_state(machine->prev_state, machine);
 	}
 }
 
-void	translate_var(t_vmachine *const machine)
+void	translate_var(t_vmachine *const mach)
 {
-	char *const	var_name = get_var_name(machine);
+	char *const	var_name = get_var_name(mach);
 	char *const	var_value = getenv(var_name);
 
 	free(var_name);
 	if (var_value == NULL)
-		machine->line = cut_string_at(machine->line,
-				machine->index - 1 - machine->word_len, machine->word_len + 1);
+		mach->line = cut_string_at(mach->line,
+				mach->index - (mach->word_len + 1), mach->word_len + 1);
 	else
-		machine->line = replace_and_free(machine->line, var_value,
-				machine->index - 1 - machine->word_len, machine->word_len + 1);
-	machine->index += ft_strlen(var_value) - machine->word_len - 1;
-	machine->word_len = 0;
-	change_state(machine->prev_state, machine);
+		mach->line = replace_and_free(mach->line, var_value,
+				mach->index - (mach->word_len + 1), mach->word_len + 1);
+	mach->index += ft_strlen_safe(var_value) - (mach->word_len + 1);
+	mach->word_len = 0;
+	change_state(mach->prev_state, mach);
 }

@@ -10,12 +10,14 @@ SHELL		= /usr/bin/bash
 
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/exit/
+PATH_SRCS	+=	srcs/lexer/
+PATH_SRCS	+=	srcs/lexer/quotes/
+PATH_SRCS	+=	srcs/lexer/tokens/
+PATH_SRCS	+=	srcs/lexer/word/
 PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/signal/
 PATH_SRCS	+=	srcs/var/
-PATH_SRCS	+=	srcs/token/
-PATH_SRCS	+=	srcs/token/get_word/
 
 ### srcs/
 
@@ -45,11 +47,19 @@ SRCS		+=	var_utils.c
 
 SRCS		+=	signal.c
 
-### srcs/token/
+### srcs/lexer
+
+### srcs/lexer/quotes/
 
 SRCS		+=	are_quotes_closed.c
 
-### srcs/token/get_token/
+### srcs/lexer/tokens/
+
+SRCS		+=	get_token_lst.c
+SRCS		+=	token_utils.c
+SRCS		+=	tokenizer.c
+
+### srcs/lexer/word/
 
 SRCS		+=	get_words.c
 SRCS		+=	parse_states.c
@@ -102,9 +112,11 @@ LINKS += -lreadline
 TESTER_FOLDER	= ./tests/
 CUNIT_FOLDER	= $(TESTER_FOLDER)/CUNIT/
 MINTEST_FOLDER	= $(TESTER_FOLDER)/tester_folder/
+ENV_FOLDER		= $(TESTER_FOLDER)/env/
 
 TESTER			= $(MINTEST_FOLDER)/tester.sh
 CUNIT			= $(CUNIT_FOLDER)/cunit
+ENV				= $(TESTER_FOLDER)/env/env.sh
 
 #####################
 #### COMPILATION ####
@@ -172,9 +184,9 @@ test	:
 	$(MAKE) -s
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
-	$(CUNIT)
+	source $(ENV); $(CUNIT)
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
-	$(TESTER)
+	source $(ENV); $(TESTER)
 
 clean	:
 	$(RM) -r $(PATH_OBJS)

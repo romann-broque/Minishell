@@ -6,31 +6,31 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/04 17:03:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 01:01:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	exec_command(t_list	const *word_lst)
+static void	exec_command(t_list	const *token_lst)
 {
-	if (word_lst->content != NULL && streq(word_lst->content, "exit"))
+	if (token_lst->content != NULL
+		&& ((t_token *)(token_lst->content))->value != NULL
+		&& streq(((t_token *)(token_lst->content))->value, "exit"))
 		exit_shell(LAST_RETVAL);
 }
 
 static void	handle_command(const char *command)
 {
-	char *const	line_w_var = expand_var(command);
-	t_list		*word_lst;
+	t_list	*tokens;
 
-	word_lst = get_words(line_w_var);
-	free(line_w_var);
-	if (word_lst == NULL)
+	tokens = get_token_lst(command);
+	if (tokens == NULL)
 		exit_shell(LAST_RETVAL);
 	else
-		exec_command(word_lst);
-	print_command(word_lst);
-	ft_lstclear(&word_lst, free);
+		exec_command(tokens);
+	print_command(tokens);
+	ft_lstclear(&tokens, (void (*)(void *))free_token);
 }
 
 static void	get_command(void)
