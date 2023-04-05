@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:29:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/04 16:21:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 11:24:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_list	*get_words(const char *str)
 		separator_state,
 		single_quote_state,
 		double_quote_state,
+		spec_tok_state,
 		word_state,
 	};
 	t_qmachine	machine;

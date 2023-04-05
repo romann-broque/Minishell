@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 11:08:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 11:52:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 
 // char types
 
+# define TOK_LEXEME		"<>|&"
 # define WHITESPACES	" \t\n\v\f\r"
 # define SEPARATORS		" \t\n"
 # define SPECIAL_VAR	"?0"
@@ -120,6 +121,7 @@ typedef enum e_quote_state
 	E_SEPARATOR,
 	E_QUOTE,
 	E_DQUOTE,
+	E_SPEC_TOK,
 	E_WORD,
 	E_EOF
 }			t_qstate;
@@ -228,16 +230,20 @@ t_list	*get_words(const char *str);
 void	separator_state(t_qmachine *const machine);
 void	single_quote_state(t_qmachine *const machine);
 void	double_quote_state(t_qmachine *const machine);
+void	spec_tok_state(t_qmachine *const machine);
 void	word_state(t_qmachine *const machine);
 
 // strs_to_lst.c
 
 void	add_token(t_qmachine *machine);
+void	add_spec_token(t_qmachine *machine,
+			const char spec_tok[][MAX_LEN_TYPE + 1]);
 
 // word_utils.c
 
 bool	is_separator(const char c);
 void	update_state(t_qmachine *const machine);
 void	init_qmachine(t_qmachine *const machine, const char *str);
+void	quote_state(t_qmachine *const machine, const char quote);
 
 #endif
