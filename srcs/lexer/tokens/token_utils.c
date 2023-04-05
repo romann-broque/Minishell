@@ -5,38 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/29 15:51:57 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/30 11:14:14 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/05 00:59:53 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/05 01:00:08 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	is_separator(const char c)
+void	free_token(t_token *tok)
 {
-	return (ft_strchr(SEPARATORS, c));
-}
-
-void	update_state(t_qmachine *const machine)
-{
-	const char	c = machine->str[0];
-
-	if (c == END_CHAR)
-		machine->state = E_EOF;
-	else if (is_separator(c) == true)
-		machine->state = E_SEPARATOR;
-	else if (c == SINGLE_QUOTE)
-		machine->state = E_QUOTE;
-	else if (c == DOUBLE_QUOTE)
-		machine->state = E_DQUOTE;
-	else
-		machine->state = E_WORD;
-}
-
-void	init_qmachine(t_qmachine *const machine, const char *str)
-{
-	machine->state = E_SEPARATOR;
-	machine->word_len = 0;
-	machine->str = str;
-	machine->tokens = NULL;
+	if (tok != NULL)
+		free(tok->value);
+	free(tok);
 }

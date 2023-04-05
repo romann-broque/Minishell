@@ -3,23 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   test_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 13:26:48 by mat               #+#    #+#             */
-/*   Updated: 2023/04/03 17:43:08 by mat              ###   ########.fr       */
+/*   Created: 2023/04/05 01:08:04 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/05 01:10:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_command(char **const token_array)
+void	print_token(t_token *token, const size_t index)
+{
+	if (token->value != NULL)
+		printf("Element %lu : type=[%u]; value=[%s]\n",
+			index, token->type, token->value);
+}
+
+void	print_command(t_list *token_lst)
 {
 	size_t	i;
 
 	i = 0;
-	while (token_array[i] != NULL)
+	while (token_lst != NULL)
 	{
-		printf("Element %zu : [%s]\n", i + 1, token_array[i]);
-		i++;
+		if (token_lst->content != NULL)
+			printf("Element %zu : [%s]\n", i + 1,
+				((t_token *)(token_lst->content))->value);
+		token_lst = token_lst->next;
+		++i;
 	}
 }

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_tokens.c                                       :+:      :+:    :+:   */
+/*   get_words.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:29:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/03/30 22:09:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/04 16:21:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// get_tokens :	Returns an array of tokens ready to be categorize by the lexer.
+// get_words :	Returns a list of words ready to be categorize by the lexer.
 //				It uses a finite state machine strategy
 
-char	**get_tokens(const char *str)
+t_list	*get_words(const char *str)
 {
 	static void	(*state_fct[])(t_qmachine *const) = {
 		separator_state,
@@ -24,16 +24,17 @@ char	**get_tokens(const char *str)
 		word_state,
 	};
 	t_qmachine	machine;
-	char		**tokens;
+	t_list		*words;
 
-	tokens = NULL;
+	words = NULL;
 	if (str != NULL)
 	{
 		init_qmachine(&machine, str);
 		while (machine.state != E_EOF)
 			state_fct[machine.state](&machine);
-		tokens = dup_strs_from_lst(machine.tokens);
-		ft_lstclear(&(machine.tokens), free);
+		if (machine.words == NULL)
+			machine.words = ft_lstnew(NULL);
+		words = machine.words;
 	}
-	return (tokens);
+	return (words);
 }

@@ -6,30 +6,31 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/04 15:33:24 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/05 10:06:54 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	exec_command(char **const token_array)
+static void	exec_command(t_list	const *token_lst)
 {
-	if (token_array[0] != NULL && streq(token_array[0], "exit"))
+	if (token_lst->content != NULL
+		&& ((t_token *)(token_lst->content))->value != NULL
+		&& streq(((t_token *)(token_lst->content))->value, "exit"))
 		exit_shell(LAST_RETVAL);
 }
 
 static void	handle_command(const char *command)
 {
-	char *const		line_w_var = expand_var(command);
-	char **const	token_array = get_tokens(line_w_var);
+	t_list	*tokens;
 
-	free(line_w_var);
-	if (token_array == NULL)
+	tokens = lexer(command);
+	if (tokens == NULL)
 		exit_shell(LAST_RETVAL);
 	else
-		exec_command(token_array);
-	print_command(token_array);
-	free_strs(token_array);
+		exec_command(tokens);
+	print_command(tokens);
+	ft_lstclear(&tokens, (void (*)(void *))free_token);
 }
 
 static void	get_command(void)

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/03 17:40:45 by mat               #+#    #+#             */
-/*   Updated: 2023/04/04 16:19:25 by mat              ###   ########.fr       */
+/*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/05 15:33:11 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,16 @@
 # define QMARK_VAR		"LAST_RET_VAL"
 # define ZERO_VAR		"minishell"
 
+// tok_string
+
+# define LCHEVRON			"<"
+# define RCHEVRON			">"
+# define DOUBLE_LCHEVRON	"<<"
+# define DOUBLE_RCHEVRON	">>"
+# define PIPE				"|"
+# define OR					"||"
+# define AND				"&&"
+
 // error string
 
 # define SYNTAX_ERROR	"Syntax error"
@@ -57,6 +67,8 @@
 # define STR_LEN_MAX	50
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
+# define MAX_LEN_TYPE	2
+# define TYPE_COUNT		8
 
 // return value
 
@@ -65,6 +77,24 @@
 //////////////////
 /// STRUCTURES ///
 //////////////////
+
+typedef enum e_toktype
+{
+	T_LCHEVRON,
+	T_RCHEVRON,
+	T_DOUBLE_LCHEVRON,
+	T_DOUBLE_RCHEVRON,
+	T_PIPE,
+	T_OR,
+	T_AND,
+	T_GENERIC
+}			t_toktype;
+
+typedef struct s_token
+{
+	t_type	type;
+	char	*value;
+}				t_token;
 
 typedef enum e_var_state
 {
@@ -99,7 +129,7 @@ typedef struct s_qmachine
 	t_qstate	state;
 	size_t		word_len;
 	const char	*str;
-	t_list		*tokens;
+	t_list		*words;
 }				t_qmachine;
 
 /////////////////
@@ -116,7 +146,7 @@ void	exit_shell(const int exit_value);
 
 // print.c
 
-void	print_command(char **const command);
+void	print_command(t_list *token_lst);
 void	print_error(const char *error_name);
 
 //// PROMPT ////
@@ -165,11 +195,33 @@ char	*replace_and_free(
 			size_t delete_len
 			);
 
-//// TOKEN ////
+//// LEXER ////
 
-// get_tokens.c
+//// QUOTES ////
 
-char	**get_tokens(const char *str);
+// are_quotes_closed.c
+
+bool	are_quotes_closed(const char *str);
+
+//// TOKENS ////
+
+// lexer.c
+
+t_list	*lexer(const char *str);
+
+// token_utils.c
+
+void	free_token(t_token *tok);
+
+// tokenizer.c
+
+t_list	*tokenizer(t_list *words);
+
+//// WORD ////
+
+// get_words.c
+
+t_list	*get_words(const char *str);
 
 // parse_states.c
 
@@ -178,22 +230,14 @@ void	single_quote_state(t_qmachine *const machine);
 void	double_quote_state(t_qmachine *const machine);
 void	word_state(t_qmachine *const machine);
 
-// strs_from_lst.c
-
-char	**dup_strs_from_lst(t_list *lst);
-
 // strs_to_lst.c
 
 void	add_token(t_qmachine *machine);
 
-// token_util.c
+// word_utils.c
 
 bool	is_separator(const char c);
 void	update_state(t_qmachine *const machine);
 void	init_qmachine(t_qmachine *const machine, const char *str);
-
-// are_quotes_closed.c
-
-bool	are_quotes_closed(const char *str);
 
 #endif

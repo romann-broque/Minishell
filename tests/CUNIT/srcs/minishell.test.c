@@ -19,6 +19,15 @@ void	set_tests(void)
 			{.tname = "are_quotes_closed", are_quotes_closed__test},
 			},
 		},
+		{.suite = NULL, .sname = "Lexer", .tests = {
+			{.tname = "get_words", get_words__test},
+			},
+		},
+		{
+			.suite = NULL, .sname = "Var", .tests = {
+				{.tname = "expand_var", expand_var__test},
+			},
+		},
 		{.suite = NULL, .sname = NULL}
 	};
 
@@ -31,9 +40,10 @@ void	exec_tests(void)
 	if (CU_initialize_registry() != CUE_SUCCESS)
 		exit_tests();
 	set_tests();
+	CU_set_error_action(CUEA_IGNORE);
 
 	// Run the tests using the basic test runner
-	CU_basic_set_mode(CU_BRM_VERBOSE);
+	CU_basic_set_mode(CU_BRM_NORMAL);
 	CU_basic_run_tests();
 
 	// Cleanup the CUnit test registry
