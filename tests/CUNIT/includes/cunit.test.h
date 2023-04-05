@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:44:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 15:51:37 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:13:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,17 @@ typedef struct s_suite
 
 void	are_quotes_closed__test(void);
 
+// expand_var.test.c
+
+void	expand_var__test(void);
+
 // get_words.test.c
 
 void	get_words__test(void);
 
-// expand_var.test.c
+// lexer_root.c
 
-void	expand_var__test(void);
+void	lexer_root__test(void);
 
 //// UTILS ////
 

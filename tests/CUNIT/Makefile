@@ -20,8 +20,9 @@ SRCS	 	+=	minishell.test.c
 ### srcs/tests/
 
 SRCS	 	+=	are_quotes_closed.test.c
-SRCS	 	+=	get_words.test.c
 SRCS		+=	expand_var.test.c
+SRCS	 	+=	get_words.test.c
+SRCS		+=	lexer_root.test.c
 
 ### srcs/utils/
 
