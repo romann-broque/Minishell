@@ -21,6 +21,7 @@ SRCS	 	+=	minishell.test.c
 
 SRCS	 	+=	are_quotes_closed.test.c
 SRCS	 	+=	get_words.test.c
+SRCS		+=	expand_var.test.c
 
 ### srcs/utils/
 

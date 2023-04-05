@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 15:07:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 15:47:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef enum e_toktype
 	T_PIPE,
 	T_OR,
 	T_AND,
-	T_WORD,
+	T_GENERIC,
 	T_START,
 	T_END
 }			t_toktype;
