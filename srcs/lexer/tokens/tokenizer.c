@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 23:28:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 15:33:36 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/05 15:41:45 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static t_toktype	get_type_array(
 	size_t	enum_index;
 
 	enum_index = 0;
-	while (enum_index < TYPE_COUNT - 1 && streq(type_str[enum_index], word) == false)
+	while (enum_index < TYPE_COUNT - 1
+		&& streq(type_str[enum_index], word) == false)
 		++enum_index;
 	if (enum_index == TYPE_COUNT - 1)
 		return (T_GENERIC);
