@@ -23,6 +23,11 @@ void	set_tests(void)
 			{.tname = "get_words", get_words__test},
 			},
 		},
+		{
+			.suite = NULL, .sname = "Var", .tests = {
+				{.tname = "expand_var", expand_var__test},
+			},
+		},
 		{.suite = NULL, .sname = NULL}
 	};
 
