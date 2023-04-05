@@ -55,7 +55,7 @@ SRCS		+=	are_quotes_closed.c
 
 ### srcs/lexer/tokens/
 
-SRCS		+=	get_token_lst.c
+SRCS		+=	lexer.c
 SRCS		+=	token_utils.c
 SRCS		+=	tokenizer.c
 

@@ -8,14 +8,7 @@
 # Executable
 
 minishell
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 cunit
->>>>>>> 66cd47f541ed0daf3cdd4455722d0d9e5eb41c61
-=======
-cunit
->>>>>>> origin/MVE2-US4-EXPAND-ST1-VAR
 
 # Object files
 *.o
