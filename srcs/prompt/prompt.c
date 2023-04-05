@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 14:59:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 15:05:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	handle_command(const char *command)
 {
 	t_list	*tokens;
 
-	tokens = lexer(command);
+	tokens = lexer_root(command);
 	if (tokens == NULL)
 		exit_shell(LAST_RETVAL);
 	else
