@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 10:07:42 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/05 15:33:11 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef enum e_toktype
 	T_PIPE,
 	T_OR,
 	T_AND,
-	T_WORD
+	T_GENERIC
 }			t_toktype;
 
 typedef struct s_token

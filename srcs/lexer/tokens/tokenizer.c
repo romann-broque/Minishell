@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 23:28:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 01:10:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 15:33:36 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static t_toktype	get_type_array(
 	const char type_str[][MAX_LEN_TYPE + 1],
 	char *word)
 {
-	size_t	i;
+	size_t	enum_index;
 
-	i = 0;
-	while (i < TYPE_COUNT - 1 && streq(type_str[i], word) == false)
-		++i;
-	if (i == TYPE_COUNT - 1)
-		return (T_WORD);
-	return (i);
+	enum_index = 0;
+	while (enum_index < TYPE_COUNT - 1 && streq(type_str[enum_index], word) == false)
+		++enum_index;
+	if (enum_index == TYPE_COUNT - 1)
+		return (T_GENERIC);
+	return (enum_index);
 }
 
 static t_toktype	get_type(char *word)
