@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_token_lst.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:45:18 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 00:55:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 10:07:10 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_list	*get_token_lst(const char *str)
+t_list	*lexer(const char *str)
 {
 	char *const	line_w_var = expand_var(str);
 	t_list		*word_lst;

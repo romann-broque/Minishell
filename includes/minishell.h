@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 01:01:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 10:07:42 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,9 +205,9 @@ bool	are_quotes_closed(const char *str);
 
 //// TOKENS ////
 
-// get_token_lst.c
+// lexer.c
 
-t_list	*get_token_lst(const char *str);
+t_list	*lexer(const char *str);
 
 // token_utils.c
 

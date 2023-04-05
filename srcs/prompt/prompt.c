@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 01:01:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 10:06:54 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	handle_command(const char *command)
 {
 	t_list	*tokens;
 
-	tokens = get_token_lst(command);
+	tokens = lexer(command);
 	if (tokens == NULL)
 		exit_shell(LAST_RETVAL);
 	else
