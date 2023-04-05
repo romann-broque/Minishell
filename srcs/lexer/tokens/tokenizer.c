@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 23:28:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 01:10:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 14:13:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,9 @@ static t_toktype	get_type(char *word)
 
 static t_token	*get_token(char *word)
 {
-	t_token	*tok;
-
-	tok = NULL;
-	if (word != NULL)
-	{
-		tok = (t_token *)malloc(sizeof(t_token));
-		if (tok != NULL)
-		{
-			tok->type = get_type(word);
-			tok->value = ft_strdup(word);
-		}
-	}
-	return (tok);
+	if (word == NULL)
+		return (NULL);
+	return (init_token(get_type(word), word));
 }
 
 t_list	*tokenizer(t_list *words)

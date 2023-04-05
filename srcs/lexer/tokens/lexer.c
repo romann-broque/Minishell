@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_token_lst.c                                    :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:45:18 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 10:07:10 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/05 14:58:42 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	put_lexer_format(t_list **tokens)
+{
+	ft_lstadd_front(tokens, ft_lstnew(init_token(T_START, NULL)));
+	ft_lstadd_back(tokens, ft_lstnew(init_token(T_END, NULL)));
+}
 
 t_list	*lexer(const char *str)
 {

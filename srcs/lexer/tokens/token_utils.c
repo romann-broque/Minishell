@@ -6,11 +6,26 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:59:53 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 01:00:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 13:53:01 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_token	*init_token(t_toktype type, char *value)
+{
+	t_token	*tok;
+
+	tok = (t_token *)malloc(sizeof(t_token));
+	if (tok != NULL)
+	{
+		tok->type = type;
+		tok->value = NULL;
+		if (value != NULL)
+			tok->value = ft_strdup(value);
+	}
+	return (tok);
+}
 
 void	free_token(t_token *tok)
 {

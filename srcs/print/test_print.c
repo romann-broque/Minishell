@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:08:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 11:09:23 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 14:47:14 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,20 @@ void	print_token(t_token *token, const size_t index)
 void	print_command(t_list *token_lst)
 {
 	size_t	i;
+	size_t	index;
 
 	i = 0;
+	index = 0;
 	while (token_lst != NULL)
 	{
-		if (token_lst->content != NULL)
+		if (token_lst->content != NULL
+			&& ((t_token *)(token_lst->content))->value != NULL)
+		{
 			printf("Element %zu : [%s]\n", i + 1,
 				((t_token *)(token_lst->content))->value);
+			++i;
+		}
 		token_lst = token_lst->next;
-		++i;
+		++index;
 	}
 }

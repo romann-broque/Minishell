@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 11:09:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 14:59:17 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static void	exec_command(t_list	const *token_lst)
 {
-	if (token_lst->content != NULL
-		&& ((t_token *)(token_lst->content))->value != NULL
-		&& streq(((t_token *)(token_lst->content))->value, "exit"))
+	t_token *const	token = token_lst->content;
+
+	if (token != NULL
+		&& (token->value != NULL)
+		&& streq(token->value, "exit"))
 		exit_shell(LAST_RETVAL);
 }
 

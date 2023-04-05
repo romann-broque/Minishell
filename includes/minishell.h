@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 11:52:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/05 13:53:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,9 @@ typedef enum e_toktype
 	T_PIPE,
 	T_OR,
 	T_AND,
-	T_WORD
+	T_WORD,
+	T_START,
+	T_END
 }			t_toktype;
 
 typedef struct s_token
@@ -213,6 +215,7 @@ t_list	*lexer(const char *str);
 
 // token_utils.c
 
+t_token	*init_token(t_toktype type, char *value);
 void	free_token(t_token *tok);
 
 // tokenizer.c
