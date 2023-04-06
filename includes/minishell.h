@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 17:01:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 18:52:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,18 @@ void	set_catcher(void);
 
 void	expand_command(t_list *tokens);
 
+//// QUOTES_REMOVAL ////
+
+// qrm_states.c
+
+void	word_state_qrm(char **word, size_t *index, t_qstate *state);
+void	squote_state_qrm(char **word, size_t *index, t_qstate *state);
+void	dquote_state_qrm(char **word, size_t *index, t_qstate *state);
+
+// quotes_removal.c
+
+char	*quotes_removal(const char *str);
+
 //// VAR ////
 
 // handle_var.c
@@ -223,7 +235,7 @@ bool	are_quotes_closed(const char *str);
 
 // assign_states_utils.c
 
-void	update_state_assign(const char **word, t_qstate *state);
+void	update_state_assign(const char c, t_qstate *state);
 bool	is_assign(const char *word);
 
 // assign_states.c

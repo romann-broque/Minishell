@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:03:27 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 15:52:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 18:08:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	word_state_assign(const char **word, t_qstate *state)
 
 	if (c == EQUAL_SIGN)
 		return (true);
-	update_state_assign(word, state);
+	update_state_assign(c, state);
 	if (*state == E_WORD)
 		++(*word);
 	return (false);

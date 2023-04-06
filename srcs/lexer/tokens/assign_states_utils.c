@@ -6,16 +6,14 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:46:12 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 17:02:14 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 18:05:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	update_state_assign(const char **word, t_qstate *state)
+void	update_state_assign(const char c, t_qstate *state)
 {
-	const char	c = (*word)[0];
-
 	if (c == END_CHAR)
 		*state = E_EOF;
 	else if (c == SINGLE_QUOTE)
