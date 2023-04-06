@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 15:50:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 17:01:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@
 // return value
 
 # define LAST_RETVAL	EXIT_SUCCESS
+
+// enum
+
+# define ASSIGN_START	0
 
 //////////////////
 /// STRUCTURES ///
@@ -242,7 +246,6 @@ void	free_token(t_token *tok);
 
 // tokenizer.c
 
-void	update_state_assign(const char **word, t_qstate *state);
 t_list	*tokenizer(t_list *words);
 
 //// WORD ////
