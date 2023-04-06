@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 23:28:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 15:33:36 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/06 10:06:59 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ static t_toktype	get_type_array(
 	size_t	enum_index;
 
 	enum_index = 0;
-	while (enum_index < TYPE_COUNT - 1 && streq(type_str[enum_index], word) == false)
+	while (enum_index < T_GENERIC
+		&& streq(type_str[enum_index], word) == false)
 		++enum_index;
-	if (enum_index == TYPE_COUNT - 1)
+	if (enum_index == T_GENERIC)
 		return (T_GENERIC);
 	return (enum_index);
 }
@@ -41,25 +42,15 @@ static t_toktype	get_type(char *word)
 	return (get_type_array(type_str, word));
 }
 
-static t_token	*get_token(char *word)
+static t_token	*set_token(char *word)
 {
-	t_token	*tok;
-
-	tok = NULL;
-	if (word != NULL)
-	{
-		tok = (t_token *)malloc(sizeof(t_token));
-		if (tok != NULL)
-		{
-			tok->type = get_type(word);
-			tok->value = ft_strdup(word);
-		}
-	}
-	return (tok);
+	if (word == NULL)
+		return (NULL);
+	return (init_token(get_type(word), word));
 }
 
 t_list	*tokenizer(t_list *words)
 {
 	return (ft_lstmap(words,
-			(void *(*)(void *))get_token, (void (*)(void *))free_token));
+			(void *(*)(void *))set_token, (void (*)(void *))free_token));
 }

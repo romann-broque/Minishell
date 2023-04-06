@@ -21,6 +21,7 @@ void	set_tests(void)
 		},
 		{.suite = NULL, .sname = "Lexer", .tests = {
 			{.tname = "get_words", get_words__test},
+			{.tname = "lexer_root", lexer_root__test},
 			},
 		},
 		{

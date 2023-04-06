@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 10:06:54 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/06 10:32:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static void	exec_command(t_list	const *token_lst)
 {
-	if (token_lst->content != NULL
-		&& ((t_token *)(token_lst->content))->value != NULL
-		&& streq(((t_token *)(token_lst->content))->value, "exit"))
+	t_token *const	token = token_lst->next->content;
+
+	if (token != NULL
+		&& (token->value != NULL)
+		&& streq(token->value, "exit"))
 		exit_shell(LAST_RETVAL);
 }
 
@@ -28,7 +30,10 @@ static void	handle_command(const char *command)
 	if (tokens == NULL)
 		exit_shell(LAST_RETVAL);
 	else
+	{
+		expand_command(tokens);
 		exec_command(tokens);
+	}
 	print_command(tokens);
 	ft_lstclear(&tokens, (void (*)(void *))free_token);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_words.test.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:35:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 15:19:03 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/05 15:51:51 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	get_words__test(void)
 
 	const char		*str14 = "             ";
 	const char		*exp_tok14[] = {NULL};
-
+	
 	const char		*str15 = "echo \"\"\" \"";
 	const char		exp_tok15[][MAX_TOKEN_LEN + 1] = {
 		"echo",

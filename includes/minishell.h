@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 15:33:11 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/06 10:38:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 
 // char types
 
+# define TOK_LEXEME		"<>|&"
 # define WHITESPACES	" \t\n\v\f\r"
 # define SEPARATORS		" \t\n"
 # define SPECIAL_VAR	"?0"
@@ -61,6 +62,7 @@
 # define DOUBLE_QUOTE	'\"'
 # define DOLLAR_SIGN	'$'
 # define UNDERSCORE		'_'
+# define AMPERSAND		'&'
 
 // len
 
@@ -68,7 +70,6 @@
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
 # define MAX_LEN_TYPE	2
-# define TYPE_COUNT		8
 
 // return value
 
@@ -87,7 +88,9 @@ typedef enum e_toktype
 	T_PIPE,
 	T_OR,
 	T_AND,
-	T_GENERIC
+	T_GENERIC,
+	T_START,
+	T_END
 }			t_toktype;
 
 typedef struct s_token
@@ -120,6 +123,7 @@ typedef enum e_quote_state
 	E_SEPARATOR,
 	E_QUOTE,
 	E_DQUOTE,
+	E_SPEC_TOK,
 	E_WORD,
 	E_EOF
 }			t_qstate;
@@ -160,6 +164,12 @@ void	prompt(void);
 // signal.c
 
 void	set_catcher(void);
+
+//// EXPANSION ////
+
+// expand_command.c
+
+void	expand_command(t_list *tokens);
 
 //// VAR ////
 
@@ -207,10 +217,13 @@ bool	are_quotes_closed(const char *str);
 
 // lexer.c
 
+t_list	*lexer_root(const char *str);
 t_list	*lexer(const char *str);
 
 // token_utils.c
 
+t_token	*init_token(t_toktype type, char *value);
+char	*get_str_from_tok(t_token *tok);
 void	free_token(t_token *tok);
 
 // tokenizer.c
@@ -228,16 +241,20 @@ t_list	*get_words(const char *str);
 void	separator_state(t_qmachine *const machine);
 void	single_quote_state(t_qmachine *const machine);
 void	double_quote_state(t_qmachine *const machine);
+void	spec_tok_state(t_qmachine *const machine);
 void	word_state(t_qmachine *const machine);
 
 // strs_to_lst.c
 
 void	add_token(t_qmachine *machine);
+void	add_spec_token(t_qmachine *machine,
+			const char spec_tok[][MAX_LEN_TYPE + 1]);
 
 // word_utils.c
 
 bool	is_separator(const char c);
 void	update_state(t_qmachine *const machine);
 void	init_qmachine(t_qmachine *const machine, const char *str);
+void	quote_state(t_qmachine *const machine, const char quote);
 
 #endif
