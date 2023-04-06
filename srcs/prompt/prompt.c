@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 10:06:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 10:32:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	exec_command(t_list	const *token_lst)
 {
-	t_token *const	token = token_lst->content;
+	t_token *const	token = token_lst->next->content;
 
 	if (token != NULL
 		&& (token->value != NULL)
@@ -26,7 +26,7 @@ static void	handle_command(const char *command)
 {
 	t_list	*tokens;
 
-	tokens = lexer_root(command);
+	tokens = lexer(command);
 	if (tokens == NULL)
 		exit_shell(LAST_RETVAL);
 	else
