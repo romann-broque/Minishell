@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:12:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 19:37:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 14:48:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,40 @@ void	lexer_root__test(void)
 		{.type = T_GENERIC, .value = "&\'wouah\'&"},
 		{.type = T_OR, .value = OR},
 	};
+	const char				str12[] = "lol=42&\'wouah\'& ||";
+	static const t_token	tok_lst12[] = {
+		{.type = T_ASSIGN, .value = "lol=42&\'wouah\'&"},
+		{.type = T_OR, .value = OR},
+	};
+	const char				str13[] = "=42&\'wouah\'& ||";
+	static const t_token	tok_lst13[] = {
+		{.type = T_GENERIC, .value = "=42&\'wouah\'&"},
+		{.type = T_OR, .value = OR},
+	};
+	const char				str14[] = "lol=4=2";
+	static const t_token	tok_lst14[] = {
+		{.type = T_ASSIGN, .value = "lol=4=2"},
+	};
+	const char				str15[] = "lol==42";
+	static const t_token	tok_lst15[] = {
+		{.type = T_ASSIGN, .value = "lol==42"},
+	};
+	const char				str16[] = "=42";
+	static const t_token	tok_lst16[] = {
+		{.type = T_GENERIC, .value = "=42"},
+	};
+	const char				str17[] = "=";
+	static const t_token	tok_lst17[] = {
+		{.type = T_GENERIC, .value = "="},
+	};
+	const char				str18[] = "\'lol=42\'";
+	static const t_token	tok_lst18[] = {
+		{.type = T_GENERIC, .value = "\'lol=42\'"},
+	};
+	const char				str19[] = "lol=\"\'lol=42\'\"";
+	static const t_token	tok_lst19[] = {
+		{.type = T_ASSIGN, .value = "lol=\"\'lol=42\'\""},
+	};
 
 	compare_tok_lst(str1, tok_lst1, 1);
 	compare_tok_lst(str2, tok_lst2, 4);
@@ -171,4 +205,12 @@ void	lexer_root__test(void)
 	compare_tok_lst(str9, tok_lst9, 12);
 	compare_tok_lst(str10, tok_lst10, 4);
 	compare_tok_lst(str11, tok_lst11, 2);
+	compare_tok_lst(str12, tok_lst12, 2);
+	compare_tok_lst(str13, tok_lst13, 2);
+	compare_tok_lst(str14, tok_lst14, 1);
+	compare_tok_lst(str15, tok_lst15, 1);
+	compare_tok_lst(str16, tok_lst16, 1);
+	compare_tok_lst(str17, tok_lst17, 1);
+	compare_tok_lst(str18, tok_lst18, 1);
+	compare_tok_lst(str19, tok_lst19, 1);
 }
