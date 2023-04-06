@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 10:38:58 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 17:01:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@
 # define DOLLAR_SIGN	'$'
 # define UNDERSCORE		'_'
 # define AMPERSAND		'&'
+# define EQUAL_SIGN		'='
 
 // len
 
@@ -74,6 +75,10 @@
 // return value
 
 # define LAST_RETVAL	EXIT_SUCCESS
+
+// enum
+
+# define ASSIGN_START	0
 
 //////////////////
 /// STRUCTURES ///
@@ -88,6 +93,7 @@ typedef enum e_toktype
 	T_PIPE,
 	T_OR,
 	T_AND,
+	T_ASSIGN,
 	T_GENERIC,
 	T_START,
 	T_END
@@ -95,8 +101,8 @@ typedef enum e_toktype
 
 typedef struct s_token
 {
-	t_type	type;
-	char	*value;
+	t_toktype	type;
+	char		*value;
 }				t_token;
 
 typedef enum e_var_state
@@ -214,6 +220,18 @@ char	*replace_and_free(
 bool	are_quotes_closed(const char *str);
 
 //// TOKENS ////
+
+// assign_states_utils.c
+
+void	update_state_assign(const char **word, t_qstate *state);
+bool	is_assign(const char *word);
+
+// assign_states.c
+
+bool	start_state_assign(const char **word, t_qstate *state);
+bool	word_state_assign(const char **word, t_qstate *state);
+bool	squote_state_assign(const char **word, t_qstate *state);
+bool	dquote_state_assign(const char **word, t_qstate *state);
 
 // lexer.c
 
