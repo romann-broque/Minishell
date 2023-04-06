@@ -6,7 +6,7 @@
 #    By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/29 09:44:14 by rbroque           #+#    #+#              #
-#    Updated: 2023/04/05 15:52:23 by rbroque          ###   ########.fr        #
+#    Updated: 2023/04/06 22:09:50 by rbroque          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ REF_FOLDER="${FOLDER}"ref/
 
 # Define the input, output, and output reference files
 
-inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"quotes.in "${IN_FOLDER}"var.in)
-outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"quotes.out "${OUT_FOLDER}"var.out)
-output_refs=( "${REF_FOLDER}"basic.ref "${REF_FOLDER}"quotes.ref "${REF_FOLDER}"var.ref)
+inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"expand.in "${IN_FOLDER}"quotes.in "${IN_FOLDER}"var.in)
+outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"expand.out "${OUT_FOLDER}"quotes.out "${OUT_FOLDER}"var.out)
+output_refs=( "${REF_FOLDER}"basic.ref "${REF_FOLDER}"expand.ref "${REF_FOLDER}"quotes.ref "${REF_FOLDER}"var.ref)
 
 # Iterate over the arrays using a for loop
 
