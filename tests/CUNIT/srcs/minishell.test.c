@@ -15,7 +15,7 @@
 void	set_tests(void)
 {
 	static t_suite	suite_mapping[] = {
-		{.suite = NULL, .sname = "Quotes", .tests = {
+		{.suite = NULL, .sname = "Syntax", .tests = {
 			{.tname = "are_quotes_closed", are_quotes_closed__test},
 			},
 		},
@@ -25,8 +25,9 @@ void	set_tests(void)
 			},
 		},
 		{
-			.suite = NULL, .sname = "Var", .tests = {
+			.suite = NULL, .sname = "Expand", .tests = {
 				{.tname = "expand_var", expand_var__test},
+				{.tname = "quotes_removal", quotes_removal__test},
 			},
 		},
 		{.suite = NULL, .sname = NULL}
