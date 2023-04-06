@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:12:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 14:48:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 16:34:14 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,18 @@ void	lexer_root__test(void)
 	static const t_token	tok_lst19[] = {
 		{.type = T_ASSIGN, .value = "lol=\"\'lol=42\'\""},
 	};
+	const char				str20[] = "===";
+	static const t_token	tok_lst20[] = {
+		{.type = T_GENERIC, .value = "==="},
+	};
+	const char				str21[] = "\"=\"==42";
+	static const t_token	tok_lst21[] = {
+		{.type = T_ASSIGN, .value = "\"=\"==42"},
+	};
+	const char				str22[] = "\"=\"\'==42\'";
+	static const t_token	tok_lst22[] = {
+		{.type = T_GENERIC, .value = "\"=\"\'==42\'"},
+	};
 
 	compare_tok_lst(str1, tok_lst1, 1);
 	compare_tok_lst(str2, tok_lst2, 4);
@@ -213,4 +225,7 @@ void	lexer_root__test(void)
 	compare_tok_lst(str17, tok_lst17, 1);
 	compare_tok_lst(str18, tok_lst18, 1);
 	compare_tok_lst(str19, tok_lst19, 1);
+	compare_tok_lst(str20, tok_lst20, 1);
+	compare_tok_lst(str21, tok_lst21, 1);
+	compare_tok_lst(str22, tok_lst22, 1);
 }
