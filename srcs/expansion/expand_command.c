@@ -6,27 +6,31 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:02:35 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 19:06:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 21:42:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	expand_command(t_list *tokens)
+static void	expand(t_token *token, char *(*expander)(const char *))
 {
 	char	*tmp;
 
+	if (token != NULL)
+	{
+		tmp = token->value;
+		if (tmp != NULL)
+			token->value = expander(tmp);
+		free(tmp);
+	}
+}
+
+void	expand_command(t_list *tokens)
+{
 	while (tokens != NULL)
 	{
-		tmp = get_str_from_tok(tokens->content);
-		if (tmp != NULL)
-		{
-			((t_token *)(tokens->content))->value = expand_var(tmp);
-			free(tmp);
-			tmp = get_str_from_tok(tokens->content);
-			((t_token *)(tokens->content))->value = quotes_removal(tmp);
-			free(tmp);
-		}
+		expand(tokens->content, expand_var);
+		expand(tokens->content, quotes_removal);
 		tokens = tokens->next;
 	}
 }
