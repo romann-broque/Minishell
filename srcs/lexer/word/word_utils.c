@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:51:57 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 19:40:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 10:23:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ bool	is_separator(const char c)
 
 bool	is_spec_tok(const char *str)
 {
-	const char	c = str[0];
+	const char	c1 = str[0];
+	const char	c2 = str[1];
 
-	return (c != END_CHAR
-		&& ((c != AMPERSAND && is_in_str(TOK_LEXEME, c) == true)
-			|| (c == AMPERSAND && str[1] == AMPERSAND)));
+	return (c1 != END_CHAR
+		&& ((c1 != AMPERSAND && is_in_str(TOK_LEXEME, c1) == true)
+			|| (c1 == AMPERSAND && c2 == AMPERSAND)));
 }
 
 void	update_state(t_qmachine *const machine)

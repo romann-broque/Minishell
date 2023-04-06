@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 15:49:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 10:06:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ static void	handle_command(const char *command)
 	if (tokens == NULL)
 		exit_shell(LAST_RETVAL);
 	else
+	{
+		expand_command(tokens);
 		exec_command(tokens);
+	}
 	print_command(tokens);
 	ft_lstclear(&tokens, (void (*)(void *))free_token);
 }

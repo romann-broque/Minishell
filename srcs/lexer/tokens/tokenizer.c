@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 23:28:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 19:39:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 10:06:59 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_toktype	get_type(char *word)
 	return (get_type_array(type_str, word));
 }
 
-static t_token	*get_token(char *word)
+static t_token	*set_token(char *word)
 {
 	if (word == NULL)
 		return (NULL);
@@ -52,5 +52,5 @@ static t_token	*get_token(char *word)
 t_list	*tokenizer(t_list *words)
 {
 	return (ft_lstmap(words,
-			(void *(*)(void *))get_token, (void (*)(void *))free_token));
+			(void *(*)(void *))set_token, (void (*)(void *))free_token));
 }

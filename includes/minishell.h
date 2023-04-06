@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 19:38:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 10:07:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,12 @@ void	prompt(void);
 
 void	set_catcher(void);
 
+//// EXPANSION ////
+
+// expand_command.c
+
+void	expand_command(t_list *tokens);
+
 //// VAR ////
 
 // handle_var.c
@@ -217,6 +223,7 @@ t_list	*lexer(const char *str);
 // token_utils.c
 
 t_token	*init_token(t_toktype type, char *value);
+char	*get_str_from_tok(t_token *tok);
 void	free_token(t_token *tok);
 
 // tokenizer.c

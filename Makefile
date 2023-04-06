@@ -10,6 +10,8 @@ SHELL		= /usr/bin/bash
 
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/exit/
+PATH_SRCS	+=	srcs/expansion/
+PATH_SRCS	+=	srcs/expansion/var/
 PATH_SRCS	+=	srcs/lexer/
 PATH_SRCS	+=	srcs/lexer/quotes/
 PATH_SRCS	+=	srcs/lexer/tokens/
@@ -17,7 +19,6 @@ PATH_SRCS	+=	srcs/lexer/word/
 PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/signal/
-PATH_SRCS	+=	srcs/var/
 
 ### srcs/
 
@@ -27,6 +28,17 @@ SRCS	 	+=	minishell.c
 
 SRCS	 	+=	exit_shell.c
 
+### srcs/expansion/
+
+SRCS	 	+=	expand_command.c
+
+### srcs/expansion/var/
+
+SRCS		+=	handle_var.c
+SRCS		+=	var_machine.c
+SRCS		+=	var_state_func.c
+SRCS		+=	var_utils.c
+
 ### srcs/print/
 
 SRCS		+=	test_print.c
@@ -35,13 +47,6 @@ SRCS		+=	print_error.c
 ### srcs/prompt/
 
 SRCS	 	+=	prompt.c
-
-### scrs/var/
-
-SRCS		+=	handle_var.c
-SRCS		+=	var_machine.c
-SRCS		+=	var_state_func.c
-SRCS		+=	var_utils.c
 
 ### srcs/signal/
 
