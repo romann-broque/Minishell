@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:45:18 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 10:34:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 10:39:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	put_lexer_format(t_list **tokens)
 	}
 }
 
-static t_list	*lexer_root(const char *str)
+t_list	*lexer_root(const char *str)
 {
 	t_list	*word_lst;
 	t_list	*tokens;

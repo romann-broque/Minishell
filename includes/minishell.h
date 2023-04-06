@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 10:34:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 10:38:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ bool	are_quotes_closed(const char *str);
 
 // lexer.c
 
+t_list	*lexer_root(const char *str);
 t_list	*lexer(const char *str);
 
 // token_utils.c
