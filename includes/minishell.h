@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 10:38:58 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 14:35:32 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 
 # define SYNTAX_ERROR	"Syntax error"
 # define MALLOC_ERROR	"Malloc error"
+# define PARS_ERROR		"Parsing error"
 
 // char types
 
@@ -71,6 +72,11 @@
 # define WRONG_VAR_LEN	2
 # define MAX_LEN_TYPE	2
 
+// count
+
+# define TOK_TYPE_COUNT	11
+# define NEXT_TOK_MAX	9
+
 // return value
 
 # define LAST_RETVAL	EXIT_SUCCESS
@@ -88,15 +94,17 @@ typedef enum e_toktype
 	T_PIPE,
 	T_OR,
 	T_AND,
+	T_ASSIGN,
 	T_GENERIC,
 	T_START,
-	T_END
+	T_END,
+	T_INVALID
 }			t_toktype;
 
 typedef struct s_token
 {
-	t_type	type;
-	char	*value;
+	t_toktype	type;
+	char		*value;
 }				t_token;
 
 typedef enum e_var_state
@@ -136,42 +144,29 @@ typedef struct s_qmachine
 	t_list		*words;
 }				t_qmachine;
 
+typedef struct s_tokparse
+{
+	t_toktype	curr;
+	t_toktype	next[NEXT_TOK_MAX];
+}			t_tokparse;
+
 /////////////////
 /// FUNCTIONS ///
 /////////////////
 
-//// EXIT ////
+////			EXIT			////
 
 // exit_shell.c
 
 void	exit_shell(const int exit_value);
 
-//// PRINT ////
-
-// print.c
-
-void	print_command(t_list *token_lst);
-void	print_error(const char *error_name);
-
-//// PROMPT ////
-
-// prompt.c
-
-void	prompt(void);
-
-//// SIGNAL ////
-
-// signal.c
-
-void	set_catcher(void);
-
-//// EXPANSION ////
+////			EXPANSION			////
 
 // expand_command.c
 
 void	expand_command(t_list *tokens);
 
-//// VAR ////
+//  VAR  //
 
 // handle_var.c
 
@@ -205,15 +200,15 @@ char	*replace_and_free(
 			size_t delete_len
 			);
 
-//// LEXER ////
+////			LEXER			////
 
-//// QUOTES ////
+//  QUOTES  //
 
 // are_quotes_closed.c
 
 bool	are_quotes_closed(const char *str);
 
-//// TOKENS ////
+//  TOKENS  //
 
 // lexer.c
 
@@ -230,7 +225,7 @@ void	free_token(t_token *tok);
 
 t_list	*tokenizer(t_list *words);
 
-//// WORD ////
+//  WORD  //
 
 // get_words.c
 
@@ -256,5 +251,31 @@ bool	is_separator(const char c);
 void	update_state(t_qmachine *const machine);
 void	init_qmachine(t_qmachine *const machine, const char *str);
 void	quote_state(t_qmachine *const machine, const char quote);
+
+////			PARSER			////
+
+// parser.c
+
+bool	parser(t_list *tokens);
+
+////			PRINT			////
+
+// print.c
+
+void	print_command(t_list *token_lst);
+void	print_error(const char *error_name);
+
+////			PROMPT			////
+
+// prompt.c
+
+void	prompt(void);
+
+////			SIGNAL			////
+
+// signal.c
+
+void	set_catcher(void);
+
 
 #endif
