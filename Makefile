@@ -48,6 +48,8 @@ SRCS		+=	are_quotes_closed.c
 
 ### srcs/lexer/tokens/
 
+SRCS		+=	assign_states_utils.c
+SRCS		+=	assign_states.c
 SRCS		+=	lexer.c
 SRCS		+=	token_utils.c
 SRCS		+=	tokenizer.c

@@ -86,9 +86,11 @@ LINKS += -lcunit
 
 CC			=	gcc
 CFLAGS		+=	-Wall
-CFLAGS		+=	-Werror
 CFLAGS		+=	-Wextra
 
+ifneq ($(no_error), true)
+	CFLAGS		+=	-Werror
+endif
 ifeq ($(debug), true)
 	CFLAGS	+= -fsanitize=address,undefined -g3
 endif
