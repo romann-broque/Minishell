@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:45:23 by mat               #+#    #+#             */
-/*   Updated: 2023/04/07 10:12:47 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/07 14:53:02 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,27 @@
 static const t_tokparse	*init_pars_rules(void)
 {
 	static const t_tokparse	rules[] = {
-	{.curr = T_LCHEVRON, .next = {T_GENERIC, T_INVALID}},
-	{.curr = T_RCHEVRON, .next = {T_GENERIC, T_INVALID}},
-	{.curr = T_DOUBLE_LCHEVRON, .next = {T_GENERIC, T_INVALID}},
-	{.curr = T_DOUBLE_RCHEVRON, .next = {T_GENERIC, T_INVALID}},
-	{.curr = T_PIPE, .next = {T_GENERIC, T_INVALID}},
-	{.curr = T_OR, .next = {T_GENERIC, T_INVALID}},
-	{.curr = T_AND, .next = {T_GENERIC, T_INVALID}},
-	{.curr = T_ASSIGN, .next = {T_GENERIC, T_INVALID}},
+	{.curr = T_LCHEVRON, .next = {T_GENERIC, T_ASSIGN, T_INVALID}},
+	{.curr = T_RCHEVRON, .next = {T_GENERIC, T_ASSIGN, T_INVALID}},
+	{.curr = T_DOUBLE_LCHEVRON, .next = {T_GENERIC, T_ASSIGN, T_INVALID}},
+	{.curr = T_DOUBLE_RCHEVRON, .next = {T_GENERIC, T_ASSIGN, T_INVALID}},
+	{.curr = T_PIPE, .next = {
+		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
+		T_DOUBLE_RCHEVRON, T_ASSIGN, T_INVALID}},
+	{.curr = T_OR, .next = {
+		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
+		T_DOUBLE_RCHEVRON, T_ASSIGN, T_INVALID}},
+	{.curr = T_AND, .next = {
+		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
+		T_DOUBLE_RCHEVRON, T_ASSIGN, T_INVALID}},
+	{.curr = T_ASSIGN, .next = {
+		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
+		T_DOUBLE_RCHEVRON, T_ASSIGN, T_PIPE, T_END, T_INVALID}},
 	{.curr = T_GENERIC, .next = {
 		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
 		T_DOUBLE_RCHEVRON, T_ASSIGN, T_PIPE, T_END, T_INVALID}},
-	{.curr = T_START, .next = {
-		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
-		T_DOUBLE_RCHEVRON, T_ASSIGN, T_END, T_INVALID}}
+	{.curr = T_START, .next = {T_GENERIC, T_LCHEVRON, T_RCHEVRON,
+		T_DOUBLE_LCHEVRON, T_DOUBLE_RCHEVRON, T_ASSIGN, T_INVALID}}
 	};
 
 	return (rules);

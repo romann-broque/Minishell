@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:48:00 by mat               #+#    #+#             */
-/*   Updated: 2023/04/07 11:13:09 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/07 15:22:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	parser__test(void)
 	t_list	*tokens_test3;
 	t_list	*tokens_test4;
 	t_list	*tokens_test5;
-	//t_list	*tokens_test6;
-	//t_list	*tokens_test7;
-	//t_list	*tokens_test8;
-	//t_list	*tokens_test9;
-	//t_list	*tokens_test10;
-	//t_list	*tokens_test11;
-	//t_list	*tokens_test12;
+	t_list	*tokens_test6;
+	t_list	*tokens_test7;
+	t_list	*tokens_test8;
+	t_list	*tokens_test9;
+	t_list	*tokens_test10;
+	t_list	*tokens_test11;
+	t_list	*tokens_test12;
 
 
 
@@ -129,4 +129,90 @@ void	parser__test(void)
 	CU_ASSERT_FALSE(parser(tokens_test5));
 	ft_lstclear(&tokens_test5, NULL);
 
+	t_token	t_6_toks[] = {
+		{.type = T_START, .value = NULL},
+		{.type = T_GENERIC, .value = "bonjour"},
+		{.type = T_AND, .value = "&&"},
+		{.type = T_PIPE, .value = "|"},
+		{.type = T_PIPE, .value = "|"},
+		{.type = T_END, .value = NULL}
+	};
+
+	tokens_test6 = get_list_from_tab(t_6_toks);
+	CU_ASSERT_FALSE(parser(tokens_test6));
+	ft_lstclear(&tokens_test6, NULL);
+
+	t_token	t_7_toks[] = {
+		{.type = T_START, .value = NULL},
+		{.type = T_GENERIC, .value = "bonjour"},
+		{.type = T_PIPE, .value = "|"},
+		{.type = T_GENERIC, .value = "BLATA"},
+		{.type = T_LCHEVRON, .value = "<"},
+		{.type = T_END, .value = NULL}
+	};
+
+	tokens_test7 = get_list_from_tab(t_7_toks);
+	CU_ASSERT_FALSE(parser(tokens_test7));
+	ft_lstclear(&tokens_test7, NULL);
+
+	t_token	t_8_toks[] = {
+		{.type = T_START, .value = NULL},
+		{.type = T_GENERIC, .value = "bonjour"},
+		{.type = T_PIPE, .value = "|"},
+		{.type = T_GENERIC, .value = "BLATA"},
+		{.type = T_ASSIGN, .value = "BLA=54"},
+		{.type = T_END, .value = NULL}
+	};
+
+	tokens_test8 = get_list_from_tab(t_8_toks);
+	CU_ASSERT_TRUE(parser(tokens_test8));
+	ft_lstclear(&tokens_test8, NULL);
+
+	t_token	t_9_toks[] = {
+		{.type = T_START, .value = NULL},
+		{.type = T_PIPE, .value = "|"},
+		{.type = T_END, .value = NULL}
+	};
+
+	tokens_test9 = get_list_from_tab(t_9_toks);
+	CU_ASSERT_FALSE(parser(tokens_test9));
+	ft_lstclear(&tokens_test9, NULL);
+
+	t_token	t_10_toks[] = {
+		{.type = T_START, .value = NULL},
+		{.type = T_GENERIC, .value = "bonjour"},
+		{.type = T_END, .value = NULL}
+	};
+
+	tokens_test10 = get_list_from_tab(t_10_toks);
+	CU_ASSERT_TRUE(parser(tokens_test10));
+	ft_lstclear(&tokens_test10, NULL);
+
+	t_token	t_11_toks[] = {
+		{.type = T_START, .value = NULL},
+		{.type = T_GENERIC, .value = "bonjour"},
+		{.type = T_GENERIC, .value = "arg"},
+		{.type = T_PIPE, .value = "|"},
+		{.type = T_GENERIC, .value = "BLATA"},
+		{.type = T_LCHEVRON, .value = "<"},
+		{.type = T_ASSIGN, .value = "ASSIGN"},
+		{.type = T_END, .value = NULL}
+	};
+
+	tokens_test11 = get_list_from_tab(t_11_toks);
+	CU_ASSERT_TRUE(parser(tokens_test11));
+	ft_lstclear(&tokens_test11, NULL);
+
+	t_token	t_12_toks[] = {
+		{.type = T_START, .value = NULL},
+		{.type = T_GENERIC, .value = "bonjour"},
+		{.type = T_PIPE, .value = "|"},
+		{.type = T_DOUBLE_LCHEVRON, .value = "<<"},
+		{.type = T_GENERIC, .value = "RAGE AGAINST THE MACHINE"},
+		{.type = T_END, .value = NULL}
+	};
+
+	tokens_test12 = get_list_from_tab(t_12_toks);
+	CU_ASSERT_TRUE(parser(tokens_test12));
+	ft_lstclear(&tokens_test12, NULL);
 }
