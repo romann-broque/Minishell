@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:15:32 by mat               #+#    #+#             */
-/*   Updated: 2023/04/05 15:50:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/07 12:02:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ void	spec_var_state(t_vmachine *const machine)
 
 	if (is_separator(c))
 		machine->state = machine->prev_state;
+	else if (c == SINGLE_QUOTE || c == DOUBLE_QUOTE)
+	{
+		machine->line = cut_string_at(machine->line, machine->index - 1, 1);
+		--(machine->index);
+		machine->state = machine->prev_state;
+	}
 	else if (is_special_var(c))
 	{
 		replace_special_var(machine);

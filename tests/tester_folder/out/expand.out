@@ -1,3 +1,31 @@
 minishell $ $lol
 Element 1 : [42]
+minishell $ "$lol"
+Element 1 : [42]
+minishell $ '$lol'
+Element 1 : [$lol]
+minishell $ "'$lol'"
+Element 1 : ['42']
+minishell $ '"$lol"'
+Element 1 : ["$lol"]
+minishell $ '"""$lol"""'
+Element 1 : ["""$lol"""]
+minishell $ $'$"$$"$$'
+Element 1 : [$"$$"$$]
+minishell $ $'"$"$"$$"$$'
+Element 1 : ["$"$"$$"$$]
+minishell $ $'lol'
+Element 1 : [lol]
+minishell $ $"lol"
+Element 1 : [lol]
+minishell $ '$"lol"'
+Element 1 : [$"lol"]
+minishell $ "ech"o$wouah'lol'
+Element 1 : [echopouet pouetlol]
+minishell $ "$"
+minishell $ $"wouah$"
+Element 1 : [wouah]
+minishell $ $"$wouah$"
+Element 1 : ['pouet pouet']
+minishell $ $wtf
 minishell $ exit
