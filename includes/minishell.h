@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 14:35:32 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/06 16:43:07 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,32 +154,32 @@ typedef struct s_tokparse
 /// FUNCTIONS ///
 /////////////////
 
-////			EXIT			////
+//			EXIT			//
 
-// exit_shell.c
+/// exit_shell.c
 
 void	exit_shell(const int exit_value);
 
-////			EXPANSION			////
+//			EXPANSION			//
 
 // expand_command.c
 
 void	expand_command(t_list *tokens);
 
-//  VAR  //
+///  VAR  ///
 
-// handle_var.c
+//// handle_var.c
 
 void	replace_special_var(t_vmachine *const machine);
 void	handle_var_start(t_vmachine *const machine);
 void	translate_var(t_vmachine *const machine);
 
-// var_machine.c
+//// var_machine.c
 
 char	*expand_var(const char *line);
 void	change_state(t_vstate new_state, t_vmachine *const machine);
 
-// var_state_func.c
+//// var_state_func.c
 
 void	std_state(t_vmachine *const machine);
 void	d_quote_state(t_vmachine *const machine);
@@ -187,7 +187,7 @@ void	s_quote_state(t_vmachine *const machine);
 void	spec_var_state(t_vmachine *const machine);
 void	var_state(t_vmachine *const machine);
 
-// var_utils.c
+//// var_utils.c
 
 bool	is_in_var_charset(const char c);
 bool	is_in_var_start_charset(const char c);
@@ -200,38 +200,38 @@ char	*replace_and_free(
 			size_t delete_len
 			);
 
-////			LEXER			////
+//			LEXER			//
 
-//  QUOTES  //
+///  QUOTES  ///
 
-// are_quotes_closed.c
+//// are_quotes_closed.c
 
 bool	are_quotes_closed(const char *str);
 
-//  TOKENS  //
+///  TOKENS  ///
 
-// lexer.c
+//// lexer.c
 
 t_list	*lexer_root(const char *str);
 t_list	*lexer(const char *str);
 
-// token_utils.c
+//// token_utils.c
 
 t_token	*init_token(t_toktype type, char *value);
 char	*get_str_from_tok(t_token *tok);
 void	free_token(t_token *tok);
 
-// tokenizer.c
+//// tokenizer.c
 
 t_list	*tokenizer(t_list *words);
 
-//  WORD  //
+///  WORD  ///
 
-// get_words.c
+//// get_words.c
 
 t_list	*get_words(const char *str);
 
-// parse_states.c
+//// parse_states.c
 
 void	separator_state(t_qmachine *const machine);
 void	single_quote_state(t_qmachine *const machine);
@@ -239,43 +239,42 @@ void	double_quote_state(t_qmachine *const machine);
 void	spec_tok_state(t_qmachine *const machine);
 void	word_state(t_qmachine *const machine);
 
-// strs_to_lst.c
+//// strs_to_lst.c
 
 void	add_token(t_qmachine *machine);
 void	add_spec_token(t_qmachine *machine,
 			const char spec_tok[][MAX_LEN_TYPE + 1]);
 
-// word_utils.c
+//// word_utils.c
 
 bool	is_separator(const char c);
 void	update_state(t_qmachine *const machine);
 void	init_qmachine(t_qmachine *const machine, const char *str);
 void	quote_state(t_qmachine *const machine, const char quote);
 
-////			PARSER			////
+//			PARSER			//
 
-// parser.c
+/// parser.c
 
 bool	parser(t_list *tokens);
 
-////			PRINT			////
+//			PRINT			//
 
-// print.c
+/// print.c
 
 void	print_command(t_list *token_lst);
 void	print_error(const char *error_name);
 
-////			PROMPT			////
+//			PROMPT			//
 
-// prompt.c
+/// prompt.c
 
 void	prompt(void);
 
-////			SIGNAL			////
+//			SIGNAL			//
 
-// signal.c
+/// signal.c
 
 void	set_catcher(void);
-
 
 #endif
