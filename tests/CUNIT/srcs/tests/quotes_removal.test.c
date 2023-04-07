@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 21:27:03 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 21:49:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/07 11:16:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ void	quotes_removal__test(void)
 	const char	exp_str9[] = "echo hello";
 	const char	in_str10[] = "\"\"ech\"o\" he\'l\'lo\'\'       ";
 	const char	exp_str10[] = "echo hello       ";
+	const char	in_str11[] = "\"\'\"\"\"ech\"o\" he\'l\'lo\'\'       ";
+	const char	exp_str11[] = "\'echo hello       ";
+	const char	in_str12[] = "\"\'\"\"\"ech\"o\" he\'l\'lo\'\'       b\'a\'t";
+	const char	exp_str12[] = "\'echo hello       bat";
+	const char	in_str13[] = "\"\'\"\"\"ech\"o\" he\'l\'lo\'\'  \'$lol\'     b\'a\'t";
+	const char	exp_str13[] = "\'echo hello  $lol     bat";
 
 	assert_free(in_str1, exp_str1);
 	assert_free(in_str2, exp_str2);
@@ -54,4 +60,7 @@ void	quotes_removal__test(void)
 	assert_free(in_str8, exp_str8);
 	assert_free(in_str9, exp_str9);
 	assert_free(in_str10, exp_str10);
+	assert_free(in_str11, exp_str11);
+	assert_free(in_str12, exp_str12);
+	assert_free(in_str13, exp_str13);
 }
