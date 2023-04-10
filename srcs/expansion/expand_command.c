@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:02:35 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 21:42:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/10 15:37:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	expand_command(t_list *tokens)
 	while (tokens != NULL)
 	{
 		expand(tokens->content, expand_var);
-		expand(tokens->content, quotes_removal);
 		tokens = tokens->next;
 	}
 }

@@ -21,11 +21,12 @@ Element 1 : [lol]
 minishell $ '$"lol"'
 Element 1 : [$"lol"]
 minishell $ "ech"o$wouah'lol'
-Element 1 : [echopouet pouetlol]
+Element 1 : [echo'pouet pouet'lol]
 minishell $ "$"
 minishell $ $"wouah$"
 Element 1 : [wouah]
 minishell $ $"$wouah$"
 Element 1 : ['pouet pouet']
 minishell $ $wtf
+Element 1 : ['']
 minishell $ exit

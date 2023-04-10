@@ -11,7 +11,6 @@ SHELL		= /usr/bin/bash
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
-PATH_SRCS	+=	srcs/expansion/quotes_removal/
 PATH_SRCS	+=	srcs/expansion/var/
 PATH_SRCS	+=	srcs/lexer/
 PATH_SRCS	+=	srcs/lexer/quotes/
@@ -32,11 +31,6 @@ SRCS	 	+=	exit_shell.c
 ### srcs/expansion/
 
 SRCS	 	+=	expand_command.c
-
-### srcs/expansion/quotes_removal/
-
-SRCS	 	+=	qrm_states.c
-SRCS	 	+=	quotes_removal.c
 
 ### srcs/expansion/var/
 

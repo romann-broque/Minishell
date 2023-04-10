@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 18:52:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/10 16:02:39 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,18 +177,6 @@ void	set_catcher(void);
 
 void	expand_command(t_list *tokens);
 
-//// QUOTES_REMOVAL ////
-
-// qrm_states.c
-
-void	word_state_qrm(char **word, size_t *index, t_qstate *state);
-void	squote_state_qrm(char **word, size_t *index, t_qstate *state);
-void	dquote_state_qrm(char **word, size_t *index, t_qstate *state);
-
-// quotes_removal.c
-
-char	*quotes_removal(const char *str);
-
 //// VAR ////
 
 // handle_var.c
@@ -216,12 +204,7 @@ bool	is_in_var_charset(const char c);
 bool	is_in_var_start_charset(const char c);
 bool	is_special_var(const char c);
 char	*cut_string_at(char *src, const size_t index, const size_t del_len);
-char	*replace_and_free(
-			char *src,
-			char *replace,
-			size_t index,
-			size_t delete_len
-			);
+void	delete_quote(t_vmachine *const machine);
 
 //// LEXER ////
 

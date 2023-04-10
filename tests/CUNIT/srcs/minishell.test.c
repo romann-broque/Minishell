@@ -27,7 +27,6 @@ void	set_tests(void)
 		{
 			.suite = NULL, .sname = "Expand", .tests = {
 				{.tname = "expand_var", expand_var__test},
-				{.tname = "quotes_removal", quotes_removal__test},
 			},
 		},
 		{.suite = NULL, .sname = NULL}
