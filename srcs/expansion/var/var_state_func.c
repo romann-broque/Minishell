@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:15:32 by mat               #+#    #+#             */
-/*   Updated: 2023/04/11 11:05:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/11 11:33:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ void	std_state(t_vmachine *const machine)
 
 void	d_quote_state(t_vmachine *const machine)
 {
-	static bool	is_opening_d = true;
+	static bool	is_opening = true;
 	const char	c = machine->line[machine->index];
 
-	if (is_opening_d == true)
+	if (is_opening == true)
 	{
 		--(machine->index);
 		delete_quote(machine);
-		is_opening_d = false;
+		is_opening = false;
 	}
 	else if (c == DOUBLE_QUOTE)
 	{
 		delete_quote(machine);
 		change_state(E_STD, machine);
-		is_opening_d = true;
+		is_opening = true;
 	}
 	else
 	{
@@ -54,20 +54,20 @@ void	d_quote_state(t_vmachine *const machine)
 
 void	s_quote_state(t_vmachine *const machine)
 {
-	static bool	is_opening_s = true;
+	static bool	is_opening = true;
 	const char	c = machine->line[machine->index];
 
-	if (is_opening_s == true)
+	if (is_opening == true)
 	{
 		--(machine->index);
 		delete_quote(machine);
-		is_opening_s = false;
+		is_opening = false;
 	}
 	else if (c == SINGLE_QUOTE)
 	{
 		delete_quote(machine);
 		change_state(E_STD, machine);
-		is_opening_s = true;
+		is_opening = true;
 	}
 	else
 		machine->index++;
@@ -81,8 +81,8 @@ void	spec_var_state(t_vmachine *const machine)
 		machine->state = machine->prev_state;
 	else if (c == SINGLE_QUOTE || c == DOUBLE_QUOTE)
 	{
-		machine->line = cut_string_at(machine->line, machine->index - 1, 1);
 		--(machine->index);
+		machine->line = cut_string_at(machine->line, machine->index, 1);
 		machine->state = machine->prev_state;
 	}
 	else if (is_special_var(c))

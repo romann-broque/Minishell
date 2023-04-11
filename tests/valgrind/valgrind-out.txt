@@ -1,98 +1,20 @@
-==200474== Memcheck, a memory error detector
-==200474== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==200474== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==200474== Command: ./minishell
-==200474== Parent PID: 200473
-==200474== 
-==200474== 
-==200474== HEAP SUMMARY:
-==200474==     in use at exit: 204,264 bytes in 229 blocks
-==200474==   total heap usage: 584 allocs, 355 frees, 229,199 bytes allocated
-==200474== 
-==200474== 5 bytes in 1 blocks are still reachable in loss record 2 of 70
-==200474==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==200474==    by 0x10B5EF: ft_strdup (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x1092DF: quotes_removal (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x108FD7: expand (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109037: expand_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109D03: handle_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109D87: get_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109DBB: prompt (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x108F5F: main (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474== 
-==200474== 16 bytes in 1 blocks are still reachable in loss record 12 of 70
-==200474==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==200474==    by 0x10A463: init_token (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A66B: set_token (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10B267: lst_fill (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10B2C3: ft_lstmap (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A697: tokenizer (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A397: lexer_root (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A40B: lexer (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109CDF: handle_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109D87: get_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109DBB: prompt (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x108F5F: main (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474== 
-==200474== 16 bytes in 1 blocks are still reachable in loss record 13 of 70
-==200474==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==200474==    by 0x10B38B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10B26B: lst_fill (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10B2C3: ft_lstmap (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A697: tokenizer (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A397: lexer_root (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A40B: lexer (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109CDF: handle_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109D87: get_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109DBB: prompt (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x108F5F: main (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474== 
-==200474== 16 bytes in 1 blocks are still reachable in loss record 14 of 70
-==200474==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==200474==    by 0x10A463: init_token (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A32B: put_lexer_format (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A417: lexer (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109CDF: handle_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109D87: get_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109DBB: prompt (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x108F5F: main (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474== 
-==200474== 16 bytes in 1 blocks are still reachable in loss record 15 of 70
-==200474==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==200474==    by 0x10B38B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A32F: put_lexer_format (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A417: lexer (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109CDF: handle_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109D87: get_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109DBB: prompt (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x108F5F: main (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474== 
-==200474== 16 bytes in 1 blocks are still reachable in loss record 16 of 70
-==200474==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==200474==    by 0x10A463: init_token (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A347: put_lexer_format (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A417: lexer (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109CDF: handle_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109D87: get_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109DBB: prompt (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x108F5F: main (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474== 
-==200474== 16 bytes in 1 blocks are still reachable in loss record 17 of 70
-==200474==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==200474==    by 0x10B38B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A34B: put_lexer_format (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x10A417: lexer (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109CDF: handle_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109D87: get_command (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x109DBB: prompt (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474==    by 0x108F5F: main (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/minishell)
-==200474== 
-==200474== LEAK SUMMARY:
-==200474==    definitely lost: 0 bytes in 0 blocks
-==200474==    indirectly lost: 0 bytes in 0 blocks
-==200474==      possibly lost: 0 bytes in 0 blocks
-==200474==    still reachable: 101 bytes in 7 blocks
-==200474==         suppressed: 204,163 bytes in 222 blocks
-==200474== 
-==200474== For lists of detected and suppressed errors, rerun with: -s
-==200474== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==56373== Memcheck, a memory error detector
+==56373== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==56373== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==56373== Command: ./minishell
+==56373== Parent PID: 56372
+==56373== 
+==56373== 
+==56373== HEAP SUMMARY:
+==56373==     in use at exit: 204,158 bytes in 221 blocks
+==56373==   total heap usage: 559 allocs, 338 frees, 227,432 bytes allocated
+==56373== 
+==56373== LEAK SUMMARY:
+==56373==    definitely lost: 0 bytes in 0 blocks
+==56373==    indirectly lost: 0 bytes in 0 blocks
+==56373==      possibly lost: 0 bytes in 0 blocks
+==56373==    still reachable: 0 bytes in 0 blocks
+==56373==         suppressed: 204,158 bytes in 221 blocks
+==56373== 
+==56373== For lists of detected and suppressed errors, rerun with: -s
+==56373== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
