@@ -64,6 +64,7 @@
 # define DOLLAR_SIGN	'$'
 # define UNDERSCORE		'_'
 # define AMPERSAND		'&'
+# define EQUAL_SIGN		'='
 
 // len
 
@@ -79,6 +80,10 @@
 // return value
 
 # define LAST_RETVAL	EXIT_SUCCESS
+
+// enum
+
+# define ASSIGN_START	0
 
 //////////////////
 /// STRUCTURES ///
@@ -213,6 +218,19 @@ bool		are_quotes_closed(const char *str);
 
 t_list		*lexer_root(const char *str);
 t_list		*lexer(const char *str);
+
+// assign_states_utils.c
+
+void	update_state_assign(const char **word, t_qstate *state);
+bool	is_assign(const char *word);
+
+// assign_states.c
+
+bool	start_state_assign(const char **word, t_qstate *state);
+bool	word_state_assign(const char **word, t_qstate *state);
+bool	squote_state_assign(const char **word, t_qstate *state);
+bool	dquote_state_assign(const char **word, t_qstate *state);
+
 
 //// token_utils.c
 
