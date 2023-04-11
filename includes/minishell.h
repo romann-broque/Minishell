@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 10:57:57 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 11:09:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,12 +197,7 @@ bool		is_in_var_charset(const char c);
 bool		is_in_var_start_charset(const char c);
 bool		is_special_var(const char c);
 char		*cut_string_at(char *src, const size_t index, const size_t del_len);
-char		*replace_and_free(
-				char *src,
-				char *replace,
-				size_t index,
-				size_t delete_len
-				);
+void		delete_quote(t_vmachine *const machine);
 
 //			LEXER			//
 
@@ -221,7 +216,7 @@ t_list		*lexer(const char *str);
 
 // assign_states_utils.c
 
-void		update_state_assign(const char **word, t_qstate *state);
+void		update_state_assign(const char c, t_qstate *state);
 bool		is_assign(const char *word);
 
 // assign_states.c

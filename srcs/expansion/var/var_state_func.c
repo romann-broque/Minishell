@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_state_func.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:15:32 by mat               #+#    #+#             */
-/*   Updated: 2023/04/07 11:50:06 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 11:33:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,48 @@ void	std_state(t_vmachine *const machine)
 
 void	d_quote_state(t_vmachine *const machine)
 {
+	static bool	is_opening = true;
 	const char	c = machine->line[machine->index];
 
-	if (c == DOUBLE_QUOTE)
+	if (is_opening == true)
+	{
+		--(machine->index);
+		delete_quote(machine);
+		is_opening = false;
+	}
+	else if (c == DOUBLE_QUOTE)
+	{
+		delete_quote(machine);
 		change_state(E_STD, machine);
-	else if (c == DOLLAR_SIGN)
-		change_state(E_SPEC_VAR, machine);
-	machine->index++;
+		is_opening = true;
+	}
+	else
+	{
+		if (c == DOLLAR_SIGN)
+			change_state(E_SPEC_VAR, machine);
+		machine->index++;
+	}
 }
 
 void	s_quote_state(t_vmachine *const machine)
 {
+	static bool	is_opening = true;
 	const char	c = machine->line[machine->index];
 
-	if (c == SINGLE_QUOTE)
+	if (is_opening == true)
+	{
+		--(machine->index);
+		delete_quote(machine);
+		is_opening = false;
+	}
+	else if (c == SINGLE_QUOTE)
+	{
+		delete_quote(machine);
 		change_state(E_STD, machine);
-	machine->index++;
+		is_opening = true;
+	}
+	else
+		machine->index++;
 }
 
 void	spec_var_state(t_vmachine *const machine)
@@ -53,6 +79,12 @@ void	spec_var_state(t_vmachine *const machine)
 
 	if (is_separator(c))
 		machine->state = machine->prev_state;
+	else if (c == SINGLE_QUOTE || c == DOUBLE_QUOTE)
+	{
+		--(machine->index);
+		machine->line = cut_string_at(machine->line, machine->index, 1);
+		machine->state = machine->prev_state;
+	}
 	else if (is_special_var(c))
 	{
 		replace_special_var(machine);
