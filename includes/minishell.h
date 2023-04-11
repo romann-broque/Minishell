@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 10:39:10 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 10:46:01 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,16 +221,15 @@ t_list		*lexer(const char *str);
 
 // assign_states_utils.c
 
-void	update_state_assign(const char **word, t_qstate *state);
-bool	is_assign(const char *word);
+void		update_state_assign(const char **word, t_qstate *state);
+bool		is_assign(const char *word);
 
 // assign_states.c
 
-bool	start_state_assign(const char **word, t_qstate *state);
-bool	word_state_assign(const char **word, t_qstate *state);
-bool	squote_state_assign(const char **word, t_qstate *state);
-bool	dquote_state_assign(const char **word, t_qstate *state);
-
+bool		start_state_assign(const char **word, t_qstate *state);
+bool		word_state_assign(const char **word, t_qstate *state);
+bool		squote_state_assign(const char **word, t_qstate *state);
+bool		dquote_state_assign(const char **word, t_qstate *state);
 
 //// token_utils.c
 
