@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 10:32:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/06 15:25:23 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	exec_command(t_list	const *token_lst)
+static void	exec_command(t_list *token_lst)
 {
 	t_token *const	token = token_lst->next->content;
 
 	if (token != NULL
 		&& (token->value != NULL)
 		&& streq(token->value, "exit"))
+	{
+		ft_lstclear(&token_lst, (void (*)(void *))free_token);
 		exit_shell(LAST_RETVAL);
+	}
 }
 
 static void	handle_command(const char *command)
@@ -31,8 +34,13 @@ static void	handle_command(const char *command)
 		exit_shell(LAST_RETVAL);
 	else
 	{
-		expand_command(tokens);
-		exec_command(tokens);
+		if (parser(tokens) == true)
+		{
+			expand_command(tokens);
+			exec_command(tokens);
+		}
+		else
+			print_error(PARS_ERROR);
 	}
 	print_command(tokens);
 	ft_lstclear(&tokens, (void (*)(void *))free_token);
