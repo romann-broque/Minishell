@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:48:00 by mat               #+#    #+#             */
-/*   Updated: 2023/04/11 10:31:26 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 10:44:37 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	parser__test(void)
 	t_list	*tokens_test10;
 	t_list	*tokens_test11;
 	t_list	*tokens_test12;
+	t_list	*tokens_test13;
 
 
 
@@ -209,4 +210,13 @@ void	parser__test(void)
 	tokens_test12 = get_list_from_tab(t_12_toks);
 	CU_ASSERT_TRUE(parser(tokens_test12));
 	ft_lstclear(&tokens_test12, NULL);
+
+	t_token	t_13_toks[] = {
+		{.type = T_START, .value = NULL},
+		{.type = T_END, .value = NULL}
+	};
+
+	tokens_test13 = get_list_from_tab(t_13_toks);
+	CU_ASSERT_TRUE(parser(tokens_test13));
+	ft_lstclear(&tokens_test13, NULL);
 }

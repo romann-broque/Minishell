@@ -64,7 +64,6 @@ SRCS		+=	word_utils.c
 ### srcs/parser/
 
 SRCS		+=	parser.c
-SRCS		+=	is_empty_line.c
 
 ### srcs/print/
 

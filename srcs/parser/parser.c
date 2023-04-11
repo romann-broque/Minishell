@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:45:23 by mat               #+#    #+#             */
-/*   Updated: 2023/04/11 10:28:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 10:38:52 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static const t_tokparse	*init_pars_rules(void)
 		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
 		T_DOUBLE_RCHEVRON, T_ASSIGN, T_PIPE, T_END, T_INVALID}},
 	{.curr = T_START, .next = {T_GENERIC, T_LCHEVRON, T_RCHEVRON,
-		T_DOUBLE_LCHEVRON, T_DOUBLE_RCHEVRON, T_ASSIGN, T_INVALID}}
+		T_DOUBLE_LCHEVRON, T_DOUBLE_RCHEVRON, T_ASSIGN, T_END, T_INVALID}}
 	};
 
 	return (rules);
@@ -72,8 +72,6 @@ bool	parser(t_list *tokens)
 {
 	const t_tokparse	*rules = init_pars_rules();
 
-	if (is_empty_line(tokens) == true)
-		return (true);
 	while (is_valid_parsing(tokens, rules) == true)
 		tokens = tokens->next;
 	return (tokens == NULL || get_type_from_tok(tokens->content) == T_END);
