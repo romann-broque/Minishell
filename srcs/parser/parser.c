@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:45:23 by mat               #+#    #+#             */
-/*   Updated: 2023/04/07 14:53:02 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 10:28:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,35 +41,40 @@ static const t_tokparse	*init_pars_rules(void)
 	return (rules);
 }
 
-static t_toktype	get_type_from_tok(t_token *tok)
+t_toktype	get_type_from_tok(t_token *tok)
 {
 	return (tok->type);
+}
+
+static bool	is_valid_token(
+	const t_tokparse *rules,
+	t_toktype curr_type,
+	t_token *next_tok
+	)
+{
+	size_t			index;
+
+	index = 0;
+	while (rules[curr_type].next[index] != T_INVALID
+		&& (rules[curr_type].next[index] != get_type_from_tok(next_tok)))
+		index++;
+	return (rules[curr_type].next[index] != T_INVALID);
+}
+
+static bool	is_valid_parsing(t_list *tokens, const t_tokparse *rules)
+{
+	return (tokens != NULL && get_type_from_tok(tokens->content) != T_END
+		&& is_valid_token(rules, get_type_from_tok(tokens->content),
+			tokens->next->content) == true);
 }
 
 bool	parser(t_list *tokens)
 {
 	const t_tokparse	*rules = init_pars_rules();
-	t_toktype			tmp_type;
-	size_t				index_next_tok;
-	bool				is_valid;
 
-	if (tokens->next->content == NULL)
+	if (is_empty_line(tokens) == true)
 		return (true);
-	while (tokens != NULL && get_type_from_tok(tokens->content) != T_END)
-	{
-		index_next_tok = 0;
-		is_valid = false;
-		tmp_type = get_type_from_tok(tokens->content);
-		while (rules[tmp_type].next[index_next_tok] != T_INVALID)
-		{
-			if (rules[tmp_type].next[index_next_tok]
-				== get_type_from_tok(tokens->next->content))
-				is_valid = true;
-			index_next_tok++;
-		}
-		if (is_valid == false)
-			break ;
+	while (is_valid_parsing(tokens, rules) == true)
 		tokens = tokens->next;
-	}
-	return (is_valid);
+	return (tokens == NULL || get_type_from_tok(tokens->content) == T_END);
 }

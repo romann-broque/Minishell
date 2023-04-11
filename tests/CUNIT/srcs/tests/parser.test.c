@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:48:00 by mat               #+#    #+#             */
-/*   Updated: 2023/04/07 15:22:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 10:31:26 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ t_list	*get_list_from_tab(t_token *tab)
 	}
 	ft_lstadd_back(&tokens_list, ft_lstnew(tab + i));
 	return (tokens_list);
-}
-
-
-static t_toktype	get_type_from_tok(t_token *tok)
-{
-	return (tok->type);
 }
 
 void	print_list(t_list *toks)

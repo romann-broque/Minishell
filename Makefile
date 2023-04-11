@@ -16,10 +16,10 @@ PATH_SRCS	+=	srcs/lexer/
 PATH_SRCS	+=	srcs/lexer/quotes/
 PATH_SRCS	+=	srcs/lexer/tokens/
 PATH_SRCS	+=	srcs/lexer/word/
+PATH_SRCS	+=	srcs/parser/
 PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/signal/
-PATH_SRCS	+=	srcs/parser/
 
 ### srcs/
 
@@ -62,6 +62,7 @@ SRCS		+=	word_utils.c
 ### srcs/parser/
 
 SRCS		+=	parser.c
+SRCS		+=	is_empty_line.c
 
 ### srcs/print/
 
