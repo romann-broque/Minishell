@@ -16,6 +16,7 @@ PATH_SRCS	+=	srcs/lexer/
 PATH_SRCS	+=	srcs/lexer/quotes/
 PATH_SRCS	+=	srcs/lexer/tokens/
 PATH_SRCS	+=	srcs/lexer/word/
+PATH_SRCS	+=	srcs/parser/
 PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/signal/
@@ -39,19 +40,6 @@ SRCS		+=	var_machine.c
 SRCS		+=	var_state_func.c
 SRCS		+=	var_utils.c
 
-### srcs/print/
-
-SRCS		+=	test_print.c
-SRCS		+=	print_error.c
-
-### srcs/prompt/
-
-SRCS	 	+=	prompt.c
-
-### srcs/signal/
-
-SRCS		+=	signal.c
-
 ### srcs/lexer
 
 ### srcs/lexer/quotes/
@@ -72,6 +60,23 @@ SRCS		+=	get_words.c
 SRCS		+=	parse_states.c
 SRCS		+=	strs_to_lst.c
 SRCS		+=	word_utils.c
+
+### srcs/parser/
+
+SRCS		+=	parser.c
+
+### srcs/print/
+
+SRCS		+=	test_print.c
+SRCS		+=	print_error.c
+
+### srcs/prompt/
+
+SRCS	 	+=	prompt.c
+
+### srcs/signal/
+
+SRCS		+=	signal.c
 
 vpath %.c $(PATH_SRCS)
 

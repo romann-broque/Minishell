@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/10 16:02:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/11 11:09:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 
 # define SYNTAX_ERROR	"Syntax error"
 # define MALLOC_ERROR	"Malloc error"
+# define PARS_ERROR		"Parsing error"
 
 // char types
 
@@ -72,6 +73,10 @@
 # define WRONG_VAR_LEN	2
 # define MAX_LEN_TYPE	2
 
+// count
+
+# define NEXT_TOK_MAX	9
+
 // return value
 
 # define LAST_RETVAL	EXIT_SUCCESS
@@ -96,7 +101,8 @@ typedef enum e_toktype
 	T_ASSIGN,
 	T_GENERIC,
 	T_START,
-	T_END
+	T_END,
+	T_INVALID
 }			t_toktype;
 
 typedef struct s_token
@@ -142,132 +148,144 @@ typedef struct s_qmachine
 	t_list		*words;
 }				t_qmachine;
 
+typedef struct s_tokparse
+{
+	t_toktype	curr;
+	t_toktype	next[NEXT_TOK_MAX];
+}			t_tokparse;
+
 /////////////////
 /// FUNCTIONS ///
 /////////////////
 
-//// EXIT ////
+//			EXIT			//
 
-// exit_shell.c
+/// exit_shell.c
 
-void	exit_shell(const int exit_value);
+void		exit_shell(const int exit_value);
 
-//// PRINT ////
-
-// print.c
-
-void	print_command(t_list *token_lst);
-void	print_error(const char *error_name);
-
-//// PROMPT ////
-
-// prompt.c
-
-void	prompt(void);
-
-//// SIGNAL ////
-
-// signal.c
-
-void	set_catcher(void);
-
-//// EXPANSION ////
+//			EXPANSION			//
 
 // expand_command.c
 
-void	expand_command(t_list *tokens);
+void		expand_command(t_list *tokens);
 
-//// VAR ////
+///  VAR  ///
 
-// handle_var.c
+//// handle_var.c
 
-void	replace_special_var(t_vmachine *const machine);
-void	handle_var_start(t_vmachine *const machine);
-void	translate_var(t_vmachine *const machine);
+void		replace_special_var(t_vmachine *const machine);
+void		handle_var_start(t_vmachine *const machine);
+void		translate_var(t_vmachine *const machine);
 
-// var_machine.c
+//// var_machine.c
 
-char	*expand_var(const char *line);
-void	change_state(t_vstate new_state, t_vmachine *const machine);
+char		*expand_var(const char *line);
+void		change_state(t_vstate new_state, t_vmachine *const machine);
 
-// var_state_func.c
+//// var_state_func.c
 
-void	std_state(t_vmachine *const machine);
-void	d_quote_state(t_vmachine *const machine);
-void	s_quote_state(t_vmachine *const machine);
-void	spec_var_state(t_vmachine *const machine);
-void	var_state(t_vmachine *const machine);
+void		std_state(t_vmachine *const machine);
+void		d_quote_state(t_vmachine *const machine);
+void		s_quote_state(t_vmachine *const machine);
+void		spec_var_state(t_vmachine *const machine);
+void		var_state(t_vmachine *const machine);
 
-// var_utils.c
+//// var_utils.c
 
-bool	is_in_var_charset(const char c);
-bool	is_in_var_start_charset(const char c);
-bool	is_special_var(const char c);
-char	*cut_string_at(char *src, const size_t index, const size_t del_len);
-void	delete_quote(t_vmachine *const machine);
+bool		is_in_var_charset(const char c);
+bool		is_in_var_start_charset(const char c);
+bool		is_special_var(const char c);
+char		*cut_string_at(char *src, const size_t index, const size_t del_len);
+void		delete_quote(t_vmachine *const machine);
 
-//// LEXER ////
+//			LEXER			//
 
-//// QUOTES ////
+///  QUOTES  ///
 
-// are_quotes_closed.c
+//// are_quotes_closed.c
 
-bool	are_quotes_closed(const char *str);
+bool		are_quotes_closed(const char *str);
 
-//// TOKENS ////
+///  TOKENS  ///
+
+//// lexer.c
+
+t_list		*lexer_root(const char *str);
+t_list		*lexer(const char *str);
 
 // assign_states_utils.c
 
-void	update_state_assign(const char c, t_qstate *state);
-bool	is_assign(const char *word);
+void		update_state_assign(const char c, t_qstate *state);
+bool		is_assign(const char *word);
 
 // assign_states.c
 
-bool	start_state_assign(const char **word, t_qstate *state);
-bool	word_state_assign(const char **word, t_qstate *state);
-bool	squote_state_assign(const char **word, t_qstate *state);
-bool	dquote_state_assign(const char **word, t_qstate *state);
+bool		start_state_assign(const char **word, t_qstate *state);
+bool		word_state_assign(const char **word, t_qstate *state);
+bool		squote_state_assign(const char **word, t_qstate *state);
+bool		dquote_state_assign(const char **word, t_qstate *state);
 
-// lexer.c
+//// token_utils.c
 
-t_list	*lexer_root(const char *str);
-t_list	*lexer(const char *str);
+t_token		*init_token(t_toktype type, char *value);
+char		*get_str_from_tok(t_token *tok);
+void		free_token(t_token *tok);
 
-// token_utils.c
+//// tokenizer.c
 
-t_token	*init_token(t_toktype type, char *value);
-char	*get_str_from_tok(t_token *tok);
-void	free_token(t_token *tok);
+t_list		*tokenizer(t_list *words);
 
-// tokenizer.c
+///  WORD  ///
 
-t_list	*tokenizer(t_list *words);
+//// get_words.c
 
-//// WORD ////
+t_list		*get_words(const char *str);
 
-// get_words.c
+//// parse_states.c
 
-t_list	*get_words(const char *str);
+void		separator_state(t_qmachine *const machine);
+void		single_quote_state(t_qmachine *const machine);
+void		double_quote_state(t_qmachine *const machine);
+void		spec_tok_state(t_qmachine *const machine);
+void		word_state(t_qmachine *const machine);
 
-// parse_states.c
+//// strs_to_lst.c
 
-void	separator_state(t_qmachine *const machine);
-void	single_quote_state(t_qmachine *const machine);
-void	double_quote_state(t_qmachine *const machine);
-void	spec_tok_state(t_qmachine *const machine);
-void	word_state(t_qmachine *const machine);
+void		add_token(t_qmachine *machine);
+void		add_spec_token(t_qmachine *machine,
+				const char spec_tok[][MAX_LEN_TYPE + 1]);
 
-// strs_to_lst.c
+//// word_utils.c
 
-void	add_token(t_qmachine *machine);
-void	add_spec_token(t_qmachine *machine,
-			const char spec_tok[][MAX_LEN_TYPE + 1]);
+bool		is_separator(const char c);
+void		update_state(t_qmachine *const machine);
+void		init_qmachine(t_qmachine *const machine, const char *str);
+void		quote_state(t_qmachine *const machine, const char quote);
 
-// word_utils.c
+//			PARSER			//
 
-bool	is_separator(const char c);
-void	update_state(t_qmachine *const machine);
-void	init_qmachine(t_qmachine *const machine, const char *str);
-void	quote_state(t_qmachine *const machine, const char quote);
+/// parser.c
+
+bool		parser(t_list *tokens);
+
+//			PRINT			//
+
+/// print.c
+
+void		print_command(t_list *token_lst);
+void		print_error(const char *error_name);
+
+//			PROMPT			//
+
+/// prompt.c
+
+void		prompt(void);
+
+//			SIGNAL			//
+
+/// signal.c
+
+void		set_catcher(void);
 
 #endif

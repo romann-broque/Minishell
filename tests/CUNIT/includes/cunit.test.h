@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:44:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 10:18:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/11 11:09:50 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ void	get_words__test(void);
 // lexer_root.test.c
 
 void	lexer_root__test(void);
+
+// parser.c
+
+void	parser__test(void);
 
 //// UTILS ////
 
