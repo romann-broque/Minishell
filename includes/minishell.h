@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 11:09:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/11 15:52:33 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,15 @@ typedef struct s_tokparse
 	t_toktype	next[NEXT_TOK_MAX];
 }			t_tokparse;
 
+typedef struct s_command
+{
+	char		**command;
+	char		*path;
+	char		**env;
+	int			fdin;
+	int			fdout;
+}			t_command;
+
 /////////////////
 /// FUNCTIONS ///
 /////////////////
@@ -199,6 +208,14 @@ bool		is_special_var(const char c);
 char		*cut_string_at(char *src, const size_t index, const size_t del_len);
 void		delete_quote(t_vmachine *const machine);
 
+//			INTERPRETER		//
+
+/// interpreter.c
+
+/// interpreter_utils.c
+
+char	*find_cmd_path(char *cmd_name);
+
 //			LEXER			//
 
 ///  QUOTES  ///
@@ -229,6 +246,7 @@ bool		dquote_state_assign(const char **word, t_qstate *state);
 //// token_utils.c
 
 t_token		*init_token(t_toktype type, char *value);
+t_toktype	get_type_from_tok(t_token *tok);
 char		*get_str_from_tok(t_token *tok);
 void		free_token(t_token *tok);
 
