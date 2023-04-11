@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 15:52:33 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 15:54:15 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ void		delete_quote(t_vmachine *const machine);
 
 /// interpreter_utils.c
 
-char	*find_cmd_path(char *cmd_name);
+char		*find_cmd_path(char *cmd_name);
 
 //			LEXER			//
 

@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:20:19 by mat               #+#    #+#             */
-/*   Updated: 2023/04/11 15:46:45 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 15:54:04 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	**get_arg_array(t_list *tokens)
 
 void	interpret_command(t_list *tokens, t_command *cmd_data)
 {
-
 	cmd_data->command = get_arg_array(tokens);
 	if (cmd_data->command == NULL)
 		return ;
