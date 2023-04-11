@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 15:54:15 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 17:08:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,8 +157,7 @@ typedef struct s_tokparse
 typedef struct s_command
 {
 	char		**command;
-	char		*path;
-	char		**env;
+	const char	**env;
 	int			fdin;
 	int			fdout;
 }			t_command;
@@ -212,9 +211,14 @@ void		delete_quote(t_vmachine *const machine);
 
 /// interpreter.c
 
+t_list		*interpreter(t_list *tokens, const char **env);
+
 /// interpreter_utils.c
 
-char		*find_cmd_path(char *cmd_name);
+void		free_command(t_command *cmd_data);
+size_t		get_word_count(t_list *tokens);
+char		**get_arg_array(t_list *tokens);
+char		*find_cmd_path(const char *cmd_name);
 
 //			LEXER			//
 
@@ -298,7 +302,7 @@ void		print_error(const char *error_name);
 
 /// prompt.c
 
-void		prompt(void);
+void		prompt(const char **env);
 
 //			SIGNAL			//
 

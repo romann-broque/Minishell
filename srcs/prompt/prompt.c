@@ -3,18 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 15:25:23 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 17:24:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	exec_command(t_list *token_lst)
+// static void	print_strs(const char **strs)
+// {
+// 	while (*strs != NULL)
+// 	{
+// 		printf("-[%s]", *strs);
+// 		++strs;
+// 	}
+// 	printf("-\n\n\n");
+// }
+// static void	print_cmd(t_list *cmds)
+// {
+// 	t_command	*cmd_data;
+
+// 	while (cmds != NULL)
+// 	{
+// 		cmd_data = cmds->content;
+// 		printf("ARG :\n");
+// 		print_strs((const char **)cmd_data->command);
+// 		printf("\nENV :\n");
+// 		print_strs(cmd_data->env);
+// 		cmds = cmds->next;
+// 	}
+// }
+
+static void	exec_command(t_list *token_lst, const char **env)
 {
 	t_token *const	token = token_lst->next->content;
+	t_list			*cmds;
 
 	if (token != NULL
 		&& (token->value != NULL)
@@ -23,9 +48,14 @@ static void	exec_command(t_list *token_lst)
 		ft_lstclear(&token_lst, (void (*)(void *))free_token);
 		exit_shell(LAST_RETVAL);
 	}
+	else
+	{
+		cmds = interpreter(token_lst, env);
+		ft_lstclear(&cmds, (void (*)(void *))free_command);
+	}
 }
 
-static void	handle_command(const char *command)
+static void	handle_command(const char *command, const char **env)
 {
 	t_list	*tokens;
 
@@ -37,7 +67,7 @@ static void	handle_command(const char *command)
 		if (parser(tokens) == true)
 		{
 			expand_command(tokens);
-			exec_command(tokens);
+			exec_command(tokens, env);
 		}
 		else
 			print_error(PARS_ERROR);
@@ -46,20 +76,20 @@ static void	handle_command(const char *command)
 	ft_lstclear(&tokens, (void (*)(void *))free_token);
 }
 
-static void	get_command(void)
+static void	get_command(const char **env)
 {
 	char *const	line = readline(PROMPT);
 
 	if (are_quotes_closed(line) == true)
-		handle_command(line);
+		handle_command(line, env);
 	else
 		print_error(SYNTAX_ERROR);
 	free(line);
 }
 
-void	prompt(void)
+void	prompt(const char **env)
 {
 	set_catcher();
 	while (true)
-		get_command();
+		get_command(env);
 }
