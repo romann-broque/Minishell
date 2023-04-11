@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:45:23 by mat               #+#    #+#             */
-/*   Updated: 2023/04/11 10:38:52 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 10:57:30 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static const t_tokparse	*init_pars_rules(void)
 	return (rules);
 }
 
-t_toktype	get_type_from_tok(t_token *tok)
+static t_toktype	get_type_from_tok(t_token *tok)
 {
 	return (tok->type);
 }

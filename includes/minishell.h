@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 10:46:01 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 10:57:57 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,7 +273,6 @@ void		quote_state(t_qmachine *const machine, const char quote);
 /// parser.c
 
 bool		parser(t_list *tokens);
-t_toktype	get_type_from_tok(t_token *tok);
 
 //			PRINT			//
 
