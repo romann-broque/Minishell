@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:48:00 by mat               #+#    #+#             */
-/*   Updated: 2023/04/11 15:47:17 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 18:06:51 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cunit.test.h"
 
-t_list	*get_list_from_tab(t_token *tab)
+t_list	*get_list_from_array(t_token *tab)
 {
 	size_t	i;
 	t_list	*tokens_list;
@@ -69,7 +69,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test1 = get_list_from_tab(t_1_toks);
+	tokens_test1 = get_list_from_array(t_1_toks);
 	CU_ASSERT_EQUAL(parser(tokens_test1), true);
 	ft_lstclear(&tokens_test1, NULL);
 
@@ -81,7 +81,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test2 = get_list_from_tab(t_2_toks);
+	tokens_test2 = get_list_from_array(t_2_toks);
 	CU_ASSERT_TRUE(parser(tokens_test2));
 	ft_lstclear(&tokens_test2, NULL);
 
@@ -94,7 +94,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test3 = get_list_from_tab(t_3_toks);
+	tokens_test3 = get_list_from_array(t_3_toks);
 	CU_ASSERT_FALSE(parser(tokens_test3));
 	ft_lstclear(&tokens_test3, NULL);
 
@@ -107,7 +107,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test4 = get_list_from_tab(t_4_toks);
+	tokens_test4 = get_list_from_array(t_4_toks);
 	CU_ASSERT_FALSE(parser(tokens_test4));
 	ft_lstclear(&tokens_test4, NULL);
 
@@ -120,7 +120,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test5 = get_list_from_tab(t_5_toks);
+	tokens_test5 = get_list_from_array(t_5_toks);
 	CU_ASSERT_FALSE(parser(tokens_test5));
 	ft_lstclear(&tokens_test5, NULL);
 
@@ -133,7 +133,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test6 = get_list_from_tab(t_6_toks);
+	tokens_test6 = get_list_from_array(t_6_toks);
 	CU_ASSERT_FALSE(parser(tokens_test6));
 	ft_lstclear(&tokens_test6, NULL);
 
@@ -146,7 +146,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test7 = get_list_from_tab(t_7_toks);
+	tokens_test7 = get_list_from_array(t_7_toks);
 	CU_ASSERT_FALSE(parser(tokens_test7));
 	ft_lstclear(&tokens_test7, NULL);
 
@@ -159,7 +159,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test8 = get_list_from_tab(t_8_toks);
+	tokens_test8 = get_list_from_array(t_8_toks);
 	CU_ASSERT_TRUE(parser(tokens_test8));
 	ft_lstclear(&tokens_test8, NULL);
 
@@ -169,7 +169,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test9 = get_list_from_tab(t_9_toks);
+	tokens_test9 = get_list_from_array(t_9_toks);
 	CU_ASSERT_FALSE(parser(tokens_test9));
 	ft_lstclear(&tokens_test9, NULL);
 
@@ -179,7 +179,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test10 = get_list_from_tab(t_10_toks);
+	tokens_test10 = get_list_from_array(t_10_toks);
 	CU_ASSERT_TRUE(parser(tokens_test10));
 	ft_lstclear(&tokens_test10, NULL);
 
@@ -194,7 +194,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test11 = get_list_from_tab(t_11_toks);
+	tokens_test11 = get_list_from_array(t_11_toks);
 	CU_ASSERT_TRUE(parser(tokens_test11));
 	ft_lstclear(&tokens_test11, NULL);
 
@@ -207,7 +207,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test12 = get_list_from_tab(t_12_toks);
+	tokens_test12 = get_list_from_array(t_12_toks);
 	CU_ASSERT_TRUE(parser(tokens_test12));
 	ft_lstclear(&tokens_test12, NULL);
 
@@ -216,7 +216,7 @@ void	parser__test(void)
 		{.type = T_END, .value = NULL}
 	};
 
-	tokens_test13 = get_list_from_tab(t_13_toks);
+	tokens_test13 = get_list_from_array(t_13_toks);
 	CU_ASSERT_TRUE(parser(tokens_test13));
 	ft_lstclear(&tokens_test13, NULL);
 }
