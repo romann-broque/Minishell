@@ -1,0 +1,6 @@
+
+bash: line 2: : command not found
+hello
+he"llo
+bash: line 16: unexpected EOF while looking for matching `''
+bash: line 17: syntax error: unexpected end of file

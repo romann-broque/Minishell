@@ -5,6 +5,7 @@ on:
     branches:
       - "main"
       - "MVE1"
+      - "MVE2"
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
@@ -24,6 +25,8 @@ jobs:
       #        source venv/bin/activate
       #        pip install norminette
 
+      - name: Install CUnit
+        run: sudo apt-get update && sudo apt-get install -y libcunit1-dev
       - name: Test
         if: github.event_name == 'pull_request'
-        run: ./tests/tester
+        run: make re test; make re debug=true test

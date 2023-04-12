@@ -1,0 +1,20 @@
+$single
+$multiple
+$single bonjour $single
+$single $single
+$single $multiple
+bonjour $single
+bonjour $multiple
+bonjour $single bonjour2
+bonjour $multiple bonjour2
+bonjour $single bonjour2 $multiple
+$$
+$1bla
+$?bla
+$
+$$   $
+$$$
+$?
+$0
+$single$single
+$    $

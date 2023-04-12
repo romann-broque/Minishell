@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   expand_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 14:07:50 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 17:24:10 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/06 10:02:35 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/11 11:19:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(
-	__attribute__((unused)) int ac,
-	__attribute__((unused)) char **av,
-	const char **env)
+static void	expand(t_token *token)
 {
-	prompt(env);
-	return (EXIT_SUCCESS);
+	char	*tmp;
+
+	if (token != NULL)
+	{
+		tmp = token->value;
+		if (tmp != NULL)
+			token->value = expand_var(tmp);
+		free(tmp);
+	}
+}
+
+void	expand_command(t_list *tokens)
+{
+	ft_lstiter(tokens, (void (*)(void *))expand);
 }
