@@ -11,6 +11,7 @@ SHELL		= /usr/bin/bash
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
+PATH_SRCS	+=	srcs/interpreter/
 PATH_SRCS	+=	srcs/expansion/var/
 PATH_SRCS	+=	srcs/lexer/
 PATH_SRCS	+=	srcs/lexer/quotes/
@@ -39,6 +40,11 @@ SRCS		+=	handle_var.c
 SRCS		+=	var_machine.c
 SRCS		+=	var_state_func.c
 SRCS		+=	var_utils.c
+
+### srcs/interpreter
+
+SRCS		+=	interpreter.c
+SRCS		+=	interpreter_utils.c
 
 ### srcs/lexer
 

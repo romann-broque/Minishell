@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 11:09:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/12 14:18:00 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,14 @@ typedef struct s_tokparse
 	t_toktype	next[NEXT_TOK_MAX];
 }			t_tokparse;
 
+typedef struct s_command
+{
+	char		**command;
+	const char	**env;
+	int			fdin;
+	int			fdout;
+}			t_command;
+
 /////////////////
 /// FUNCTIONS ///
 /////////////////
@@ -199,6 +207,19 @@ bool		is_special_var(const char c);
 char		*cut_string_at(char *src, const size_t index, const size_t del_len);
 void		delete_quote(t_vmachine *const machine);
 
+//			INTERPRETER		//
+
+/// interpreter.c
+
+t_list		*interpreter(t_list *tokens, const char **env);
+
+/// interpreter_utils.c
+
+void		free_command(t_command *cmd_data);
+size_t		get_word_count(t_list *tokens);
+char		**get_arg_array(t_list *tokens);
+char		*find_cmd_path(const char *cmd_name);
+
 //			LEXER			//
 
 ///  QUOTES  ///
@@ -229,6 +250,7 @@ bool		dquote_state_assign(const char **word, t_qstate *state);
 //// token_utils.c
 
 t_token		*init_token(t_toktype type, char *value);
+t_toktype	get_type_from_tok(t_token *tok);
 char		*get_str_from_tok(t_token *tok);
 void		free_token(t_token *tok);
 
@@ -271,16 +293,21 @@ bool		parser(t_list *tokens);
 
 //			PRINT			//
 
-/// print.c
+/// test_print.c
 
 void		print_command(t_list *token_lst);
+void		print_strs(const char **strs);
+void		print_cmd(t_list *cmds);
+
+/// print_errror.c
+
 void		print_error(const char *error_name);
 
 //			PROMPT			//
 
 /// prompt.c
 
-void		prompt(void);
+void		prompt(const char **env);
 
 //			SIGNAL			//
 

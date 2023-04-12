@@ -12,6 +12,8 @@
 
 #include "cunit.test.h"
 
+const char	**g_env;
+
 void	set_tests(void)
 {
 	static t_suite	suite_mapping[] = {
@@ -33,6 +35,10 @@ void	set_tests(void)
 				{.tname = "expand", expand__test},
 			},
 		},
+		{.suite = NULL, .sname = "Interpreter", .tests = {
+			{.tname = "interpreter", interpreter__test}
+			}
+		},
 		{.suite = NULL, .sname = NULL}
 	};
 
@@ -48,14 +54,18 @@ void	exec_tests(void)
 	CU_set_error_action(CUEA_IGNORE);
 
 	// Run the tests using the basic test runner
-	CU_basic_set_mode(CU_BRM_NORMAL);
+	CU_basic_set_mode(CU_BRM_VERBOSE);
 	CU_basic_run_tests();
 
 	// Cleanup the CUnit test registry
 	exit_tests();
 }
 
-int	main(void)
+int	main(
+	__attribute__((unused))int ac,
+	__attribute__((unused))char **av,
+	const char **env)
 {
+	g_env = env;
 	exec_tests();
 }
