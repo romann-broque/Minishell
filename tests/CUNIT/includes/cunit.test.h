@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:44:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 18:09:30 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/12 14:46:40 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define ANSI_COLOR_RESET	"\x1b[0m"
 # define MAX_TESTS_COUNT	10
 # define MAX_TOKEN_LEN		30
+# define MAX_LEN_CMD		100
 
 typedef struct s_test
 {

@@ -6,13 +6,11 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:44:29 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 22:23:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/12 14:46:42 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cunit.test.h"
-
-#define MAX_LEN_CMD 100
 
 extern const char	**g_env;
 
