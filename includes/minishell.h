@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 17:08:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/12 14:18:00 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,9 +293,14 @@ bool		parser(t_list *tokens);
 
 //			PRINT			//
 
-/// print.c
+/// test_print.c
 
 void		print_command(t_list *token_lst);
+void		print_strs(const char **strs);
+void		print_cmd(t_list *cmds);
+
+/// print_errror.c
+
 void		print_error(const char *error_name);
 
 //			PROMPT			//

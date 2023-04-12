@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:20:19 by mat               #+#    #+#             */
-/*   Updated: 2023/04/11 22:16:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/12 14:12:54 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ t_command	*init_command(t_list *tokens, const char **env)
 	}
 	return (cmd_data);
 }
+
+// NOTES
+//For the MVE with redirections and PIPES :
+//		We will have to pass into argument of init_command the type of the token
+//		following the command so that we know which fdin and fdout to set.
 
 static void	skip_generic(t_list **tokens)
 {

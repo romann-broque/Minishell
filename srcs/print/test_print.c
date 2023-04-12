@@ -3,14 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   test_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:08:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 16:30:10 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/12 14:16:43 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	print_strs(const char **strs)
+{
+	while (*strs != NULL)
+	{
+		printf("-[%s]", *strs);
+		++strs;
+	}
+	printf("-\n\n\n");
+}
+
+void	print_cmd(t_list *cmds)
+{
+	t_command	*cmd_data;
+
+	while (cmds != NULL)
+	{
+		cmd_data = cmds->content;
+		printf("ARG :\n");
+		print_strs((const char **)cmd_data->command);
+		printf("\nENV :\n");
+		print_strs(cmd_data->env);
+		cmds = cmds->next;
+	}
+}
 
 void	print_command(t_list *token_lst)
 {

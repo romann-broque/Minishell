@@ -3,38 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 17:24:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/12 14:11:21 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// static void	print_strs(const char **strs)
-// {
-// 	while (*strs != NULL)
-// 	{
-// 		printf("-[%s]", *strs);
-// 		++strs;
-// 	}
-// 	printf("-\n\n\n");
-// }
-// static void	print_cmd(t_list *cmds)
-// {
-// 	t_command	*cmd_data;
-
-// 	while (cmds != NULL)
-// 	{
-// 		cmd_data = cmds->content;
-// 		printf("ARG :\n");
-// 		print_strs((const char **)cmd_data->command);
-// 		printf("\nENV :\n");
-// 		print_strs(cmd_data->env);
-// 		cmds = cmds->next;
-// 	}
-// }
 
 static void	exec_command(t_list *token_lst, const char **env)
 {

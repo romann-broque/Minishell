@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:38:17 by mat               #+#    #+#             */
-/*   Updated: 2023/04/11 17:25:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/12 14:09:18 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	cpy_arg_lst_to_array(char ***dest, t_list *tokens)
 			free_strs(*dest);
 			perror(MALLOC_ERROR);
 			*dest = NULL;
+			return ;
 		}
 		tokens = tokens->next;
 		++i;
