@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 16:41:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/13 17:46:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,12 @@
 
 // len
 
-# define STR_LEN_MAX	50
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
 
 // count
 
-# define NB_DEALLOCATOR	3
+# define NB_DEALLOCATOR	4
 # define NEXT_TOK_MAX	9
 
 // return value
