@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 15:24:05 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/13 15:55:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@
 # define STR_LEN_MAX	50
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
-# define MAX_LEN_TYPE	2
 
 // count
 
@@ -339,7 +338,7 @@ void		word_state(t_qmachine *const machine);
 
 void		add_token(t_qmachine *machine);
 void		add_spec_token(t_qmachine *machine,
-				const char spec_tok[][MAX_LEN_TYPE + 1]);
+				const char *spec_tok[]);
 
 //// word_utils.c
 
