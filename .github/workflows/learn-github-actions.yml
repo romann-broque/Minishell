@@ -37,6 +37,6 @@ jobs:
       - name: Test
         if: github.event_name == 'pull_request'
         # Run Valgrind using Docker
-      - name: Use Valgrind Docker container
-        run: docker run --rm -v $(pwd):/app -w /app valgrind make valgrind=true test
+        - name: Use Valgrind Docker container
+          run: docker run --rm -v $(pwd):/app -w /app valgrind make valgrind=true test
         # run: make test; make debug=true test; make valgrind=true test
