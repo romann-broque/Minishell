@@ -28,6 +28,9 @@ jobs:
 
       - name: Install CUnit
         run: sudo apt-get update && sudo apt-get install -y libcunit1-dev
+      - name: Install Valgrind
+        run: sudo apt-get install valgrind
+
       - name: Test
         if: github.event_name == 'pull_request'
         run: make test; make debug=true test; make valgrind=true test
