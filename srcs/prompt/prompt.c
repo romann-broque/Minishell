@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 14:27:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/13 15:24:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,14 @@
 
 t_resource_tracker	g_tracker;
 
-static bool	is_exit(t_list *cmd_lst)
-{
-	char	**command;
-
-	if (cmd_lst != NULL && cmd_lst->content != NULL)
-	{
-		command = ((t_command *)(cmd_lst->content))->command;
-		if (command != NULL && command[0] != NULL)
-			return (streq(command[0], EXIT_BUILTIN) == true);
-	}
-	return (false);
-}
-
-static void	exec_command(t_list *token_lst, const char **env)
+static void	exec_command(t_list **token_lst, const char **env)
 {
 	t_list	*cmds;
 
-	cmds = interpreter(token_lst, env);
+	cmds = interpreter(*token_lst, env);
 	add_deallocator(&cmds, free_command_lst);
-	add_deallocator(&token_lst, free_token_lst);
+	add_deallocator(token_lst, free_token_lst);
 	ft_lstiter(cmds, (void (*)(void *))execution);
-	if (is_exit(cmds) == true)
-		exit_builtin();
 	ft_lstclear(&cmds, (void (*)(void *))free_command);
 }
 
@@ -52,7 +37,7 @@ static void	handle_command(const char *command, const char **env)
 		if (parser(tokens) == true)
 		{
 			expand_command(tokens);
-			exec_command(tokens, env);
+			exec_command(&tokens, env);
 			print_command(tokens);
 			ft_lstclear(&tokens, (void (*)(void *))free_token);
 		}

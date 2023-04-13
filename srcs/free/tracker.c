@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:27:19 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 14:40:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/13 15:13:05 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_tracker(void)
 	while (i < NB_DEALLOCATOR)
 	{
 		curr_dealloc[i].ptr = NULL;
-		curr_dealloc[i].ptr = NULL;
+		curr_dealloc[i].free_fct = NULL;
 		++i;
 	}
 	g_tracker.index = 0;

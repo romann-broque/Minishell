@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 14:39:36 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/13 15:24:05 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@
 
 # define ASSIGN_START	0
 
-//////////////////
-/// STRUCTURES ///
-//////////////////
+/////////////
+/// ENUM ///
+/////////////
 
 typedef enum e_toktype
 {
@@ -115,12 +115,6 @@ typedef enum e_toktype
 	T_INVALID
 }			t_toktype;
 
-typedef struct s_token
-{
-	t_toktype	type;
-	char		*value;
-}				t_token;
-
 typedef enum e_var_state
 {
 	E_STD,
@@ -131,15 +125,6 @@ typedef enum e_var_state
 	E_EOL
 }			t_vstate;
 
-typedef struct s_vmachine
-{
-	t_vstate	state;
-	t_vstate	prev_state;
-	size_t		word_len;
-	size_t		index;
-	char		*line;
-}			t_vmachine;
-
 typedef enum e_quote_state
 {
 	E_SEPARATOR,
@@ -149,6 +134,25 @@ typedef enum e_quote_state
 	E_WORD,
 	E_EOF
 }			t_qstate;
+
+//////////////////
+/// STRUCTURES ///
+//////////////////
+
+typedef struct s_token
+{
+	t_toktype	type;
+	char		*value;
+}				t_token;
+
+typedef struct s_vmachine
+{
+	t_vstate	state;
+	t_vstate	prev_state;
+	size_t		word_len;
+	size_t		index;
+	char		*line;
+}				t_vmachine;
 
 typedef struct s_qmachine
 {
@@ -162,7 +166,7 @@ typedef struct s_tokparse
 {
 	t_toktype	curr;
 	t_toktype	next[NEXT_TOK_MAX];
-}			t_tokparse;
+}				t_tokparse;
 
 typedef struct s_command
 {
@@ -170,7 +174,7 @@ typedef struct s_command
 	const char	**env;
 	int			fdin;
 	int			fdout;
-}			t_command;
+}				t_command;
 
 typedef struct s_deallocator
 {
@@ -184,6 +188,12 @@ typedef struct s_resource_tracker
 	size_t			index;
 }				t_resource_tracker;
 
+typedef struct s_builtin_mapper
+{
+	const char	*name;
+	void		(*fct)(char **av);
+}				t_builtin_mapper;
+
 /////////////////
 /// FUNCTIONS ///
 /////////////////
@@ -196,16 +206,21 @@ void		execution(t_command *command);
 
 ///  BUILTIN  ///
 
+//// is_builtin.c
+
 bool		is_builtin(t_command *cmd_data);
 
-//// is_builtin.c
+////  EXIT_BUILTIN  ////
+
+///// exit.c
+
+void		exit_builtin(char **av);
 
 //			EXIT			//
 
 /// exit_shell.c
 
 void		exit_shell(const int exit_value);
-void		exit_builtin(void);
 
 //			EXPANSION			//
 
