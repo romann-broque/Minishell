@@ -9,8 +9,11 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+=	srcs/
+PATH_SRCS	+=	srcs/execution/
+PATH_SRCS	+=	srcs/execution/builtin/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
+PATH_SRCS	+=	srcs/free/
 PATH_SRCS	+=	srcs/interpreter/
 PATH_SRCS	+=	srcs/expansion/var/
 PATH_SRCS	+=	srcs/lexer/
@@ -25,6 +28,14 @@ PATH_SRCS	+=	srcs/signal/
 ### srcs/
 
 SRCS	 	+=	minishell.c
+
+### srcs/execution/
+
+SRCS	 	+=	execution.c
+
+### srcs/execution/builtin/
+
+SRCS	 	+=	is_builtin.c
 
 ### srcs/exit/
 
@@ -41,12 +52,17 @@ SRCS		+=	var_machine.c
 SRCS		+=	var_state_func.c
 SRCS		+=	var_utils.c
 
-### srcs/interpreter
+### srcs/free/
+
+SRCS		+=	free_manager.c
+SRCS		+=	tracker.c
+
+### srcs/interpreter/
 
 SRCS		+=	interpreter.c
 SRCS		+=	interpreter_utils.c
 
-### srcs/lexer
+### srcs/lexer/
 
 ### srcs/lexer/quotes/
 

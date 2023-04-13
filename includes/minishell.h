@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/12 14:18:00 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/13 14:39:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@
 # define EXIT_MESSAGE	"exit"
 # define QMARK_VAR		"LAST_RET_VAL"
 # define ZERO_VAR		"minishell"
+
+// builtins
+
+# define CD_BUILTIN		"cd"
+# define ECHO_BUILTIN	"echo"
+# define EXIT_BUILTIN	"exit"
+# define EXPORT_BUILTIN	"export"
+# define PWD_BUILTIN	"pwd"
+# define UNSET_BUILTIN	"unset"
 
 // tok_string
 
@@ -75,6 +84,7 @@
 
 // count
 
+# define NB_DEALLOCATOR	3
 # define NEXT_TOK_MAX	9
 
 // return value
@@ -162,15 +172,40 @@ typedef struct s_command
 	int			fdout;
 }			t_command;
 
+typedef struct s_deallocator
+{
+	void	*ptr;
+	void	(*free_fct)(void *);
+}				t_deallocator;
+
+typedef struct s_resource_tracker
+{
+	t_deallocator	deallocator_array[NB_DEALLOCATOR];
+	size_t			index;
+}				t_resource_tracker;
+
 /////////////////
 /// FUNCTIONS ///
 /////////////////
+
+//			EXECUTION			//
+
+/// execution.c
+
+void		execution(t_command *command);
+
+///  BUILTIN  ///
+
+bool		is_builtin(t_command *cmd_data);
+
+//// is_builtin.c
 
 //			EXIT			//
 
 /// exit_shell.c
 
 void		exit_shell(const int exit_value);
+void		exit_builtin(void);
 
 //			EXPANSION			//
 
@@ -206,6 +241,19 @@ bool		is_in_var_start_charset(const char c);
 bool		is_special_var(const char c);
 char		*cut_string_at(char *src, const size_t index, const size_t del_len);
 void		delete_quote(t_vmachine *const machine);
+
+//			FREE			//
+
+// free_manager.c
+
+void		free_command_lst(void *ptr);
+void		free_token_lst(void *ptr);
+void		free_manager(void);
+
+// tracker.c
+
+void		add_deallocator(void *ptr, void (*fct)(void *));
+void		init_tracker(void);
 
 //			INTERPRETER		//
 

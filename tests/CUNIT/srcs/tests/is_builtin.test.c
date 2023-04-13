@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_shell.c                                       :+:      :+:    :+:   */
+/*   is_builtin.test.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 12:35:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 14:36:30 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/12 18:26:14 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/12 18:27:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "cunit.test.h"
 
-void	exit_shell(const int exit_value)
+void	is_builtin__test(void)
 {
-	ft_dprintf(STDERR_FILENO, "%s\n", EXIT_MESSAGE);
-	exit(exit_value);
-}
 
-void	exit_builtin(void)
-{
-	free_manager();
-	exit_shell(LAST_RETVAL);
 }

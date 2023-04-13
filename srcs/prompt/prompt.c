@@ -3,32 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/12 14:29:18 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/13 14:27:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+t_resource_tracker	g_tracker;
+
+static bool	is_exit(t_list *cmd_lst)
+{
+	char	**command;
+
+	if (cmd_lst != NULL && cmd_lst->content != NULL)
+	{
+		command = ((t_command *)(cmd_lst->content))->command;
+		if (command != NULL && command[0] != NULL)
+			return (streq(command[0], EXIT_BUILTIN) == true);
+	}
+	return (false);
+}
+
 static void	exec_command(t_list *token_lst, const char **env)
 {
-	t_token *const	token = token_lst->next->content;
-	t_list			*cmds;
+	t_list	*cmds;
 
-	if (token != NULL
-		&& (token->value != NULL)
-		&& streq(token->value, "exit"))
-	{
-		ft_lstclear(&token_lst, (void (*)(void *))free_token);
-		exit_shell(LAST_RETVAL);
-	}
-	else
-	{
-		cmds = interpreter(token_lst, env);
-		ft_lstclear(&cmds, (void (*)(void *))free_command);
-	}
+	cmds = interpreter(token_lst, env);
+	add_deallocator(&cmds, free_command_lst);
+	add_deallocator(&token_lst, free_token_lst);
+	ft_lstiter(cmds, (void (*)(void *))execution);
+	if (is_exit(cmds) == true)
+		exit_builtin();
+	ft_lstclear(&cmds, (void (*)(void *))free_command);
 }
 
 static void	handle_command(const char *command, const char **env)
@@ -44,12 +53,12 @@ static void	handle_command(const char *command, const char **env)
 		{
 			expand_command(tokens);
 			exec_command(tokens, env);
+			print_command(tokens);
+			ft_lstclear(&tokens, (void (*)(void *))free_token);
 		}
 		else
 			print_error(PARS_ERROR);
 	}
-	print_command(tokens);
-	ft_lstclear(&tokens, (void (*)(void *))free_token);
 }
 
 static void	get_command(const char **env)
@@ -67,5 +76,8 @@ void	prompt(const char **env)
 {
 	set_catcher();
 	while (true)
+	{
+		init_tracker();
 		get_command(env);
+	}
 }
