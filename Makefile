@@ -149,21 +149,30 @@ LINKS += -lreadline
 #### TESTER ####
 ################
 
+### MIN
+
 TESTER_FOLDER	= ./tests/
 CUNIT_FOLDER	= $(TESTER_FOLDER)/CUNIT/
 MINTEST_FOLDER	= $(TESTER_FOLDER)/tester_folder/
 ENV_FOLDER		= $(TESTER_FOLDER)/env/
 
+### CUNIT
+
 TESTER			= $(MINTEST_FOLDER)/tester.sh
 CUNIT			= $(CUNIT_FOLDER)/cunit
 ENV				= $(TESTER_FOLDER)/env/env.sh
 
+### VALGRIND
+
 CURR_FOLDER_VALGRIND = ./tests/valgrind/
 SUPPRESSION_FILE	= $(CURR_FOLDER_VALGRIND)suppressions.supp
 
-VALGRIND		+= valgrind --leak-check=full
-VALGRIND		+= --suppressions=${SUPPRESSION_FILE}
-VALGRIND		+= --show-leak-kinds=all
+ifeq ($(valgrind), true)
+	VALGRIND	+= valgrind --leak-check=full
+	VALGRIND	+= --suppressions=$(SUPPRESSION_FILE)
+	VALGRIND	+= --show-leak-kinds=all
+	VALGRIND	+= --log-file=$(CURR_FOLDER_VALGRIND)valgrind_cunit.out
+endif
 
 #####################
 #### COMPILATION ####
@@ -173,6 +182,7 @@ CC			=	gcc
 
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra
+
 ifneq ($(no_error), true)
 	CFLAGS		+=	-Werror
 endif
@@ -228,21 +238,20 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 test	:
-	$(MAKE) -s
+	$(MAKE) -s re
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
-	source $(ENV); $(CUNIT)
+	source $(ENV); $(VALGRIND) $(CUNIT)
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
-	source $(ENV); $(TESTER)
+	source $(ENV); $(TESTER) $(VALGRIND)
 
 # valgrind:
 # 	$(MAKE) -s re
 # 	$(MAKE) -sC $(CUNIT_FOLDER)
-# 	echo $(VALGRIND)
 # 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
 # 	source $(ENV); $(VALGRIND) $(CUNIT)
 # 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
-# 	source $(ENV); $(VALGRIND) $(TESTER)
+# 	source $(ENV); $(TESTER) $(VALGRIND)
 
 clean	:
 	$(RM) -r $(PATH_OBJS)
