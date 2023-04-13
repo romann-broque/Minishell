@@ -9,6 +9,7 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+=	srcs/
+PATH_SRCS	+=	srcs/execution/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/interpreter/
@@ -25,6 +26,11 @@ PATH_SRCS	+=	srcs/signal/
 ### srcs/
 
 SRCS	 	+=	minishell.c
+
+### srcs/execution/
+
+SRCS		+=	cmd_path.c
+SRCS		+=	cmd_path_utils.c
 
 ### srcs/exit/
 

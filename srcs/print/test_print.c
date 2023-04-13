@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:08:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/12 14:31:40 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/13 15:01:59 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ void	print_strs(const char **strs)
 	printf("-\n\n\n");
 }
 
+void	print_env(const char **env)
+{
+	while (*env != NULL)
+	{
+		printf("---\n");
+		printf("[%s]\n", *env);
+		printf("---\n");
+		++env;
+	}
+	printf("-\n\n\n");
+}
+
 void	print_cmd(t_list *cmds)
 {
 	t_command	*cmd_data;
@@ -32,7 +44,7 @@ void	print_cmd(t_list *cmds)
 		printf("ARG :\n");
 		print_strs((const char **)cmd_data->command);
 		printf("\nENV :\n");
-		print_strs(cmd_data->env);
+		print_env(cmd_data->env);
 		cmds = cmds->next;
 	}
 }

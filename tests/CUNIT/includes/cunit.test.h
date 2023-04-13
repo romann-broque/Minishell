@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cunit.test.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:44:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/12 14:46:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/13 14:12:27 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	are_quotes_closed__test(void);
 // expand.test.c
 
 void	expand__test(void);
+void	ASSERT_AND_FREE(char *str1, const char *str2);
 
 // get_words.test.c
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/12 14:18:00 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/13 15:03:00 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@
 # define UNDERSCORE		'_'
 # define AMPERSAND		'&'
 # define EQUAL_SIGN		'='
+# define FWD_SLASH		'/'
+# define COLON			':'
 
 // len
 
@@ -166,6 +168,20 @@ typedef struct s_command
 /// FUNCTIONS ///
 /////////////////
 
+//			EXECUTION			//
+
+/// cmd_path.c
+
+bool		is_cmd_path(t_command *cmd);
+char		*get_path_from_cmd(t_command *cmd);
+char		*get_path_from_env(t_command *cmd);
+
+/// cmd_path_utils.c
+
+void		add_fwd_slash(char ***paths);
+bool		is_var_path_in_env(const char **env);
+bool		is_empty_cmd(t_command *cmd);
+
 //			EXIT			//
 
 /// exit_shell.c
@@ -235,12 +251,12 @@ bool		are_quotes_closed(const char *str);
 t_list		*lexer_root(const char *str);
 t_list		*lexer(const char *str);
 
-// assign_states_utils.c
+//// assign_states_utils.c
 
 void		update_state_assign(const char c, t_qstate *state);
 bool		is_assign(const char *word);
 
-// assign_states.c
+//// assign_states.c
 
 bool		start_state_assign(const char **word, t_qstate *state);
 bool		word_state_assign(const char **word, t_qstate *state);
