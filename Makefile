@@ -157,6 +157,13 @@ TESTER			= $(MINTEST_FOLDER)/tester.sh
 CUNIT			= $(CUNIT_FOLDER)/cunit
 ENV				= $(TESTER_FOLDER)/env/env.sh
 
+CURR_FOLDER_VALGRIND = ./tests/valgrind/
+SUPPRESSION_FILE	= $(CURR_FOLDER_VALGRIND)suppressions.supp
+
+VALGRIND		+= valgrind --leak-check=full
+VALGRIND		+= --suppressions=${SUPPRESSION_FILE}
+VALGRIND		+= --show-leak-kinds=all
+
 #####################
 #### COMPILATION ####
 #####################
@@ -227,6 +234,15 @@ test	:
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
 	source $(ENV); $(TESTER)
 
+# valgrind:
+# 	$(MAKE) -s re
+# 	$(MAKE) -sC $(CUNIT_FOLDER)
+# 	echo $(VALGRIND)
+# 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
+# 	source $(ENV); $(VALGRIND) $(CUNIT)
+# 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
+# 	source $(ENV); $(VALGRIND) $(TESTER)
+
 clean	:
 	$(RM) -r $(PATH_OBJS)
 	$(MAKE) -sC $(LIBFT_FOLDER) clean > /dev/null
@@ -244,5 +260,5 @@ re 		: fclean
 	echo -e $(YELLOW) "\nRebuilding..." $(NC)
 	$(MAKE) -s
 
-.PHONY	: all test clean fclean re
-.SILENT	: all test clean fclean re $(NAME) $(OBJS) $(LIBFT)
+.PHONY	: all test valgrind clean fclean re
+.SILENT	: all test valgrind clean fclean re $(NAME) $(OBJS) $(LIBFT)
