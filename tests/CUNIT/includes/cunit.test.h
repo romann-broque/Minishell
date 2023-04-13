@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:44:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 14:12:27 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/13 16:11:06 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ typedef struct s_suite
 // are_quotes_closed.test.c
 
 void	are_quotes_closed__test(void);
+
+// cmd_path.test.c
+
+void	cmd_path__test(void);
 
 // expand.test.c
 
