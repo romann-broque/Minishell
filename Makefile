@@ -37,6 +37,7 @@ SRCS	 	+=	execution.c
 ### srcs/execution/builtin/
 
 SRCS	 	+=	is_builtin.c
+SRCS	 	+=	exec_builtin.c
 
 ### srcs/execution/builtin/exit_builtin/
 

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 15:55:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/13 16:41:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,10 @@ void		execution(t_command *command);
 //// is_builtin.c
 
 bool		is_builtin(t_command *cmd_data);
+
+//// exec_buitlin.c
+
+void		exec_builtin(t_command *command);
 
 ////  EXIT_BUILTIN  ////
 
