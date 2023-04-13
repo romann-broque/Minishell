@@ -15,8 +15,9 @@ jobs:
         with:
           submodules: 'recursive' # Include submodules when checking out the repository
       # Set up Docker
-      - name: Set up Docker
-        uses: docker/setup-docker-action@v2
+      - name: setup-docker
+        uses: docker-practice/actions-setup-docker@1.0.11
+
 
       - name: Initialize libft submodule
         run: git submodule update --init libft
