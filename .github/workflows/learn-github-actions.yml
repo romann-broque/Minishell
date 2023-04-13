@@ -33,10 +33,10 @@ jobs:
 
       - name: Classic Test
         if: github.event_name == 'pull_request'
-          run: make test
+        run: make test
       - name: Fsanitize Test
         if: github.event_name == 'pull_request'
-          run: make debug=true test
+        run: make debug=true test
       - name: Valgrind Test
         if: github.event_name == 'pull_request'
-          run: make valgrind=true test
+        run: make valgrind=true test
