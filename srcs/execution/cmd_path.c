@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/04/14 11:17:55 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/14 11:21:51 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ char	*get_path_from_env(t_command *cmd)
 		return (NULL);
 	print_strs((const char **)path_array);
 	path = get_path_cmd(cmd, path_array);
-	printf("found path : %s\n", path);
 	free_strs(path_array);
 	return (path);
 }
