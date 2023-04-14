@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/04/13 14:54:30 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/14 11:17:55 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,17 @@ char	*get_path_from_cmd(t_command *cmd)
 	return (cmd->command[0]);
 }
 
-static char	*get_path_cmd(t_command *cmd, char **paths)
+static char	*get_path_cmd(t_command *cmd, char **path_array)
 {
-	size_t	i;
-	char	*path;
+	const char	*cmd_name = cmd->command[0];
+	char		*path;
+	size_t		i;
 
+	path = NULL;
 	i = 0;
-	while (paths[i] != NULL)
+	while (path_array[i] != NULL)
 	{
-		path = ft_strjoin(paths[i], (const char *)cmd->command[0]);
+		path = ft_strjoin(path_array[i], cmd_name);
 		if (path == NULL)
 			return (NULL);
 		if (access(path, X_OK) == 0)
@@ -69,7 +71,9 @@ char	*get_path_from_env(t_command *cmd)
 	path_array = get_path_var(cmd->env);
 	if (path_array == NULL)
 		return (NULL);
+	print_strs((const char **)path_array);
 	path = get_path_cmd(cmd, path_array);
+	printf("found path : %s\n", path);
 	free_strs(path_array);
 	return (path);
 }
