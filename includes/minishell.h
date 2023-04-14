@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/12 14:18:00 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/13 17:46:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@
 # define EXIT_MESSAGE	"exit"
 # define QMARK_VAR		"LAST_RET_VAL"
 # define ZERO_VAR		"minishell"
+
+// builtins
+
+# define CD_BUILTIN		"cd"
+# define ECHO_BUILTIN	"echo"
+# define EXIT_BUILTIN	"exit"
+# define EXPORT_BUILTIN	"export"
+# define PWD_BUILTIN	"pwd"
+# define UNSET_BUILTIN	"unset"
 
 // tok_string
 
@@ -68,13 +77,12 @@
 
 // len
 
-# define STR_LEN_MAX	50
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
-# define MAX_LEN_TYPE	2
 
 // count
 
+# define NB_DEALLOCATOR	4
 # define NEXT_TOK_MAX	9
 
 // return value
@@ -85,9 +93,9 @@
 
 # define ASSIGN_START	0
 
-//////////////////
-/// STRUCTURES ///
-//////////////////
+/////////////
+/// ENUM ///
+/////////////
 
 typedef enum e_toktype
 {
@@ -105,12 +113,6 @@ typedef enum e_toktype
 	T_INVALID
 }			t_toktype;
 
-typedef struct s_token
-{
-	t_toktype	type;
-	char		*value;
-}				t_token;
-
 typedef enum e_var_state
 {
 	E_STD,
@@ -121,15 +123,6 @@ typedef enum e_var_state
 	E_EOL
 }			t_vstate;
 
-typedef struct s_vmachine
-{
-	t_vstate	state;
-	t_vstate	prev_state;
-	size_t		word_len;
-	size_t		index;
-	char		*line;
-}			t_vmachine;
-
 typedef enum e_quote_state
 {
 	E_SEPARATOR,
@@ -139,6 +132,25 @@ typedef enum e_quote_state
 	E_WORD,
 	E_EOF
 }			t_qstate;
+
+//////////////////
+/// STRUCTURES ///
+//////////////////
+
+typedef struct s_token
+{
+	t_toktype	type;
+	char		*value;
+}				t_token;
+
+typedef struct s_vmachine
+{
+	t_vstate	state;
+	t_vstate	prev_state;
+	size_t		word_len;
+	size_t		index;
+	char		*line;
+}				t_vmachine;
 
 typedef struct s_qmachine
 {
@@ -152,7 +164,7 @@ typedef struct s_tokparse
 {
 	t_toktype	curr;
 	t_toktype	next[NEXT_TOK_MAX];
-}			t_tokparse;
+}				t_tokparse;
 
 typedef struct s_command
 {
@@ -160,11 +172,51 @@ typedef struct s_command
 	const char	**env;
 	int			fdin;
 	int			fdout;
-}			t_command;
+}				t_command;
+
+typedef struct s_deallocator
+{
+	void	*ptr;
+	void	(*free_fct)(void *);
+}				t_deallocator;
+
+typedef struct s_resource_tracker
+{
+	t_deallocator	deallocator_array[NB_DEALLOCATOR];
+	size_t			index;
+}				t_resource_tracker;
+
+typedef struct s_builtin_mapper
+{
+	const char	*name;
+	void		(*fct)(char **av);
+}				t_builtin_mapper;
 
 /////////////////
 /// FUNCTIONS ///
 /////////////////
+
+//			EXECUTION			//
+
+/// execution.c
+
+void		execution(t_command *command);
+
+///  BUILTIN  ///
+
+//// is_builtin.c
+
+bool		is_builtin(t_command *cmd_data);
+
+//// exec_buitlin.c
+
+void		exec_builtin(t_command *command);
+
+////  EXIT_BUILTIN  ////
+
+///// exit.c
+
+void		exit_builtin(char **av);
 
 //			EXIT			//
 
@@ -206,6 +258,19 @@ bool		is_in_var_start_charset(const char c);
 bool		is_special_var(const char c);
 char		*cut_string_at(char *src, const size_t index, const size_t del_len);
 void		delete_quote(t_vmachine *const machine);
+
+//			FREE			//
+
+// free_manager.c
+
+void		free_command_lst(void *ptr);
+void		free_token_lst(void *ptr);
+void		free_manager(void);
+
+// tracker.c
+
+void		add_deallocator(void *ptr, void (*fct)(void *));
+void		init_tracker(void);
 
 //			INTERPRETER		//
 
@@ -276,7 +341,7 @@ void		word_state(t_qmachine *const machine);
 
 void		add_token(t_qmachine *machine);
 void		add_spec_token(t_qmachine *machine,
-				const char spec_tok[][MAX_LEN_TYPE + 1]);
+				const char *spec_tok[]);
 
 //// word_utils.c
 
