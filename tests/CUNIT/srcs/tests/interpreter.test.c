@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:44:29 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/12 14:46:42 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/14 13:45:26 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cunit.test.h"
 
-extern const char	**g_env;
+extern char	**g_env;
 
 static t_list	*get_list_from_array(t_token *array)
 {
@@ -45,7 +45,7 @@ static t_list	*get_list_from_array_cmd(t_command *array, const size_t size)
 	return (cmd_list);
 }
 
-static bool	strs_eq(const char **strs1, const char **strs2)
+static bool	strs_eq(char **strs1, char **strs2)
 {
 	while (*strs1 != NULL && *strs2 != NULL
 		&& streq(*strs1, *strs2) == true)
@@ -60,7 +60,7 @@ static bool	is_same_cmd(t_command *cmd1, t_command *cmd2)
 {
 	return ((cmd1 == NULL && cmd2 == NULL)
 		|| (cmd1 != NULL && cmd2 != NULL
-		&& strs_eq((const char **)cmd1->command, (const char **)cmd2->command) == true
+		&& strs_eq(cmd1->command, cmd2->command) == true
 		&& strs_eq(cmd1->env, cmd2->env) == true
 		&& cmd1->fdin == cmd2->fdin
 		&& cmd1->fdout == cmd2->fdout)

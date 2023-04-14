@@ -12,7 +12,7 @@
 
 #include "cunit.test.h"
 
-const char	**g_env;
+char	**g_env;
 
 void	set_tests(void)
 {
@@ -68,7 +68,7 @@ void	exec_tests(void)
 int	main(
 	__attribute__((unused))int ac,
 	__attribute__((unused))char **av,
-	const char **env)
+	char **env)
 {
 	g_env = env;
 	exec_tests();

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:20:19 by mat               #+#    #+#             */
-/*   Updated: 2023/04/12 14:12:54 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/14 13:38:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_command	*init_command(t_list *tokens, const char **env)
+static t_command	*init_command(t_list *tokens, char **env)
 {
 	t_command	*cmd_data;
 
@@ -58,7 +58,7 @@ static void	skip_until_generic(t_list **tokens)
 	}
 }
 
-t_list	*interpreter(t_list *tokens, const char **env)
+t_list	*interpreter(t_list *tokens, char **env)
 {
 	t_command	*cmd_data;
 	t_list		*commands;
