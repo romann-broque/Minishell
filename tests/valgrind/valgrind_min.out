@@ -1,23 +1,23 @@
-==246503== Memcheck, a memory error detector
-==246503== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==246503== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==246503== Command: ./minishell
-==246503== Parent PID: 246483
-==246503== 
-==246503== 
-==246503== HEAP SUMMARY:
-==246503==     in use at exit: 204,158 bytes in 221 blocks
-==246503==   total heap usage: 961 allocs, 740 frees, 236,037 bytes allocated
-==246503== 
-==246503== LEAK SUMMARY:
-==246503==    definitely lost: 0 bytes in 0 blocks
-==246503==    indirectly lost: 0 bytes in 0 blocks
-==246503==      possibly lost: 0 bytes in 0 blocks
-==246503==    still reachable: 0 bytes in 0 blocks
-==246503==         suppressed: 204,158 bytes in 221 blocks
-==246503== 
-==246503== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---246503-- 
---246503-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,158 bytes in 221 blocks
-==246503== 
-==246503== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==278324== Memcheck, a memory error detector
+==278324== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==278324== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==278324== Command: ./minishell
+==278324== Parent PID: 278310
+==278324== 
+==278324== 
+==278324== HEAP SUMMARY:
+==278324==     in use at exit: 204,158 bytes in 221 blocks
+==278324==   total heap usage: 961 allocs, 740 frees, 236,037 bytes allocated
+==278324== 
+==278324== LEAK SUMMARY:
+==278324==    definitely lost: 0 bytes in 0 blocks
+==278324==    indirectly lost: 0 bytes in 0 blocks
+==278324==      possibly lost: 0 bytes in 0 blocks
+==278324==    still reachable: 0 bytes in 0 blocks
+==278324==         suppressed: 204,158 bytes in 221 blocks
+==278324== 
+==278324== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--278324-- 
+--278324-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,158 bytes in 221 blocks
+==278324== 
+==278324== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
