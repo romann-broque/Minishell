@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/04/14 11:32:03 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/14 11:39:29 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	**get_split_path(const char **env)
 	size_t	i;
 
 	i = 0;
-	while (env[i] != NULL && ft_strncmp(PATH_VAR, env[i], PATH_VAR_LEN) != 0)
+	while (env[i] != NULL && is_path_var(env[i]) == false)
 		i++;
 	joint_path = replace_str(env[i], EMPTY_STR, 0, PATH_VAR_LEN + 1);
 	path_array = ft_split(joint_path, COLON);

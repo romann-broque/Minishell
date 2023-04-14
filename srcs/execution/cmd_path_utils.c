@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:58:46 by mat               #+#    #+#             */
-/*   Updated: 2023/04/14 11:31:48 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/14 11:41:08 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ bool	is_var_path_in_env(const char **env)
 bool	is_empty_cmd(t_command *cmd)
 {
 	return (streq(EMPTY_STR, cmd->command[0]));
+}
+
+bool	is_path_var(const char *env_line)
+{
+	return (ft_strncmp(PATH_VAR, env_line, PATH_VAR_LEN) == 0);
 }
 
 void	add_fwd_slash(char **path_array)
