@@ -260,5 +260,5 @@ re 		: fclean
 	echo -e $(YELLOW) "\nRebuilding..." $(NC)
 	$(MAKE) -s
 
-.PHONY	: all test valgrind clean fclean re
-.SILENT	: all test valgrind clean fclean re $(NAME) $(OBJS) $(LIBFT)
+.PHONY	: all test clean fclean re
+.SILENT	: all test clean fclean re $(NAME) $(OBJS) $(LIBFT)

@@ -2,7 +2,6 @@
 
 CUNIT_FOLDER=./tests/CUNIT/
 CUNIT="$CUNIT_FOLDER"cunit
-CACHE="$CUNIT_FOLDER"cache
 
 # Access the command line argument
 valgrind="$1"
