@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 18:03:24 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/14 09:49:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ static void	get_command(const char **env)
 void	prompt(const char **env)
 {
 	set_catcher();
+	init_tracker();
 	while (true)
-	{
-		init_tracker();
 		get_command(env);
-	}
 }

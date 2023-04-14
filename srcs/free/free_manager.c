@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:28:17 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 17:59:14 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/14 09:49:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ void	free_manager(void)
 		run_deallocator(g_tracker.deallocator_array + i);
 		++i;
 	}
-	g_tracker.index = 0;
+	init_tracker();
 }

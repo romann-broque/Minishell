@@ -178,7 +178,9 @@ endif
 #### COMPILATION ####
 #####################
 
-CC			=	gcc
+CC			=	clang
+
+# CFLAGS		+= -rdynamic
 
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra
@@ -229,7 +231,7 @@ $(LIBFT):
 	echo -e $(BLUE) "\n====> Building $(NAME) <===="$(NC)"\n"
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(LINKS)
+	$(CC) $(CFLAGS) -rdynamic $^ -o $@ $(LIBFT) $(LINKS)
 	$(ECHOC) $(GREEN) "--> $(NAME) COMPILED !"$(NC)"\n\n"
 
 $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
@@ -244,14 +246,6 @@ test	:
 	source $(ENV); $(VALGRIND) $(CUNIT)
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
 	source $(ENV); $(TESTER) $(VALGRIND)
-
-# valgrind:
-# 	$(MAKE) -s re
-# 	$(MAKE) -sC $(CUNIT_FOLDER)
-# 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
-# 	source $(ENV); $(VALGRIND) $(CUNIT)
-# 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
-# 	source $(ENV); $(TESTER) $(VALGRIND)
 
 clean	:
 	$(RM) -r $(PATH_OBJS)
