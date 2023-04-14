@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 17:46:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/14 11:41:00 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define EXIT_MESSAGE	"exit"
 # define QMARK_VAR		"LAST_RET_VAL"
 # define ZERO_VAR		"minishell"
+# define PATH_VAR		"PATH"
+# define FWD_SLASH_STR	"/"
 
 // builtins
 
@@ -74,16 +76,19 @@
 # define UNDERSCORE		'_'
 # define AMPERSAND		'&'
 # define EQUAL_SIGN		'='
+# define FWD_SLASH		'/'
+# define COLON			':'
 
 // len
 
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
+# define PATH_VAR_LEN	4
 
 // count
 
+# define NEXT_TOK_MAX	11
 # define NB_DEALLOCATOR	4
-# define NEXT_TOK_MAX	9
 
 // return value
 
@@ -198,6 +203,19 @@ typedef struct s_builtin_mapper
 
 //			EXECUTION			//
 
+/// cmd_path.c
+
+bool		is_cmd_path(t_command *cmd);
+char		*get_path_from_cmd(t_command *cmd);
+char		*get_path_from_env(t_command *cmd);
+
+/// cmd_path_utils.c
+
+void		add_fwd_slash(char **paths);
+bool		is_var_path_in_env(const char **env);
+bool		is_empty_cmd(t_command *cmd);
+bool		is_path_var(const char *env_line);
+
 /// execution.c
 
 void		execution(t_command *command);
@@ -300,12 +318,12 @@ bool		are_quotes_closed(const char *str);
 t_list		*lexer_root(const char *str);
 t_list		*lexer(const char *str);
 
-// assign_states_utils.c
+//// assign_states_utils.c
 
 void		update_state_assign(const char c, t_qstate *state);
 bool		is_assign(const char *word);
 
-// assign_states.c
+//// assign_states.c
 
 bool		start_state_assign(const char **word, t_qstate *state);
 bool		word_state_assign(const char **word, t_qstate *state);

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:45:23 by mat               #+#    #+#             */
-/*   Updated: 2023/04/14 09:39:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/14 09:40:43 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static const t_tokparse	*init_pars_rules(void)
 		T_DOUBLE_RCHEVRON, T_ASSIGN, T_INVALID}},
 	{.curr = T_ASSIGN, .next = {
 		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
-		T_DOUBLE_RCHEVRON, T_ASSIGN, T_PIPE, T_END, T_INVALID}},
+		T_DOUBLE_RCHEVRON, T_ASSIGN, T_PIPE, T_OR, T_AND, T_END, T_INVALID}},
 	{.curr = T_GENERIC, .next = {
 		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
-		T_DOUBLE_RCHEVRON, T_ASSIGN, T_PIPE, T_END, T_INVALID}},
+		T_DOUBLE_RCHEVRON, T_ASSIGN, T_PIPE, T_OR, T_AND, T_END, T_INVALID}},
 	{.curr = T_START, .next = {T_GENERIC, T_LCHEVRON, T_RCHEVRON,
 		T_DOUBLE_LCHEVRON, T_DOUBLE_RCHEVRON, T_ASSIGN, T_END, T_INVALID}}
 	};

@@ -32,6 +32,8 @@ SRCS	 	+=	minishell.c
 
 ### srcs/execution/
 
+SRCS		+=	cmd_path.c
+SRCS		+=	cmd_path_utils.c
 SRCS	 	+=	execution.c
 
 ### srcs/execution/builtin/
