@@ -1,0 +1,23 @@
+==282986== Memcheck, a memory error detector
+==282986== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==282986== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==282986== Command: ./minishell
+==282986== Parent PID: 282952
+==282986== 
+==282986== 
+==282986== HEAP SUMMARY:
+==282986==     in use at exit: 204,158 bytes in 221 blocks
+==282986==   total heap usage: 961 allocs, 740 frees, 236,037 bytes allocated
+==282986== 
+==282986== LEAK SUMMARY:
+==282986==    definitely lost: 0 bytes in 0 blocks
+==282986==    indirectly lost: 0 bytes in 0 blocks
+==282986==      possibly lost: 0 bytes in 0 blocks
+==282986==    still reachable: 0 bytes in 0 blocks
+==282986==         suppressed: 204,158 bytes in 221 blocks
+==282986== 
+==282986== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--282986-- 
+--282986-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,158 bytes in 221 blocks
+==282986== 
+==282986== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

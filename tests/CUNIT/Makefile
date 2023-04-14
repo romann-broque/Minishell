@@ -86,7 +86,7 @@ LINKS += -lcunit
 #### COMPILATION ####
 #####################
 
-CC			=	gcc
+CC			=	cc
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra
 
