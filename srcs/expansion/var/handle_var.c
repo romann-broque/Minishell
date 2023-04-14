@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/04/10 16:01:58 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/13 17:46:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	replace_special_var(t_vmachine *const machine)
 {
 	const char		c = machine->line[machine->index];
-	static char		array_str[][STR_LEN_MAX + 1] = {
+	static char		*array_str[] = {
 		QMARK_VAR,
 		ZERO_VAR
 	};

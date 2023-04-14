@@ -1,16 +1,15 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    tester.sh                                          :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/29 09:44:14 by rbroque           #+#    #+#              #
-#    Updated: 2023/04/07 10:55:55 by rbroque          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 #!/bin/bash
+
+# Access the command line argument
+valgrind="$1"
+VALGRIND_FOLDER=./tests/valgrind/
+SUPPRESSION_FILE="${VALGRIND_FOLDER}"suppressions.supp
+LOG_FILE="${VALGRIND_FOLDER}"valgrind_min.out
+
+# Use the variable in the script
+if [[ "$valgrind" == "valgrind" ]]; then
+	VALGRIND="valgrind -s --leak-check=full --suppressions=$SUPPRESSION_FILE --log-file=$LOG_FILE --show-leak-kinds=all"
+fi
 
 RED="\033[31m"
 GREEN="\033[32m"
@@ -36,7 +35,7 @@ ret_val=0
 for i in "${!inputs[@]}"; do
 
 	# Run the program and redirect the output to the corresponding output file
-	cat "${inputs[$i]}" | "${PROGRAM}" &> "${outputs[$i]}"
+	cat "${inputs[$i]}" | $VALGRIND "${PROGRAM}" &> "${outputs[$i]}"
 	ret_val+=$?
 
 	# Get the name of the input file without its path
@@ -48,6 +47,7 @@ for i in "${!inputs[@]}"; do
 	else
 		ret_val+=$?
 		echo -e "${RED}${filename} KO${NC}"
+		cat $LOG_FILE
 	fi
 done
 
