@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:08:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 15:01:59 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/14 11:33:04 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_strs(const char **strs)
 	printf("-\n\n\n");
 }
 
-void	print_env(const char **env)
+static void	print_env(const char **env)
 {
 	while (*env != NULL)
 	{

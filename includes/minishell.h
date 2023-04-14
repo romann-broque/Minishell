@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/14 09:37:24 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/14 11:31:32 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define EXIT_MESSAGE	"exit"
 # define QMARK_VAR		"LAST_RET_VAL"
 # define ZERO_VAR		"minishell"
+# define PATH_VAR		"PATH"
+# define FWD_SLASH_STR	"/"
 
 // builtins
 
@@ -81,6 +83,7 @@
 
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
+# define PATH_VAR_LEN	4
 
 // count
 
@@ -208,7 +211,7 @@ char		*get_path_from_env(t_command *cmd);
 
 /// cmd_path_utils.c
 
-void		add_fwd_slash(char ***paths);
+void		add_fwd_slash(char **paths);
 bool		is_var_path_in_env(const char **env);
 bool		is_empty_cmd(t_command *cmd);
 

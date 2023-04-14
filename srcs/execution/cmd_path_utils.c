@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:58:46 by mat               #+#    #+#             */
-/*   Updated: 2023/04/13 14:51:49 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/14 11:31:48 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	is_var_path_in_env(const char **env)
 	size_t	i;
 
 	i = 0;
-	while (env[i] != NULL && ft_strncmp("PATH", env[i], 4) != 0)
+	while (env[i] != NULL && ft_strncmp(PATH_VAR, env[i], PATH_VAR_LEN) != 0)
 		i++;
 	return (env[i] != NULL);
 }
@@ -27,16 +27,16 @@ bool	is_empty_cmd(t_command *cmd)
 	return (streq(EMPTY_STR, cmd->command[0]));
 }
 
-void	add_fwd_slash(char ***paths)
+void	add_fwd_slash(char **path_array)
 {
 	char	*str_tmp;
 	size_t	i;
 
 	i = 0;
-	while ((*paths)[i] != NULL)
+	while (path_array[i] != NULL)
 	{
-		str_tmp = (*paths)[i];
-		(*paths)[i] = ft_strjoin((*paths)[i], "/");
+		str_tmp = path_array[i];
+		path_array[i] = ft_strjoin(path_array[i], FWD_SLASH_STR);
 		free(str_tmp);
 		i++;
 	}
