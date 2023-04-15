@@ -1,23 +1,23 @@
-==20055== Memcheck, a memory error detector
-==20055== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==20055== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==20055== Command: ./minishell
-==20055== Parent PID: 20053
-==20055== 
-==20055== 
-==20055== HEAP SUMMARY:
-==20055==     in use at exit: 204,158 bytes in 221 blocks
-==20055==   total heap usage: 459 allocs, 238 frees, 229,295 bytes allocated
-==20055== 
-==20055== LEAK SUMMARY:
-==20055==    definitely lost: 0 bytes in 0 blocks
-==20055==    indirectly lost: 0 bytes in 0 blocks
-==20055==      possibly lost: 0 bytes in 0 blocks
-==20055==    still reachable: 0 bytes in 0 blocks
-==20055==         suppressed: 204,158 bytes in 221 blocks
-==20055== 
-==20055== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---20055-- 
---20055-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,158 bytes in 221 blocks
-==20055== 
-==20055== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==76959== Memcheck, a memory error detector
+==76959== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==76959== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==76959== Command: ./minishell
+==76959== Parent PID: 76957
+==76959== 
+==76959== 
+==76959== HEAP SUMMARY:
+==76959==     in use at exit: 204,158 bytes in 221 blocks
+==76959==   total heap usage: 652 allocs, 431 frees, 233,335 bytes allocated
+==76959== 
+==76959== LEAK SUMMARY:
+==76959==    definitely lost: 0 bytes in 0 blocks
+==76959==    indirectly lost: 0 bytes in 0 blocks
+==76959==      possibly lost: 0 bytes in 0 blocks
+==76959==    still reachable: 0 bytes in 0 blocks
+==76959==         suppressed: 204,158 bytes in 221 blocks
+==76959== 
+==76959== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--76959-- 
+--76959-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,158 bytes in 221 blocks
+==76959== 
+==76959== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/14 14:33:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/15 18:42:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <sys/types.h>
+# include <sys/stat.h>
 # include <sys/wait.h>
 
 ///////////////
@@ -30,6 +31,7 @@
 
 // string
 
+# define MINISHELL		"minishell"
 # define PROMPT			"minishell $ "
 # define EXIT_MESSAGE	"exit"
 # define QMARK_VAR		"LAST_RET_VAL"
@@ -91,7 +93,7 @@
 // count
 
 # define NEXT_TOK_MAX	11
-# define NB_DEALLOCATOR	4
+# define NB_DEALLOCATOR	5
 
 // return value
 

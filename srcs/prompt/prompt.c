@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/14 14:18:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/15 17:58:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	handle_command(const char *command, char **env)
 		{
 			expand_command(tokens);
 			exec_command(&tokens, env);
-			print_command(tokens);
 		}
 		else
 			print_error(PARS_ERROR);

@@ -1,3 +1,26 @@
 minishell $ 
+minishell $ ls tests
+CUNIT
+env
+tester_folder
+valgrind
+minishell $ /bin/ls tests
+CUNIT
+env
+tester_folder
+valgrind
+minishell $ /bin/ls includes ./tests
+includes:
+minishell.h
+
+./tests:
+CUNIT
+env
+tester_folder
+valgrind
+minishell $ pouet
+pouet: command not found
+minishell $ /pouet
+pouet: command not found
 minishell $ exit
 exit

@@ -1,2 +1,7 @@
 
+ls tests
+/bin/ls tests
+/bin/ls includes ./tests
+pouet
+/pouet
 exit
