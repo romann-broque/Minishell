@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/04/14 13:35:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/15 17:46:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_cmd_path(t_command *cmd)
 
 char	*get_path_from_cmd(t_command *cmd)
 {
-	return (cmd->command[0]);
+	return (ft_strdup(cmd->command[0]));
 }
 
 static char	*get_path_cmd(t_command *cmd, char **path_array)

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/14 22:15:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/15 17:46:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void	exec_binary(t_command *cmd_data, const char *path)
 		if (pid == 0)
 		{
 			if (execve(path, cmd_data->command, cmd_data->env) == -1)
-				exit_shell(EXIT_FAILURE);
+				exit(EXIT_FAILURE);
 		}
-		else if (pid != -1)
+		else if (pid > 0)
 			wait(NULL);
 	}
 }
