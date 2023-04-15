@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   parser_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 15:43:47 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/14 15:11:13 by mat              ###   ########.fr       */
+/*   Created: 2023/04/14 15:16:21 by mat               #+#    #+#             */
+/*   Updated: 2023/04/14 17:42:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_error(const char *format, ...)
+static char	*get_type_str(t_token *token)
 {
-	va_list	arg;
+	char *const	type_str_tab[] = {
+		"<", ">", "<<", ">>", "|", "||", "&&",
+		"WORD=WORD", "WORD", "START", "END"
+	};
+	t_toktype	type;
 
-	va_start(arg, format);
-	ft_dprintf(STDERR_FILENO, format, arg);
-	va_end(arg);
+	type = get_type_from_tok(token);
+	return (ft_strdup(type_str_tab[type]));
+}
+
+void	print_pars_error(t_token *token)
+{
+	char	*error_str;
+
+	error_str = get_type_str(token);
+	ft_dprintf(STDERR_FILENO, PARS_ERROR"`%s'\n", error_str);
+	free(error_str);
 }

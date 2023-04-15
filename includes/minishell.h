@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 10:57:57 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/14 17:41:19 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 
 # define SYNTAX_ERROR	"Syntax error"
 # define MALLOC_ERROR	"Malloc error"
-# define PARS_ERROR		"Parsing error"
+# define PARS_ERROR		"bash: syntax error near unexpected token "
 
 // char types
 
@@ -273,13 +273,18 @@ void		quote_state(t_qmachine *const machine, const char quote);
 /// parser.c
 
 bool		parser(t_list *tokens);
+t_toktype	get_type_from_tok(t_token *tok);
+
+/// parser_utils.c
+
+void		print_pars_error(t_token *token);
 
 //			PRINT			//
 
 /// print.c
 
 void		print_command(t_list *token_lst);
-void		print_error(const char *error_name);
+void		print_error(const char *format, ...);
 
 //			PROMPT			//
 
