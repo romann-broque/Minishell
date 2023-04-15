@@ -21,6 +21,6 @@ valgrind
 minishell $ pouet
 pouet: command not found
 minishell $ /pouet
-pouet: command not found
+minishell: No such file or directory
 minishell $ exit
 exit
