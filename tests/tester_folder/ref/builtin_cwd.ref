@@ -1,0 +1,41 @@
+minishell $ cd ..
+Element 1 : [cd]
+Element 2 : [..]
+minishell $ pwd
+/home/mat/Desktop/42/Minishell
+Element 1 : [pwd]
+minishell $ cd bonjour
+cd : wrong argument, inexistant path
+Element 1 : [cd]
+Element 2 : [bonjour]
+minishell $ cd repo
+Element 1 : [cd]
+Element 2 : [repo]
+minishell $ pwd
+/home/mat/Desktop/42/Minishell/repo
+Element 1 : [pwd]
+minishell $ cd ../..
+Element 1 : [cd]
+Element 2 : [../..]
+minishell $ pwd
+/home/mat/Desktop/42
+Element 1 : [pwd]
+minishell $ cd ../42/pipex/srcs/..
+Element 1 : [cd]
+Element 2 : [../42/pipex/srcs/..]
+minishell $ pwd
+/home/mat/Desktop/42/pipex
+Element 1 : [pwd]
+minishell $ pwd blata bonjour noerror
+/home/mat/Desktop/42/pipex
+Element 1 : [pwd]
+Element 2 : [blata]
+Element 3 : [bonjour]
+Element 4 : [noerror]
+minishell $ cd .. blata
+cd : too many arguments
+Element 1 : [cd]
+Element 2 : [..]
+Element 3 : [blata]
+minishell $ exit
+exit

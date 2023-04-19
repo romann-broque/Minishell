@@ -1,0 +1,12 @@
+cd ..
+pwd
+cd bonjour
+cd repo
+pwd
+cd ../..
+pwd
+cd ../42/pipex/srcs/..
+pwd
+pwd blata bonjour noerror
+cd .. blata
+exit

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/14 14:33:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/19 19:06:02 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define ZERO_VAR		"minishell"
 # define PATH_VAR		"PATH"
 # define FWD_SLASH_STR	"/"
+# define BATCH_OPT		"-c"
 
 // builtins
 
@@ -204,6 +205,13 @@ typedef struct s_builtin_mapper
 /// FUNCTIONS ///
 /////////////////
 
+//			BATCH				//
+
+///	batch.c
+
+bool		batch_mode(int ac, char **av);
+void		exec_batch(int ac, char **av);
+
 //			EXECUTION			//
 
 /// cmd_path.c
@@ -233,11 +241,19 @@ bool		is_builtin(t_command *cmd_data);
 
 void		exec_builtin(t_command *command);
 
-////  EXIT_BUILTIN  ////
+////  BUILTIN_FCTS  ////
 
 ///// exit.c
 
 void		exit_builtin(char **av);
+
+///// cd.c
+
+void		cd_builtin(char **command);
+
+///// pwd.c
+
+void		pwd_builtin(__attribute__((unused)) char **command);
 
 //			EXIT			//
 

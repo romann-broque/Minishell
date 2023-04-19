@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 14:07:50 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/19 18:59:33 by mat              ###   ########.fr       */
+/*   Created: 2023/04/19 09:47:29 by mat               #+#    #+#             */
+/*   Updated: 2023/04/19 11:18:18 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(
-	__attribute__((unused)) int ac,
-	__attribute__((unused)) char **av,
-	char **env)
+void	pwd_builtin(__attribute__((unused)) char **command)
 {
-	if (batch_mode(ac, av) == true)
-	{
-		ft_printf("BATCH MODE\n");
-		exec_batch(ac, av);
-	}
-	else
-		prompt(env);
-	return (EXIT_SUCCESS);
+	char	*cwd;
+
+	cwd = getcwd(NULL, 0);
+	ft_printf("%s\n", cwd);
+	free (cwd);
 }

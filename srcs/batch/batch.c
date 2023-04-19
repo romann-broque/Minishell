@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   batch.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 14:07:50 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/19 18:59:33 by mat              ###   ########.fr       */
+/*   Created: 2023/04/19 18:50:59 by mat               #+#    #+#             */
+/*   Updated: 2023/04/19 19:05:08 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(
-	__attribute__((unused)) int ac,
-	__attribute__((unused)) char **av,
-	char **env)
+bool	batch_mode(int ac, char **av)
 {
-	if (batch_mode(ac, av) == true)
+	if (ac > 1)
 	{
-		ft_printf("BATCH MODE\n");
-		exec_batch(ac, av);
+		if (ft_strcmp(BATCH_OPT, av[1]) == 0)
+			return (true);
 	}
-	else
-		prompt(env);
-	return (EXIT_SUCCESS);
+	return (false);
+}
+
+void	exec_batch(int ac, char **av)
+{
+	(void)ac;
+	(void)av;
+	return ;
 }

@@ -9,9 +9,10 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+=	srcs/
+PATH_SRCS	+=	srcs/batch/
 PATH_SRCS	+=	srcs/execution/
 PATH_SRCS	+=	srcs/execution/builtin/
-PATH_SRCS	+=	srcs/execution/builtin/exit_builtin/
+PATH_SRCS	+=	srcs/execution/builtin/builtin_fcts
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/free/
@@ -30,6 +31,10 @@ PATH_SRCS	+=	srcs/signal/
 
 SRCS	 	+=	minishell.c
 
+### srcs/
+
+SRCS		+=	batch.c
+
 ### srcs/execution/
 
 SRCS		+=	cmd_path.c
@@ -41,9 +46,11 @@ SRCS	 	+=	execution.c
 SRCS	 	+=	is_builtin.c
 SRCS	 	+=	exec_builtin.c
 
-### srcs/execution/builtin/exit_builtin/
+### srcs/execution/builtin/builtin_fcts/
 
 SRCS	 	+=	exit.c
+SRCS		+=	cd.c
+SRCS		+=	pwd.c
 
 ### srcs/exit/
 
