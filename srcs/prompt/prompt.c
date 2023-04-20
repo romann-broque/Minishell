@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/15 17:58:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/20 09:51:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	handle_command(const char *command, char **env)
 		add_deallocator(tokens, free_token_lst);
 		if (parser(tokens) == true)
 		{
-			expand_command(tokens);
+			expand_command(&tokens);
 			exec_command(&tokens, env);
 		}
 		else

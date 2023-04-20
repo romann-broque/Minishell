@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/15 19:18:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/20 10:22:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,22 @@ static bool	is_folder(const char *path)
 
 	if (stat(path, &file_stat) == -1)
 	{
-		perror("Failed to stat file");
+		perror(STAT_ERROR);
 		exit(EXIT_FAILURE);
 	}
 	return (S_ISDIR(file_stat.st_mode));
+}
+
+static void	child_job(t_command *cmd_data, char *path)
+{
+	if (is_folder(path) == true)
+	{
+		print_error("%s: %s: %s\n", MINISHELL, path, IS_DIR);
+		free_manager();
+		exit(EXIT_FAILURE);
+	}
+	else
+		exit(execve(path, cmd_data->command, cmd_data->env) == -1);
 }
 
 static void	exec_binary(t_command *cmd_data, char *path)
@@ -32,19 +44,32 @@ static void	exec_binary(t_command *cmd_data, char *path)
 	{
 		pid = fork();
 		if (pid == 0)
-		{
-			if (is_folder(path) == true)
-			{
-				print_error("%s: %s: Is a directory\n", MINISHELL, path);
-				free_manager();
-				exit(EXIT_FAILURE);
-			}
-			else
-				exit(execve(path, cmd_data->command, cmd_data->env) == -1);
-		}
+			child_job(cmd_data, path);
 		else if (pid > 0)
 			wait(NULL);
 	}
+}
+
+static char	*get_path(t_command *cmd_data)
+{
+	char	*path;
+
+	if (is_cmd_path(cmd_data) == true)
+	{
+		path = get_path_from_cmd(cmd_data);
+		if (path == NULL)
+		{
+			print_error("%s: %s: ", MINISHELL, cmd_data->command[0]);
+			perror(EMPTY_STR);
+		}
+	}
+	else
+	{
+		path = get_path_from_env(cmd_data);
+		if (path == NULL)
+			print_error("%s: %s\n", cmd_data->command[0], CMD_NOT_FOUND);
+	}
+	return (path);
 }
 
 void	execution(t_command *cmd_data)
@@ -55,18 +80,7 @@ void	execution(t_command *cmd_data)
 		exec_builtin(cmd_data);
 	else
 	{
-		if (is_cmd_path(cmd_data) == true)
-		{
-			path = get_path_from_cmd(cmd_data);
-			if (path == NULL)
-				perror(MINISHELL);
-		}
-		else
-		{
-			path = get_path_from_env(cmd_data);
-			if (path == NULL)
-				print_error("%s: %s\n", cmd_data->command[0], CMD_NOT_FOUND);
-		}
+		path = get_path(cmd_data);
 		add_deallocator(path, free);
 		exec_binary(cmd_data, path);
 	}

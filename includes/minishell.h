@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/15 18:42:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/20 10:18:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@
 # define MALLOC_ERROR		"Malloc error"
 # define PARS_ERROR			"Parsing error"
 # define CMD_NOT_FOUND		"command not found"
+# define IS_DIR				"Is a directory"
+# define STAT_ERROR			"Failed to stat file"
 
 // char types
 
@@ -97,6 +99,7 @@
 
 // return value
 
+# define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
 
 // enum
@@ -251,7 +254,7 @@ void		exit_shell(const int exit_value);
 
 // expand_command.c
 
-void		expand_command(t_list *tokens);
+void		expand_command(t_list **tokens);
 
 ///  VAR  ///
 
