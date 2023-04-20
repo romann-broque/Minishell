@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_path_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:58:46 by mat               #+#    #+#             */
-/*   Updated: 2023/04/14 11:43:57 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/14 13:35:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	is_var_path_in_env(const char **env)
+bool	is_var_path_in_env(char **env)
 {
 	size_t	i;
 

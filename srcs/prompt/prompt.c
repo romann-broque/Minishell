@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/14 11:19:36 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 09:51:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_resource_tracker	g_tracker;
 
-static void	exec_command(t_list **token_lst, const char **env)
+static void	exec_command(t_list **token_lst, char **env)
 {
 	t_list	*cmds;
 
@@ -23,7 +23,7 @@ static void	exec_command(t_list **token_lst, const char **env)
 	ft_lstiter(cmds, (void (*)(void *))execution);
 }
 
-static void	handle_command(const char *command, const char **env)
+static void	handle_command(const char *command, char **env)
 {
 	t_list	*tokens;
 
@@ -35,16 +35,15 @@ static void	handle_command(const char *command, const char **env)
 		add_deallocator(tokens, free_token_lst);
 		if (parser(tokens) == true)
 		{
-			expand_command(tokens);
+			expand_command(&tokens);
 			exec_command(&tokens, env);
-			print_command(tokens);
 		}
 		else
 			print_error(PARS_ERROR);
 	}
 }
 
-static void	get_command(const char **env)
+static void	get_command(char **env)
 {
 	char *const	line = readline(PROMPT);
 
@@ -56,7 +55,7 @@ static void	get_command(const char **env)
 	free_manager();
 }
 
-void	prompt(const char **env)
+void	prompt(char **env)
 {
 	set_catcher();
 	init_tracker();

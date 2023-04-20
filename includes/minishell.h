@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/14 11:41:00 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 10:18:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
 
 ///////////////
 /// DEFINES ///
@@ -28,6 +31,7 @@
 
 // string
 
+# define MINISHELL		"minishell"
 # define PROMPT			"minishell $ "
 # define EXIT_MESSAGE	"exit"
 # define QMARK_VAR		"LAST_RET_VAL"
@@ -56,9 +60,12 @@
 
 // error string
 
-# define SYNTAX_ERROR	"Syntax error"
-# define MALLOC_ERROR	"Malloc error"
-# define PARS_ERROR		"Parsing error"
+# define SYNTAX_ERROR		"Syntax error"
+# define MALLOC_ERROR		"Malloc error"
+# define PARS_ERROR			"Parsing error"
+# define CMD_NOT_FOUND		"command not found"
+# define IS_DIR				"Is a directory"
+# define STAT_ERROR			"Failed to stat file"
 
 // char types
 
@@ -88,10 +95,11 @@
 // count
 
 # define NEXT_TOK_MAX	11
-# define NB_DEALLOCATOR	4
+# define NB_DEALLOCATOR	5
 
 // return value
 
+# define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
 
 // enum
@@ -173,10 +181,10 @@ typedef struct s_tokparse
 
 typedef struct s_command
 {
-	char		**command;
-	const char	**env;
-	int			fdin;
-	int			fdout;
+	char	**command;
+	char	**env;
+	int		fdin;
+	int		fdout;
 }				t_command;
 
 typedef struct s_deallocator
@@ -212,7 +220,7 @@ char		*get_path_from_env(t_command *cmd);
 /// cmd_path_utils.c
 
 void		add_fwd_slash(char **paths);
-bool		is_var_path_in_env(const char **env);
+bool		is_var_path_in_env(char **env);
 bool		is_empty_cmd(t_command *cmd);
 bool		is_path_var(const char *env_line);
 
@@ -246,7 +254,7 @@ void		exit_shell(const int exit_value);
 
 // expand_command.c
 
-void		expand_command(t_list *tokens);
+void		expand_command(t_list **tokens);
 
 ///  VAR  ///
 
@@ -294,7 +302,7 @@ void		init_tracker(void);
 
 /// interpreter.c
 
-t_list		*interpreter(t_list *tokens, const char **env);
+t_list		*interpreter(t_list *tokens, char **env);
 
 /// interpreter_utils.c
 
@@ -379,18 +387,18 @@ bool		parser(t_list *tokens);
 /// test_print.c
 
 void		print_command(t_list *token_lst);
-void		print_strs(const char **strs);
+void		print_strs(char **strs);
 void		print_cmd(t_list *cmds);
 
 /// print_errror.c
 
-void		print_error(const char *error_name);
+void		print_error(const char *format, ...);
 
 //			PROMPT			//
 
 /// prompt.c
 
-void		prompt(const char **env);
+void		prompt(char **env);
 
 //			SIGNAL			//
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/04/14 11:39:29 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 11:57:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@ bool	is_cmd_path(t_command *cmd)
 
 char	*get_path_from_cmd(t_command *cmd)
 {
-	return (cmd->command[0]);
+	char *const	path = ft_strdup(cmd->command[0]);
+
+	if (path != NULL && access(path, X_OK) == 0)
+		return (path);
+	free(path);
+	return (NULL);
 }
 
 static char	*get_path_cmd(t_command *cmd, char **path_array)
@@ -44,7 +49,7 @@ static char	*get_path_cmd(t_command *cmd, char **path_array)
 	return (path);
 }
 
-static char	**get_split_path(const char **env)
+static char	**get_split_path(char **env)
 {
 	char	*joint_path;
 	char	**path_array;
