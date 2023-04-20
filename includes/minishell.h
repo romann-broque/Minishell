@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 11:03:01 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 11:22:33 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 // string
 
+# define MINISHELL		"minishell"
 # define PROMPT			"minishell $ "
 # define EXIT_MESSAGE	"exit"
 # define QMARK_VAR		"LAST_RET_VAL"
@@ -42,12 +43,13 @@
 # define PIPE				"|"
 # define OR					"||"
 # define AND				"&&"
+# define END_STR			"newline"
 
 // error string
 
 # define SYNTAX_ERROR	"Syntax error"
 # define MALLOC_ERROR	"Malloc error"
-# define PARS_ERROR		"minishell: syntax error near unexpected token "
+# define PARS_ERROR		"syntax error near unexpected token"
 
 // char types
 

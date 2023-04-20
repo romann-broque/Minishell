@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:16:21 by mat               #+#    #+#             */
-/*   Updated: 2023/04/14 17:42:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 11:22:40 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static char	*get_type_str(t_token *token)
 {
 	char *const	type_str_tab[] = {
-		"<", ">", "<<", ">>", "|", "||", "&&",
-		"WORD=WORD", "WORD", "START", "END"
+		LCHEVRON, RCHEVRON, DOUBLE_LCHEVRON, DOUBLE_RCHEVRON,
+		PIPE, OR, AND, NULL, NULL, NULL, END_STR
 	};
 	t_toktype	type;
 
@@ -29,6 +29,6 @@ void	print_pars_error(t_token *token)
 	char	*error_str;
 
 	error_str = get_type_str(token);
-	ft_dprintf(STDERR_FILENO, PARS_ERROR"`%s'\n", error_str);
+	print_error("%s: %s `%s'\n", MINISHELL, PARS_ERROR, error_str);
 	free(error_str);
 }

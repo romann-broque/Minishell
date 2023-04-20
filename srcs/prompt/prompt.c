@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 11:02:32 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 11:16:57 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ static void	handle_command(const char *command, const char **env)
 			expand_command(tokens);
 			exec_command(tokens, env);
 		}
-		else
-			print_error(PARS_ERROR);
 	}
 	print_command(tokens);
 	ft_lstclear(&tokens, (void (*)(void *))free_token);

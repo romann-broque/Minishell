@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:45:23 by mat               #+#    #+#             */
-/*   Updated: 2023/04/20 10:53:05 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 11:16:02 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ bool	parser(t_list *tokens)
 	while (is_valid_parsing(tokens, rules) == true)
 		tokens = tokens->next;
 	if (get_type_from_tok(tokens->content) != T_END)
-		print_pars_error(tokens->content);
+		print_pars_error(tokens->next->content);
 	return (tokens == NULL || get_type_from_tok(tokens->content) == T_END);
 }
