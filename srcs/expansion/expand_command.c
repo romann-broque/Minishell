@@ -6,24 +6,26 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:02:35 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 10:05:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/11 11:19:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	expand_command(t_list *tokens)
+static void	expand(t_token *token)
 {
 	char	*tmp;
 
-	while (tokens != NULL)
+	if (token != NULL)
 	{
-		tmp = get_str_from_tok(tokens->content);
+		tmp = token->value;
 		if (tmp != NULL)
-		{
-			((t_token *)(tokens->content))->value = expand_var(tmp);
-			free(tmp);
-		}
-		tokens = tokens->next;
+			token->value = expand_var(tmp);
+		free(tmp);
 	}
+}
+
+void	expand_command(t_list *tokens)
+{
+	ft_lstiter(tokens, (void (*)(void *))expand);
 }

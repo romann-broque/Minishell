@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:07:50 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/03 17:29:45 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/11 17:24:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int	main(
+	__attribute__((unused)) int ac,
+	__attribute__((unused)) char **av,
+	const char **env)
 {
-	prompt();
+	prompt(env);
 	return (EXIT_SUCCESS);
 }

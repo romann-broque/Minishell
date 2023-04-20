@@ -1,46 +1,42 @@
 minishell $ ech"o"
-Element 1 : [ech"o"]
+Element 1 : [echo]
 minishell $ ""
-Element 1 : [""]
 minishell $ ec"ho" he"l"lo
-Element 1 : [ec"ho"]
-Element 2 : [he"l"lo]
+Element 1 : [echo]
+Element 2 : [hello]
 minishell $ ec"ho" he'"'l"lo"
-Element 1 : [ec"ho"]
-Element 2 : [he'"'l"lo"]
+Element 1 : [echo]
+Element 2 : [he"llo]
 minishell $ "''       '' "'''"
 Syntax error
 minishell $    heeey les   ""  '  '''       amis
 Element 1 : [heeey]
 Element 2 : [les]
-Element 3 : [""]
-Element 4 : ['  ''']
-Element 5 : [amis]
+Element 3 : [  ]
+Element 4 : [amis]
 minishell $ 
 minishell $              
 minishell $ echo """ "
 Element 1 : [echo]
-Element 2 : [""" "]
+Element 2 : [ ]
 minishell $       he"l"   "o" 
-Element 1 : [he"l"]
-Element 2 : ["o"]
+Element 1 : [hel]
+Element 2 : [o]
 minishell $ "hel "   " lo"
-Element 1 : ["hel "]
-Element 2 : [" lo"]
+Element 1 : [hel ]
+Element 2 : [ lo]
 minishell $ "hel "   " lo"  
-Element 1 : ["hel "]
-Element 2 : [" lo"]
+Element 1 : [hel ]
+Element 2 : [ lo]
 minishell $ hel" ' '"lo
-Element 1 : [hel" ' '"lo]
+Element 1 : [hel ' 'lo]
 minishell $ "'" ""
-Element 1 : ["'"]
-Element 2 : [""]
+Element 1 : [']
 minishell $ "'''" "" "''''"
-Element 1 : ["'''"]
-Element 2 : [""]
-Element 3 : ["''''"]
+Element 1 : [''']
+Element 2 : ['''']
 minishell $       po"u'e't" o'k''' t"""rop r'igo'lo ce "test""    
-Element 1 : [po"u'e't"]
-Element 2 : [o'k''']
-Element 3 : [t"""rop r'igo'lo ce "test""]
+Element 1 : [pou'e't]
+Element 2 : [ok]
+Element 3 : [trop r'igo'lo ce test]
 minishell $ exit

@@ -22,6 +22,7 @@
 # define ANSI_COLOR_RESET	"\x1b[0m"
 # define MAX_TESTS_COUNT	10
 # define MAX_TOKEN_LEN		30
+# define MAX_LEN_CMD		100
 
 typedef struct s_test
 {
@@ -40,21 +41,25 @@ typedef struct s_suite
 
 void	are_quotes_closed__test(void);
 
+// expand.test.c
+
+void	expand__test(void);
+
 // get_words.test.c
 
 void	get_words__test(void);
 
-// lexer_root.c
+// interpreter.test.c
+
+void	interpreter__test(void);
+
+// lexer_root.test.c
 
 void	lexer_root__test(void);
 
 // parser.c
 
 void	parser__test(void);
-
-// expand_var.test.c
-
-void	expand_var__test(void);
 
 //// UTILS ////
 

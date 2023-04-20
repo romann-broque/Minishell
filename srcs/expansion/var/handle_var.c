@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/04/05 15:50:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/10 16:01:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	replace_special_var(t_vmachine *const machine)
 	const size_t	index = abs_index(SPECIAL_VAR, c);
 
 	if (is_in_str(SEPARATORS, c) == false)
-		machine->line = replace_and_free(machine->line, array_str[index],
+		machine->line = replace_str_free(machine->line, array_str[index],
 				machine->index - 1, SPEC_VAR_LEN);
 	change_state(machine->prev_state, machine);
 }
@@ -62,7 +62,7 @@ void	translate_var(t_vmachine *const mach)
 		mach->line = cut_string_at(mach->line,
 				mach->index - (mach->word_len + 1), mach->word_len + 1);
 	else
-		mach->line = replace_and_free(mach->line, var_value,
+		mach->line = replace_str_free(mach->line, var_value,
 				mach->index - (mach->word_len + 1), mach->word_len + 1);
 	mach->index += ft_strlen_safe(var_value) - (mach->word_len + 1);
 	mach->word_len = 0;
