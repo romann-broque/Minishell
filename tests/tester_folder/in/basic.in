@@ -1,7 +1,7 @@
 
 ls tests
 /bin/ls tests
-/bin/ls includes ./tests
+/bin/echo pouet pouet
 pouet
 /pouet
 exit

@@ -9,15 +9,8 @@ CUNIT
 env
 tester_folder
 valgrind
-minishell $ /bin/ls includes ./tests
-includes:
-minishell.h
-
-./tests:
-CUNIT
-env
-tester_folder
-valgrind
+minishell $ /bin/echo pouet pouet
+pouet pouet
 minishell $ pouet
 pouet: command not found
 minishell $ /pouet
