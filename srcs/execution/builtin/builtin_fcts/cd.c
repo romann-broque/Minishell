@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/20 16:17:31 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 16:44:46 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,30 @@ static bool	is_correct_size(char **command)
 	return (true);
 }
 
+static void	exec_spec_cd(char *var_name)
+{
+	const char	*var_value = getenv(var_name);
+
+	if (var_value == NULL)
+		print_error("%s: %s: %s not set\n", MINISHELL, CD_BUILTIN, var_name);
+	chdir(var_value);
+}
+
+static void	cd_spec(char *arg)
+{
+	char	*var_name;
+
+	if (arg != NULL)
+		var_name = "OLDPWD";
+	else
+		var_name = "HOME";
+	exec_spec_cd(var_name);
+}
+
 static void	execute_cd(char *arg)
 {
-	if (arg == NULL)
-		return ;
+	if (arg == NULL || ft_strcmp(MINUS_SIGN, arg) == 0)
+		cd_spec(arg);
 	else if (chdir(arg) == -1)
 	{
 		print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, arg);
