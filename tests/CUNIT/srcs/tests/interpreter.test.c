@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter.test.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:44:29 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/14 13:45:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/20 14:10:02 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	interpreter__test(void)
 		.fdout = STDOUT_FILENO,
 		},
 	};
-	
+
 	t_token	toks2[] = {
 		{.type = T_START, .value = NULL},
 		{.type = T_END, .value = NULL}

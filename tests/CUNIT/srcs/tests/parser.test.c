@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:48:00 by mat               #+#    #+#             */
-/*   Updated: 2023/04/11 18:06:51 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/20 14:10:54 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,6 @@ void	parser__test(void)
 		{.type = T_ASSIGN, .value = "BLA=54"},
 		{.type = T_END, .value = NULL}
 	};
-
 	tokens_test8 = get_list_from_array(t_8_toks);
 	CU_ASSERT_TRUE(parser(tokens_test8));
 	ft_lstclear(&tokens_test8, NULL);

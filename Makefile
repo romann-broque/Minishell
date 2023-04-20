@@ -94,6 +94,7 @@ SRCS		+=	word_utils.c
 ### srcs/parser/
 
 SRCS		+=	parser.c
+SRCS		+=	parser_error.c
 
 ### srcs/print/
 
@@ -182,6 +183,9 @@ CC			=	cc
 
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra
+ifneq ($(no_error), true)
+	CFLAGS		+=	-Werror
+endif
 
 ifneq ($(no_error), true)
 	CFLAGS		+=	-Werror

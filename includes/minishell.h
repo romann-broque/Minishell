@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 10:18:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/20 14:21:45 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,13 @@
 # define PIPE				"|"
 # define OR					"||"
 # define AND				"&&"
+# define END_STR			"newline"
 
 // error string
 
 # define SYNTAX_ERROR		"Syntax error"
 # define MALLOC_ERROR		"Malloc error"
-# define PARS_ERROR			"Parsing error"
+# define PARS_ERROR			"syntax error near unexpected token"
 # define CMD_NOT_FOUND		"command not found"
 # define IS_DIR				"Is a directory"
 # define STAT_ERROR			"Failed to stat file"
@@ -381,6 +382,10 @@ void		quote_state(t_qmachine *const machine, const char quote);
 /// parser.c
 
 bool		parser(t_list *tokens);
+
+/// parser_utils.c
+
+void		print_pars_error(t_token *token);
 
 //			PRINT			//
 
