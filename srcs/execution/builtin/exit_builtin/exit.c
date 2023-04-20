@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_shell.c                                       :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 12:35:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 18:06:40 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/13 14:48:25 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/13 15:05:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exit_shell(const int exit_value)
+void	exit_builtin(char **av)
 {
-	ft_dprintf(STDERR_FILENO, "%s\n", EXIT_MESSAGE);
+	(void)av;
 	free_manager();
-	exit(exit_value);
+	exit_shell(LAST_RETVAL);
 }

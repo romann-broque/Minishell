@@ -3,21 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   test_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:08:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/12 14:31:40 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/14 13:40:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_strs(const char **strs)
+void	print_strs(char **strs)
 {
 	while (*strs != NULL)
 	{
 		printf("-[%s]", *strs);
 		++strs;
+	}
+	printf("-\n\n\n");
+}
+
+static void	print_env(char **env)
+{
+	while (*env != NULL)
+	{
+		printf("---\n");
+		printf("[%s]\n", *env);
+		printf("---\n");
+		++env;
 	}
 	printf("-\n\n\n");
 }
@@ -30,9 +42,9 @@ void	print_cmd(t_list *cmds)
 	{
 		cmd_data = cmds->content;
 		printf("ARG :\n");
-		print_strs((const char **)cmd_data->command);
+		print_strs(cmd_data->command);
 		printf("\nENV :\n");
-		print_strs(cmd_data->env);
+		print_env(cmd_data->env);
 		cmds = cmds->next;
 	}
 }

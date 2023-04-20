@@ -1,4 +1,19 @@
-minishell $ wouah
-Element 1 : [wouah]
+minishell $ 
+minishell $ ls tests
+CUNIT
+env
+tester_folder
+valgrind
+minishell $ /bin/ls tests
+CUNIT
+env
+tester_folder
+valgrind
+minishell $ /bin/echo pouet pouet
+pouet pouet
+minishell $ pouet
+pouet: command not found
+minishell $ /pouet
+minishell: /pouet: No such file or directory
 minishell $ exit
 exit

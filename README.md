@@ -1,2 +1,2 @@
 # Minishell
-This project consists to create a "mini" version of bash
+This project consists in creating a "mini" version of bash

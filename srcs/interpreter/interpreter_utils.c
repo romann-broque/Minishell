@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:38:17 by mat               #+#    #+#             */
-/*   Updated: 2023/04/12 14:09:18 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/13 18:08:08 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,4 @@ char	**get_arg_array(t_list *tokens)
 	}
 	cpy_arg_lst_to_array(&arg_array, tokens);
 	return (arg_array);
-}
-
-// check : is_built-in or is_slash_name ?
-
-char	*find_cmd_path(const char *cmd_name)
-{
-	(void)cmd_name;
-	return (NULL);
 }

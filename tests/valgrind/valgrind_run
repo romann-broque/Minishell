@@ -8,8 +8,8 @@ EXEC="./minishell"
 valgrind --leak-check=full \
          --suppressions=${SUPPRESSION_FILE} \
          --show-leak-kinds=all \
-         --log-file=${LOG_FILE} \
          ${EXEC}
+#         --log-file=${LOG_FILE} \
 # --leak-check=full: "each individual leak will be shown in detail"
 
 # --show-leak-kinds=all: Show all of "definite, indirect, possible,
