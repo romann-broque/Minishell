@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/14 17:41:19 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 10:14:13 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 
 # define SYNTAX_ERROR	"Syntax error"
 # define MALLOC_ERROR	"Malloc error"
-# define PARS_ERROR		"bash: syntax error near unexpected token "
+# define PARS_ERROR		"minishell: syntax error near unexpected token "
 
 // char types
 
