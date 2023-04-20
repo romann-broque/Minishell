@@ -1,23 +1,23 @@
-==52080== Memcheck, a memory error detector
-==52080== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==52080== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==52080== Command: ./minishell
-==52080== Parent PID: 52078
-==52080== 
-==52080== 
-==52080== HEAP SUMMARY:
-==52080==     in use at exit: 204,158 bytes in 221 blocks
-==52080==   total heap usage: 660 allocs, 439 frees, 234,511 bytes allocated
-==52080== 
-==52080== LEAK SUMMARY:
-==52080==    definitely lost: 0 bytes in 0 blocks
-==52080==    indirectly lost: 0 bytes in 0 blocks
-==52080==      possibly lost: 0 bytes in 0 blocks
-==52080==    still reachable: 0 bytes in 0 blocks
-==52080==         suppressed: 204,158 bytes in 221 blocks
-==52080== 
-==52080== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---52080-- 
---52080-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,158 bytes in 221 blocks
-==52080== 
-==52080== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==54736== Memcheck, a memory error detector
+==54736== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==54736== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==54736== Command: ./minishell
+==54736== Parent PID: 54734
+==54736== 
+==54736== 
+==54736== HEAP SUMMARY:
+==54736==     in use at exit: 204,158 bytes in 221 blocks
+==54736==   total heap usage: 660 allocs, 439 frees, 234,511 bytes allocated
+==54736== 
+==54736== LEAK SUMMARY:
+==54736==    definitely lost: 0 bytes in 0 blocks
+==54736==    indirectly lost: 0 bytes in 0 blocks
+==54736==      possibly lost: 0 bytes in 0 blocks
+==54736==    still reachable: 0 bytes in 0 blocks
+==54736==         suppressed: 204,158 bytes in 221 blocks
+==54736== 
+==54736== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--54736-- 
+--54736-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,158 bytes in 221 blocks
+==54736== 
+==54736== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

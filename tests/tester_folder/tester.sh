@@ -47,7 +47,9 @@ for i in "${!inputs[@]}"; do
 	else
 		ret_val+=$?
 		echo -e "${RED}${filename} KO${NC}"
-		cat $LOG_FILE
+		if [[ -n "$VALGRIND" ]]; then
+			cat $LOG_FILE
+		fi
 	fi
 done
 
