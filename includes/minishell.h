@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/12 14:18:00 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/20 11:22:33 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 // string
 
+# define MINISHELL		"minishell"
 # define PROMPT			"minishell $ "
 # define EXIT_MESSAGE	"exit"
 # define QMARK_VAR		"LAST_RET_VAL"
@@ -42,12 +43,13 @@
 # define PIPE				"|"
 # define OR					"||"
 # define AND				"&&"
+# define END_STR			"newline"
 
 // error string
 
 # define SYNTAX_ERROR	"Syntax error"
 # define MALLOC_ERROR	"Malloc error"
-# define PARS_ERROR		"Parsing error"
+# define PARS_ERROR		"syntax error near unexpected token"
 
 // char types
 
@@ -234,13 +236,30 @@ bool		are_quotes_closed(const char *str);
 
 t_list		*lexer_root(const char *str);
 t_list		*lexer(const char *str);
+t_list		*tokenizer(t_list *words);
 
-// assign_states_utils.c
+///  WORD  ///
 
 void		update_state_assign(const char c, t_qstate *state);
 bool		is_assign(const char *word);
 
-// assign_states.c
+//// get_words.c
+
+t_list		*get_words(const char *str);
+
+//// parse_states.c
+
+void		separator_state(t_qmachine *const machine);
+void		single_quote_state(t_qmachine *const machine);
+void		double_quote_state(t_qmachine *const machine);
+void		spec_tok_state(t_qmachine *const machine);
+void		word_state(t_qmachine *const machine);
+
+//// strs_to_lst.c
+
+void		add_token(t_qmachine *machine);
+void		add_spec_token(t_qmachine *machine,
+				const char spec_tok[][MAX_LEN_TYPE + 1]);
 
 bool		start_state_assign(const char **word, t_qstate *state);
 bool		word_state_assign(const char **word, t_qstate *state);
@@ -290,6 +309,11 @@ void		quote_state(t_qmachine *const machine, const char quote);
 /// parser.c
 
 bool		parser(t_list *tokens);
+t_toktype	get_type_from_tok(t_token *tok);
+
+/// parser_utils.c
+
+void		print_pars_error(t_token *token);
 
 //			PRINT			//
 
@@ -301,7 +325,7 @@ void		print_cmd(t_list *cmds);
 
 /// print_errror.c
 
-void		print_error(const char *error_name);
+void		print_error(const char *format, ...);
 
 //			PROMPT			//
 

@@ -70,6 +70,7 @@ SRCS		+=	word_utils.c
 ### srcs/parser/
 
 SRCS		+=	parser.c
+SRCS		+=	parser_error.c
 
 ### srcs/print/
 
