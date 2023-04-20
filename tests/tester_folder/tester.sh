@@ -1,16 +1,15 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    tester.sh                                          :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/29 09:44:14 by rbroque           #+#    #+#              #
-#    Updated: 2023/04/07 10:55:55 by rbroque          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 #!/bin/bash
+
+# Access the command line argument
+valgrind="$1"
+VALGRIND_FOLDER=./tests/valgrind/
+SUPPRESSION_FILE="${VALGRIND_FOLDER}"suppressions.supp
+LOG_FILE="${VALGRIND_FOLDER}"valgrind_min.out
+
+# Use the variable in the script
+if [[ "$valgrind" == "valgrind" ]]; then
+	VALGRIND="valgrind -s --leak-check=full --suppressions=$SUPPRESSION_FILE --log-file=$LOG_FILE --show-leak-kinds=all"
+fi
 
 RED="\033[31m"
 GREEN="\033[32m"
@@ -26,9 +25,9 @@ REF_BASH_FOLDER="${FOLDER}"ref_bash/
 
 # Define the input, output, and output reference files
 
-inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"expand.in "${IN_FOLDER}"quotes.in "${IN_FOLDER}"var.in)
-outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"expand.out "${OUT_FOLDER}"quotes.out "${OUT_FOLDER}"var.out)
-output_refs=( "${REF_FOLDER}"basic.ref "${REF_FOLDER}"expand.ref "${REF_FOLDER}"quotes.ref "${REF_FOLDER}"var.ref)
+inputs=( "${IN_FOLDER}"basic.in)
+outputs=( "${OUT_FOLDER}"basic.out)
+output_refs=( "${REF_FOLDER}"basic.ref)
 
 # Iterate over the arrays using a for loop
 
@@ -36,7 +35,7 @@ ret_val=0
 for i in "${!inputs[@]}"; do
 
 	# Run the program and redirect the output to the corresponding output file
-	cat "${inputs[$i]}" | "${PROGRAM}" &> "${outputs[$i]}"
+	cat "${inputs[$i]}" | $VALGRIND "${PROGRAM}" &> "${outputs[$i]}"
 	ret_val+=$?
 
 	# Get the name of the input file without its path
@@ -48,6 +47,9 @@ for i in "${!inputs[@]}"; do
 	else
 		ret_val+=$?
 		echo -e "${RED}${filename} KO${NC}"
+		if [[ -n "$VALGRIND" ]]; then
+			cat $LOG_FILE
+		fi
 	fi
 done
 

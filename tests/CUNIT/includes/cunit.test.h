@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:44:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/07 09:32:00 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 14:11:36 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,14 @@ typedef struct s_suite
 
 void	are_quotes_closed__test(void);
 
+// cmd_path.test.c
+
+void	cmd_path__test(void);
+
 // expand.test.c
 
 void	expand__test(void);
+void	ASSERT_AND_FREE(char *str1, const char *str2);
 
 // get_words.test.c
 

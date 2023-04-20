@@ -6,32 +6,24 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 11:16:57 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 14:12:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	exec_command(t_list *token_lst, const char **env)
-{
-	t_token *const	token = token_lst->next->content;
-	t_list			*cmds;
+t_resource_tracker	g_tracker;
 
-	if (token != NULL
-		&& (token->value != NULL)
-		&& streq(token->value, "exit"))
-	{
-		ft_lstclear(&token_lst, (void (*)(void *))free_token);
-		exit_shell(LAST_RETVAL);
-	}
-	else
-	{
-		cmds = interpreter(token_lst, env);
-		ft_lstclear(&cmds, (void (*)(void *))free_command);
-	}
+static void	exec_command(t_list **token_lst, char **env)
+{
+	t_list	*cmds;
+
+	cmds = interpreter(*token_lst, env);
+	add_deallocator(cmds, free_command_lst);
+	ft_lstiter(cmds, (void (*)(void *))execution);
 }
 
-static void	handle_command(const char *command, const char **env)
+static void	handle_command(const char *command, char **env)
 {
 	t_list	*tokens;
 
@@ -40,30 +32,33 @@ static void	handle_command(const char *command, const char **env)
 		exit_shell(LAST_RETVAL);
 	else
 	{
+		add_deallocator(tokens, free_token_lst);
 		if (parser(tokens) == true)
 		{
-			expand_command(tokens);
-			exec_command(tokens, env);
+			expand_command(&tokens);
+			exec_command(&tokens, env);
 		}
+		else
+			print_error(PARS_ERROR);
 	}
-	print_command(tokens);
-	ft_lstclear(&tokens, (void (*)(void *))free_token);
 }
 
-static void	get_command(const char **env)
+static void	get_command(char **env)
 {
 	char *const	line = readline(PROMPT);
 
+	add_deallocator(line, free);
 	if (are_quotes_closed(line) == true)
 		handle_command(line, env);
 	else
-		print_error("%s\n", SYNTAX_ERROR);
-	free(line);
+		print_error(SYNTAX_ERROR);
+	free_manager();
 }
 
-void	prompt(const char **env)
+void	prompt(char **env)
 {
 	set_catcher();
+	init_tracker();
 	while (true)
 		get_command(env);
 }

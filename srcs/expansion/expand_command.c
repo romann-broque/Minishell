@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:02:35 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 11:19:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/20 14:15:35 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,21 @@ static void	expand(t_token *token)
 	}
 }
 
-void	expand_command(t_list *tokens)
+static int	is_empty_tok(t_token *token, char *data_ref)
 {
-	ft_lstiter(tokens, (void (*)(void *))expand);
+	if (token->type == T_START || token->type == T_END)
+		return (IGNORE_TOK);
+	return (ft_strcmp(token->value, data_ref));
+}
+
+static void	rm_empty_tok(t_list **tokens)
+{
+	ft_list_remove_if(tokens, EMPTY_STR,
+		is_empty_tok, (void (*)(void *))free_token);
+}
+
+void	expand_command(t_list **tokens)
+{
+	ft_lstiter(*tokens, (void (*)(void *))expand);
+	rm_empty_tok(tokens);
 }

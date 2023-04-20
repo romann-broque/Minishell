@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 11:22:33 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 14:21:45 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
 
 ///////////////
 /// DEFINES ///
@@ -33,6 +36,17 @@
 # define EXIT_MESSAGE	"exit"
 # define QMARK_VAR		"LAST_RET_VAL"
 # define ZERO_VAR		"minishell"
+# define PATH_VAR		"PATH"
+# define FWD_SLASH_STR	"/"
+
+// builtins
+
+# define CD_BUILTIN		"cd"
+# define ECHO_BUILTIN	"echo"
+# define EXIT_BUILTIN	"exit"
+# define EXPORT_BUILTIN	"export"
+# define PWD_BUILTIN	"pwd"
+# define UNSET_BUILTIN	"unset"
 
 // tok_string
 
@@ -47,9 +61,12 @@
 
 // error string
 
-# define SYNTAX_ERROR	"Syntax error"
-# define MALLOC_ERROR	"Malloc error"
-# define PARS_ERROR		"syntax error near unexpected token"
+# define SYNTAX_ERROR		"Syntax error"
+# define MALLOC_ERROR		"Malloc error"
+# define PARS_ERROR			"syntax error near unexpected token"
+# define CMD_NOT_FOUND		"command not found"
+# define IS_DIR				"Is a directory"
+# define STAT_ERROR			"Failed to stat file"
 
 // char types
 
@@ -67,29 +84,32 @@
 # define UNDERSCORE		'_'
 # define AMPERSAND		'&'
 # define EQUAL_SIGN		'='
+# define FWD_SLASH		'/'
+# define COLON			':'
 
 // len
 
-# define STR_LEN_MAX	50
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
-# define MAX_LEN_TYPE	2
+# define PATH_VAR_LEN	4
 
 // count
 
-# define NEXT_TOK_MAX	9
+# define NEXT_TOK_MAX	11
+# define NB_DEALLOCATOR	5
 
 // return value
 
+# define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
 
 // enum
 
 # define ASSIGN_START	0
 
-//////////////////
-/// STRUCTURES ///
-//////////////////
+/////////////
+/// ENUM ///
+/////////////
 
 typedef enum e_toktype
 {
@@ -107,12 +127,6 @@ typedef enum e_toktype
 	T_INVALID
 }			t_toktype;
 
-typedef struct s_token
-{
-	t_toktype	type;
-	char		*value;
-}				t_token;
-
 typedef enum e_var_state
 {
 	E_STD,
@@ -123,15 +137,6 @@ typedef enum e_var_state
 	E_EOL
 }			t_vstate;
 
-typedef struct s_vmachine
-{
-	t_vstate	state;
-	t_vstate	prev_state;
-	size_t		word_len;
-	size_t		index;
-	char		*line;
-}			t_vmachine;
-
 typedef enum e_quote_state
 {
 	E_SEPARATOR,
@@ -141,6 +146,25 @@ typedef enum e_quote_state
 	E_WORD,
 	E_EOF
 }			t_qstate;
+
+//////////////////
+/// STRUCTURES ///
+//////////////////
+
+typedef struct s_token
+{
+	t_toktype	type;
+	char		*value;
+}				t_token;
+
+typedef struct s_vmachine
+{
+	t_vstate	state;
+	t_vstate	prev_state;
+	size_t		word_len;
+	size_t		index;
+	char		*line;
+}				t_vmachine;
 
 typedef struct s_qmachine
 {
@@ -154,19 +178,72 @@ typedef struct s_tokparse
 {
 	t_toktype	curr;
 	t_toktype	next[NEXT_TOK_MAX];
-}			t_tokparse;
+}				t_tokparse;
 
 typedef struct s_command
 {
-	char		**command;
-	const char	**env;
-	int			fdin;
-	int			fdout;
-}			t_command;
+	char	**command;
+	char	**env;
+	int		fdin;
+	int		fdout;
+}				t_command;
+
+typedef struct s_deallocator
+{
+	void	*ptr;
+	void	(*free_fct)(void *);
+}				t_deallocator;
+
+typedef struct s_resource_tracker
+{
+	t_deallocator	deallocator_array[NB_DEALLOCATOR];
+	size_t			index;
+}				t_resource_tracker;
+
+typedef struct s_builtin_mapper
+{
+	const char	*name;
+	void		(*fct)(char **av);
+}				t_builtin_mapper;
 
 /////////////////
 /// FUNCTIONS ///
 /////////////////
+
+//			EXECUTION			//
+
+/// cmd_path.c
+
+bool		is_cmd_path(t_command *cmd);
+char		*get_path_from_cmd(t_command *cmd);
+char		*get_path_from_env(t_command *cmd);
+
+/// cmd_path_utils.c
+
+void		add_fwd_slash(char **paths);
+bool		is_var_path_in_env(char **env);
+bool		is_empty_cmd(t_command *cmd);
+bool		is_path_var(const char *env_line);
+
+/// execution.c
+
+void		execution(t_command *command);
+
+///  BUILTIN  ///
+
+//// is_builtin.c
+
+bool		is_builtin(t_command *cmd_data);
+
+//// exec_buitlin.c
+
+void		exec_builtin(t_command *command);
+
+////  EXIT_BUILTIN  ////
+
+///// exit.c
+
+void		exit_builtin(char **av);
 
 //			EXIT			//
 
@@ -178,7 +255,7 @@ void		exit_shell(const int exit_value);
 
 // expand_command.c
 
-void		expand_command(t_list *tokens);
+void		expand_command(t_list **tokens);
 
 ///  VAR  ///
 
@@ -209,11 +286,24 @@ bool		is_special_var(const char c);
 char		*cut_string_at(char *src, const size_t index, const size_t del_len);
 void		delete_quote(t_vmachine *const machine);
 
+//			FREE			//
+
+// free_manager.c
+
+void		free_command_lst(void *ptr);
+void		free_token_lst(void *ptr);
+void		free_manager(void);
+
+// tracker.c
+
+void		add_deallocator(void *ptr, void (*fct)(void *));
+void		init_tracker(void);
+
 //			INTERPRETER		//
 
 /// interpreter.c
 
-t_list		*interpreter(t_list *tokens, const char **env);
+t_list		*interpreter(t_list *tokens, char **env);
 
 /// interpreter_utils.c
 
@@ -236,30 +326,13 @@ bool		are_quotes_closed(const char *str);
 
 t_list		*lexer_root(const char *str);
 t_list		*lexer(const char *str);
-t_list		*tokenizer(t_list *words);
 
-///  WORD  ///
+//// assign_states_utils.c
 
 void		update_state_assign(const char c, t_qstate *state);
 bool		is_assign(const char *word);
 
-//// get_words.c
-
-t_list		*get_words(const char *str);
-
-//// parse_states.c
-
-void		separator_state(t_qmachine *const machine);
-void		single_quote_state(t_qmachine *const machine);
-void		double_quote_state(t_qmachine *const machine);
-void		spec_tok_state(t_qmachine *const machine);
-void		word_state(t_qmachine *const machine);
-
-//// strs_to_lst.c
-
-void		add_token(t_qmachine *machine);
-void		add_spec_token(t_qmachine *machine,
-				const char spec_tok[][MAX_LEN_TYPE + 1]);
+//// assign_states.c
 
 bool		start_state_assign(const char **word, t_qstate *state);
 bool		word_state_assign(const char **word, t_qstate *state);
@@ -295,7 +368,7 @@ void		word_state(t_qmachine *const machine);
 
 void		add_token(t_qmachine *machine);
 void		add_spec_token(t_qmachine *machine,
-				const char spec_tok[][MAX_LEN_TYPE + 1]);
+				const char *spec_tok[]);
 
 //// word_utils.c
 
@@ -309,7 +382,6 @@ void		quote_state(t_qmachine *const machine, const char quote);
 /// parser.c
 
 bool		parser(t_list *tokens);
-t_toktype	get_type_from_tok(t_token *tok);
 
 /// parser_utils.c
 
@@ -320,7 +392,7 @@ void		print_pars_error(t_token *token);
 /// test_print.c
 
 void		print_command(t_list *token_lst);
-void		print_strs(const char **strs);
+void		print_strs(char **strs);
 void		print_cmd(t_list *cmds);
 
 /// print_errror.c
@@ -331,7 +403,7 @@ void		print_error(const char *format, ...);
 
 /// prompt.c
 
-void		prompt(const char **env);
+void		prompt(char **env);
 
 //			SIGNAL			//
 

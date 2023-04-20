@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_states.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:41:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 19:26:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/20 14:13:35 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	double_quote_state(t_qmachine *const machine)
 
 void	spec_tok_state(t_qmachine *const machine)
 {
-	const char		spec_tok[][MAX_LEN_TYPE + 1] = {
+	const char		*spec_tok[] = {
 		OR,
 		AND,
 		DOUBLE_LCHEVRON,

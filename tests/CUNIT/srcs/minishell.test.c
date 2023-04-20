@@ -12,18 +12,14 @@
 
 #include "cunit.test.h"
 
-const char	**g_env;
+char	**g_env;
 
 void	set_tests(void)
 {
 	static t_suite	suite_mapping[] = {
-		{.suite = NULL, .sname = "Quotes", .tests = {
-			{.tname = "are_quotes_closed", are_quotes_closed__test}
-			}
-		},
 		{.suite = NULL, .sname = "Syntax", .tests = {
 			{.tname = "are_quotes_closed", are_quotes_closed__test},
-			}
+			},
 		},
 		{.suite = NULL, .sname = "Lexer", .tests = {
 			{.tname = "get_words", get_words__test},
@@ -37,10 +33,14 @@ void	set_tests(void)
 		{
 			.suite = NULL, .sname = "Expand", .tests = {
 				{.tname = "expand", expand__test},
-			},
+			}
 		},
 		{.suite = NULL, .sname = "Interpreter", .tests = {
 			{.tname = "interpreter", interpreter__test}
+			}
+		},
+		{.suite = NULL, .sname = "Execution", .tests = {
+			{.tname = "cmd_path", cmd_path__test}
 			}
 		},
 		{.suite = NULL, .sname = NULL}
@@ -68,7 +68,7 @@ void	exec_tests(void)
 int	main(
 	__attribute__((unused))int ac,
 	__attribute__((unused))char **av,
-	const char **env)
+	char **env)
 {
 	g_env = env;
 	exec_tests();

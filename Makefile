@@ -9,8 +9,12 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+=	srcs/
+PATH_SRCS	+=	srcs/execution/
+PATH_SRCS	+=	srcs/execution/builtin/
+PATH_SRCS	+=	srcs/execution/builtin/exit_builtin/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
+PATH_SRCS	+=	srcs/free/
 PATH_SRCS	+=	srcs/interpreter/
 PATH_SRCS	+=	srcs/expansion/var/
 PATH_SRCS	+=	srcs/lexer/
@@ -25,6 +29,21 @@ PATH_SRCS	+=	srcs/signal/
 ### srcs/
 
 SRCS	 	+=	minishell.c
+
+### srcs/execution/
+
+SRCS		+=	cmd_path.c
+SRCS		+=	cmd_path_utils.c
+SRCS	 	+=	execution.c
+
+### srcs/execution/builtin/
+
+SRCS	 	+=	is_builtin.c
+SRCS	 	+=	exec_builtin.c
+
+### srcs/execution/builtin/exit_builtin/
+
+SRCS	 	+=	exit.c
 
 ### srcs/exit/
 
@@ -41,12 +60,17 @@ SRCS		+=	var_machine.c
 SRCS		+=	var_state_func.c
 SRCS		+=	var_utils.c
 
-### srcs/interpreter
+### srcs/free/
+
+SRCS		+=	free_manager.c
+SRCS		+=	tracker.c
+
+### srcs/interpreter/
 
 SRCS		+=	interpreter.c
 SRCS		+=	interpreter_utils.c
 
-### srcs/lexer
+### srcs/lexer/
 
 ### srcs/lexer/quotes/
 
@@ -129,22 +153,40 @@ LINKS += -lreadline
 ################
 
 TESTER_FOLDER	= ./tests/
-CUNIT_FOLDER	= $(TESTER_FOLDER)/CUNIT/
-MINTEST_FOLDER	= $(TESTER_FOLDER)/tester_folder/
 ENV_FOLDER		= $(TESTER_FOLDER)/env/
-
-TESTER			= $(MINTEST_FOLDER)/tester.sh
-CUNIT			= $(CUNIT_FOLDER)/cunit
 ENV				= $(TESTER_FOLDER)/env/env.sh
+
+### MIN
+
+MINTEST_FOLDER	= $(TESTER_FOLDER)/tester_folder/
+TESTER			= $(MINTEST_FOLDER)/tester.sh
+
+### CUNIT
+
+CUNIT_FOLDER	= $(TESTER_FOLDER)/CUNIT/
+CUNIT			= $(CUNIT_FOLDER)/run_cunit.sh
+
+### VALGRIND
+
+CURR_FOLDER_VALGRIND = ./tests/valgrind/
+SUPPRESSION_FILE	= $(CURR_FOLDER_VALGRIND)suppressions.supp
+
+ifeq ($(valgrind), true)
+	VALGRIND	+= valgrind
+endif
 
 #####################
 #### COMPILATION ####
 #####################
 
-CC			=	gcc
+CC			=	cc
 
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra
+ifneq ($(no_error), true)
+	CFLAGS		+=	-Werror
+endif
+
 ifneq ($(no_error), true)
 	CFLAGS		+=	-Werror
 endif
@@ -200,12 +242,12 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 test	:
-	$(MAKE) -s
+	$(MAKE) -s re
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
-	source $(ENV); $(CUNIT)
+	source $(ENV); $(CUNIT) $(VALGRIND)
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
-	source $(ENV); $(TESTER)
+	source $(ENV); $(TESTER) $(VALGRIND)
 
 clean	:
 	$(RM) -r $(PATH_OBJS)

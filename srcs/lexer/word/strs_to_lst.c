@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strs_to_lst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:21:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/05 19:22:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/20 14:13:46 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	add_token(t_qmachine *machine)
 }
 
 void	add_spec_token(t_qmachine *machine,
-	const char spec_tok[][MAX_LEN_TYPE + 1])
+	const char *spec_tok[])
 {
 	size_t	toklen;
 	size_t	i;

@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:48:00 by mat               #+#    #+#             */
-/*   Updated: 2023/04/11 10:57:45 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 14:10:54 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,6 @@ void	parser__test(void)
 		{.type = T_ASSIGN, .value = "BLA=54"},
 		{.type = T_END, .value = NULL}
 	};
-  
 	tokens_test8 = get_list_from_array(t_8_toks);
 	CU_ASSERT_TRUE(parser(tokens_test8));
 	ft_lstclear(&tokens_test8, NULL);
@@ -178,7 +177,6 @@ void	parser__test(void)
 		{.type = T_GENERIC, .value = "bonjour"},
 		{.type = T_END, .value = NULL}
 	};
-
 
 	tokens_test10 = get_list_from_array(t_10_toks);
 	CU_ASSERT_TRUE(parser(tokens_test10));
@@ -207,7 +205,7 @@ void	parser__test(void)
 		{.type = T_GENERIC, .value = "RAGE AGAINST THE MACHINE"},
 		{.type = T_END, .value = NULL}
 	};
-  
+
 	tokens_test12 = get_list_from_array(t_12_toks);
 	CU_ASSERT_TRUE(parser(tokens_test12));
 	ft_lstclear(&tokens_test12, NULL);

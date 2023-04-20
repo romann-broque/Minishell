@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   are_quotes_closed.test.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:48:53 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/04 10:07:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/20 14:09:43 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	are_quotes_closed__test(void)
 	const char	str_t8[] = "   heeey les   \"\"  \'  \'\'\'       amis";
 	const char	str_t9[] = "             ";
 	const char	str_t10[] = "echo \"\"\" \"";
-	const char	str_t11[] = "he\"l\"   \"o\""; 
+	const char	str_t11[] = "he\"l\"   \"o\"";
 	const char	str_t12[] = "\"hel \"   \" lo\"";
 	const char	str_t13[] = "\"hel \"   \" lo\"      ";
 	const char	str_t14[] = "hel\" \' \'\"lo";
