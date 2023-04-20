@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   batch.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 15:43:47 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 15:03:18 by mat              ###   ########.fr       */
+/*   Created: 2023/04/19 18:50:59 by mat               #+#    #+#             */
+/*   Updated: 2023/04/19 19:05:08 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_error(const char *format, ...)
+bool	batch_mode(int ac, char **av)
 {
-	va_list	arg;
+	if (ac > 1)
+	{
+		if (ft_strcmp(BATCH_OPT, av[1]) == 0)
+			return (true);
+	}
+	return (false);
+}
 
-	va_start(arg, format);
-	ft_vdprintf(STDERR_FILENO, format, arg);
-	va_end(arg);
+void	exec_batch(int ac, char **av)
+{
+	(void)ac;
+	(void)av;
+	return ;
 }

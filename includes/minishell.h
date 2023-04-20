@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 14:21:45 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 15:38:51 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define ZERO_VAR		"minishell"
 # define PATH_VAR		"PATH"
 # define FWD_SLASH_STR	"/"
+# define BATCH_OPT		"-c"
 
 // builtins
 
@@ -67,6 +68,7 @@
 # define CMD_NOT_FOUND		"command not found"
 # define IS_DIR				"Is a directory"
 # define STAT_ERROR			"Failed to stat file"
+# define TOO_MANY_ARGS		"too many arguments"
 
 // char types
 
@@ -210,6 +212,13 @@ typedef struct s_builtin_mapper
 /// FUNCTIONS ///
 /////////////////
 
+//			BATCH				//
+
+///	batch.c
+
+bool		batch_mode(int ac, char **av);
+void		exec_batch(int ac, char **av);
+
 //			EXECUTION			//
 
 /// cmd_path.c
@@ -239,11 +248,19 @@ bool		is_builtin(t_command *cmd_data);
 
 void		exec_builtin(t_command *command);
 
-////  EXIT_BUILTIN  ////
+////  BUILTIN_FCTS  ////
 
 ///// exit.c
 
 void		exit_builtin(char **av);
+
+///// cd.c
+
+void		cd_builtin(char **command);
+
+///// pwd.c
+
+void		pwd_builtin(__attribute__((unused)) char **command);
 
 //			EXIT			//
 

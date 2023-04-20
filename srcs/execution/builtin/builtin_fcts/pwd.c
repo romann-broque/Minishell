@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 15:43:47 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 15:03:18 by mat              ###   ########.fr       */
+/*   Created: 2023/04/19 09:47:29 by mat               #+#    #+#             */
+/*   Updated: 2023/04/19 11:18:18 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_error(const char *format, ...)
+void	pwd_builtin(__attribute__((unused)) char **command)
 {
-	va_list	arg;
+	char	*cwd;
 
-	va_start(arg, format);
-	ft_vdprintf(STDERR_FILENO, format, arg);
-	va_end(arg);
+	cwd = getcwd(NULL, 0);
+	ft_printf("%s\n", cwd);
+	free (cwd);
 }

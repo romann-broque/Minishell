@@ -1,0 +1,12 @@
+cd ..
+pwd
+cd bonjour
+cd repo
+pwd
+cd srcs/batch
+pwd
+cd ../../tests/CUNIT/..
+pwd
+pwd blata bonjour noerror
+cd .. blata
+exit

@@ -55,27 +55,33 @@ done
 
 # BASH COMPARAISON
 
-# echo -e "${BLUE}\n<====  BASH  ====>\n${NC}"
+ echo -e "${BLUE}\n<====  BASH  ====>\n${NC}"
 
-# output_ref_bash=( "${REF_BASH_FOLDER}"basic.refb "${REF_BASH_FOLDER}"expand.refb "${REF_BASH_FOLDER}"quotes.refb "{REF_BASH_FOLDER}"var.refb)
+ inputs=( "${IN_FOLDER}"builtin_cwd.in)
+ outputs=( "${OUT_FOLDER}"builtin_cwd.out)
+ output_ref_bash=( "${REF_BASH_FOLDER}"builtin_cwd.refb)
 
-# ret_val=0
-# for i in "${!inputs[@]}"; do
-# 	# Run the program and redirect the output to the corresponding output file
-# 	cat "${inputs[i]}" | bash &> "${output_ref_bash[i]}"
-# 	ret_val+=$?
+ for i in "${!inputs[@]}"; do
+ 	# Run the program and redirect the output to the corresponding output file
+ 	cat "${inputs[i]}" | bash &> "${output_ref_bash[i]}"
+ 	cat "${inputs[i]}" | ./minishell &> "${outputs[i]}"
+ 	ret_val+=$?
+	# Replace Error of each line with minishell
+	sed -i -e 's/^bash: line [0-9]*: /minishell: /g' "${output_ref_bash[i]}"
+	sed -i '/^minishell /d' "${outputs[i]}"
+	sed -i '/^exit/d' "${outputs[i]}"
 
-# 	# Get the name of the input file without its path
-# 	filename=$(basename "${inputs[i]}")
+ 	# Get the name of the input file without its path
+ 	filename=$(basename "${inputs[i]}")
 
-# 	# Compare the output file with the corresponding reference file using diff
-# 	if diff -a "${output_ref_bash[i]}" "${outputs[i]}"; then
-# 		echo -e "${GREEN}${filename} : OK${NC}"
-# 	else
-# 		ret_val+=$?
-# 		echo -e "${RED}${filename} KO${NC}"
-# 	fi
-# done
+ 	# Compare the output file with the corresponding reference file using diff
+ 	if diff -a "${output_ref_bash[i]}" "${outputs[i]}"; then
+ 		echo -e "${GREEN}${filename} : OK${NC}"
+ 	else
+ 		ret_val+=$?
+ 		echo -e "${RED}${filename} KO${NC}"
+ 	fi
+ done
 
 # Exit the (ret_val == 0)
 

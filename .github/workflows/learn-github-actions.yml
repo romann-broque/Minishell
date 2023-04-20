@@ -7,6 +7,7 @@ on:
       - "MVE1"
       - "MVE2"
       - "MVE3"
+      - "MVE4"
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
