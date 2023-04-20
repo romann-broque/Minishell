@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 10:14:13 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 11:03:01 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@
 # define SYNTAX_ERROR	"Syntax error"
 # define MALLOC_ERROR	"Malloc error"
 # define PARS_ERROR		"minishell: syntax error near unexpected token "
-
 
 // char types
 
@@ -295,7 +294,6 @@ void		word_state(t_qmachine *const machine);
 void		add_token(t_qmachine *machine);
 void		add_spec_token(t_qmachine *machine,
 				const char spec_tok[][MAX_LEN_TYPE + 1]);
-
 
 //// word_utils.c
 

@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/14 17:40:00 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/20 11:02:32 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	exec_command(t_list *token_lst, const char **env)
 		cmds = interpreter(token_lst, env);
 		ft_lstclear(&cmds, (void (*)(void *))free_command);
 	}
-
 }
 
 static void	handle_command(const char *command, const char **env)
@@ -60,7 +59,7 @@ static void	get_command(const char **env)
 	if (are_quotes_closed(line) == true)
 		handle_command(line, env);
 	else
-		print_error(SYNTAX_ERROR);
+		print_error("%s\n", SYNTAX_ERROR);
 	free(line);
 }
 
