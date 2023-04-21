@@ -18,6 +18,7 @@ NC="\033[0m"
 
 PROGRAM=./minishell
 FOLDER=./tests/tester_folder/
+ENV=./tests/env/env.sh
 IN_FOLDER="${FOLDER}"in/
 OUT_FOLDER="${FOLDER}"out/
 REF_FOLDER="${FOLDER}"ref/
@@ -35,7 +36,7 @@ ret_val=0
 for i in "${!inputs[@]}"; do
 
 	# Run the program and redirect the output to the corresponding output file
-	cat "${inputs[$i]}" | $VALGRIND "${PROGRAM}" &> "${outputs[$i]}"
+	source $ENV; cat "${inputs[$i]}" | $VALGRIND "${PROGRAM}" &> "${outputs[$i]}"
 	ret_val+=$?
 
 	# Get the name of the input file without its path
@@ -63,8 +64,8 @@ done
 
  for i in "${!inputs[@]}"; do
  	# Run the program and redirect the output to the corresponding output file
- 	cat "${inputs[i]}" | bash &> "${output_ref_bash[i]}"
- 	cat "${inputs[i]}" | ./minishell &> "${outputs[i]}"
+ 	source $ENV; cat "${inputs[i]}" | bash &> "${output_ref_bash[i]}"
+ 	source $ENV; cat "${inputs[i]}" | ./minishell &> "${outputs[i]}"
  	ret_val+=$?
 	# Replace Error of each line with minishell
 	sed -i -e 's/^bash: line [0-9]*: /minishell: /g' "${output_ref_bash[i]}"

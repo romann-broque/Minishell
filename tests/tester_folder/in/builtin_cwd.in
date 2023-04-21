@@ -11,4 +11,14 @@ pwd blata bonjour noerror
 cd .. blata
 cd
 pwd
+cd -
+pwd
+cd -
+pwd
+cd -
+cd -
+pwd
+cd -
+cd
+pwd
 exit

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/21 16:31:29 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 17:27:59 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static char	*get_cd_arg(char *arg)
 	if (arg == NULL || streq(arg, MINUS_SIGN))
 	{
 		if (arg == NULL)
-			var_name = "HOME";
+			var_name = HOME_VAR;
 		else if (streq(arg, MINUS_SIGN) == true)
-			var_name = "OLDPWD";
+			var_name = OLDPWD_VAR;
 		new_arg = ft_getenv(var_name);
 		if (new_arg == NULL)
 			print_error("%s: %s: %s not set\n", MINISHELL,
@@ -56,7 +56,7 @@ static void	execute_cd(t_command *cmd_data)
 		update_cwd_var();
 		if (cmd_data->command[1] != NULL
 			&& streq(cmd_data->command[1], MINUS_SIGN) == true)
-			pwd_builtin(cmd_data);
+			print_pos();
 	}
 	else if (cd_arg != NULL)
 	{

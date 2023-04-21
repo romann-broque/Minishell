@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 11:43:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 17:03:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	prompt(void)
 {
 	set_catcher();
 	init_tracker();
+	update_cwd_var();
 	while (true)
 		get_command();
 }

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 16:32:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 16:32:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	add_var(const char *var_name, const char *var_value)
 	if (var_name != NULL && var_value != NULL)
 	{
 		tmp_strs = g_global.env;
-		assign = ft_strjoin(var_name, "=");
+		assign = ft_strjoin(var_name, EQUAL_SIGN_STR);
 		tmp_str = assign;
 		assign = ft_strjoin(assign, var_value);
 		add_str_in_strs(&(g_global.env), assign);

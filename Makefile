@@ -263,7 +263,7 @@ test	:
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
 	source $(ENV); $(CUNIT) $(VALGRIND)
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
-	source $(ENV); $(TESTER) $(VALGRIND)
+	$(TESTER) $(VALGRIND)
 
 clean	:
 	$(RM) -r $(PATH_OBJS)

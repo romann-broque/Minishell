@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 16:16:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 17:28:26 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@
 # define PWD_BUILTIN	"pwd"
 # define UNSET_BUILTIN	"unset"
 
+// env
+
+# define HOME_VAR		"HOME"
+# define OLDPWD_VAR		"OLDPWD"
+# define PWD_VAR		"PWD"
+
 // tok_string
 
 # define LCHEVRON			"<"
@@ -77,6 +83,7 @@
 # define SEPARATORS		" \t\n"
 # define SPECIAL_VAR	"?0"
 # define EMPTY_STR		""
+# define EQUAL_SIGN_STR	"="
 
 // char
 
@@ -264,6 +271,7 @@ void		execution(t_command *command);
 /// cwd_utils.c
 
 void		update_cwd_var(void);
+void		print_pos(void);
 
 ///  BUILTIN  ///
 
@@ -283,7 +291,6 @@ void		exit_builtin(t_command *cmd_data);
 
 ///// cd.c
 
-void		update_cwd_var(void);
 void		cd_builtin(t_command *cmd_data);
 
 ///// pwd.c
