@@ -26,4 +26,5 @@ cd lol
 rm ../lol -fr
 pwd
 cd .
+cd ..
 exit
