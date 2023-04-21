@@ -9,4 +9,6 @@ cd ../../tests/CUNIT/..
 pwd
 pwd blata bonjour noerror
 cd .. blata
+cd
+pwd
 exit
