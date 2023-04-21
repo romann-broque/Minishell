@@ -81,6 +81,9 @@ done
  	else
  		ret_val+=$?
  		echo -e "${RED}${filename} KO${NC}"
+		if [[ -n "$VALGRIND" ]]; then
+			cat $LOG_FILE
+		fi
  	fi
  done
 

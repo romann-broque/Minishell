@@ -64,6 +64,7 @@ void	exec_tests(void)
 	CU_basic_run_tests();
 
 	// Cleanup the CUnit test registry
+	free_strs(g_global.env);
 	exit_tests();
 }
 
