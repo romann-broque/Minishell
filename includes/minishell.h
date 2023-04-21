@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 14:23:03 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/21 15:36:32 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -426,5 +426,6 @@ void		prompt(char **env);
 /// signal.c
 
 void		set_catcher(void);
+void		update_sigquit_catcher(void);
 
 #endif

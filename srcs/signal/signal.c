@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:54:40 by mat               #+#    #+#             */
-/*   Updated: 2023/04/21 14:32:51 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/21 16:01:56 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,20 @@ static void	handle_sigint(__attribute__((unused)) int signal)
 
 static void	handle_sigquit(__attribute__((unused)) int signal)
 {
-	printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	printf("blata\n");
-	rl_redisplay();
-	return ;
+	printf("Quit (core dumped)");
+	printf(NEWLINE_STR);
+	kill(g_global.child_pid, SIGQUIT);
+	kill(g_global.child_pid, SIGINT);
+	update_global();
+}
+
+void	update_sigquit_catcher(void)
+{
+	signal(SIGQUIT, handle_sigquit);
 }
 
 void	set_catcher(void)
 {
 	signal(SIGINT, handle_sigint);
-	signal(SIGQUIT, handle_sigquit);
+	signal(SIGQUIT, SIG_IGN);
 }

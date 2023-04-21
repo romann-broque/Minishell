@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 11:01:33 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/21 15:51:51 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ static void	exec_binary(t_command *cmd_data, char *path)
 		if (g_global.child_pid == 0)
 			child_job(cmd_data, path);
 		else if (g_global.child_pid > 0)
+		{
+			update_sigquit_catcher();
 			wait(NULL);
+			set_catcher();
+		}
 	}
 }
 
