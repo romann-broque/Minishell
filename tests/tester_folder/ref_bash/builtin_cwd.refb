@@ -18,3 +18,5 @@ minishell: cd: too many arguments
 /home/screw
 /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder
 /home/screw
+pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory

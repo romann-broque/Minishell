@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 17:28:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 23:06:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@
 # define PWD_BUILTIN	"pwd"
 # define UNSET_BUILTIN	"unset"
 
+// fct
+
+# define GETCWD			"getcwd"
+# define CHDIR			"chdir"
+
 // env
 
 # define HOME_VAR		"HOME"
@@ -75,6 +80,8 @@
 # define IS_DIR				"Is a directory"
 # define STAT_ERROR			"Failed to stat file"
 # define TOO_MANY_ARGS		"too many arguments"
+# define ERROR_ACCESS_DIR		"error retrieving current directory"
+# define ERROR_ACCESS_PAR_DIR	"cannot access parent directories"
 
 // char types
 
@@ -106,6 +113,7 @@
 
 # define NEXT_TOK_MAX	11
 # define NB_DEALLOCATOR	5
+# define CD_EXP_ARG		2
 
 // return value
 

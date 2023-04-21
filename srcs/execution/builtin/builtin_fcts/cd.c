@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/21 17:27:59 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 23:05:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	is_correct_size(char **command)
 	cmd_size = 0;
 	while (command[cmd_size])
 		cmd_size++;
-	if (cmd_size > 2)
+	if (cmd_size > CD_EXP_ARG)
 	{
 		print_error("%s: %s: %s\n", MINISHELL, CD_BUILTIN, TOO_MANY_ARGS);
 		return (false);
@@ -47,6 +47,11 @@ static char	*get_cd_arg(char *arg)
 	return (new_arg);
 }
 
+static bool	is_prev_option(char **command)
+{
+	return (command[1] != NULL && streq(command[1], MINUS_SIGN) == true);
+}
+
 static void	execute_cd(t_command *cmd_data)
 {
 	char *const	cd_arg = get_cd_arg(cmd_data->command[1]);
@@ -54,8 +59,7 @@ static void	execute_cd(t_command *cmd_data)
 	if (chdir(cd_arg) != -1)
 	{
 		update_cwd_var();
-		if (cmd_data->command[1] != NULL
-			&& streq(cmd_data->command[1], MINUS_SIGN) == true)
+		if (is_prev_option(cmd_data->command) == true)
 			print_pos();
 	}
 	else if (cd_arg != NULL)

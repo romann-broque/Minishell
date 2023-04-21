@@ -64,7 +64,7 @@ done
 
  for i in "${!inputs[@]}"; do
  	# Run the program and redirect the output to the corresponding output file
- 	source $ENV; cat "${inputs[i]}" | bash &> "${output_ref_bash[i]}"
+ 	source $ENV; cat "${inputs[i]}" | bash --posix &> "${output_ref_bash[i]}"
  	source $ENV; cat "${inputs[i]}" | ./minishell &> "${outputs[i]}"
  	ret_val+=$?
 	# Replace Error of each line with minishell
