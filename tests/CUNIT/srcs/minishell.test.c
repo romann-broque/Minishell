@@ -12,7 +12,7 @@
 
 #include "cunit.test.h"
 
-char	**g_env;
+t_global	g_global;
 
 void	set_tests(void)
 {
@@ -70,6 +70,6 @@ int	main(
 	__attribute__((unused))char **av,
 	char **env)
 {
-	g_env = env;
+	init_env(&g_global, env);
 	exec_tests();
 }

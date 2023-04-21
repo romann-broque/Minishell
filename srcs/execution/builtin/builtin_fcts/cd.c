@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/21 10:30:10 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 11:08:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*get_cd_arg(char *arg)
 			var_name = "HOME";
 		else if (streq(arg, MINUS_SIGN) == true)
 			var_name = "OLDPWD";
-		new_arg = getenv(var_name);
+		new_arg = ft_getenv(var_name);
 		if (new_arg == NULL)
 			print_error("%s: %s: %s not set\n", MINISHELL,
 				CD_BUILTIN, var_name);
@@ -53,8 +53,6 @@ static void	update_cwd_var(char **env)
 
 	if (curr_pwd != NULL)
 	{
-		printf("curr_pwd --> %s\n", curr_pwd);
-		printf("PWD --> %s\n", ft_getenv("PWD"));
 		change_var(env, "OLDPWD", ft_getenv("PWD"));
 		change_var(env, "PWD", curr_pwd);
 	}
@@ -70,11 +68,12 @@ static void	execute_cd(t_command *cmd_data)
 		print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, cd_arg);
 		perror(EMPTY_STR);
 	}
-	else if (cmd_data->command[1] != NULL)
+	else
 	{
-		if (streq(cmd_data->command[1], MINUS_SIGN) == true)
-			pwd_builtin(cmd_data);
 		update_cwd_var(cmd_data->env);
+		if (cmd_data->command[1] != NULL
+			&& streq(cmd_data->command[1], MINUS_SIGN) == true)
+			pwd_builtin(cmd_data);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/04/20 15:02:19 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/21 10:58:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	handle_var_start(t_vmachine *const machine)
 void	translate_var(t_vmachine *const mach)
 {
 	char *const	var_name = get_var_name(mach);
-	char *const	var_value = getenv(var_name);
+	char *const	var_value = ft_getenv(var_name);
 
 	free(var_name);
 	if (var_value == NULL)

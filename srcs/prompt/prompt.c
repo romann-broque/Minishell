@@ -6,17 +6,19 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 10:26:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 11:43:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+extern t_global	g_global;
+
 static void	exec_command(t_list **token_lst)
 {
 	t_list	*cmds;
 
-	cmds = interpreter(*token_lst);
+	cmds = interpreter(*token_lst, g_global.env);
 	add_deallocator(cmds, free_command_lst);
 	ft_lstiter(cmds, (void (*)(void *))execution);
 }

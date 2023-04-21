@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 11:27:11 by mat               #+#    #+#             */
-/*   Updated: 2023/04/14 13:44:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 11:52:59 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cunit.test.h"
 
-extern char	**g_env;
+extern t_global	g_global;
 
 void	cmd_path__test(void)
 {
@@ -31,7 +31,7 @@ void	cmd_path__test(void)
 	char *str_out_t8;
 
 	t_command	cmd1 = {
-		.env = g_env,
+		.env = g_global.env,
 		.command = (char *[]){
 			"ls",
 			"-a",
@@ -42,7 +42,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd2 = {
-		.env = g_env,
+		.env = g_global.env,
 		.command = (char *[]){
 			"cat",
 			"-e",
@@ -53,7 +53,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd3 = {
-		.env = g_env,
+		.env = g_global.env,
 		.command = (char *[]){
 			"env",
 			"-i",
@@ -64,7 +64,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd4 = {
-		.env = g_env,
+		.env = g_global.env,
 		.command = (char *[]){
 			"rev",
 			NULL
@@ -74,7 +74,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd5 = {
-		.env = g_env,
+		.env = g_global.env,
 		.command = (char *[]){
 			"blata",
 			"-a",
@@ -85,7 +85,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd6 = {
-		.env = g_env,
+		.env = g_global.env,
 		.command = (char *[]){
 			"awdfoawhd",
 			"-a",
@@ -96,7 +96,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd7 = {
-		.env = g_env,
+		.env = g_global.env,
 		.command = (char *[]){
 			"",
 			NULL
@@ -106,7 +106,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd8 = {
-		.env = g_env,
+		.env = g_global.env,
 		.command = (char *[]){
 			"bonjour",
 			"comment",

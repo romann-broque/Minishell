@@ -6,15 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:20:19 by mat               #+#    #+#             */
-/*   Updated: 2023/04/21 10:49:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 11:44:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
-
-static t_command	*init_command(t_list *tokens)
+static t_command	*init_command(t_list *tokens, char **env)
 {
 	t_command	*cmd_data;
 
@@ -24,7 +22,7 @@ static t_command	*init_command(t_list *tokens)
 		cmd_data->command = get_arg_array(tokens);
 		if (cmd_data->command == NULL)
 			return (NULL);
-		cmd_data->env = g_global.env;
+		cmd_data->env = env;
 		cmd_data->fdin = STDIN_FILENO;
 		cmd_data->fdout = STDOUT_FILENO;
 	}
@@ -60,7 +58,7 @@ static void	skip_until_generic(t_list **tokens)
 	}
 }
 
-t_list	*interpreter(t_list *tokens)
+t_list	*interpreter(t_list *tokens, char **env)
 {
 	t_command	*cmd_data;
 	t_list		*commands;
@@ -69,7 +67,7 @@ t_list	*interpreter(t_list *tokens)
 	skip_until_generic(&tokens);
 	while (get_type_from_tok(tokens->content) != T_END)
 	{
-		cmd_data = init_command(tokens);
+		cmd_data = init_command(tokens, env);
 		ft_lstadd_back(&commands, ft_lstnew(cmd_data));
 		skip_generic(&tokens);
 		skip_until_generic(&tokens);

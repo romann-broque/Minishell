@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 10:48:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 11:55:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,6 +236,10 @@ void		change_var(char **env,
 
 char		*ft_getenv(char *var_name);
 
+/// init_env.c
+
+void		init_env(t_global *global, char **env);
+
 //			EXECUTION			//
 
 /// cmd_path.c
@@ -337,7 +341,7 @@ void		init_tracker(void);
 
 /// interpreter.c
 
-t_list		*interpreter(t_list *tokens);
+t_list		*interpreter(t_list *tokens, char **env);
 
 /// interpreter_utils.c
 

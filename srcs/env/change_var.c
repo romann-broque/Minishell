@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 09:59:51 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 11:19:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 static void	change_value(char **assign, const char *var_value)
 {
 	const size_t	len = ft_strlen(*assign);
-	const size_t	offset = abs_index(*assign, '=');
+	const size_t	offset = abs_index(*assign, EQUAL_SIGN);
 
-	printf("before replace --> %s\n", *assign);
 	*assign = replace_str_free(*assign, var_value, offset + 1, len - offset);
-	printf("after replace --> %s\n", *assign);
 }
 
 void	change_var(char **env,
