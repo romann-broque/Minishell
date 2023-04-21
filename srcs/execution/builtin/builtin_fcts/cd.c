@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/21 10:12:10 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 10:30:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static void	update_cwd_var(char **env)
 	if (curr_pwd != NULL)
 	{
 		printf("curr_pwd --> %s\n", curr_pwd);
-		printf("PWD --> %s\n", getenv("PWD"));
-		change_var(env, "OLDPWD", getenv("PWD"));
+		printf("PWD --> %s\n", ft_getenv("PWD"));
+		change_var(env, "OLDPWD", ft_getenv("PWD"));
 		change_var(env, "PWD", curr_pwd);
 	}
 	free(curr_pwd);

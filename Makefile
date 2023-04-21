@@ -39,6 +39,7 @@ SRCS		+=	batch.c
 ### srcs/env/
 
 SRCS		+= change_var.c
+SRCS		+= ft_getenv.c
 
 ### srcs/execution/
 

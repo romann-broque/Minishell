@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_manager.c                                     :+:      :+:    :+:   */
+/*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 14:28:17 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 10:23:29 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/21 10:12:46 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/21 10:39:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,19 @@
 
 extern t_global	g_global;
 
-void	free_command_lst(void *ptr)
+char	*ft_getenv(char *var_name)
 {
-	ft_lstclear((t_list **)&ptr, (void (*)(void *))free_command);
-}
-
-void	free_token_lst(void *ptr)
-{
-	ft_lstclear((t_list **)&ptr, (void (*)(void *))free_token);
-}
-
-static void	run_deallocator(t_deallocator *dealloc)
-{
-	dealloc->free_fct(dealloc->ptr);
-}
-
-void	free_manager(void)
-{
-	const size_t	deallocator_count = g_global.tracker.index;
+	char **const	env = g_global.env;
 	size_t			i;
+	size_t			len;
 
 	i = 0;
-	while (i < deallocator_count)
+	while (env[i] != NULL)
 	{
-		run_deallocator(g_global.tracker.deallocator_array + i);
+		len = abs_index(env[i], '=');
+		if (ft_strncmp(env[i], var_name, len) == 0)
+			return (env[i] + len + 1);
 		++i;
 	}
-	init_tracker();
+	return (NULL);
 }

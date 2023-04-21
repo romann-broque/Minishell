@@ -6,11 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:07:50 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 00:30:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 10:24:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_global	g_global;
 
 static size_t	get_size_strs(char **strs)
 {
@@ -56,8 +58,8 @@ int	main(
 	__attribute__((unused)) char **av,
 	char **env)
 {
-	env = dup_strs(env);
-	add_deallocator(env, (void (*)(void *))free_strs);
-	prompt(env);
+	g_global.env = dup_strs(env);
+	add_deallocator(g_global.env, (void (*)(void *))free_strs);
+	prompt();
 	return (EXIT_SUCCESS);
 }

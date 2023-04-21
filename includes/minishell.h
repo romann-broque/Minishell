@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 10:02:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 10:48:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,13 @@ typedef struct s_builtin_mapper
 	void		(*fct)(t_command *cmd_data);
 }				t_builtin_mapper;
 
+typedef struct s_global
+{
+	t_resource_tracker	tracker;
+	char				**env;
+	bool				is_stoppable;
+}				t_global;
+
 /////////////////
 /// FUNCTIONS ///
 /////////////////
@@ -225,6 +232,9 @@ void		exec_batch(int ac, char **av);
 
 void		change_var(char **env,
 				const char *var_name, const char *var_value);
+/// ft_getenv.c
+
+char		*ft_getenv(char *var_name);
 
 //			EXECUTION			//
 
@@ -327,7 +337,7 @@ void		init_tracker(void);
 
 /// interpreter.c
 
-t_list		*interpreter(t_list *tokens, char **env);
+t_list		*interpreter(t_list *tokens);
 
 /// interpreter_utils.c
 
@@ -427,7 +437,7 @@ void		print_error(const char *format, ...);
 
 /// prompt.c
 
-void		prompt(char **env);
+void		prompt(void);
 
 //			SIGNAL			//
 
