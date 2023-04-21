@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 12:01:06 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 11:01:33 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_global	g_global;
 
 static bool	is_folder(const char *path)
 {
@@ -39,14 +41,12 @@ static void	child_job(t_command *cmd_data, char *path)
 
 static void	exec_binary(t_command *cmd_data, char *path)
 {
-	int	pid;
-
 	if (path != NULL)
 	{
-		pid = fork();
-		if (pid == 0)
+		g_global.child_pid = fork();
+		if (g_global.child_pid == 0)
 			child_job(cmd_data, path);
-		else if (pid > 0)
+		else if (g_global.child_pid > 0)
 			wait(NULL);
 	}
 }

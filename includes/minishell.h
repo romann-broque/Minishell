@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 14:21:45 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/21 14:23:03 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define ZERO_VAR		"minishell"
 # define PATH_VAR		"PATH"
 # define FWD_SLASH_STR	"/"
+# define NEWLINE_STR	"\n"
 
 // builtins
 
@@ -206,6 +207,14 @@ typedef struct s_builtin_mapper
 	void		(*fct)(char **av);
 }				t_builtin_mapper;
 
+typedef struct s_global
+{
+	t_resource_tracker	tracker;
+	char				**env;
+	bool				is_stoppable;
+	int					child_pid;
+}				t_global;
+
 /////////////////
 /// FUNCTIONS ///
 /////////////////
@@ -298,6 +307,13 @@ void		free_manager(void);
 
 void		add_deallocator(void *ptr, void (*fct)(void *));
 void		init_tracker(void);
+
+//			GLOBAL			//
+
+// global.c
+
+void		init_global(void);
+void		update_global(void);
 
 //			INTERPRETER		//
 
