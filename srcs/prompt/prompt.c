@@ -6,13 +6,13 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 14:12:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/21 13:36:51 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_resource_tracker	g_tracker;
+extern t_global	g_global;
 
 static void	exec_command(t_list **token_lst, char **env)
 {
@@ -20,6 +20,7 @@ static void	exec_command(t_list **token_lst, char **env)
 
 	cmds = interpreter(*token_lst, env);
 	add_deallocator(cmds, free_command_lst);
+	g_global.is_stoppable = true;
 	ft_lstiter(cmds, (void (*)(void *))execution);
 }
 
@@ -47,6 +48,7 @@ static void	get_command(char **env)
 {
 	char *const	line = readline(PROMPT);
 
+	update_global();
 	add_deallocator(line, free);
 	if (are_quotes_closed(line) == true)
 		handle_command(line, env);
@@ -58,7 +60,7 @@ static void	get_command(char **env)
 void	prompt(char **env)
 {
 	set_catcher();
-	init_tracker();
+	init_global();
 	while (true)
 		get_command(env);
 }
