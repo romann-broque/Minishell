@@ -16,11 +16,15 @@ fi
 
 $VALGRIND $CUNIT
 
-if grep -q "ERROR SUMMARY: 0 errors" "$LOG_FILE"; then
-	ret_val=0
-else
-	cat $LOG_FILE
-	ret_val=1
+ret_val=$?
+if [[ -n "$VALGRIND" ]]; then
+
+	if grep -q "ERROR SUMMARY: 0 errors" "$LOG_FILE"; then
+		ret_val=0
+	else
+		cat $LOG_FILE
+		ret_val=1
+	fi
 fi
 
 exit $ret_val

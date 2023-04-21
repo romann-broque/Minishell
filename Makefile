@@ -50,8 +50,9 @@ SRCS	 	+=	execution.c
 
 ### srcs/execution/builtin/
 
-SRCS	 	+=	is_builtin.c
+SRCS	 	+=	cwd_utils.c
 SRCS	 	+=	exec_builtin.c
+SRCS	 	+=	is_builtin.c
 
 ### srcs/execution/builtin/builtin_fcts/
 

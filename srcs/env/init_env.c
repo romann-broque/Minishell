@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dup_strs.c                                         :+:      :+:    :+:   */
+/*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 11:49:06 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 15:24:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static size_t	get_size_strs(char **strs)
+size_t	get_size_strs(char **strs)
 {
 	size_t	size;
 
@@ -22,7 +22,7 @@ static size_t	get_size_strs(char **strs)
 	return (size);
 }
 
-static void	cpy_strs(char **dest, char **src)
+void	cpy_strs(char **dest, char **src)
 {
 	size_t	i;
 

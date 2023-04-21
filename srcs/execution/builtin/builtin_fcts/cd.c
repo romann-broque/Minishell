@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/21 11:08:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 16:31:29 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,33 +47,21 @@ static char	*get_cd_arg(char *arg)
 	return (new_arg);
 }
 
-static void	update_cwd_var(char **env)
-{
-	char *const	curr_pwd = getcwd(NULL, 0);
-
-	if (curr_pwd != NULL)
-	{
-		change_var(env, "OLDPWD", ft_getenv("PWD"));
-		change_var(env, "PWD", curr_pwd);
-	}
-	free(curr_pwd);
-}
-
 static void	execute_cd(t_command *cmd_data)
 {
 	char *const	cd_arg = get_cd_arg(cmd_data->command[1]);
 
-	if (chdir(cd_arg) == -1)
+	if (chdir(cd_arg) != -1)
 	{
-		print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, cd_arg);
-		perror(EMPTY_STR);
-	}
-	else
-	{
-		update_cwd_var(cmd_data->env);
+		update_cwd_var();
 		if (cmd_data->command[1] != NULL
 			&& streq(cmd_data->command[1], MINUS_SIGN) == true)
 			pwd_builtin(cmd_data);
+	}
+	else if (cd_arg != NULL)
+	{
+		print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, cd_arg);
+		perror(EMPTY_STR);
 	}
 }
 

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   cwd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/19 09:47:29 by mat               #+#    #+#             */
-/*   Updated: 2023/04/21 16:13:57 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/21 16:16:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	pwd_builtin(__attribute__((unused)) t_command *cmd_data)
+void	update_cwd_var(void)
 {
-	char	*cwd;
+	char *const	curr_pwd = getcwd(NULL, 0);
 
-	update_cwd_var();
-	cwd = getcwd(NULL, 0);
-	if (cwd != NULL)
-		ft_printf("%s\n", cwd);
-	free(cwd);
+	if (curr_pwd != NULL)
+	{
+		change_var("OLDPWD", ft_getenv("PWD"));
+		change_var("PWD", curr_pwd);
+	}
+	free(curr_pwd);
 }

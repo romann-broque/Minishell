@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:44:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 13:25:24 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 14:38:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ typedef struct s_suite
 // are_quotes_closed.test.c
 
 void	are_quotes_closed__test(void);
+
+// change_var.test.c
+
+void	change_var__test(void);
 
 // cmd_path.test.c
 

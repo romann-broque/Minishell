@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 13:32:24 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 16:16:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,14 +230,16 @@ void		exec_batch(int ac, char **av);
 
 /// change_var.c
 
-void		change_var(char **env,
-				const char *var_name, const char *var_value);
+void		change_var(const char *var_name, const char *var_value);
+
 /// ft_getenv.c
 
 char		*ft_getenv(const char *var_name);
 
 /// init_env.c
 
+size_t		get_size_strs(char **strs);
+void		cpy_strs(char **dest, char **src);
 void		init_env(t_global *global, char **env);
 
 //			EXECUTION			//
@@ -259,6 +261,10 @@ bool		is_path_var(const char *env_line);
 
 void		execution(t_command *command);
 
+/// cwd_utils.c
+
+void		update_cwd_var(void);
+
 ///  BUILTIN  ///
 
 //// is_builtin.c
@@ -277,6 +283,7 @@ void		exit_builtin(t_command *cmd_data);
 
 ///// cd.c
 
+void		update_cwd_var(void);
 void		cd_builtin(t_command *cmd_data);
 
 ///// pwd.c
