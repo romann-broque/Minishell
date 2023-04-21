@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   global.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 14:07:50 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 10:53:30 by mat              ###   ########.fr       */
+/*   Created: 2023/04/21 13:31:24 by mat               #+#    #+#             */
+/*   Updated: 2023/04/21 13:33:25 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_global	g_global;
+extern t_global	g_global;
 
-int	main(
-	__attribute__((unused)) int ac,
-	__attribute__((unused)) char **av,
-	char **env)
+void	init_global(void)
 {
-	prompt(env);
-	return (EXIT_SUCCESS);
+	init_tracker();
+	g_global.is_stoppable = true;
+	g_global.child_pid = 0;
+}
+
+void	update_global(void)
+{
+	g_global.is_stoppable = false;
+	g_global.child_pid = 0;
 }
