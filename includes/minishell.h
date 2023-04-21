@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 11:55:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 13:32:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,7 @@ void		change_var(char **env,
 				const char *var_name, const char *var_value);
 /// ft_getenv.c
 
-char		*ft_getenv(char *var_name);
+char		*ft_getenv(const char *var_name);
 
 /// init_env.c
 

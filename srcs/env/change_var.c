@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 11:19:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 11:59:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,5 @@ void	change_var(char **env,
 	if (env[i] != NULL)
 		change_value(env + i, var_value);
 }
+
+// append variables if it doesnt exist

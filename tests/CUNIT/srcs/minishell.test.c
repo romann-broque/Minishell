@@ -40,7 +40,8 @@ void	set_tests(void)
 			}
 		},
 		{.suite = NULL, .sname = "Execution", .tests = {
-			{.tname = "cmd_path", cmd_path__test}
+			{.tname = "cmd_path", cmd_path__test},
+			{.tname = "ft_getenv", ft_getenv__test}
 			}
 		},
 		{.suite = NULL, .sname = NULL}

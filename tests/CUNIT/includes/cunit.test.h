@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cunit.test.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:44:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 15:04:13 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/21 13:25:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ void	cmd_path__test(void);
 
 void	expand__test(void);
 void	ASSERT_AND_FREE(char *str1, const char *str2);
+
+// ft_getenv.test.c
+
+void	ft_getenv__test(void);
 
 // get_words.test.c
 
