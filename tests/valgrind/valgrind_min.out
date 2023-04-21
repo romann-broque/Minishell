@@ -1,14 +1,23 @@
-==442522== Memcheck, a memory error detector
-==442522== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==442522== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==442522== Command: ./tests/CUNIT/cunit
-==442522== Parent PID: 442521
-==442522== 
-==442522== 
-==442522== HEAP SUMMARY:
-==442522==     in use at exit: 0 bytes in 0 blocks
-==442522==   total heap usage: 1,239 allocs, 1,239 frees, 32,568 bytes allocated
-==442522== 
-==442522== All heap blocks were freed -- no leaks are possible
-==442522== 
-==442522== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==455746== Memcheck, a memory error detector
+==455746== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==455746== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==455746== Command: ./minishell
+==455746== Parent PID: 455744
+==455746== 
+==455746== 
+==455746== HEAP SUMMARY:
+==455746==     in use at exit: 204,158 bytes in 221 blocks
+==455746==   total heap usage: 748 allocs, 527 frees, 243,541 bytes allocated
+==455746== 
+==455746== LEAK SUMMARY:
+==455746==    definitely lost: 0 bytes in 0 blocks
+==455746==    indirectly lost: 0 bytes in 0 blocks
+==455746==      possibly lost: 0 bytes in 0 blocks
+==455746==    still reachable: 0 bytes in 0 blocks
+==455746==         suppressed: 204,158 bytes in 221 blocks
+==455746== 
+==455746== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--455746-- 
+--455746-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,158 bytes in 221 blocks
+==455746== 
+==455746== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
