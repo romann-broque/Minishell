@@ -10,6 +10,7 @@ SHELL		= /usr/bin/bash
 
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/batch/
+PATH_SRCS	+=	srcs/env/
 PATH_SRCS	+=	srcs/execution/
 PATH_SRCS	+=	srcs/execution/builtin/
 PATH_SRCS	+=	srcs/execution/builtin/builtin_fcts
@@ -34,6 +35,10 @@ SRCS	 	+=	minishell.c
 ### srcs/
 
 SRCS		+=	batch.c
+
+### srcs/env/
+
+SRCS		+= change_var.c
 
 ### srcs/execution/
 

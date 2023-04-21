@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 22:02:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 10:02:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,13 @@ typedef struct s_builtin_mapper
 
 bool		batch_mode(int ac, char **av);
 void		exec_batch(int ac, char **av);
+
+//			ENV					//
+
+/// change_var.c
+
+void		change_var(char **env,
+				const char *var_name, const char *var_value);
 
 //			EXECUTION			//
 
