@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:54:40 by mat               #+#    #+#             */
-/*   Updated: 2023/04/21 14:23:12 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/21 14:25:05 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern t_global	g_global;
 
-static bool	have_killeable_child(void)
+static bool	have_killable_child(void)
 {
 	return (g_global.is_stoppable == true && g_global.child_pid != 0);
 }
@@ -22,7 +22,7 @@ static bool	have_killeable_child(void)
 static void	handle_sigint(__attribute__((unused)) int signal)
 {
 	printf(NEWLINE_STR);
-	if (have_killeable_child() == true)
+	if (have_killable_child() == true)
 	{
 		kill(g_global.child_pid, SIGINT);
 		update_global();
