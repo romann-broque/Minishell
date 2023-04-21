@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 13:36:51 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/21 14:11:29 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ static void	get_command(char **env)
 
 void	prompt(char **env)
 {
-	set_catcher();
 	init_global();
+	set_catcher();
 	while (true)
 		get_command(env);
 }

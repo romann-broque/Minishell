@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 13:49:04 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/21 14:23:03 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define ZERO_VAR		"minishell"
 # define PATH_VAR		"PATH"
 # define FWD_SLASH_STR	"/"
+# define NEWLINE_STR	"\n"
 
 // builtins
 
