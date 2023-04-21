@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/20 16:44:46 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/21 10:12:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,39 +27,59 @@ static bool	is_correct_size(char **command)
 	return (true);
 }
 
-static void	exec_spec_cd(char *var_name)
-{
-	const char	*var_value = getenv(var_name);
-
-	if (var_value == NULL)
-		print_error("%s: %s: %s not set\n", MINISHELL, CD_BUILTIN, var_name);
-	chdir(var_value);
-}
-
-static void	cd_spec(char *arg)
+static char	*get_cd_arg(char *arg)
 {
 	char	*var_name;
+	char	*new_arg;
 
-	if (arg != NULL)
-		var_name = "OLDPWD";
-	else
-		var_name = "HOME";
-	exec_spec_cd(var_name);
+	new_arg = arg;
+	if (arg == NULL || streq(arg, MINUS_SIGN))
+	{
+		if (arg == NULL)
+			var_name = "HOME";
+		else if (streq(arg, MINUS_SIGN) == true)
+			var_name = "OLDPWD";
+		new_arg = getenv(var_name);
+		if (new_arg == NULL)
+			print_error("%s: %s: %s not set\n", MINISHELL,
+				CD_BUILTIN, var_name);
+	}
+	return (new_arg);
 }
 
-static void	execute_cd(char *arg)
+static void	update_cwd_var(char **env)
 {
-	if (arg == NULL || ft_strcmp(MINUS_SIGN, arg) == 0)
-		cd_spec(arg);
-	else if (chdir(arg) == -1)
+	char *const	curr_pwd = getcwd(NULL, 0);
+
+	if (curr_pwd != NULL)
 	{
-		print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, arg);
+		printf("curr_pwd --> %s\n", curr_pwd);
+		printf("PWD --> %s\n", getenv("PWD"));
+		change_var(env, "OLDPWD", getenv("PWD"));
+		change_var(env, "PWD", curr_pwd);
+	}
+	free(curr_pwd);
+}
+
+static void	execute_cd(t_command *cmd_data)
+{
+	char *const	cd_arg = get_cd_arg(cmd_data->command[1]);
+
+	if (chdir(cd_arg) == -1)
+	{
+		print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, cd_arg);
 		perror(EMPTY_STR);
+	}
+	else if (cmd_data->command[1] != NULL)
+	{
+		if (streq(cmd_data->command[1], MINUS_SIGN) == true)
+			pwd_builtin(cmd_data);
+		update_cwd_var(cmd_data->env);
 	}
 }
 
-void	cd_builtin(char **command)
+void	cd_builtin(t_command *cmd_data)
 {
-	if (is_correct_size(command) == true)
-		execute_cd(command[1]);
+	if (is_correct_size(cmd_data->command) == true)
+		execute_cd(cmd_data);
 }

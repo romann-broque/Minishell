@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:27:19 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 15:13:05 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 10:10:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_resource_tracker	g_tracker;
+t_resource_tracker	g_tracker;
 
 void	add_deallocator(void *ptr, void (*fct)(void *))
 {
