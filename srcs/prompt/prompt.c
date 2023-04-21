@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 17:03:55 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/21 19:18:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ static void	handle_command(const char *command)
 			expand_command(&tokens);
 			exec_command(&tokens);
 		}
-		else
-			print_error(PARS_ERROR);
 	}
 }
 
@@ -51,7 +49,7 @@ static void	get_command(void)
 	if (are_quotes_closed(line) == true)
 		handle_command(line);
 	else
-		print_error(SYNTAX_ERROR);
+		print_error("%s: %s\n", MINISHELL, SYNTAX_ERROR);
 	free_manager();
 }
 
