@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 19:18:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/22 15:35:59 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ static void	get_command(void)
 
 void	prompt(void)
 {
-	set_catcher();
-	init_tracker();
-	update_cwd_var();
 	while (true)
 		get_command();
 }

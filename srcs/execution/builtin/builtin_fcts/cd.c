@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/21 23:05:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/22 15:33:01 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static char	*get_cd_arg(char *arg)
 	char	*new_arg;
 
 	new_arg = arg;
-	if (arg == NULL || streq(arg, MINUS_SIGN))
+	if (arg == NULL || streq(arg, TIELD) || streq(arg, MINUS_SIGN))
 	{
-		if (arg == NULL)
+		if (arg == NULL || streq(arg, TIELD))
 			var_name = HOME_VAR;
 		else if (streq(arg, MINUS_SIGN) == true)
 			var_name = OLDPWD_VAR;
@@ -56,15 +56,17 @@ static void	execute_cd(t_command *cmd_data)
 {
 	char *const	cd_arg = get_cd_arg(cmd_data->command[1]);
 
+	check_pos(CHDIR);
 	if (chdir(cd_arg) != -1)
 	{
 		update_cwd_var();
 		if (is_prev_option(cmd_data->command) == true)
 			print_pos();
 	}
-	else if (cd_arg != NULL)
+	else
 	{
-		print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, cd_arg);
+		if (cd_arg != NULL)
+			print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, cd_arg);
 		perror(EMPTY_STR);
 	}
 }

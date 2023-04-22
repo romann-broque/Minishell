@@ -17,6 +17,7 @@ PATH_SRCS	+=	srcs/execution/builtin/builtin_fcts
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/free/
+PATH_SRCS	+=	srcs/init/
 PATH_SRCS	+=	srcs/interpreter/
 PATH_SRCS	+=	srcs/expansion/var/
 PATH_SRCS	+=	srcs/lexer/
@@ -79,6 +80,10 @@ SRCS		+=	var_utils.c
 
 SRCS		+=	free_manager.c
 SRCS		+=	tracker.c
+
+### srcs/init/
+
+SRCS		+=	init_shell.c
 
 ### srcs/interpreter/
 

@@ -21,10 +21,19 @@ pwd
 cd -
 cd
 pwd
+cd .
+cd ..
+mkdir -p new
+cd new
+cd ~
+pwd
 mkdir lol
 cd lol
 rm ../lol -fr
 pwd
-cd .
 cd ..
+pwd
+cd ~
+pwd
+cd pouet
 exit

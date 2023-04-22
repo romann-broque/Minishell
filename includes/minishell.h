@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 23:06:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/22 15:37:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 
 # define GETCWD			"getcwd"
 # define CHDIR			"chdir"
+# define SHELL_INIT		"shell-init"
 
 // env
 
@@ -91,6 +92,7 @@
 # define SPECIAL_VAR	"?0"
 # define EMPTY_STR		""
 # define EQUAL_SIGN_STR	"="
+# define TIELD			"~"
 
 // char
 
@@ -278,6 +280,7 @@ void		execution(t_command *command);
 
 /// cwd_utils.c
 
+void		check_pos(const char *caller);
 void		update_cwd_var(void);
 void		print_pos(void);
 
@@ -358,6 +361,12 @@ void		free_manager(void);
 
 void		add_deallocator(void *ptr, void (*fct)(void *));
 void		init_tracker(void);
+
+//			INIT			//
+
+/// init_shell.c
+
+void		init_shell(char **env);
 
 //			INTERPRETER		//
 
