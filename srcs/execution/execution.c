@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/22 16:46:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/22 17:43:40 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static char	*get_path(t_command *cmd_data)
 	}
 	else
 	{
-		path = get_path_from_env(cmd_data);
+		path = get_path_from_env(cmd_data->command[0], PATH_VAR, cmd_data->env);
 		if (path == NULL)
 			print_error("%s: %s\n", cmd_data->command[0], CMD_NOT_FOUND);
 	}

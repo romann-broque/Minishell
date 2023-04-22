@@ -1,23 +1,23 @@
-==59810== Memcheck, a memory error detector
-==59810== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59810== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==59810== Command: ./minishell
-==59810== Parent PID: 59808
-==59810== 
-==59810== 
-==59810== HEAP SUMMARY:
-==59810==     in use at exit: 204,158 bytes in 221 blocks
-==59810==   total heap usage: 750 allocs, 529 frees, 247,708 bytes allocated
-==59810== 
-==59810== LEAK SUMMARY:
-==59810==    definitely lost: 0 bytes in 0 blocks
-==59810==    indirectly lost: 0 bytes in 0 blocks
-==59810==      possibly lost: 0 bytes in 0 blocks
-==59810==    still reachable: 0 bytes in 0 blocks
-==59810==         suppressed: 204,158 bytes in 221 blocks
-==59810== 
-==59810== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---59810-- 
---59810-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,158 bytes in 221 blocks
-==59810== 
-==59810== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==130946== Memcheck, a memory error detector
+==130946== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==130946== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==130946== Command: ./minishell
+==130946== Parent PID: 130944
+==130946== 
+==130946== 
+==130946== HEAP SUMMARY:
+==130946==     in use at exit: 204,158 bytes in 221 blocks
+==130946==   total heap usage: 752 allocs, 531 frees, 247,758 bytes allocated
+==130946== 
+==130946== LEAK SUMMARY:
+==130946==    definitely lost: 0 bytes in 0 blocks
+==130946==    indirectly lost: 0 bytes in 0 blocks
+==130946==      possibly lost: 0 bytes in 0 blocks
+==130946==    still reachable: 0 bytes in 0 blocks
+==130946==         suppressed: 204,158 bytes in 221 blocks
+==130946== 
+==130946== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--130946-- 
+--130946-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,158 bytes in 221 blocks
+==130946== 
+==130946== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

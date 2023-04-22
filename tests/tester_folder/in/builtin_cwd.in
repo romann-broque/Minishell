@@ -36,4 +36,8 @@ pwd
 cd ~
 pwd
 cd pouet
+cd bin
+cd disk
+pwd
+cd
 exit

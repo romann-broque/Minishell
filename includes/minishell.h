@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/22 15:37:30 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/22 18:50:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 # define EXIT_MESSAGE	"exit"
 # define QMARK_VAR		"LAST_RET_VAL"
 # define ZERO_VAR		"minishell"
-# define PATH_VAR		"PATH"
 # define FWD_SLASH_STR	"/"
 # define BATCH_OPT		"-c"
 
@@ -60,6 +59,8 @@
 # define HOME_VAR		"HOME"
 # define OLDPWD_VAR		"OLDPWD"
 # define PWD_VAR		"PWD"
+# define PATH_VAR		"PATH"
+# define CDPATH_VAR		"CDPATH"
 
 // tok_string
 
@@ -109,7 +110,6 @@
 
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
-# define PATH_VAR_LEN	4
 
 // count
 
@@ -259,20 +259,27 @@ size_t		get_size_strs(char **strs);
 void		cpy_strs(char **dest, char **src);
 void		init_env(t_global *global, char **env);
 
-//			EXECUTION			//
+///			PATH				///
 
-/// cmd_path.c
+//// clean_path.c
+
+void		clean_path(char **path);
+
+//// cmd_path.c
 
 bool		is_cmd_path(t_command *cmd);
 char		*get_path_from_cmd(t_command *cmd);
-char		*get_path_from_env(t_command *cmd);
+char		*get_path_from_env(const char *suffix,
+				const char *pathvar_name, char **env);
 
-/// cmd_path_utils.c
+//// cmd_path_utils.c
 
 void		add_fwd_slash(char **paths);
-bool		is_var_path_in_env(char **env);
-bool		is_empty_cmd(t_command *cmd);
-bool		is_path_var(const char *env_line);
+bool		is_var_path_in_env(char **env, const char *pathvar_name);
+bool		is_empty_str(const char *str);
+bool		is_path_var(const char *env_line, const char *pathvar_name);
+
+//			EXECUTION			//
 
 /// execution.c
 

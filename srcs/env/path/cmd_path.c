@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/04/20 14:59:19 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/22 18:51:14 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,16 @@ char	*get_path_from_cmd(t_command *cmd)
 	return (NULL);
 }
 
-static char	*get_path_cmd(t_command *cmd, char **path_array)
+static char	*get_path_cmd(const char *suffix, char **path_array)
 {
-	const char	*cmd_name = cmd->command[0];
-	char		*path;
-	size_t		i;
+	char	*path;
+	size_t	i;
 
 	path = NULL;
 	i = 0;
 	while (path_array[i] != NULL)
 	{
-		path = ft_strjoin(path_array[i], cmd_name);
+		path = ft_strjoin(path_array[i], suffix);
 		if (path == NULL)
 			return (NULL);
 		if (access(path, X_OK) == 0)
@@ -46,19 +45,21 @@ static char	*get_path_cmd(t_command *cmd, char **path_array)
 		path = NULL;
 		i++;
 	}
+	if (path != NULL)
+		clean_path(&path);
 	return (path);
 }
 
-static char	**get_split_path(char **env)
+static char	**get_split_path(char **env, const char *pathvar_name)
 {
 	char	*joint_path;
 	char	**path_array;
 	size_t	i;
 
 	i = 0;
-	while (env[i] != NULL && is_path_var(env[i]) == false)
+	while (env[i] != NULL && is_path_var(env[i], pathvar_name) == false)
 		i++;
-	joint_path = replace_str(env[i], EMPTY_STR, 0, PATH_VAR_LEN + 1);
+	joint_path = replace_str(env[i], EMPTY_STR, 0, ft_strlen(pathvar_name) + 1);
 	path_array = ft_split(joint_path, COLON);
 	if (path_array != NULL)
 		add_fwd_slash(path_array);
@@ -66,17 +67,22 @@ static char	**get_split_path(char **env)
 	return (path_array);
 }
 
-char	*get_path_from_env(t_command *cmd)
+char	*get_path_from_env(
+	const char *suffix,
+	const char *pathvar_name,
+	char **env
+	)
 {
 	char	**path_array;
 	char	*path;
 
-	if (is_var_path_in_env(cmd->env) == false || is_empty_cmd(cmd) == true)
+	if (is_var_path_in_env(env, pathvar_name) == false
+		|| is_empty_str(suffix) == true)
 		return (NULL);
-	path_array = get_split_path(cmd->env);
+	path_array = get_split_path(env, pathvar_name);
 	if (path_array == NULL)
 		return (NULL);
-	path = get_path_cmd(cmd, path_array);
+	path = get_path_cmd(suffix, path_array);
 	free_strs(path_array);
 	return (path);
 }

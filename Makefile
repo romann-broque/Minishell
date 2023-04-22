@@ -11,9 +11,10 @@ SHELL		= /usr/bin/bash
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/batch/
 PATH_SRCS	+=	srcs/env/
+PATH_SRCS	+=	srcs/env/path/
 PATH_SRCS	+=	srcs/execution/
 PATH_SRCS	+=	srcs/execution/builtin/
-PATH_SRCS	+=	srcs/execution/builtin/builtin_fcts
+PATH_SRCS	+=	srcs/execution/builtin/builtin_fcts/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/free/
@@ -43,10 +44,14 @@ SRCS		+= change_var.c
 SRCS		+= ft_getenv.c
 SRCS		+= init_env.c
 
-### srcs/execution/
+### srcs/env/path/
 
+SRCS		+=	clean_path.c
 SRCS		+=	cmd_path.c
 SRCS		+=	cmd_path_utils.c
+
+### srcs/execution/
+
 SRCS	 	+=	execution.c
 
 ### srcs/execution/builtin/

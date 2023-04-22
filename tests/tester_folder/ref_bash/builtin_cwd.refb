@@ -26,3 +26,6 @@ chdir: error retrieving current directory: getcwd: cannot access parent director
 /home/screw
 /home/screw
 minishell: cd: pouet: No such file or directory
+/bin
+/dev/disk
+/dev/disk
