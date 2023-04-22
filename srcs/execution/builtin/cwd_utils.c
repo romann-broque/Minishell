@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/22 15:30:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/22 16:14:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ void	update_cwd_var(void)
 	{
 		change_var(OLDPWD_VAR, ft_getenv(PWD_VAR));
 		change_var(PWD_VAR, curr_pwd);
-	}
-	else
-	{
-		print_error("%s: %s: %s: %s: ",
-			CHDIR, ERROR_ACCESS_DIR, GETCWD, ERROR_ACCESS_PAR_DIR);
-		perror(EMPTY_STR);
 	}
 	free(curr_pwd);
 }
