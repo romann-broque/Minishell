@@ -6,73 +6,28 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/22 18:13:55 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/22 19:48:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	is_correct_size(char **command)
-{
-	size_t	cmd_size;
-
-	cmd_size = 0;
-	while (command[cmd_size])
-		cmd_size++;
-	if (cmd_size > CD_EXP_ARG)
-	{
-		print_error("%s: %s: %s\n", MINISHELL, CD_BUILTIN, TOO_MANY_ARGS);
-		return (false);
-	}
-	return (true);
-}
-
-static char	*get_cd_arg(t_command *cmd_data, char *arg)
-{
-	char	*var_name;
-	char	*new_arg;
-
-	if (arg == NULL || streq(arg, TIELD) || streq(arg, MINUS_SIGN))
-	{
-		if (arg == NULL || streq(arg, TIELD))
-			var_name = HOME_VAR;
-		else if (streq(arg, MINUS_SIGN) == true)
-			var_name = OLDPWD_VAR;
-		new_arg = ft_strdup(ft_getenv(var_name));
-		if (new_arg == NULL)
-			print_error("%s: %s: %s not set\n", MINISHELL,
-				CD_BUILTIN, var_name);
-		return (new_arg);
-	}
-	if (arg != NULL && arg[0] != '/' && arg[0] != '.' )
-	{
-		new_arg = get_path_from_env(arg, CDPATH_VAR, cmd_data->env);
-		if (new_arg != NULL)
-		{
-			printf("%s\n", new_arg);
-			return (new_arg);
-		}
-	}
-	return (ft_strdup(arg));
-}
-
-static bool	is_prev_option(char **command)
-{
-	return (command[1] != NULL && streq(command[1], MINUS_SIGN) == true);
-}
+// chdir is not always going to the wanted folder (if it's a symbolic link)
 
 static void	execute_cd(t_command *cmd_data)
 {
-	char *const	cd_arg = get_cd_arg(cmd_data, cmd_data->command[1]);
+	static bool		is_print = false;
+	char *const		cd_arg = get_cd_arg(cmd_data,
+			cmd_data->command[1], &is_print);
 
 	check_pos(CHDIR);
 	if (cd_arg != NULL)
 	{
 		if (chdir(cd_arg) != -1)
 		{
-			update_cwd_var();
-			if (is_prev_option(cmd_data->command) == true)
+			if (is_print == true)
 				print_pos();
+			update_cwd_var();
 		}
 		else
 		{
@@ -81,6 +36,7 @@ static void	execute_cd(t_command *cmd_data)
 		}
 	}
 	free(cd_arg);
+	is_print = false;
 }
 
 void	cd_builtin(t_command *cmd_data)

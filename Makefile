@@ -56,6 +56,8 @@ SRCS	 	+=	execution.c
 
 ### srcs/execution/builtin/
 
+SRCS	 	+=	cd_arg.c
+SRCS	 	+=	cd_utils.c
 SRCS	 	+=	cwd_utils.c
 SRCS	 	+=	exec_builtin.c
 SRCS	 	+=	is_builtin.c

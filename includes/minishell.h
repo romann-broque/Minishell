@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/22 18:50:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/22 19:14:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@
 # define EQUAL_SIGN		'='
 # define FWD_SLASH		'/'
 # define COLON			':'
+# define DOT			'.'
 
 // len
 
@@ -285,21 +286,30 @@ bool		is_path_var(const char *env_line, const char *pathvar_name);
 
 void		execution(t_command *command);
 
+///  BUILTIN  ///
+
+//// cd_arg.c
+
+char		*get_cd_arg(t_command *cmd_data, const char *arg, bool *is_print);
+
+//// cd_utils.c
+
+bool		is_correct_size(char **command);
+bool		is_prev_option(char **command);
+
 /// cwd_utils.c
 
 void		check_pos(const char *caller);
 void		update_cwd_var(void);
 void		print_pos(void);
 
-///  BUILTIN  ///
+//// exec_buitlin.c
+
+void		exec_builtin(t_command *command);
 
 //// is_builtin.c
 
 bool		is_builtin(t_command *cmd_data);
-
-//// exec_buitlin.c
-
-void		exec_builtin(t_command *command);
 
 ////  BUILTIN_FCTS  ////
 
