@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/24 17:57:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 21:14:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,6 @@ void	cd_builtin(t_command *cmd_data)
 {
 	if (is_correct_size(cmd_data->command) == true)
 		execute_cd(cmd_data);
+	else
+		print_error("%s: %s: %s\n", MINISHELL, CD_BUILTIN, TOO_MANY_ARGS);
 }
