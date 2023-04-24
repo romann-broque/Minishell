@@ -6,21 +6,21 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 18:02:37 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:30:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	update_cwd_var(const char *new_pwd)
+void	update_cwd_var(const char *pwd)
 {
 	const char	*curr_path = ft_getenv(PWD_VAR);
-	char *const	clean_pwd = ft_remove_neighboor(new_pwd, FWD_SLASH_STR);
+	char *const	new_pwd = rm_double_slash(pwd);
 	char		*new;
 
-	if (curr_path != NULL && clean_pwd[0] != FWD_SLASH)
+	if (curr_path != NULL && new_pwd[0] != FWD_SLASH)
 	{
-		new = get_clean_pwd_value(clean_pwd, curr_path);
+		new = clean_pwd(new_pwd, curr_path);
 		change_var(OLDPWD_VAR, ft_getenv(PWD_VAR));
 		change_var(PWD_VAR, new);
 		free(new);
@@ -28,9 +28,9 @@ void	update_cwd_var(const char *new_pwd)
 	else
 	{
 		change_var(OLDPWD_VAR, ft_getenv(PWD_VAR));
-		change_var(PWD_VAR, clean_pwd);
+		change_var(PWD_VAR, new_pwd);
 	}
-	free(clean_pwd);
+	free(new_pwd);
 }
 
 void	check_pos(const char *caller)

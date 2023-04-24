@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 18:04:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 21:11:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,8 +325,7 @@ bool		is_prev_option(char **command);
 
 /// clean_pwd.c
 
-char		*ft_remove_neighboor(const char *str, const char *charset);
-char		*get_clean_pwd_value(const char *new_pwd, const char *curr_path);
+char		*clean_pwd(const char *new_pwd, const char *curr_path);
 
 /// cwd_utils.c
 
@@ -337,7 +336,11 @@ void		print_pos(void);
 
 /// rm_backpath.c
 
-char		*get_clean_path(char *path);
+char		*rm_backpath(char *str);
+
+/// rm_double_slash.c
+
+char		*rm_double_slash(const char *str);
 
 //			EXIT			//
 

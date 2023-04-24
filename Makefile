@@ -73,6 +73,7 @@ SRCS	 	+=	cd_utils.c
 SRCS		+=	clean_pwd.c
 SRCS	 	+=	cwd_utils.c
 SRCS		+=	rm_backpath.c
+SRCS		+=	rm_double_slash.c
 
 ### srcs/exit/
 
