@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 22:08:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 22:23:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	update_cwd_var(const char *pwd)
 		change_var(OLDPWD_VAR, ft_getenv(PWD_VAR));
 		change_var(PWD_VAR, new_pwd);
 	}
-	printf("PWD --> [%s]\n", ft_getenv(PWD_VAR));
-	printf("OLDPWD --> [%s]\n", ft_getenv(OLDPWD_VAR));
 	free(new_pwd);
 }
 
