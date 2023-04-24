@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:00:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 11:13:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 21:42:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*get_spec_path(const char *arg, bool *is_print)
 	spec_path = NULL;
 	if (var_value != NULL)
 		spec_path = ft_strdup(var_value);
-	if (spec_path == NULL)
+	else
 		print_error("%s: %s: %s not set\n", MINISHELL,
 			CD_BUILTIN, var_name);
 	return (spec_path);

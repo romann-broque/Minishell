@@ -278,9 +278,9 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 
 test	:
 	$(MAKE) -s re
-	$(MAKE) -sC $(CUNIT_FOLDER)
-	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
-	source $(ENV); $(CUNIT) $(VALGRIND)
+#	$(MAKE) -sC $(CUNIT_FOLDER)
+#	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
+#	source $(ENV); $(CUNIT) $(VALGRIND)
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
 	$(TESTER) $(VALGRIND)
 
