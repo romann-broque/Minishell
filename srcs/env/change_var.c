@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 19:02:05 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 22:03:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,20 @@ void	change_var(const char *var_name, const char *var_value)
 	size_t			offset;
 	size_t			i;
 
-	i = 0;
-	while (g_global.env[i] != NULL)
+	if (var_value != NULL)
 	{
-		offset = abs_index(g_global.env[i], EQUAL_SIGN);
-		if (offset == len && ft_strncmp(g_global.env[i], var_name, offset) == 0)
-			break ;
-		++i;
+		i = 0;
+		while (g_global.env[i] != NULL)
+		{
+			offset = abs_index(g_global.env[i], EQUAL_SIGN);
+			if (offset == len
+				&& ft_strncmp(g_global.env[i], var_name, offset) == 0)
+				break ;
+			++i;
+		}
+		if (g_global.env[i] != NULL)
+			change_value(g_global.env + i, var_value);
+		else
+			add_var(var_name, var_value);
 	}
-	if (g_global.env[i] != NULL)
-		change_value(g_global.env + i, var_value);
-	else
-		add_var(var_name, var_value);
 }
