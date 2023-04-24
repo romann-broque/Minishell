@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 18:30:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 21:38:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	print_pos(void)
 		cwd = ft_getenv(PWD_VAR);
 	}
 	if (pos != NULL && cwd != NULL)
-		ft_printf("%s\n", cwd);
+		printf("%s\n", cwd);
 	else
 	{
 		print_error("%s: %s: %s: %s: ",
