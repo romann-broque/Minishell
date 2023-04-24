@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:30:16 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 22:17:50 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 22:19:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static char	*join_path_without_backpath(
 	char	*tmp;
 
 	tmp = join_path(prefix, suffix);
-	printf("join --> [%s]\n", tmp);
 	new = rm_backpath(tmp);
 	free(tmp);
 	return (new);

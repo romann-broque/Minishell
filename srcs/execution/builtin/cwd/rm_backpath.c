@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:31:32 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 22:18:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 22:21:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void	cpy_clean_path(char *dest, char *src, size_t final_len)
 
 	ptr = src;
 	i = 0;
+	offset = SIZE_MAX;
 	while (i < final_len && offset > 0)
 	{
 		offset = get_next_ptr(&ptr);
