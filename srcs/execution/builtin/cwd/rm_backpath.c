@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:31:32 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 17:36:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:04:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static size_t	get_next_ptr(char **ptr)
 	char	*tmp;
 	char	*new_ptr;
 
-	new_ptr = ft_strstr(*ptr, "/..");
+	new_ptr = ft_strstr(*ptr, BACKPATH);
 	if (new_ptr != NULL)
 	{
 		tmp = new_ptr;
@@ -28,8 +28,8 @@ static size_t	get_next_ptr(char **ptr)
 			if (*tmp == FWD_SLASH)
 				break ;
 		}
-		len = new_ptr - tmp + 3;
-		*ptr = new_ptr + 3;
+		len = new_ptr - tmp + BACKPATH_LEN;
+		*ptr = new_ptr + BACKPATH_LEN;
 		return (len);
 	}
 	return (0);

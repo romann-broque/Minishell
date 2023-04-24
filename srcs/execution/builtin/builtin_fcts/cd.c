@@ -6,13 +6,11 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/24 17:55:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 17:57:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// chdir is not always going to the wanted folder (if it's a symbolic link)
 
 static void	execute_cd(t_command *cmd_data)
 {

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 17:38:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:04:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define ZERO_VAR		"minishell"
 # define FWD_SLASH_STR	"/"
 # define BATCH_OPT		"-c"
+# define BACKPATH		"/.."
 
 // builtins
 
@@ -111,6 +112,7 @@
 
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
+# define BACKPATH_LEN	3
 
 // count
 

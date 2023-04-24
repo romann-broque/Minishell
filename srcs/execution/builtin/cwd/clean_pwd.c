@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:30:16 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 17:35:30 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:02:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,15 @@ char	*get_clean_pwd_value(const char *new_pwd, const char *curr_path)
 	char	*new;
 	char	*tmp;
 
-	new = ft_strjoin(curr_path, FWD_SLASH_STR);
-	tmp = ft_strjoin(new, new_pwd);
-	free(new);
-	if (ft_strstr(tmp, "/..") != NULL)
-		new = get_clean_path(tmp);
+	tmp = ft_strjoin(curr_path, FWD_SLASH_STR);
+	new = ft_strjoin(tmp, new_pwd);
+	free(tmp);
+	if (ft_strstr(new, "/..") != NULL)
+		tmp = get_clean_path(new);
 	else
-		new = ft_strdup(tmp);
+		tmp = ft_strdup(new);
+	free(new);
+	new = ft_remove_neighboor(tmp, FWD_SLASH_STR);
 	free(tmp);
 	return (new);
 }

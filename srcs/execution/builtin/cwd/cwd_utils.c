@@ -6,31 +6,21 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 17:48:23 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:02:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*ft_strstr(const char *big, const char *little)
-{
-	const size_t	len = ft_strlen(big);
-
-	return (ft_strnstr(big, little, len));
-}
 
 void	update_cwd_var(const char *new_pwd)
 {
 	const char	*curr_path = ft_getenv(PWD_VAR);
 	char *const	clean_pwd = ft_remove_neighboor(new_pwd, FWD_SLASH_STR);
 	char		*new;
-	char		*tmp;
 
 	if (curr_path != NULL && clean_pwd[0] != FWD_SLASH)
 	{
-		tmp = get_clean_pwd_value(clean_pwd, curr_path);
-		new = ft_remove_neighboor(tmp, FWD_SLASH_STR);
-		free(tmp);
+		new = get_clean_pwd_value(clean_pwd, curr_path);
 		change_var(OLDPWD_VAR, ft_getenv(PWD_VAR));
 		change_var(PWD_VAR, new);
 		free(new);
