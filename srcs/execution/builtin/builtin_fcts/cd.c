@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/22 19:48:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 11:10:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	execute_cd(t_command *cmd_data)
 		{
 			if (is_print == true)
 				print_pos();
-			update_cwd_var();
+			update_cwd_var(cd_arg);
 		}
 		else
 		{

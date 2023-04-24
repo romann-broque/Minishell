@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:00:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/22 19:17:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 11:13:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static bool	is_spec_arg(const char *arg)
 static char	*get_spec_path(const char *arg, bool *is_print)
 {
 	char	*var_name;
+	char	*var_value;
 	char	*spec_path;
 
 	if (arg == NULL || streq(arg, TIELD))
@@ -29,7 +30,10 @@ static char	*get_spec_path(const char *arg, bool *is_print)
 		var_name = OLDPWD_VAR;
 		*is_print = true;
 	}
-	spec_path = ft_strdup(ft_getenv(var_name));
+	var_value = ft_getenv(var_name);
+	spec_path = NULL;
+	if (var_value != NULL)
+		spec_path = ft_strdup(var_value);
 	if (spec_path == NULL)
 		print_error("%s: %s: %s not set\n", MINISHELL,
 			CD_BUILTIN, var_name);

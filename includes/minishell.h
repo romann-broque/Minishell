@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/22 19:14:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 17:38:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,21 +288,6 @@ void		execution(t_command *command);
 
 ///  BUILTIN  ///
 
-//// cd_arg.c
-
-char		*get_cd_arg(t_command *cmd_data, const char *arg, bool *is_print);
-
-//// cd_utils.c
-
-bool		is_correct_size(char **command);
-bool		is_prev_option(char **command);
-
-/// cwd_utils.c
-
-void		check_pos(const char *caller);
-void		update_cwd_var(void);
-void		print_pos(void);
-
 //// exec_buitlin.c
 
 void		exec_builtin(t_command *command);
@@ -324,6 +309,33 @@ void		cd_builtin(t_command *cmd_data);
 ///// pwd.c
 
 void		pwd_builtin(__attribute__((unused)) t_command *cmd_data);
+
+////  CWD  ////
+
+//// cd_arg.c
+
+char		*get_cd_arg(t_command *cmd_data, const char *arg, bool *is_print);
+
+//// cd_utils.c
+
+bool		is_correct_size(char **command);
+bool		is_prev_option(char **command);
+
+/// clean_pwd.c
+
+char		*ft_remove_neighboor(const char *str, const char *charset);
+char		*get_clean_pwd_value(const char *new_pwd, const char *curr_path);
+
+/// cwd_utils.c
+
+char		*ft_strstr(const char *big, const char *little);
+void		check_pos(const char *caller);
+void		update_cwd_var(const char *new_pwd);
+void		print_pos(void);
+
+/// rm_backpath.c
+
+char		*get_clean_path(char *path);
 
 //			EXIT			//
 

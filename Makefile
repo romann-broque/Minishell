@@ -15,6 +15,7 @@ PATH_SRCS	+=	srcs/env/path/
 PATH_SRCS	+=	srcs/execution/
 PATH_SRCS	+=	srcs/execution/builtin/
 PATH_SRCS	+=	srcs/execution/builtin/builtin_fcts/
+PATH_SRCS	+=	srcs/execution/builtin/cwd/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/free/
@@ -56,9 +57,6 @@ SRCS	 	+=	execution.c
 
 ### srcs/execution/builtin/
 
-SRCS	 	+=	cd_arg.c
-SRCS	 	+=	cd_utils.c
-SRCS	 	+=	cwd_utils.c
 SRCS	 	+=	exec_builtin.c
 SRCS	 	+=	is_builtin.c
 
@@ -67,6 +65,14 @@ SRCS	 	+=	is_builtin.c
 SRCS	 	+=	exit.c
 SRCS		+=	cd.c
 SRCS		+=	pwd.c
+
+### srcs/execution/builtin/cwd/
+
+SRCS	 	+=	cd_arg.c
+SRCS	 	+=	cd_utils.c
+SRCS		+=	clean_pwd.c
+SRCS	 	+=	cwd_utils.c
+SRCS		+=	rm_backpath.c
 
 ### srcs/exit/
 
