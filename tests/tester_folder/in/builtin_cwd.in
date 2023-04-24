@@ -40,4 +40,9 @@ cd bin
 cd disk
 pwd
 cd
+cd ../../../../......./..////////
+cd /.//////./../../../......./..////////
+cd -
+cd -
+/bin/echo $PWD $OLDPWD
 exit

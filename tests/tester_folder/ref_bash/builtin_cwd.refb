@@ -29,3 +29,8 @@ minishell: cd: pouet: No such file or directory
 /bin
 /dev/disk
 /dev/disk
+minishell: cd: ../../../../......./..////////: No such file or directory
+minishell: cd: /.//////./../../../......./..////////: No such file or directory
+/dev/disk
+/home/screw
+/home/screw /dev/disk
