@@ -32,12 +32,12 @@ jobs:
       - name: Install Valgrind
         run: sudo apt-get install valgrind
 
+      - name: Valgrind Test
+        if: github.event_name == 'pull_request'
+        run: make valgrind=true test
       - name: Fsanitize Test
         if: github.event_name == 'pull_request'
         run: make debug=true test
       - name: Classic Test
         if: github.event_name == 'pull_request'
         run: make test
-      - name: Valgrind Test
-        if: github.event_name == 'pull_request'
-        run: make valgrind=true test
