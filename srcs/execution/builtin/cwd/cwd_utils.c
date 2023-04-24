@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 17:37:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/24 17:48:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,16 @@ void	check_pos(const char *caller)
 
 void	print_pos(void)
 {
-	char	*cwd;
+	const char	*cwd = ft_getenv(PWD_VAR);
+	char		*pos;
 
-	cwd = getcwd(NULL, 0);
-	if (cwd != NULL)
+	pos = getcwd(NULL, 0);
+	if (pos != NULL && cwd == NULL)
+	{
+		update_cwd_var(pos);
+		cwd = ft_getenv(PWD_VAR);
+	}
+	if (pos != NULL && cwd != NULL)
 		ft_printf("%s\n", cwd);
 	else
 	{
@@ -69,5 +75,5 @@ void	print_pos(void)
 			PWD_BUILTIN, ERROR_ACCESS_DIR, GETCWD, ERROR_ACCESS_PAR_DIR);
 		perror(EMPTY_STR);
 	}
-	free(cwd);
+	free(pos);
 }
