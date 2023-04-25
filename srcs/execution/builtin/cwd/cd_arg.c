@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:00:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 21:42:00 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/25 21:52:45 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static bool	is_spec_arg(const char *arg)
 {
-	return (arg == NULL || streq(arg, TIELD) || streq(arg, MINUS_SIGN));
+	return (arg == NULL
+		|| streq(arg, TIELD)
+		|| streq(arg, MINUS_SIGN));
 }
 
 static char	*get_spec_path(const char *arg, bool *is_print)
@@ -49,6 +51,7 @@ char	*get_cd_arg(t_command *cmd_data, const char *arg, bool *is_print)
 {
 	char	*new_arg;
 
+	printf("arg --> [%s]\n", arg);
 	if (is_spec_arg(arg) == true)
 		return (get_spec_path(arg, is_print));
 	if (can_be_found(arg) == true)

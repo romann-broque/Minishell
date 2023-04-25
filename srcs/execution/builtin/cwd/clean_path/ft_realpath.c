@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:51:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/25 17:58:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/25 21:41:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ void	silent_trailing_slash(char *str, const size_t len)
 		str[len - 1] = '\0';
 }
 
-static char	*ft_realpath_wrap(const char *path, char *resolved)
+static char	*ft_realpath_wrap(const char *path)
 {
 	size_t	left_len;
 	size_t	resolved_len;
 	char	left[PATH_MAX];
+	char	resolved[PATH_MAX];
 
+	ft_bzero(resolved, PATH_MAX);
 	init_realpath(path, resolved, left);
 	left_len = ft_strlen(left);
 	resolved_len = ft_strlen(resolved);
@@ -45,19 +47,10 @@ static char	*ft_realpath_wrap(const char *path, char *resolved)
 	if (clean_path_comp(left, &left_len, resolved, &resolved_len) == NULL)
 		return (NULL);
 	silent_trailing_slash(resolved, resolved_len);
-	return (resolved);
+	return (ft_strdup(resolved));
 }
 
-char	*ft_realpath(const char *path, char *resolved)
+char	*ft_realpath(const char *path)
 {
-	char	*alloc;
-
-	if (resolved == NULL)
-	{
-		alloc = (char *)malloc(PATH_MAX);
-		if (alloc == NULL)
-			return (NULL);
-		return (ft_realpath_wrap(path, alloc));
-	}
-	return (ft_realpath_wrap(path, resolved));
+	return (ft_realpath_wrap(path));
 }
