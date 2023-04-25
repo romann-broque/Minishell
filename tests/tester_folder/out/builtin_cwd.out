@@ -7,21 +7,25 @@ minishell: cd: repo: No such file or directory
 /bin
 /usr
 /
+/
+/home
+/home
+/home
 minishell: cd: srcs/batch: No such file or directory
-/
+/home
 minishell: cd: ../../tests/CUNIT/..: No such file or directory
-/
-/
+/home
+/home
 minishell: cd: too many arguments
 /home/screw
-/
-/
+/home
+/home
 /home/screw
 /home/screw
-/
+/home
 /home/screw
 /home/screw
-/
+/home
 /home/screw
 mkdir: cannot create directory ‘new’: Permission denied
 minishell: cd: new: No such file or directory

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:27:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 18:28:01 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/25 18:00:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,13 @@ static char	*ft_remove_neighboor(const char *str, const char *charset)
 
 char	*rm_double_slash(const char *str)
 {
-	return (ft_remove_neighboor(str, FWD_SLASH_STR));
+	char *const	slash_str = ft_remove_neighboor(str, FWD_SLASH_STR);
+	size_t		len;
+
+	if (slash_str != NULL)
+	{
+		len = ft_strlen(slash_str);
+		silent_trailing_slash(slash_str, len);
+	}
+	return (slash_str);
 }

@@ -13,6 +13,12 @@ cd ..
 pwd
 cd ///////
 pwd
+cd /
+pwd
+cd home/
+pwd
+cd /home
+pwd
 cd srcs/batch
 pwd
 cd ../../tests/CUNIT/..
