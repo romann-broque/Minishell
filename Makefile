@@ -11,7 +11,7 @@ SHELL		= /usr/bin/bash
 PATH_SRCS	+=	srcs/
 PATH_SRCS	+=	srcs/execution/
 PATH_SRCS	+=	srcs/execution/builtin/
-PATH_SRCS	+=	srcs/execution/builtin/exit_builtin/
+PATH_SRCS	+=	srcs/execution/builtin/builtin_fcts/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/free/
@@ -41,8 +41,9 @@ SRCS	 	+=	execution.c
 SRCS	 	+=	is_builtin.c
 SRCS	 	+=	exec_builtin.c
 
-### srcs/execution/builtin/exit_builtin/
+### srcs/execution/builtin/builtin_fcts/
 
+SRCS		+=	echo.c
 SRCS	 	+=	exit.c
 
 ### srcs/exit/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 14:21:45 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/25 12:01:24 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ typedef struct s_resource_tracker
 typedef struct s_builtin_mapper
 {
 	const char	*name;
-	void		(*fct)(char **av);
+	void		(*fct)(t_command *cmd_data);
 }				t_builtin_mapper;
 
 /////////////////
@@ -239,11 +239,15 @@ bool		is_builtin(t_command *cmd_data);
 
 void		exec_builtin(t_command *command);
 
-////  EXIT_BUILTIN  ////
+////  BUILTIN_FCTS  ////
+
+///// echo.c
+
+void		echo_builtin(t_command	*cmd_data);
 
 ///// exit.c
 
-void		exit_builtin(char **av);
+void		exit_builtin(__attribute__((unused)) t_command *cmd_data);
 
 //			EXIT			//
 
