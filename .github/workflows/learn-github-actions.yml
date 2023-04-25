@@ -22,10 +22,10 @@ jobs:
       - name: Update libft submodule
         run: git submodule update --remote libft
 
-      - name: 42 NORM
-        run: python3 -m venv venv
-             source venv/bin/activate
-             pip install norminette
+      # - name: 42 NORM
+      #   run: python3 -m venv venv
+      #        source venv/bin/activate
+      #        pip install norminette
 
       - name: Install CUnit
         run: sudo apt-get update && sudo apt-get install -y libcunit1-dev
