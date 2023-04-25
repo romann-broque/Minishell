@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/25 17:01:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/25 17:30:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -335,18 +335,22 @@ void		print_pos(void);
 
 /// CLEAN_PATH ///
 
-/// clean_path_comp.c
+//// clean_path_comp.c
 
 char		*clean_path_comp(char *left, size_t *left_len,
 				char *resolved, size_t *resolved_len);
 
-/// clean_pwd.c
+//// clean_pwd.c
 
 char		*clean_pwd(const char *new_pwd, const char *curr_path);
 
 //// ft_realpath.c
 
 char		*ft_realpath(const char *path, char resolved[PATH_MAX]);
+
+//// rm_double_slash.c
+
+char		*rm_double_slash(const char *str);
 
 //			EXIT			//
 

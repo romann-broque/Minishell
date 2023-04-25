@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/25 15:27:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/25 17:28:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	update_cwd_var(const char *pwd)
 {
 	const char	*curr_path = ft_getenv(PWD_VAR);
+	char *const	new_pwd = rm_double_slash(pwd);
 	char		*new;
 
 	if (curr_path != NULL && pwd[0] != FWD_SLASH)
@@ -27,8 +28,9 @@ void	update_cwd_var(const char *pwd)
 	else
 	{
 		change_var(OLDPWD_VAR, curr_path);
-		change_var(PWD_VAR, pwd);
+		change_var(PWD_VAR, new_pwd);
 	}
+	free(new_pwd);
 }
 
 void	check_pos(const char *caller)

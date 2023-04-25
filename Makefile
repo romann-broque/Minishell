@@ -78,6 +78,7 @@ SRCS	 	+=	cwd_utils.c
 SRCS		+=	clean_path_comp.c
 SRCS		+=	clean_pwd.c
 SRCS	 	+=	ft_realpath.c
+SRCS	 	+=	rm_double_slash.c
 
 ### srcs/exit/
 

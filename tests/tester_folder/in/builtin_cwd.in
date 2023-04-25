@@ -4,6 +4,15 @@ pwd
 cd bonjour
 cd repo
 pwd
+/bin/echo $PWD $OLDPWD
+cd /bin
+/bin/echo $PWD $OLDPWD
+pwd
+cd /usr/bin
+cd ..
+pwd
+cd ///////
+pwd
 cd srcs/batch
 pwd
 cd ../../tests/CUNIT/..
