@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:51:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/25 21:41:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/25 22:51:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static void	init_realpath(const char *path, char *resolved, char *left)
 	if (path[0] == FWD_SLASH)
 	{
 		ft_strcpy(resolved, FWD_SLASH_STR);
-		if (path[1] != '\0')
-			ft_strlcpy(left, path + 1, PATH_MAX);
+		ft_strlcpy(left, path + 1, PATH_MAX);
 	}
 }
 

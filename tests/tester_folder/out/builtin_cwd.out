@@ -1,83 +1,50 @@
-arg --> [tests/]
-arg --> [..]
 /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell
 minishell: cd: bonjour: No such file or directory
-arg --> [bonjour]
 minishell: cd: repo: No such file or directory
-arg --> [repo]
 /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell
 /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
-arg --> [/bin]
 /bin /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell
 /bin
-arg --> [/usr/bin]
-arg --> [..]
 /usr
-arg --> [///////]
 /
-arg --> [(null)]
-/home/screw
-arg --> [/]
+/
+/
+minishell: cd:     : No such file or directory
+/
 /
 /home
-arg --> [home/]
 /home
-arg --> [/home]
 /home
 minishell: cd: srcs/batch: No such file or directory
-arg --> [srcs/batch]
 /home
 minishell: cd: ../../tests/CUNIT/..: No such file or directory
-arg --> [../../tests/CUNIT/..]
 /home
 /home
 minishell: cd: too many arguments
-arg --> [(null)]
 /home/screw
 /home
-arg --> [-]
 /home
 /home/screw
-arg --> [-]
 /home/screw
 /home
-arg --> [-]
 /home/screw
-arg --> [-]
 /home/screw
 /home
-arg --> [-]
-arg --> [(null)]
 /home/screw
-arg --> [.]
-arg --> [..]
 mkdir: cannot create directory ‘new’: Permission denied
 minishell: cd: new: No such file or directory
-arg --> [new]
-arg --> [~]
 /home/screw
-arg --> [lol]
 pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 /home/screw/lol /home/screw
 chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-arg --> [..]
 /home/screw
-arg --> [~]
 /home/screw
 minishell: cd: pouet: No such file or directory
-arg --> [pouet]
 /bin
-arg --> [bin]
 /dev/disk
-arg --> [disk]
 /dev/disk
-arg --> [(null)]
 minishell: cd: ../../../../......./..////////: No such file or directory
-arg --> [../../../../......./..////////]
 minishell: cd: /.//////./../../../......./..////////: No such file or directory
-arg --> [/.//////./../../../......./..////////]
 /dev/disk
-arg --> [-]
 /home/screw
-arg --> [-]
 /home/screw /dev/disk

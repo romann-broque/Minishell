@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:00:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/25 21:52:45 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/25 22:47:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,12 @@ char	*get_cd_arg(t_command *cmd_data, const char *arg, bool *is_print)
 {
 	char	*new_arg;
 
-	printf("arg --> [%s]\n", arg);
 	if (is_spec_arg(arg) == true)
 		return (get_spec_path(arg, is_print));
 	if (can_be_found(arg) == true)
 	{
+		if (arg[0] == '\0')
+			arg = DOT_STR;
 		new_arg = get_path_from_env(arg, CDPATH_VAR, cmd_data->env);
 		if (new_arg != NULL)
 		{
