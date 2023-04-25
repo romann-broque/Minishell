@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 22:23:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/25 15:27:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,20 @@
 void	update_cwd_var(const char *pwd)
 {
 	const char	*curr_path = ft_getenv(PWD_VAR);
-	char *const	new_pwd = rm_double_slash(pwd);
 	char		*new;
 
-	if (curr_path != NULL && new_pwd[0] != FWD_SLASH)
+	if (curr_path != NULL && pwd[0] != FWD_SLASH)
 	{
-		new = clean_pwd(new_pwd, curr_path);
+		new = clean_pwd(pwd, curr_path);
 		change_var(OLDPWD_VAR, ft_getenv(PWD_VAR));
 		change_var(PWD_VAR, new);
 		free(new);
 	}
 	else
 	{
-		change_var(OLDPWD_VAR, ft_getenv(PWD_VAR));
-		change_var(PWD_VAR, new_pwd);
+		change_var(OLDPWD_VAR, curr_path);
+		change_var(PWD_VAR, pwd);
 	}
-	free(new_pwd);
 }
 
 void	check_pos(const char *caller)
@@ -52,11 +50,6 @@ void	print_pos(void)
 	char		*pos;
 
 	pos = getcwd(NULL, 0);
-	if (pos != NULL && cwd == NULL)
-	{
-		update_cwd_var(pos);
-		cwd = ft_getenv(PWD_VAR);
-	}
 	if (pos != NULL && cwd != NULL)
 		ft_printf("%s\n", cwd);
 	else

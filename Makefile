@@ -16,6 +16,7 @@ PATH_SRCS	+=	srcs/execution/
 PATH_SRCS	+=	srcs/execution/builtin/
 PATH_SRCS	+=	srcs/execution/builtin/builtin_fcts/
 PATH_SRCS	+=	srcs/execution/builtin/cwd/
+PATH_SRCS	+=	srcs/execution/builtin/cwd/clean_path/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/free/
@@ -70,10 +71,13 @@ SRCS		+=	pwd.c
 
 SRCS	 	+=	cd_arg.c
 SRCS	 	+=	cd_utils.c
-SRCS		+=	clean_pwd.c
 SRCS	 	+=	cwd_utils.c
-SRCS		+=	rm_backpath.c
-SRCS		+=	rm_double_slash.c
+
+### srcs/execution/builtin/cwd/clean_path
+
+SRCS		+=	clean_path_comp.c
+SRCS		+=	clean_pwd.c
+SRCS	 	+=	ft_realpath.c
 
 ### srcs/exit/
 
@@ -277,7 +281,7 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 test	:
-	$(MAKE) -s re
+	$(MAKE) re -s
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
 	source $(ENV); $(CUNIT) $(VALGRIND)

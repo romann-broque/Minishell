@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:44:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 21:12:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/25 01:05:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ void	are_quotes_closed__test(void);
 // change_var.test.c
 
 void	change_var__test(void);
+
+// clean_pwd.test.c
+
+void	clean_pwd__test(void);
 
 // cmd_path.test.c
 

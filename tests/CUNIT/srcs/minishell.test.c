@@ -43,6 +43,7 @@ void	set_tests(void)
 			{.tname = "cmd_path", cmd_path__test},
 			{.tname = "ft_getenv", ft_getenv__test},
 			{.tname = "change_var", change_var__test},
+			{.tname = "clean", clean_pwd__test},
 			}
 		},
 		{.suite = NULL, .sname = NULL}

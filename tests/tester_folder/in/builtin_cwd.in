@@ -1,3 +1,4 @@
+cd tests/
 cd ..
 pwd
 cd bonjour
@@ -31,6 +32,7 @@ mkdir lol
 cd lol
 rm ../lol -fr
 pwd
+/bin/echo $PWD $OLDPWD
 cd ..
 pwd
 cd ~

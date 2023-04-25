@@ -21,6 +21,7 @@ SRCS	 	+=	minishell.test.c
 
 SRCS	 	+=	are_quotes_closed.test.c
 SRCS	 	+=	change_var.test.c
+SRCS		+=	clean_pwd.test.c
 SRCS		+=	cmd_path.test.c
 SRCS		+=	expand.test.c
 SRCS		+=	ft_getenv.test.c

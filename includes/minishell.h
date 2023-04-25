@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 21:11:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/25 17:01:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
+# include <errno.h>
 
 ///////////////
 /// DEFINES ///
@@ -37,6 +38,8 @@
 # define QMARK_VAR		"LAST_RET_VAL"
 # define ZERO_VAR		"minishell"
 # define FWD_SLASH_STR	"/"
+# define DOT_STR		"."
+# define DOUBLE_DOT_STR	".."
 # define BATCH_OPT		"-c"
 # define BACKPATH		"/.."
 
@@ -323,10 +326,6 @@ char		*get_cd_arg(t_command *cmd_data, const char *arg, bool *is_print);
 bool		is_correct_size(char **command);
 bool		is_prev_option(char **command);
 
-/// clean_pwd.c
-
-char		*clean_pwd(const char *new_pwd, const char *curr_path);
-
 /// cwd_utils.c
 
 char		*ft_strstr(const char *big, const char *little);
@@ -334,13 +333,20 @@ void		check_pos(const char *caller);
 void		update_cwd_var(const char *new_pwd);
 void		print_pos(void);
 
-/// rm_backpath.c
+/// CLEAN_PATH ///
 
-char		*rm_backpath(char *str);
+/// clean_path_comp.c
 
-/// rm_double_slash.c
+char		*clean_path_comp(char *left, size_t *left_len,
+				char *resolved, size_t *resolved_len);
 
-char		*rm_double_slash(const char *str);
+/// clean_pwd.c
+
+char		*clean_pwd(const char *new_pwd, const char *curr_path);
+
+//// ft_realpath.c
+
+char		*ft_realpath(const char *path, char resolved[PATH_MAX]);
 
 //			EXIT			//
 
