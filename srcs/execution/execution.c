@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 15:51:51 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/26 15:26:07 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	exec_binary(t_command *cmd_data, char *path)
 			update_sigquit_catcher();
 			wait(NULL);
 			set_catcher();
+			g_global.child_pid = 0;
 		}
 	}
 }

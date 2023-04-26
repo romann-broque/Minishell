@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 14:11:29 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/26 15:19:34 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	get_command(char **env)
 {
 	char *const	line = readline(PROMPT);
 
-	update_global();
+	g_global.is_stoppable = false;
 	add_deallocator(line, free);
 	if (are_quotes_closed(line) == true)
 		handle_command(line, env);
