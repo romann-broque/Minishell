@@ -1,4 +1,9 @@
 cd tests/
+cd bin
+pwd
+cd -
+cd ./bin
+pwd
 cd ..
 pwd
 cd bonjour
