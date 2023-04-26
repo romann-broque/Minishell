@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 14:21:45 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/26 11:24:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
+# include <errno.h>
 
 ///////////////
 /// DEFINES ///
@@ -36,8 +37,11 @@
 # define EXIT_MESSAGE	"exit"
 # define QMARK_VAR		"LAST_RET_VAL"
 # define ZERO_VAR		"minishell"
-# define PATH_VAR		"PATH"
 # define FWD_SLASH_STR	"/"
+# define DOT_STR		"."
+# define DOUBLE_DOT_STR	".."
+# define BATCH_OPT		"-c"
+# define BACKPATH		"/.."
 
 // builtins
 
@@ -47,6 +51,20 @@
 # define EXPORT_BUILTIN	"export"
 # define PWD_BUILTIN	"pwd"
 # define UNSET_BUILTIN	"unset"
+
+// fct
+
+# define GETCWD			"getcwd"
+# define CHDIR			"chdir"
+# define SHELL_INIT		"shell-init"
+
+// env
+
+# define HOME_VAR		"HOME"
+# define OLDPWD_VAR		"OLDPWD"
+# define PWD_VAR		"PWD"
+# define PATH_VAR		"PATH"
+# define CDPATH_VAR		"CDPATH"
 
 // tok_string
 
@@ -67,6 +85,9 @@
 # define CMD_NOT_FOUND		"command not found"
 # define IS_DIR				"Is a directory"
 # define STAT_ERROR			"Failed to stat file"
+# define TOO_MANY_ARGS		"too many arguments"
+# define ERROR_ACCESS_DIR		"error retrieving current directory"
+# define ERROR_ACCESS_PAR_DIR	"cannot access parent directories"
 
 // char types
 
@@ -75,6 +96,8 @@
 # define SEPARATORS		" \t\n"
 # define SPECIAL_VAR	"?0"
 # define EMPTY_STR		""
+# define EQUAL_SIGN_STR	"="
+# define TIELD			"~"
 
 // char
 
@@ -86,17 +109,19 @@
 # define EQUAL_SIGN		'='
 # define FWD_SLASH		'/'
 # define COLON			':'
+# define DOT			'.'
 
 // len
 
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
-# define PATH_VAR_LEN	4
+# define BACKPATH_LEN	3
 
 // count
 
 # define NEXT_TOK_MAX	11
 # define NB_DEALLOCATOR	5
+# define CD_EXP_ARG		2
 
 // return value
 
@@ -203,27 +228,64 @@ typedef struct s_resource_tracker
 typedef struct s_builtin_mapper
 {
 	const char	*name;
-	void		(*fct)(char **av);
+	void		(*fct)(t_command *cmd_data);
 }				t_builtin_mapper;
+
+typedef struct s_global
+{
+	t_resource_tracker	tracker;
+	char				**env;
+	bool				is_stoppable;
+}				t_global;
 
 /////////////////
 /// FUNCTIONS ///
 /////////////////
 
-//			EXECUTION			//
+//			BATCH				//
 
-/// cmd_path.c
+///	batch.c
+
+bool		batch_mode(int ac, char **av);
+void		exec_batch(int ac, char **av);
+
+//			ENV					//
+
+/// change_var.c
+
+void		change_var(const char *var_name, const char *var_value);
+
+/// ft_getenv.c
+
+char		*ft_getenv(const char *var_name);
+
+/// init_env.c
+
+size_t		get_size_strs(char **strs);
+void		cpy_strs(char **dest, char **src);
+void		init_env(t_global *global, char **env);
+
+///			PATH				///
+
+//// clean_path.c
+
+void		clean_path(char **path);
+
+//// get_path.c
 
 bool		is_cmd_path(t_command *cmd);
 char		*get_path_from_cmd(t_command *cmd);
-char		*get_path_from_env(t_command *cmd);
+char		*get_path_from_env(const char *suffix,
+				const char *pathvar_name, char **env);
 
-/// cmd_path_utils.c
+//// cmd_path_utils.c
 
 void		add_fwd_slash(char **paths);
-bool		is_var_path_in_env(char **env);
-bool		is_empty_cmd(t_command *cmd);
-bool		is_path_var(const char *env_line);
+bool		is_var_path_in_env(char **env, const char *pathvar_name);
+bool		is_empty_str(const char *str);
+bool		is_path_var(const char *env_line, const char *pathvar_name);
+
+//			EXECUTION			//
 
 /// execution.c
 
@@ -231,19 +293,61 @@ void		execution(t_command *command);
 
 ///  BUILTIN  ///
 
-//// is_builtin.c
-
-bool		is_builtin(t_command *cmd_data);
-
 //// exec_buitlin.c
 
 void		exec_builtin(t_command *command);
 
-////  EXIT_BUILTIN  ////
+//// is_builtin.c
+
+bool		is_builtin(t_command *cmd_data);
+
+////  BUILTIN_FCTS  ////
 
 ///// exit.c
 
-void		exit_builtin(char **av);
+void		exit_builtin(t_command *cmd_data);
+
+///// cd.c
+
+void		cd_builtin(t_command *cmd_data);
+
+///// pwd.c
+
+void		pwd_builtin(__attribute__((unused)) t_command *cmd_data);
+
+////  CWD  ////
+
+//// cd_arg.c
+
+char		*get_cd_arg(t_command *cmd_data, const char *arg, bool *is_print);
+
+//// cd_utils.c
+
+bool		is_correct_size(char **command);
+bool		is_prev_option(char **command);
+
+/// cwd_utils.c
+
+char		*ft_strstr(const char *big, const char *little);
+void		check_pos(const char *caller);
+void		update_cwd_var(const char *new_pwd);
+void		print_pos(void);
+
+/// CLEAN_PATH ///
+
+//// clean_pwd.c
+
+char		*clean_pwd(const char *new_pwd, const char *curr_path);
+
+//// ft_realpath_utils.c
+
+char		*clean_path_comp(char *left, size_t *left_len,
+				char *resolved, size_t *resolved_len);
+
+//// ft_realpath.c
+
+void		silent_trailing_slash(char *str, const size_t len);
+char		*ft_realpath(const char *path);
 
 //			EXIT			//
 
@@ -298,6 +402,12 @@ void		free_manager(void);
 
 void		add_deallocator(void *ptr, void (*fct)(void *));
 void		init_tracker(void);
+
+//			INIT			//
+
+/// init_shell.c
+
+void		init_shell(char **env);
 
 //			INTERPRETER		//
 
@@ -403,7 +513,7 @@ void		print_error(const char *format, ...);
 
 /// prompt.c
 
-void		prompt(char **env);
+void		prompt(void);
 
 //			SIGNAL			//
 

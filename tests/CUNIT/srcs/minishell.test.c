@@ -12,7 +12,7 @@
 
 #include "cunit.test.h"
 
-char	**g_env;
+t_global	g_global;
 
 void	set_tests(void)
 {
@@ -40,7 +40,10 @@ void	set_tests(void)
 			}
 		},
 		{.suite = NULL, .sname = "Execution", .tests = {
-			{.tname = "cmd_path", cmd_path__test}
+			{.tname = "cmd_path", cmd_path__test},
+			{.tname = "ft_getenv", ft_getenv__test},
+			{.tname = "change_var", change_var__test},
+			{.tname = "clean", clean_pwd__test},
 			}
 		},
 		{.suite = NULL, .sname = NULL}
@@ -62,6 +65,7 @@ void	exec_tests(void)
 	CU_basic_run_tests();
 
 	// Cleanup the CUnit test registry
+	free_strs(g_global.env);
 	exit_tests();
 }
 
@@ -70,6 +74,6 @@ int	main(
 	__attribute__((unused))char **av,
 	char **env)
 {
-	g_env = env;
+	init_env(&g_global, env);
 	exec_tests();
 }
