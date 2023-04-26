@@ -1,1 +1,13 @@
-bash: line 1: wouah: command not found
+bin
+CUNIT
+env
+tester_folder
+valgrind
+bin
+CUNIT
+env
+tester_folder
+valgrind
+pouet pouet
+minishell: pouet: command not found
+minishell: /pouet: No such file or directory

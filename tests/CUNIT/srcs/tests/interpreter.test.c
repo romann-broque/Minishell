@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter.test.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:44:29 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 14:10:02 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/21 11:53:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cunit.test.h"
 
-extern char	**g_env;
+extern t_global	g_global;
 
 static t_list	*get_list_from_array(t_token *array)
 {
@@ -82,7 +82,7 @@ static bool	is_cmd_valid(t_token *tok_array, t_command *cmd_array, const size_t 
 {
 	t_list	*tok_list = get_list_from_array(tok_array);
 	t_list	*cmd_exp = get_list_from_array_cmd(cmd_array, size_cmd_array);
-	t_list	*cmd_out = interpreter(tok_list, g_env);
+	t_list	*cmd_out = interpreter(tok_list, g_global.env);
 	bool	ret_val = comp_commands(cmd_out, cmd_exp);
 
 	ft_lstclear(&tok_list, NULL);
@@ -107,7 +107,7 @@ void	interpreter__test(void)
 			"esta",
 			NULL
 			},
-		.env = g_env,
+		.env = g_global.env,
 		.fdin = STDIN_FILENO,
 		.fdout = STDOUT_FILENO,
 		},
@@ -133,7 +133,7 @@ void	interpreter__test(void)
 			"srcs/",
 			NULL
 			},
-		.env = g_env,
+		.env = g_global.env,
 		.fdin = STDIN_FILENO,
 		.fdout = STDOUT_FILENO,
 		},
@@ -142,7 +142,7 @@ void	interpreter__test(void)
 			"lol",
 			NULL
 			},
-		.env = g_env,
+		.env = g_global.env,
 		.fdin = STDIN_FILENO,
 		.fdout = STDOUT_FILENO,
 		},
@@ -165,7 +165,7 @@ void	interpreter__test(void)
 			"lol",
 			NULL
 			},
-		.env = g_env,
+		.env = g_global.env,
 		.fdin = STDIN_FILENO,
 		.fdout = STDOUT_FILENO,
 		},

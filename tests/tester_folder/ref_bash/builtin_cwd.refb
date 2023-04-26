@@ -1,0 +1,54 @@
+/bin
+/bin
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/bin
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
+minishell: cd: bonjour: No such file or directory
+minishell: cd: repo: No such file or directory
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/bin
+/bin /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
+/bin
+/usr
+/
+/
+/
+minishell: cd:     : No such file or directory
+/
+/
+/home
+/home
+/home
+minishell: cd: srcs/batch: No such file or directory
+/home
+minishell: cd: ../../tests/CUNIT/..: No such file or directory
+/home
+/home
+minishell: cd: too many arguments
+/home/screw
+/home
+/home
+/home/screw
+/home/screw
+/home
+/home/screw
+/home/screw
+/home
+/home/screw
+mkdir: cannot create directory ‘new’: Permission denied
+minishell: cd: new: No such file or directory
+/home/screw
+pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+/home/screw/lol /home/screw
+chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+/home/screw
+/home/screw
+minishell: cd: pouet: No such file or directory
+/bin
+/dev/disk
+/dev/disk
+minishell: cd: ../../../../......./..////////: No such file or directory
+minishell: cd: /.//////./../../../......./..////////: No such file or directory
+/dev/disk
+/home/screw
+/home/screw /dev/disk

@@ -1,0 +1,74 @@
+cd tests/
+cd bin
+pwd
+cd -
+cd ./bin
+pwd
+cd ..
+pwd
+cd bonjour
+cd repo
+pwd
+/bin/echo $PWD $OLDPWD
+cd /bin
+/bin/echo $PWD $OLDPWD
+pwd
+cd /usr/bin
+cd ..
+pwd
+cd ///////
+pwd
+cd ""
+pwd
+cd "    "
+pwd
+cd /
+pwd
+cd home/
+pwd
+cd /home
+pwd
+cd srcs/batch
+pwd
+cd ../../tests/CUNIT/..
+pwd
+pwd blata bonjour noerror
+cd .. blata
+cd
+pwd
+cd -
+pwd
+cd -
+pwd
+cd -
+cd -
+pwd
+cd -
+cd
+pwd
+cd .
+cd ..
+mkdir -p new
+cd new
+cd ~
+pwd
+mkdir lol
+cd lol
+rm ../lol -fr
+pwd
+/bin/echo $PWD $OLDPWD
+cd ..
+pwd
+cd ~
+pwd
+cd pouet
+cd bin
+cd disk
+pwd
+cd
+cd ../../../../......./..////////
+cd /.//////./../../../......./..////////
+cd -
+cd -
+/bin/echo $PWD $OLDPWD
+exit
