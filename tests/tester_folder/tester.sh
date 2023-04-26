@@ -18,6 +18,7 @@ NC="\033[0m"
 
 PROGRAM=./minishell
 FOLDER=./tests/tester_folder/
+ENV=./tests/env/env.sh
 IN_FOLDER="${FOLDER}"in/
 OUT_FOLDER="${FOLDER}"out/
 REF_FOLDER="${FOLDER}"ref/
@@ -25,41 +26,41 @@ REF_BASH_FOLDER="${FOLDER}"ref_bash/
 
 # Define the input, output, and output reference files
 
-inputs=( "${IN_FOLDER}"basic.in)
-outputs=( "${OUT_FOLDER}"basic.out)
-output_refs=( "${REF_FOLDER}"basic.ref)
+# inputs=( "${IN_FOLDER}"basic.in)
+# outputs=( "${OUT_FOLDER}"basic.out)
+# output_refs=( "${REF_FOLDER}"basic.ref)
 
-# Iterate over the arrays using a for loop
+# # Iterate over the arrays using a for loop
 
-ret_val=0
-for i in "${!inputs[@]}"; do
+# ret_val=0
+# for i in "${!inputs[@]}"; do
 
-	# Run the program and redirect the output to the corresponding output file
-	cat "${inputs[$i]}" | $VALGRIND "${PROGRAM}" &> "${outputs[$i]}"
-	ret_val+=$?
+# 	# Run the program and redirect the output to the corresponding output file
+# 	source $ENV; cat "${inputs[$i]}" | $VALGRIND "${PROGRAM}" &> "${outputs[$i]}"
+# 	ret_val+=$?
 
-	# Get the name of the input file without its path
-	filename=$(basename "${inputs[$i]}")
+# 	# Get the name of the input file without its path
+# 	filename=$(basename "${inputs[$i]}")
 
-	# Compare the output file with the corresponding reference file using diff
-	if diff -a "${outputs[$i]}" "${output_refs[$i]}"; then
-		echo -e "${GREEN}${filename} : OK${NC}"
-	else
-		ret_val+=$?
-		echo -e "${RED}${filename} KO${NC}"
-		if [[ -n "$VALGRIND" ]]; then
-			cat $LOG_FILE
-		fi
-	fi
-done
+# 	# Compare the output file with the corresponding reference file using diff
+# 	if diff -a "${outputs[$i]}" "${output_refs[$i]}"; then
+# 		echo -e "${GREEN}${filename} : OK${NC}"
+# 	else
+# 		ret_val+=$?
+# 		echo -e "${RED}${filename} KO${NC}"
+# 		if [[ -n "$VALGRIND" ]]; then
+# 			cat $LOG_FILE
+# 		fi
+# 	fi
+# done
 
 # BASH COMPARAISON
 
  echo -e "${BLUE}\n<====  BASH  ====>\n${NC}"
 
- inputs=("${IN_FOLDER}"builtin_echo.in)
- outputs=( "${OUT_FOLDER}"builtin_echo.out)
- output_ref_bash=( "${REF_BASH_FOLDER}"builtin_echo.refb)
+ inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"builtin_cwd.in "${IN_FOLDER}"echo_builtin.in)
+ outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"builtin_cwd.out "${OUT_FOLDER}"echo_builtin.out)
+ output_ref_bash=( "${REF_BASH_FOLDER}"basic.refb "${REF_BASH_FOLDER}"builtin_cwd.refb "${REF_BASH_FOLDER}"echo_builtin.refb)
 
  for i in "${!inputs[@]}"; do
  	# Run the program and redirect the output to the corresponding output file
@@ -85,6 +86,8 @@ done
 		fi
  	fi
  done
+
+# Exit the (ret_val == 0)
 
 echo
 

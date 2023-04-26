@@ -1,10 +1,12 @@
 minishell $ 
 minishell $ ls tests
+bin
 CUNIT
 env
 tester_folder
 valgrind
 minishell $ /bin/ls tests
+bin
 CUNIT
 env
 tester_folder

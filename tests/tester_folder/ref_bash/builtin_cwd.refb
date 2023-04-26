@@ -1,0 +1,54 @@
+/bin
+/bin
+/home/mat/Desktop/42/Minishell/repo/tests
+/home/mat/Desktop/42/Minishell/repo/tests/bin
+/home/mat/Desktop/42/Minishell/repo/tests
+minishell: cd: bonjour: No such file or directory
+minishell: cd: repo: No such file or directory
+/home/mat/Desktop/42/Minishell/repo/tests
+/home/mat/Desktop/42/Minishell/repo/tests /home/mat/Desktop/42/Minishell/repo/tests/bin
+/bin /home/mat/Desktop/42/Minishell/repo/tests
+/bin
+/usr
+/
+/
+/
+minishell: cd:     : No such file or directory
+/
+/
+/home
+/home
+/home
+minishell: cd: srcs/batch: No such file or directory
+/home
+minishell: cd: ../../tests/CUNIT/..: No such file or directory
+/home
+/home
+minishell: cd: too many arguments
+/home/mat
+/home
+/home
+/home/mat
+/home/mat
+/home
+/home/mat
+/home/mat
+/home
+/home/mat
+mkdir: cannot create directory ‘new’: Permission denied
+minishell: cd: new: No such file or directory
+/home/mat
+pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+/home/mat/lol /home/mat
+chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+/home/mat
+/home/mat
+minishell: cd: pouet: No such file or directory
+/bin
+/dev/disk
+/dev/disk
+minishell: cd: ../../../../......./..////////: No such file or directory
+minishell: cd: /.//////./../../../......./..////////: No such file or directory
+/dev/disk
+/home/mat
+/home/mat /dev/disk

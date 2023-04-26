@@ -1,6 +1,7 @@
 echo bonjour
 echo bonjour je suis mat
-echo -n bonjour je suis mat
+echo bonjour je suis mat -n
+echo
 echo bonjour -n
 echo bonjour je -n suis mat
-echo bonjour je suis mat -n
+echo -n bonjour je suis mat

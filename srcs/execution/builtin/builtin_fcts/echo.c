@@ -3,47 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:28:37 by mdorr             #+#    #+#             */
-/*   Updated: 2023/04/25 12:19:30 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/26 16:23:08 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	get_arg_nbr(t_command *cmd_data, int arg_start_pos)
-{
-	int	arg_nbr;
-
-	arg_nbr = 0;
-	while (cmd_data->command[arg_nbr + arg_start_pos] != NULL)
-		arg_nbr++;
-	return (arg_nbr);
-}
-
 static bool	is_n_option(char *first_argument)
 {
-	return (ft_strncmp("-n", first_argument, 3) == 0);
+	return (first_argument != NULL && streq("-n", first_argument) == true);
 }
 
 void	echo_builtin(t_command *cmd_data)
 {
 	bool	n_option;
-	size_t	arg_start_pos;
-	size_t	arg_nbr;
+	char	**str_ptr;
 	size_t	i;
 
-	arg_start_pos = 1;
-	n_option = is_n_option(cmd_data->command[arg_start_pos]);
+	str_ptr = cmd_data->command + 1;
+	n_option = is_n_option(str_ptr[0]);
 	if (n_option == true)
-		arg_start_pos++;
-	arg_nbr = get_arg_nbr(cmd_data, arg_start_pos);
+		str_ptr++;
 	i = 0;
-	while (i < arg_nbr)
+	while (str_ptr[i] != NULL)
 	{
-		printf("%s", cmd_data->command[i + arg_start_pos]);
-		if (i < arg_nbr - 1)
+		printf("%s", str_ptr[i]);
+		if (str_ptr[i + 1] != NULL)
 			printf(" ");
 		i++;
 	}
