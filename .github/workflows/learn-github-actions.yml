@@ -37,7 +37,6 @@ jobs:
       - name: Classic Test
         if: github.event_name == 'pull_request'
         run: make test
-
  
       - name: Install Valgrind
         run: sudo apt-get install valgrind

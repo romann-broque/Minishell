@@ -49,7 +49,7 @@ SRCS		+= init_env.c
 ### srcs/env/path/
 
 SRCS		+=	clean_path.c
-SRCS		+=	cmd_path.c
+SRCS		+=	get_path.c
 SRCS		+=	cmd_path_utils.c
 
 ### srcs/execution/
@@ -75,10 +75,9 @@ SRCS	 	+=	cwd_utils.c
 
 ### srcs/execution/builtin/cwd/clean_path
 
-SRCS		+=	clean_path_comp.c
 SRCS		+=	clean_pwd.c
+SRCS		+=	ft_realpath_utils.c
 SRCS	 	+=	ft_realpath.c
-SRCS	 	+=	rm_double_slash.c
 
 ### srcs/exit/
 

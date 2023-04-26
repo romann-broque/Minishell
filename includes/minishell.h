@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/25 22:57:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/26 11:24:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,7 +271,7 @@ void		init_env(t_global *global, char **env);
 
 void		clean_path(char **path);
 
-//// cmd_path.c
+//// get_path.c
 
 bool		is_cmd_path(t_command *cmd);
 char		*get_path_from_cmd(t_command *cmd);
@@ -335,23 +335,19 @@ void		print_pos(void);
 
 /// CLEAN_PATH ///
 
-//// clean_path_comp.c
-
-char		*clean_path_comp(char *left, size_t *left_len,
-				char *resolved, size_t *resolved_len);
-
 //// clean_pwd.c
 
 char		*clean_pwd(const char *new_pwd, const char *curr_path);
+
+//// ft_realpath_utils.c
+
+char		*clean_path_comp(char *left, size_t *left_len,
+				char *resolved, size_t *resolved_len);
 
 //// ft_realpath.c
 
 void		silent_trailing_slash(char *str, const size_t len);
 char		*ft_realpath(const char *path);
-
-//// rm_double_slash.c
-
-char		*rm_double_slash(const char *str);
 
 //			EXIT			//
 

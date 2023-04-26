@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:30:16 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/25 22:55:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/26 11:12:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,7 @@ static char	*join_path_without_backpath(
 
 char	*clean_pwd(const char *pwd, const char *curr_path)
 {
-	char	*clean_slash;
-	char	*cl_pwd;
-
 	if (pwd[0] == FWD_SLASH || curr_path == NULL)
-	{
-		clean_slash = rm_double_slash(pwd);
-		cl_pwd = clean_slash;
-		cl_pwd = ft_realpath(clean_slash);
-		free(clean_slash);
-	}
-	else
-		cl_pwd = join_path_without_backpath(curr_path, pwd);
-	return (cl_pwd);
+		return (ft_realpath(pwd));
+	return (join_path_without_backpath(curr_path, pwd));
 }

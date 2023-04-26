@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/04/22 19:25:00 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/26 11:22:17 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_path_from_cmd(t_command *cmd)
 	return (NULL);
 }
 
-static char	*get_path_cmd(const char *suffix, char **path_array)
+static char	*get_complete_path(const char *suffix, char **path_array)
 {
 	char	*path;
 	size_t	i;
@@ -82,7 +82,7 @@ char	*get_path_from_env(
 	path_array = get_split_path(env, pathvar_name);
 	if (path_array == NULL)
 		return (NULL);
-	path = get_path_cmd(suffix, path_array);
+	path = get_complete_path(suffix, path_array);
 	free_strs(path_array);
 	return (path);
 }

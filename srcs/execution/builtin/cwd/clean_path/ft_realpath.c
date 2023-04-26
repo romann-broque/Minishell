@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:51:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/25 22:51:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/26 11:14:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	silent_trailing_slash(char *str, const size_t len)
 		str[len - 1] = '\0';
 }
 
-static char	*ft_realpath_wrap(const char *path)
+char	*ft_realpath(const char *path)
 {
 	size_t	left_len;
 	size_t	resolved_len;
@@ -47,9 +47,4 @@ static char	*ft_realpath_wrap(const char *path)
 		return (NULL);
 	silent_trailing_slash(resolved, resolved_len);
 	return (ft_strdup(resolved));
-}
-
-char	*ft_realpath(const char *path)
-{
-	return (ft_realpath_wrap(path));
 }
