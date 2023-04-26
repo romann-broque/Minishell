@@ -3,5 +3,10 @@ echo bonjour je suis mat
 echo bonjour je suis mat -n
 echo
 echo bonjour -n
-echo bonjour je -n suis mat
 echo -n bonjour je suis mat
+echo
+echo -n
+echo ""
+echo -n "" "test" "ahaha" "" "pouet"
+echo -n "q"w "e" r"t"y
+echo bonjour je -n suis mat

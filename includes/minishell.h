@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 16:05:21 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/26 20:09:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,8 @@ typedef enum e_toktype
 	T_GENERIC,
 	T_START,
 	T_END,
-	T_INVALID
+	T_INVALID,
+	T_VAR
 }			t_toktype;
 
 typedef enum e_var_state
@@ -361,9 +362,14 @@ void		exit_shell(const int exit_value);
 
 //			EXPANSION			//
 
-// expand_command.c
+/// expand_command.c
 
 void		expand_command(t_list **tokens);
+
+/// rm_empty_var.c
+
+void		flag_var(t_list *tokens);
+void		rm_empty_var(t_list **tokens);
 
 ///  VAR  ///
 

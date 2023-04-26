@@ -70,6 +70,9 @@ REF_BASH_FOLDER="${FOLDER}"ref_bash/
 	# Replace Error of each line with minishell
 	sed -i -e 's/^bash: line [0-9]*: /minishell: /g' "${output_ref_bash[i]}"
 	sed -i '/^minishell /d' "${outputs[i]}"
+	while grep -c "minishell " "${outputs[i]}" > /dev/null; do
+		sed -i -n '/minishell \$/!{p;d}; N; s/minishell \$.*\n//; P; D' "${outputs[i]}"
+	done
 	sed -i '/^exit/d' "${outputs[i]}"
 
  	# Get the name of the input file without its path
