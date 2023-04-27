@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:16:21 by mat               #+#    #+#             */
-/*   Updated: 2023/04/26 19:51:50 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 15:23:40 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*get_type_str(t_token *token)
 {
 	char *const	type_str_tab[] = {
 		LCHEVRON, RCHEVRON, DOUBLE_LCHEVRON, DOUBLE_RCHEVRON,
-		PIPE, OR, AND, NULL, NULL, NULL, END_STR
+		PIPE, OR, AND, SEPARATOR_TOK, NULL, NULL, NULL, NULL, END_STR
 	};
 	t_toktype	type;
 

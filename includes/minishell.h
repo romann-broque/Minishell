@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 20:09:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 17:10:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@
 # define PIPE				"|"
 # define OR					"||"
 # define AND				"&&"
+# define SEPARATOR_TOK		" "
 # define END_STR			"newline"
 
 // error string
@@ -119,7 +120,7 @@
 
 // count
 
-# define NEXT_TOK_MAX	11
+# define NEXT_TOK_MAX	13
 # define NB_DEALLOCATOR	5
 # define CD_EXP_ARG		2
 
@@ -145,13 +146,34 @@ typedef enum e_toktype
 	T_PIPE,
 	T_OR,
 	T_AND,
+	T_SEPARATOR,
 	T_ASSIGN,
 	T_GENERIC,
+	T_DGENERIC,
 	T_START,
 	T_END,
 	T_INVALID,
 	T_VAR
 }			t_toktype;
+
+typedef enum e_toktype_short
+{
+	T_LCH,
+	T_RCH,
+	T_DLCH,
+	T_DRCH,
+	T_P,
+	T_O,
+	T_A,
+	T_SEP,
+	T_ASN,
+	T_G,
+	T_DG,
+	T_ST,
+	T_ED,
+	T_IVD,
+	T_VR
+}			t_toktype_short;
 
 typedef enum e_var_state
 {
@@ -202,8 +224,8 @@ typedef struct s_qmachine
 
 typedef struct s_tokparse
 {
-	t_toktype	curr;
-	t_toktype	next[NEXT_TOK_MAX];
+	t_toktype		curr;
+	t_toktype_short	next[NEXT_TOK_MAX];
 }				t_tokparse;
 
 typedef struct s_command

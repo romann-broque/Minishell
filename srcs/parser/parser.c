@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:45:23 by mat               #+#    #+#             */
-/*   Updated: 2023/04/20 15:03:12 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/27 17:25:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,26 @@
 static const t_tokparse	*init_pars_rules(void)
 {
 	static const t_tokparse	rules[] = {
-	{.curr = T_LCHEVRON, .next = {T_GENERIC, T_ASSIGN, T_INVALID}},
-	{.curr = T_RCHEVRON, .next = {T_GENERIC, T_ASSIGN, T_INVALID}},
-	{.curr = T_DOUBLE_LCHEVRON, .next = {T_GENERIC, T_ASSIGN, T_INVALID}},
-	{.curr = T_DOUBLE_RCHEVRON, .next = {T_GENERIC, T_ASSIGN, T_INVALID}},
-	{.curr = T_PIPE, .next = {
-		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
-		T_DOUBLE_RCHEVRON, T_ASSIGN, T_INVALID}},
-	{.curr = T_OR, .next = {
-		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
-		T_DOUBLE_RCHEVRON, T_ASSIGN, T_INVALID}},
-	{.curr = T_AND, .next = {
-		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
-		T_DOUBLE_RCHEVRON, T_ASSIGN, T_INVALID}},
-	{.curr = T_ASSIGN, .next = {
-		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
-		T_DOUBLE_RCHEVRON, T_ASSIGN, T_PIPE, T_OR, T_AND, T_END, T_INVALID}},
-	{.curr = T_GENERIC, .next = {
-		T_GENERIC, T_LCHEVRON, T_RCHEVRON, T_DOUBLE_LCHEVRON,
-		T_DOUBLE_RCHEVRON, T_ASSIGN, T_PIPE, T_OR, T_AND, T_END, T_INVALID}},
-	{.curr = T_START, .next = {T_GENERIC, T_LCHEVRON, T_RCHEVRON,
-		T_DOUBLE_LCHEVRON, T_DOUBLE_RCHEVRON, T_ASSIGN, T_END, T_INVALID}}
+	{.curr = T_LCHEVRON, .next = {T_G, T_DG, T_ASN, T_SEP, T_IVD}},
+	{.curr = T_RCHEVRON, .next = {T_G, T_DG, T_ASN, T_SEP, T_IVD}},
+	{.curr = T_DOUBLE_LCHEVRON, .next = {T_G, T_DG, T_ASN, T_SEP, T_IVD}},
+	{.curr = T_DOUBLE_RCHEVRON, .next = {T_G, T_DG, T_ASN, T_SEP, T_IVD}},
+	{.curr = T_PIPE, .next = {T_G, T_DG, T_LCH, T_RCH, T_DLCH, T_DRCH,
+		T_ASN, T_SEP, T_IVD}},
+	{.curr = T_OR, .next = {T_G, T_DG, T_LCH, T_RCH, T_DLCH,
+		T_DRCH, T_ASN, T_SEP, T_IVD}},
+	{.curr = T_AND, .next = {T_G, T_DG, T_LCH, T_RCH, T_DLCH,
+		T_DRCH, T_ASN, T_SEP, T_IVD}},
+	{.curr = T_SEPARATOR, .next = {T_G, T_DG, T_LCH, T_RCH, T_DLCH,
+		T_DRCH, T_ASN, T_P, T_O, T_A, T_SEP, T_ED, T_IVD}},
+	{.curr = T_ASSIGN, .next = {T_G, T_DG, T_LCH, T_RCH, T_DLCH,
+		T_DRCH, T_ASN, T_P, T_O, T_A, T_SEP, T_ED, T_IVD}},
+	{.curr = T_GENERIC, .next = {T_G, T_DG, T_LCH, T_RCH, T_DLCH,
+		T_DRCH, T_ASN, T_P, T_O, T_A, T_SEP, T_ED, T_IVD}},
+	{.curr = T_DGENERIC, .next = {T_G, T_DG, T_LCH, T_RCH, T_DLCH,
+		T_DRCH, T_ASN, T_P, T_O, T_A, T_SEP, T_ED, T_IVD}},
+	{.curr = T_START, .next = {T_G, T_DG, T_LCH,
+		T_RCH, T_DLCH, T_DRCH, T_ASN, T_SEP, T_ED, T_IVD}}
 	};
 
 	return (rules);
@@ -47,13 +46,18 @@ static bool	is_valid_token(
 	t_token *next_tok
 	)
 {
-	size_t			index;
+	t_toktype	tok;
+	size_t		index;
 
 	index = 0;
-	while (rules[curr_type].next[index] != T_INVALID
-		&& (rules[curr_type].next[index] != get_type_from_tok(next_tok)))
+	tok = (t_toktype)(rules[curr_type].next[index]);
+	while (tok != T_INVALID
+		&& tok != get_type_from_tok(next_tok))
+	{
 		index++;
-	return (rules[curr_type].next[index] != T_INVALID);
+		tok = (t_toktype)(rules[curr_type].next[index]);
+	}
+	return (tok != T_INVALID);
 }
 
 static bool	is_valid_parsing(t_list *tokens, const t_tokparse *rules)
