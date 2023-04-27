@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 14:12:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/25 15:24:36 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	get_command(char **env)
 {
 	char *const	line = readline(PROMPT);
 
+	add_history(line);
 	add_deallocator(line, free);
 	if (are_quotes_closed(line) == true)
 		handle_command(line, env);
