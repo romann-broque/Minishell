@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:54:40 by mat               #+#    #+#             */
-/*   Updated: 2023/04/26 15:52:57 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/27 11:24:17 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static bool	have_killable_child(void)
 static void	handle_sigint(__attribute__((unused)) int signal)
 {
 	printf(NEWLINE_STR);
+	g_global.is_stoppable = false;
 	if (have_killable_child() == true)
 	{
 		update_global();
@@ -32,7 +33,8 @@ static void	handle_sigint(__attribute__((unused)) int signal)
 		rl_replace_line(EMPTY_STR, 0);
 		rl_redisplay();
 	}
-}	
+	g_global.is_stoppable = true;
+}
 
 static void	handle_sigquit(__attribute__((unused)) int signal)
 {
