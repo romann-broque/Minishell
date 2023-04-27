@@ -11,6 +11,7 @@ on:
       - "MVE5"
       - "MVE7"
       - "MVE8"
+
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
@@ -32,15 +33,17 @@ jobs:
 
       - name: Install CUnit
         run: sudo apt-get update && sudo apt-get install -y libcunit1-dev
-      - name: Install Valgrind
-        run: sudo apt-get install valgrind
+
+      - name: Fsanitize Test
+        if: github.event_name == 'pull_request'
+        run: make debug=true test
 
       - name: Classic Test
         if: github.event_name == 'pull_request'
         run: make test
-      - name: Fsanitize Test
-        if: github.event_name == 'pull_request'
-        run: make debug=true test
+ 
+      - name: Install Valgrind
+        run: sudo apt-get install valgrind
       - name: Valgrind Test
         if: github.event_name == 'pull_request'
         run: make valgrind=true test

@@ -9,12 +9,18 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+=	srcs/
+PATH_SRCS	+=	srcs/batch/
+PATH_SRCS	+=	srcs/env/
+PATH_SRCS	+=	srcs/env/path/
 PATH_SRCS	+=	srcs/execution/
 PATH_SRCS	+=	srcs/execution/builtin/
-PATH_SRCS	+=	srcs/execution/builtin/exit_builtin/
+PATH_SRCS	+=	srcs/execution/builtin/builtin_fcts/
+PATH_SRCS	+=	srcs/execution/builtin/cwd/
+PATH_SRCS	+=	srcs/execution/builtin/cwd/clean_path/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/free/
+PATH_SRCS	+=	srcs/init/
 PATH_SRCS	+=	srcs/interpreter/
 PATH_SRCS	+=	srcs/expansion/var/
 PATH_SRCS	+=	srcs/lexer/
@@ -30,20 +36,49 @@ PATH_SRCS	+=	srcs/signal/
 
 SRCS	 	+=	minishell.c
 
+### srcs/
+
+SRCS		+=	batch.c
+
+### srcs/env/
+
+SRCS		+= change_var.c
+SRCS		+= ft_getenv.c
+SRCS		+= init_env.c
+
+### srcs/env/path/
+
+SRCS		+=	clean_path.c
+SRCS		+=	get_path.c
+SRCS		+=	cmd_path_utils.c
+
 ### srcs/execution/
 
-SRCS		+=	cmd_path.c
-SRCS		+=	cmd_path_utils.c
 SRCS	 	+=	execution.c
 
 ### srcs/execution/builtin/
 
-SRCS	 	+=	is_builtin.c
 SRCS	 	+=	exec_builtin.c
+SRCS	 	+=	is_builtin.c
 
-### srcs/execution/builtin/exit_builtin/
+### srcs/execution/builtin/builtin_fcts/
 
+SRCS		+=	echo.c
 SRCS	 	+=	exit.c
+SRCS		+=	cd.c
+SRCS		+=	pwd.c
+
+### srcs/execution/builtin/cwd/
+
+SRCS	 	+=	cd_arg.c
+SRCS	 	+=	cd_utils.c
+SRCS	 	+=	cwd_utils.c
+
+### srcs/execution/builtin/cwd/clean_path
+
+SRCS		+=	clean_pwd.c
+SRCS		+=	ft_realpath_utils.c
+SRCS	 	+=	ft_realpath.c
 
 ### srcs/exit/
 
@@ -52,6 +87,7 @@ SRCS	 	+=	exit_shell.c
 ### srcs/expansion/
 
 SRCS	 	+=	expand_command.c
+SRCS	 	+=	rm_empty_var.c
 
 ### srcs/expansion/var/
 
@@ -64,6 +100,10 @@ SRCS		+=	var_utils.c
 
 SRCS		+=	free_manager.c
 SRCS		+=	tracker.c
+
+### srcs/init/
+
+SRCS		+=	init_shell.c
 
 ### srcs/interpreter/
 
@@ -183,6 +223,7 @@ CC			=	cc
 
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra
+
 ifneq ($(no_error), true)
 	CFLAGS		+=	-Werror
 endif
@@ -242,12 +283,12 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 test	:
-	$(MAKE) -s re
+	$(MAKE) re -s
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
 	source $(ENV); $(CUNIT) $(VALGRIND)
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
-	source $(ENV); $(TESTER) $(VALGRIND)
+	$(TESTER) $(VALGRIND)
 
 clean	:
 	$(RM) -r $(PATH_OBJS)

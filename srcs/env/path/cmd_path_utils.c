@@ -6,30 +6,32 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:58:46 by mat               #+#    #+#             */
-/*   Updated: 2023/04/14 13:35:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/22 17:42:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	is_var_path_in_env(char **env)
+bool	is_var_path_in_env(char **env, const char *pathvar_name)
 {
 	size_t	i;
 
 	i = 0;
-	while (env[i] != NULL && is_path_var(env[i]) == false)
+	while (env[i] != NULL && is_path_var(env[i], pathvar_name) == false)
 		i++;
 	return (env[i] != NULL);
 }
 
-bool	is_empty_cmd(t_command *cmd)
+bool	is_empty_str(const char *str)
 {
-	return (streq(EMPTY_STR, cmd->command[0]));
+	return (streq(EMPTY_STR, str));
 }
 
-bool	is_path_var(const char *env_line)
+bool	is_path_var(const char *env_line, const char *pathvar_name)
 {
-	return (ft_strncmp(PATH_VAR, env_line, PATH_VAR_LEN) == 0);
+	const size_t	pathvar_len = ft_strlen(pathvar_name);
+
+	return (ft_strncmp(pathvar_name, env_line, pathvar_len) == 0);
 }
 
 void	add_fwd_slash(char **path_array)
