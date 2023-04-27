@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:35:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 22:25:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 22:29:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	compare_tok_lst(const char *str, const char exp_tok[][MAX_TOKEN_LEN 
 	i = 0;
 	while (i < size)
 	{
-		printf("exp -> [%s]\ngot -> [%s]\n\n", exp_tok[i], ret_tok[i]);
 		fail_count += (streq(ret_tok[i], exp_tok[i]) == false);
 		++i;
 	}

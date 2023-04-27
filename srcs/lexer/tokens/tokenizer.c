@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 23:28:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 22:27:51 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 22:33:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_toktype	get_type(char *word)
 		PIPE,
 		OR,
 		AND,
-		SEPARATOR_TOK
+		SEP
 	};
 
 	return (get_type_array(type_str, word));

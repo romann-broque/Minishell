@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 22:27:30 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 22:33:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@
 # define OR					"||"
 # define AND				"&&"
 # define ASSIGN_EQ			"="
-# define SEPARATOR_TOK		" "
+# define SEP				" "
 # define END_STR			"newline"
 
 // error string

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:41:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 22:09:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 22:45:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	spec_tok_state(t_qmachine *const machine)
 	};
 
 	add_spec_token(machine, spec_tok);
-	machine->state = E_SEPARATOR;
+	machine->state = E_WORD;
 }
 
 void	word_state(t_qmachine *const machine)
