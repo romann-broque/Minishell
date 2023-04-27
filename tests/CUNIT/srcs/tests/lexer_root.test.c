@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:12:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 22:49:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 23:02:29 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ static bool	are_same_token(const t_token *tok1, const t_token *tok2)
 {
 	return ((tok1 == tok2)
 		|| (tok1->type == tok2->type && streq(tok1->value, tok2->value)));
-}
-
-static void	print_token(const t_token *tok)
-{
-	if (tok != NULL)
-		printf(".type=[%d]; .value=[%s]\n", tok->type, tok->value);
 }
 
 static void	compare_tok_lst(const char *str, const t_token exp_tok[], const size_t size)
@@ -37,10 +31,6 @@ static void	compare_tok_lst(const char *str, const t_token exp_tok[], const size
 	i = 0;
 	while (i < size)
 	{
-		printf("EXP:");
-		print_token(exp_tok + i);
-		printf("GOT:");
-		print_token(tok_lst->content);
 		fail_count += (are_same_token(tok_lst->content, exp_tok + i) == false);
 		tok_lst = tok_lst->next;
 		++i;

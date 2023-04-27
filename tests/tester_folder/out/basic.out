@@ -1,21 +1,13 @@
-includes
-libft
-Makefile
-minishell
-objs
-README.md
-srcs
-tests
-minishell: tests: command not found
-includes
-libft
-Makefile
-minishell
-objs
-README.md
-srcs
-tests
-minishell: tests: command not found
-
+bin
+CUNIT
+env
+tester_folder
+valgrind
+bin
+CUNIT
+env
+tester_folder
+valgrind
+pouet pouet
 minishell: pouet: command not found
-minishell: pouet: command not found
+minishell: /pouet: No such file or directory

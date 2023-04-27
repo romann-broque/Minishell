@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:48:00 by mat               #+#    #+#             */
-/*   Updated: 2023/04/20 14:10:54 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/27 22:56:40 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	parser__test(void)
 	t_list	*tokens_test11;
 	t_list	*tokens_test12;
 	t_list	*tokens_test13;
+	t_list	*tokens_test14;
+	t_list	*tokens_test15;
 
 
 
@@ -218,4 +220,37 @@ void	parser__test(void)
 	tokens_test13 = get_list_from_array(t_13_toks);
 	CU_ASSERT_TRUE(parser(tokens_test13));
 	ft_lstclear(&tokens_test13, NULL);
+	
+	t_token	t_14_toks[] = {
+		{.type = T_START, .value = NULL},
+		{.type = T_GENERIC, .value = "bonjour"},
+		{.type = T_SEPARATOR, .value = " "},
+		{.type = T_DGENERIC, .value = "\"Mister\""},
+		{.type = T_PIPE, .value = "|"},
+		{.type = T_DOUBLE_LCHEVRON, .value = "<<"},
+		{.type = T_SEPARATOR, .value = " "},
+		{.type = T_GENERIC, .value = "RAGE AGAINST THE MACHINE"},
+		{.type = T_END, .value = NULL}
+	};
+
+	tokens_test14 = get_list_from_array(t_14_toks);
+	CU_ASSERT_TRUE(parser(tokens_test14));
+	ft_lstclear(&tokens_test14, NULL);
+
+	t_token	t_15_toks[] = {
+		{.type = T_START, .value = NULL},
+		{.type = T_GENERIC, .value = "bonjour"},
+		{.type = T_SEPARATOR, .value = " "},
+		{.type = T_DGENERIC, .value = "\"Mister\""},
+		{.type = T_PIPE, .value = "|"},
+		{.type = T_DOUBLE_LCHEVRON, .value = "<<"},
+		{.type = T_DOUBLE_LCHEVRON, .value = "<<"},
+		{.type = T_SEPARATOR, .value = " "},
+		{.type = T_GENERIC, .value = "RAGE AGAINST THE MACHINE"},
+		{.type = T_END, .value = NULL}
+	};
+
+	tokens_test15 = get_list_from_array(t_15_toks);
+	CU_ASSERT_FALSE(parser(tokens_test15));
+	ft_lstclear(&tokens_test15, NULL);
 }

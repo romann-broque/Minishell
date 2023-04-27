@@ -26,26 +26,26 @@ void	set_tests(void)
 			{.tname = "lexer_root", lexer_root__test}
 			}
 		},
-		// {.suite = NULL, .sname = "Parser", .tests = {
-		// 	{.tname = "parser", parser__test}
-		// 	}
-		// },
-		// {
-		// 	.suite = NULL, .sname = "Expand", .tests = {
-		// 		{.tname = "expand", expand__test},
-		// 	}
-		// },
-		// {.suite = NULL, .sname = "Interpreter", .tests = {
-		// 	{.tname = "interpreter", interpreter__test}
-		// 	}
-		// },
-		// {.suite = NULL, .sname = "Execution", .tests = {
-		// 	{.tname = "cmd_path", cmd_path__test},
-		// 	{.tname = "ft_getenv", ft_getenv__test},
-		// 	{.tname = "change_var", change_var__test},
-		// 	{.tname = "clean", clean_pwd__test},
-		// 	}
-		// },
+		{.suite = NULL, .sname = "Parser", .tests = {
+			{.tname = "parser", parser__test}
+			}
+		},
+		{
+			.suite = NULL, .sname = "Expand", .tests = {
+				{.tname = "expand", expand__test},
+			}
+		},
+		{.suite = NULL, .sname = "Interpreter", .tests = {
+			{.tname = "interpreter", interpreter__test}
+			}
+		},
+		{.suite = NULL, .sname = "Execution", .tests = {
+			{.tname = "cmd_path", cmd_path__test},
+			{.tname = "ft_getenv", ft_getenv__test},
+			{.tname = "change_var", change_var__test},
+			{.tname = "clean", clean_pwd__test},
+			}
+		},
 		{.suite = NULL, .sname = NULL}
 	};
 
