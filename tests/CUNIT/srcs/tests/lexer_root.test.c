@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:12:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 18:00:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 21:59:14 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ static bool	are_same_token(const t_token *tok1, const t_token *tok2)
 {
 	return ((tok1 == tok2)
 		|| (tok1->type == tok2->type && streq(tok1->value, tok2->value)));
+}
+
+static void	print_token(const t_token *tok)
+{
+	if (tok != NULL)
+		printf(".type=[%d]; .value=[%s]\n", tok->type, tok->value);
 }
 
 static void	compare_tok_lst(const char *str, const t_token exp_tok[], const size_t size)
@@ -31,6 +37,10 @@ static void	compare_tok_lst(const char *str, const t_token exp_tok[], const size
 	i = 0;
 	while (i < size)
 	{
+		printf("EXP:");
+		print_token(exp_tok + i);
+		printf("GOT:");
+		print_token(tok_lst->content);
 		fail_count += (are_same_token(tok_lst->content, exp_tok + i) == false);
 		tok_lst = tok_lst->next;
 		++i;
@@ -161,29 +171,40 @@ void	lexer_root__test(void)
 	};
 	const char				str12[] = "lol=42&\'wouah\'& ||";
 	static const t_token	tok_lst12[] = {
-		{.type = T_ASSIGN, .value = "lol=42&\'wouah\'&"},
+		{.type = T_GENERIC, .value = "lol"},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
+		{.type = T_GENERIC, .value = "42&\'wouah\'&"},
 		{.type = T_OR, .value = OR},
 	};
 	const char				str13[] = "=42&\'wouah\'& ||";
 	static const t_token	tok_lst13[] = {
-		{.type = T_GENERIC, .value = "=42&\'wouah\'&"},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
+		{.type = T_GENERIC, .value = "42&\'wouah\'&"},
 		{.type = T_OR, .value = OR},
 	};
 	const char				str14[] = "lol=4=2";
 	static const t_token	tok_lst14[] = {
-		{.type = T_ASSIGN, .value = "lol=4=2"},
+		{.type = T_GENERIC, .value = "lol"},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
+		{.type = T_GENERIC, .value = "4"},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
+		{.type = T_GENERIC, .value = "2"},
 	};
 	const char				str15[] = "lol==42";
 	static const t_token	tok_lst15[] = {
-		{.type = T_ASSIGN, .value = "lol==42"},
+		{.type = T_GENERIC, .value = "lol"},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
+		{.type = T_GENERIC, .value = "42"},
 	};
 	const char				str16[] = "=42";
 	static const t_token	tok_lst16[] = {
-		{.type = T_GENERIC, .value = "=42"},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
+		{.type = T_GENERIC, .value = "42"},
 	};
 	const char				str17[] = "=";
 	static const t_token	tok_lst17[] = {
-		{.type = T_GENERIC, .value = "="},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
 	};
 	const char				str18[] = "\'lol=42\'";
 	static const t_token	tok_lst18[] = {
@@ -191,21 +212,27 @@ void	lexer_root__test(void)
 	};
 	const char				str19[] = "lol=\"\'lol=42\'\"";
 	static const t_token	tok_lst19[] = {
-		{.type = T_ASSIGN, .value = "lol=\"\'lol=42\'\""},
+		{.type = T_GENERIC, .value = "lol"},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
+		{.type = T_GENERIC, .value = "\"\'lol=42\'\""},
 	};
 	const char				str20[] = "===";
 	static const t_token	tok_lst20[] = {
-		{.type = T_GENERIC, .value = "==="},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
 	};
 	const char				str21[] = "\"=\"==42";
 	static const t_token	tok_lst21[] = {
 		{.type = T_GENERIC, .value = "\"=\""},
-		{.type = T_ASSIGN, .value = "="},
-		{.type = T_GENERIC, .value = "=42"},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
+		{.type = T_ASSIGN, .value = ASSIGN_EQ},
+		{.type = T_GENERIC, .value = "42"},
 	};
 	const char				str22[] = "\"=\"\'==42\'";
 	static const t_token	tok_lst22[] = {
-		{.type = T_GENERIC, .value = "\"=\"\'==42\'"},
+		{.type = T_GENERIC, .value = "\"=\""},
+		{.type = T_GENERIC, .value = "\'==42\'"},
 	};
 
 	compare_tok_lst(str1, tok_lst1, 1);
@@ -219,15 +246,15 @@ void	lexer_root__test(void)
 	compare_tok_lst(str9, tok_lst9, 12);
 	compare_tok_lst(str10, tok_lst10, 4);
 	compare_tok_lst(str11, tok_lst11, 2);
-	compare_tok_lst(str12, tok_lst12, 2);
-	compare_tok_lst(str13, tok_lst13, 2);
-	compare_tok_lst(str14, tok_lst14, 1);
-	compare_tok_lst(str15, tok_lst15, 1);
-	compare_tok_lst(str16, tok_lst16, 1);
+	compare_tok_lst(str12, tok_lst12, 4);
+	compare_tok_lst(str13, tok_lst13, 3);
+	compare_tok_lst(str14, tok_lst14, 5);
+	compare_tok_lst(str15, tok_lst15, 3);
+	compare_tok_lst(str16, tok_lst16, 2);
 	compare_tok_lst(str17, tok_lst17, 1);
 	compare_tok_lst(str18, tok_lst18, 1);
-	compare_tok_lst(str19, tok_lst19, 1);
-	compare_tok_lst(str20, tok_lst20, 1);
-	compare_tok_lst(str21, tok_lst21, 1);
-	compare_tok_lst(str22, tok_lst22, 1);
+	compare_tok_lst(str19, tok_lst19, 3);
+	compare_tok_lst(str20, tok_lst20, 3);
+	compare_tok_lst(str21, tok_lst21, 4);
+	compare_tok_lst(str22, tok_lst22, 2);
 }

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:41:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 17:37:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 22:09:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void	separator_state(t_qmachine *const machine)
 	update_state(machine);
 	if (machine->state == E_SEPARATOR)
 		++(machine->str);
+	else
+	{
+		++(machine->word_len);
+		add_token(machine);
+	}
 }
 
 void	single_quote_state(t_qmachine *const machine)
@@ -41,6 +46,7 @@ void	spec_tok_state(t_qmachine *const machine)
 		LCHEVRON,
 		RCHEVRON,
 		PIPE,
+		ASSIGN_EQ
 	};
 
 	add_spec_token(machine, spec_tok);

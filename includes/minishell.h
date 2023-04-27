@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 17:56:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 22:27:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@
 # define PIPE				"|"
 # define OR					"||"
 # define AND				"&&"
+# define ASSIGN_EQ			"="
 # define SEPARATOR_TOK		" "
 # define END_STR			"newline"
 
@@ -473,6 +474,7 @@ t_list		*lexer(const char *str);
 
 void		update_state_assign(const char c, t_qstate *state);
 bool		is_assign(const char *word);
+bool		is_dword(const char *word);
 
 //// assign_states.c
 

@@ -1,54 +1,16 @@
-/bin
-/bin
-/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
-/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/bin
-/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
-minishell: cd: bonjour: No such file or directory
-minishell: cd: repo: No such file or directory
-/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
-$PWD $OLDPWD
-$PWD $OLDPWD
-/bin
-/usr
-/
-minishell: cd: "": No such file or directory
-/
-minishell: cd: "    ": No such file or directory
-/
-/
-/home
-/home
-/home
-minishell: cd: srcs/batch: No such file or directory
-/home
-minishell: cd: ../../tests/CUNIT/..: No such file or directory
-/home
-/home
-minishell: cd: too many arguments
+minishell: tests/: No such file or directory
+minishell: bin: command not found
 /home/screw
-/home
-/home
+minishell: -: command not found
+minishell: ./bin: No such file or directory
 /home/screw
+minishell: /usr/local/sbin/..: Is a directory
 /home/screw
-/home
+minishell: bonjour: command not found
+minishell: repo: command not found
 /home/screw
-/home/screw
-/home
-/home/screw
-mkdir: cannot create directory ‘new’: Permission denied
-minishell: cd: new: No such file or directory
-/home/screw
-pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-$PWD $OLDPWD
-chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-/home/screw
-/home/screw
-minishell: cd: pouet: No such file or directory
-/bin
-/dev/disk
-/dev/disk
-minishell: cd: ../../../../......./..////////: No such file or directory
-minishell: cd: /.//////./../../../......./..////////: No such file or directory
-/dev/disk
-/home/screw
-$PWD $OLDPWD
+
+minishell: /home/screw: Is a directory
+minishell: /home/screw: Is a directory
+free(): invalid pointer
+free(): invalid pointer

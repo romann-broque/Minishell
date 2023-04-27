@@ -1,13 +1,21 @@
-bin
-CUNIT
-env
-tester_folder
-valgrind
-bin
-CUNIT
-env
-tester_folder
-valgrind
-pouet pouet
+includes
+libft
+Makefile
+minishell
+objs
+README.md
+srcs
+tests
+minishell: tests: command not found
+includes
+libft
+Makefile
+minishell
+objs
+README.md
+srcs
+tests
+minishell: tests: command not found
+
 minishell: pouet: command not found
-minishell: /pouet: No such file or directory
+minishell: pouet: command not found

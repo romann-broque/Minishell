@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:46:12 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 18:37:23 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 22:26:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ void	update_state_assign(const char c, t_qstate *state)
 
 bool	is_assign(const char *word)
 {
-	return (streq(word, "=") == true);
+	return (streq(word, ASSIGN_EQ) == true);
+}
+
+bool	is_dword(const char *word)
+{
+	return (word[0] == DOUBLE_QUOTE);
 }
 
 // static bool	(*assign_state[])(const char **, t_qstate *) = {

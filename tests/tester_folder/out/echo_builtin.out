@@ -1,10 +1,7 @@
-bonjour
-bonjour je suis mat
-bonjour je suis mat -n
+minishell: bonjour: command not found
 
-bonjour -n
-bonjour je suis mat
-""
-"" "test" "ahaha" "" "pouet""q" w "e" r "t" y"\nq" w "" "e" r "t" y
-minishell: "ec": command not found
-bonjour je -n suis mat
+minishell: bonjour: command not found
+minishell: je: command not found
+minishell: suis: command not found
+minishell: mat: command not found
+
