@@ -58,9 +58,9 @@ REF_BASH_FOLDER="${FOLDER}"ref_bash/
 
  echo -e "${BLUE}\n<====  BASH  ====>\n${NC}"
 
- inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"builtin_cwd.in)
- outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"builtin_cwd.out)
- output_ref_bash=( "${REF_BASH_FOLDER}"basic.refb "${REF_BASH_FOLDER}"builtin_cwd.refb)
+ inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"builtin_cwd.in "${IN_FOLDER}"echo_builtin.in)
+ outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"builtin_cwd.out "${OUT_FOLDER}"echo_builtin.out)
+ output_ref_bash=( "${REF_BASH_FOLDER}"basic.refb "${REF_BASH_FOLDER}"builtin_cwd.refb "${REF_BASH_FOLDER}"echo_builtin.refb)
 
  for i in "${!inputs[@]}"; do
  	# Run the program and redirect the output to the corresponding output file
@@ -70,6 +70,9 @@ REF_BASH_FOLDER="${FOLDER}"ref_bash/
 	# Replace Error of each line with minishell
 	sed -i -e 's/^bash: line [0-9]*: /minishell: /g' "${output_ref_bash[i]}"
 	sed -i '/^minishell /d' "${outputs[i]}"
+	while grep -c "minishell " "${outputs[i]}" > /dev/null; do
+		sed -i -n '/minishell \$/!{p;d}; N; s/minishell \$.*\n//; P; D' "${outputs[i]}"
+	done
 	sed -i '/^exit/d' "${outputs[i]}"
 
  	# Get the name of the input file without its path

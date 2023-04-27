@@ -8,6 +8,10 @@ on:
       - "MVE2"
       - "MVE3"
       - "MVE4"
+      - "MVE5"
+      - "MVE7"
+      - "MVE8"
+
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest

@@ -63,6 +63,7 @@ SRCS	 	+=	is_builtin.c
 
 ### srcs/execution/builtin/builtin_fcts/
 
+SRCS		+=	echo.c
 SRCS	 	+=	exit.c
 SRCS		+=	cd.c
 SRCS		+=	pwd.c
@@ -87,6 +88,7 @@ SRCS		+=	exit_utils.c
 ### srcs/expansion/
 
 SRCS	 	+=	expand_command.c
+SRCS	 	+=	rm_empty_var.c
 
 ### srcs/expansion/var/
 
