@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 17:10:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 17:56:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@
 
 // char types
 
-# define TOK_LEXEME		"<>|&"
+# define TOK_LEXEME		"<>|&="
 # define WHITESPACES	" \t\n\v\f\r"
 # define SEPARATORS		" \t\n"
 # define SPECIAL_VAR	"?0"

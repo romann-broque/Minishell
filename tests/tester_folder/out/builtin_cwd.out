@@ -6,14 +6,14 @@
 minishell: cd: bonjour: No such file or directory
 minishell: cd: repo: No such file or directory
 /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
-/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/bin
-/bin /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
+$PWD $OLDPWD
+$PWD $OLDPWD
 /bin
 /usr
 /
+minishell: cd: "": No such file or directory
 /
-/
-minishell: cd:     : No such file or directory
+minishell: cd: "    ": No such file or directory
 /
 /
 /home
@@ -39,7 +39,7 @@ mkdir: cannot create directory ‘new’: Permission denied
 minishell: cd: new: No such file or directory
 /home/screw
 pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-/home/screw/lol /home/screw
+$PWD $OLDPWD
 chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 /home/screw
 /home/screw
@@ -51,4 +51,4 @@ minishell: cd: ../../../../......./..////////: No such file or directory
 minishell: cd: /.//////./../../../......./..////////: No such file or directory
 /dev/disk
 /home/screw
-/home/screw /dev/disk
+$PWD $OLDPWD

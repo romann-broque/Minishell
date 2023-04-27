@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_states.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:41:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 15:02:53 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/27 17:37:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	word_state(t_qmachine *const machine)
 	update_state(machine);
 	if (machine->state == E_EOF
 		|| machine->state == E_SEPARATOR
-		|| machine->state == E_SPEC_TOK)
+		|| machine->state == E_SPEC_TOK
+		|| machine->state == E_DQUOTE)
 		add_token(machine);
 	else if (machine->state == E_WORD)
 	{

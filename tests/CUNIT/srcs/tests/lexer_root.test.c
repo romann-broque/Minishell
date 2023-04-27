@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:12:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/06 16:34:14 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 18:00:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,9 @@ void	lexer_root__test(void)
 	};
 	const char				str21[] = "\"=\"==42";
 	static const t_token	tok_lst21[] = {
-		{.type = T_ASSIGN, .value = "\"=\"==42"},
+		{.type = T_GENERIC, .value = "\"=\""},
+		{.type = T_ASSIGN, .value = "="},
+		{.type = T_GENERIC, .value = "=42"},
 	};
 	const char				str22[] = "\"=\"\'==42\'";
 	static const t_token	tok_lst22[] = {
