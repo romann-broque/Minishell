@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 15:53:27 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/27 16:09:10 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,7 +332,7 @@ bool		is_prev_option(char **command);
 char		*ft_strstr(const char *big, const char *little);
 void		check_pos(const char *caller);
 void		update_cwd_var(const char *new_pwd);
-void		print_pos(void);
+int			print_pos(void);
 
 /// CLEAN_PATH ///
 

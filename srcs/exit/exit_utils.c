@@ -6,11 +6,13 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:45:04 by mat               #+#    #+#             */
-/*   Updated: 2023/04/27 15:53:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/27 15:57:29 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+//shifting the value 8 bits to the right and masking it with 0xFF
 
 int	extract_return_status(int status)
 {

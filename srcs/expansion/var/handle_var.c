@@ -3,28 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   handle_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/04/21 10:58:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 17:07:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+extern t_global	g_global;
+
 void	replace_special_var(t_vmachine *const machine)
 {
 	const char		c = machine->line[machine->index];
-	static char		*array_str[] = {
-		QMARK_VAR,
-		ZERO_VAR
-	};
+	char *const		last_ret_str = ft_itoa(g_global.last_ret_val);
 	const size_t	index = abs_index(SPECIAL_VAR, c);
+	char *const		array_str[] = {last_ret_str, ZERO_VAR};
 
 	if (is_in_str(SEPARATORS, c) == false)
 		machine->line = replace_str_free(machine->line, array_str[index],
 				machine->index - 1, SPEC_VAR_LEN);
 	change_state(machine->prev_state, machine);
+	free(last_ret_str);
 }
 
 static char	*get_var_name(t_vmachine *const machine)
