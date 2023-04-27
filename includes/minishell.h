@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 11:24:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 15:53:27 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,6 +235,7 @@ typedef struct s_global
 {
 	t_resource_tracker	tracker;
 	char				**env;
+	int					last_ret_val;
 	bool				is_stoppable;
 }				t_global;
 
@@ -354,6 +355,10 @@ char		*ft_realpath(const char *path);
 /// exit_shell.c
 
 void		exit_shell(const int exit_value);
+
+/// exit_utils.c
+
+int			extract_return_status(int status);
 
 //			EXPANSION			//
 

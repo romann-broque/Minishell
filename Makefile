@@ -82,6 +82,7 @@ SRCS	 	+=	ft_realpath.c
 ### srcs/exit/
 
 SRCS	 	+=	exit_shell.c
+SRCS		+=	exit_utils.c
 
 ### srcs/expansion/
 
