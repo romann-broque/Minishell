@@ -58,9 +58,9 @@ REF_BASH_FOLDER="${FOLDER}"ref_bash/
 
  echo -e "${BLUE}\n<====  BASH  ====>\n${NC}"
 
- inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"builtin_cwd.in "${IN_FOLDER}"echo_builtin.in)
- outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"builtin_cwd.out "${OUT_FOLDER}"echo_builtin.out)
- output_ref_bash=( "${REF_BASH_FOLDER}"basic.refb "${REF_BASH_FOLDER}"builtin_cwd.refb "${REF_BASH_FOLDER}"echo_builtin.refb)
+ inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"builtin_cwd.in "${IN_FOLDER}"echo_builtin.in "${IN_FOLDER}"exit_builtin.in)
+ outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"builtin_cwd.out "${OUT_FOLDER}"echo_builtin.out "${OUT_FOLDER}"exit_builtin.out)
+ output_ref_bash=( "${REF_BASH_FOLDER}"basic.refb "${REF_BASH_FOLDER}"builtin_cwd.refb "${REF_BASH_FOLDER}"echo_builtin.refb "${REF_BASH_FOLDER}"exit_builtin.refb)
 
  for i in "${!inputs[@]}"; do
  	# Run the program and redirect the output to the corresponding output file

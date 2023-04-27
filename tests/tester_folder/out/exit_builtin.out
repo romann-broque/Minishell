@@ -1,0 +1,7 @@
+ls: cannot access 'blata': No such file or directory
+2
+minishell: 0: command not found
+minishell: cd: too many arguments
+1
+minishell: cd: blata: No such file or directory
+1

@@ -6,11 +6,13 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:28:37 by mdorr             #+#    #+#             */
-/*   Updated: 2023/04/26 16:23:08 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/27 19:49:14 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_global	g_global;
 
 static bool	is_n_option(char *first_argument)
 {
@@ -37,4 +39,5 @@ void	echo_builtin(t_command *cmd_data)
 	}
 	if (n_option == false)
 		printf("\n");
+	g_global.last_ret_val = 0;
 }

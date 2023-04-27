@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_var.test.c                                  :+:      :+:    :+:   */
+/*   expand.test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:47:05 by mat               #+#    #+#             */
-/*   Updated: 2023/04/11 10:17:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/27 19:47:09 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,12 @@ void	expand__test(void)
 	const char	str_ref_t10[] = "";
 	const char	str_in_t11[] = "$1bla";
 	const char	str_ref_t11[] = "bla";
-	const char	str_in_t12[] = "$?bla";
-	const char	str_ref_t12[] = "LAST_RET_VALbla";
 	const char	str_in_t13[] = "$";
 	const char	str_ref_t13[] = "$";
 	const char	str_in_t14[] = "$$   $";
 	const char	str_ref_t14[] = "   $";
 	const char	str_in_t15[] = "$$$";
 	const char	str_ref_t15[] = "$";
-	const char	str_in_t16[] = "$?";
-	const char	str_ref_t16[] = "LAST_RET_VAL";
 	const char	str_in_t17[] = "$0";
 	const char	str_ref_t17[] = "minishell";
 	const char	str_in_t18[] = "$single$single";
@@ -102,11 +98,9 @@ void	expand__test(void)
 	ASSERT_AND_FREE(expand_var(str_in_t9), str_ref_t9);
 	ASSERT_AND_FREE(expand_var(str_in_t10), str_ref_t10);
 	ASSERT_AND_FREE(expand_var(str_in_t11), str_ref_t11);
-	ASSERT_AND_FREE(expand_var(str_in_t12), str_ref_t12);
 	ASSERT_AND_FREE(expand_var(str_in_t13), str_ref_t13);
 	ASSERT_AND_FREE(expand_var(str_in_t14), str_ref_t14);
 	ASSERT_AND_FREE(expand_var(str_in_t15), str_ref_t15);
-	ASSERT_AND_FREE(expand_var(str_in_t16), str_ref_t16);
 	ASSERT_AND_FREE(expand_var(str_in_t17), str_ref_t17);
 	ASSERT_AND_FREE(expand_var(str_in_t18), str_ref_t18);
 	ASSERT_AND_FREE(expand_var(str_in_t19), str_ref_t19);

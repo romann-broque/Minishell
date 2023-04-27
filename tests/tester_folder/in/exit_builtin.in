@@ -1,0 +1,7 @@
+ls blata
+echo $?
+$?
+cd arg1 arg2
+echo $?
+cd blata
+echo $?
