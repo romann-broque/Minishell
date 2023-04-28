@@ -9,4 +9,9 @@ echo $?
 ls blata
 exit
 echo $?
+mkdir lol
+cd lol
+rm ../lol -fr
+pwd
+/bin/echo $?
 exit
