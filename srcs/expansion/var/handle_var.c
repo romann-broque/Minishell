@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/04/27 17:21:00 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/28 10:11:50 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ extern t_global	g_global;
 void	replace_special_var(t_vmachine *const machine)
 {
 	const char		c = machine->line[machine->index];
-	char *const		last_ret_str = ft_itoa(g_global.last_ret_val);
 	const size_t	index = abs_index(SPECIAL_VAR, c);
+	char *const		last_ret_str = ft_itoa(g_global.last_ret_val);
 	char *const		array_str[] = {last_ret_str, ZERO_VAR};
 
 	if (is_in_str(SEPARATORS, c) == false)

@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 17:19:36 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/28 10:14:46 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@
 # define DOT_STR		"."
 # define DOUBLE_DOT_STR	".."
 # define BATCH_OPT		"-c"
+# define ECHO_OPT		"-n"
 # define BACKPATH		"/.."
+# define NEWLINE_STR	"\n"
+# define SPACE_STR		" "
 
 // builtins
 

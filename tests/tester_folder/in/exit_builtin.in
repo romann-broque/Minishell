@@ -5,3 +5,8 @@ cd arg1 arg2
 echo $?
 cd blata
 echo $?
+./minishell
+ls blata
+exit
+echo $?
+exit

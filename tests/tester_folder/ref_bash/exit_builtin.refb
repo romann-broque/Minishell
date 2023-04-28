@@ -5,3 +5,6 @@ minishell: cd: too many arguments
 1
 minishell: cd: blata: No such file or directory
 1
+ls: cannot access 'blata': No such file or directory
+exit
+2
