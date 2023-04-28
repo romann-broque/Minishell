@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/28 11:24:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/28 15:28:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -392,6 +392,10 @@ void		expand_command(t_list **tokens);
 /// merge_gen.c
 
 void		merge_gen_lst(t_list *tokens);
+
+/// split_gen.c
+
+void		split_gen(t_list **tokens);
 
 ///  VAR  ///
 
