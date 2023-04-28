@@ -14,10 +14,7 @@ cd lol
 rm ../lol -fr
 pwd
 /bin/echo $?
-<
-echo $?
-||
-echo $?
+cd ..
 bonjour
 echo $?
 touch noperm
@@ -26,4 +23,5 @@ chmod 000 noperm
 echo $?
 chmod 777 noperm
 rm noperm
+echo $?
 exit

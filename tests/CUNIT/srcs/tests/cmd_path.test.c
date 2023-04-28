@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_path.test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 11:27:11 by mat               #+#    #+#             */
-/*   Updated: 2023/04/28 16:06:59 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/28 16:10:24 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	cmd_path__test(void)
 	str_out_t1 = get_path_from_env(cmd1.command[0], PATH_VAR, cmd1.env, NULL);
 	ASSERT_AND_FREE(str_out_t1, str_ref_t1);
 
-	str_out_t2 = get_path_from_env(cmd2.command[0], PATH_VAR, cmd2.env, NULL)
+	str_out_t2 = get_path_from_env(cmd2.command[0], PATH_VAR, cmd2.env, NULL);
 	ASSERT_AND_FREE(str_out_t2, str_ref_t2);
 
 	str_out_t3 = get_path_from_env(cmd3.command[0], PATH_VAR, cmd3.env, NULL);
