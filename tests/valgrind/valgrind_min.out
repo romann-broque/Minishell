@@ -1,23 +1,14 @@
-==210162== Memcheck, a memory error detector
-==210162== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==210162== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==210162== Command: ./minishell
-==210162== Parent PID: 210160
-==210162== 
-==210162== 
-==210162== HEAP SUMMARY:
-==210162==     in use at exit: 204,158 bytes in 221 blocks
-==210162==   total heap usage: 753 allocs, 532 frees, 247,831 bytes allocated
-==210162== 
-==210162== LEAK SUMMARY:
-==210162==    definitely lost: 0 bytes in 0 blocks
-==210162==    indirectly lost: 0 bytes in 0 blocks
-==210162==      possibly lost: 0 bytes in 0 blocks
-==210162==    still reachable: 0 bytes in 0 blocks
-==210162==         suppressed: 204,158 bytes in 221 blocks
-==210162== 
-==210162== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---210162-- 
---210162-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,158 bytes in 221 blocks
-==210162== 
-==210162== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==30323== Memcheck, a memory error detector
+==30323== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==30323== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==30323== Command: ./tests/CUNIT/cunit
+==30323== Parent PID: 30322
+==30323== 
+==30323== 
+==30323== HEAP SUMMARY:
+==30323==     in use at exit: 0 bytes in 0 blocks
+==30323==   total heap usage: 1,567 allocs, 1,567 frees, 36,949 bytes allocated
+==30323== 
+==30323== All heap blocks were freed -- no leaks are possible
+==30323== 
+==30323== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

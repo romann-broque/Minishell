@@ -87,6 +87,7 @@ SRCS	 	+=	exit_shell.c
 ### srcs/expansion/
 
 SRCS	 	+=	expand_command.c
+SRCS	 	+=	merge_gen.c
 
 ### srcs/expansion/var/
 
