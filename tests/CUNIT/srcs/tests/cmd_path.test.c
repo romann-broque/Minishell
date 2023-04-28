@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_path.test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 11:27:11 by mat               #+#    #+#             */
-/*   Updated: 2023/04/22 18:05:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/28 16:06:59 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,28 +117,28 @@ void	cmd_path__test(void)
 		.fdout = STDOUT_FILENO,
 	};
 
-	str_out_t1 = get_path_from_env(cmd1.command[0], PATH_VAR, cmd1.env);
+	str_out_t1 = get_path_from_env(cmd1.command[0], PATH_VAR, cmd1.env, NULL);
 	ASSERT_AND_FREE(str_out_t1, str_ref_t1);
 
-	str_out_t2 = get_path_from_env(cmd2.command[0], PATH_VAR, cmd2.env);
+	str_out_t2 = get_path_from_env(cmd2.command[0], PATH_VAR, cmd2.env, NULL)
 	ASSERT_AND_FREE(str_out_t2, str_ref_t2);
 
-	str_out_t3 = get_path_from_env(cmd3.command[0], PATH_VAR, cmd3.env);
+	str_out_t3 = get_path_from_env(cmd3.command[0], PATH_VAR, cmd3.env, NULL);
 	ASSERT_AND_FREE(str_out_t3, str_ref_t3);
 
-	str_out_t4 = get_path_from_env(cmd4.command[0], PATH_VAR, cmd4.env);
+	str_out_t4 = get_path_from_env(cmd4.command[0], PATH_VAR, cmd4.env, NULL);
 	ASSERT_AND_FREE(str_out_t4, str_ref_t4);
 
-	str_out_t5 = get_path_from_env(cmd5.command[0], PATH_VAR, cmd5.env);
+	str_out_t5 = get_path_from_env(cmd5.command[0], PATH_VAR, cmd5.env, NULL);
 	CU_ASSERT_PTR_NULL(str_out_t5);
 
-	str_out_t6 = get_path_from_env(cmd6.command[0], PATH_VAR, cmd6.env);
+	str_out_t6 = get_path_from_env(cmd6.command[0], PATH_VAR, cmd6.env, NULL);
 	CU_ASSERT_PTR_NULL(str_out_t6);
 
-	str_out_t7 = get_path_from_env(cmd7.command[0], PATH_VAR, cmd7.env);
+	str_out_t7 = get_path_from_env(cmd7.command[0], PATH_VAR, cmd7.env, NULL);
 	CU_ASSERT_PTR_NULL(str_out_t7);
 
-	str_out_t8 = get_path_from_env(cmd8.command[0], PATH_VAR, cmd8.env);
+	str_out_t8 = get_path_from_env(cmd8.command[0], PATH_VAR, cmd8.env, NULL);
 	CU_ASSERT_PTR_NULL(str_out_t8);
 
 }
