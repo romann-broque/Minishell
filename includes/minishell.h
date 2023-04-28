@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/28 14:51:57 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/28 15:33:36 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -370,6 +370,7 @@ void		exit_shell(void);
 
 int			extract_return_status(int status);
 void		update_cmd_error_val(bool accessible);
+void		update_error_val(int error_nbr);
 
 //			EXPANSION			//
 

@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/28 11:08:30 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/28 15:34:52 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void	handle_command(const char *command)
 			expand_command(&tokens);
 			exec_command(&tokens);
 		}
+		else
+			update_error_val(2);
 	}
 }
 
@@ -50,7 +52,10 @@ static void	get_command(void)
 	if (are_quotes_closed(line) == true)
 		handle_command(line);
 	else
+	{
+		update_error_val(2);
 		print_error("%s: %s\n", MINISHELL, SYNTAX_ERROR);
+	}
 	free_manager();
 }
 

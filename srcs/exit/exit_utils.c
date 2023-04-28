@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:45:04 by mat               #+#    #+#             */
-/*   Updated: 2023/04/28 14:52:08 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/28 15:33:26 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,9 @@ void	update_cmd_error_val(bool accessible)
 		g_global.last_ret_val = 127;
 	else
 		g_global.last_ret_val = 126;
+}
+
+void	update_error_val(int error_nbr)
+{
+	g_global.last_ret_val = error_nbr;
 }
