@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:28:37 by mdorr             #+#    #+#             */
-/*   Updated: 2023/04/28 10:04:33 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/28 11:03:57 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	is_n_option(char *first_argument)
 	return (first_argument != NULL && streq(ECHO_OPT, first_argument) == true);
 }
 
-void	echo_builtin(t_command *cmd_data)
+int	echo_builtin(t_command *cmd_data)
 {
 	bool	n_option;
 	char	**str_ptr;
@@ -39,5 +39,5 @@ void	echo_builtin(t_command *cmd_data)
 	}
 	if (n_option == false)
 		printf(NEWLINE_STR);
-	g_global.last_ret_val = 0;
+	return (0);
 }

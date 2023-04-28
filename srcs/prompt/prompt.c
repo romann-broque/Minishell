@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/25 15:24:36 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/28 11:08:30 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	handle_command(const char *command)
 
 	tokens = lexer(command);
 	if (tokens == NULL)
-		exit_shell(LAST_RETVAL);
+		exit_shell();
 	else
 	{
 		add_deallocator(tokens, free_token_lst);

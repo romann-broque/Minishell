@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/28 10:14:46 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/28 11:05:08 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,7 @@ typedef struct s_resource_tracker
 typedef struct s_builtin_mapper
 {
 	const char	*name;
-	void		(*fct)(t_command *cmd_data);
+	int			(*fct)(t_command *cmd_data);
 }				t_builtin_mapper;
 
 typedef struct s_global
@@ -310,19 +310,19 @@ bool		is_builtin(t_command *cmd_data);
 
 ///// cd.c
 
-void		cd_builtin(t_command *cmd_data);
+int			cd_builtin(t_command *cmd_data);
 
 ///// echo.c
 
-void		echo_builtin(t_command	*cmd_data);
+int			echo_builtin(t_command	*cmd_data);
 
 ///// exit.c
 
-void		exit_builtin(t_command *cmd_data);
+int			exit_builtin(t_command *cmd_data);
 
 ///// pwd.c
 
-void		pwd_builtin(__attribute__((unused)) t_command *cmd_data);
+int			pwd_builtin(__attribute__((unused)) t_command *cmd_data);
 
 ////  CWD  ////
 
@@ -362,7 +362,7 @@ char		*ft_realpath(const char *path);
 
 /// exit_shell.c
 
-void		exit_shell(const int exit_value);
+void		exit_shell(void);
 
 /// exit_utils.c
 
