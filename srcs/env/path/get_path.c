@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_path.c                                         :+:      :+:    :+:   */
+/*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/04/26 11:22:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/28 14:40:49 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,23 @@ bool	is_cmd_path(t_command *cmd)
 	return (is_in_str(cmd->command[0], FWD_SLASH));
 }
 
-char	*get_path_from_cmd(t_command *cmd)
+char	*get_path_from_cmd(t_command *cmd, bool *accessible)
 {
 	char *const	path = ft_strdup(cmd->command[0]);
 
 	if (path != NULL && access(path, X_OK) == 0)
 		return (path);
+	else if (path != NULL && access(path, F_OK) == 0)
+		*accessible = false;
 	free(path);
 	return (NULL);
 }
 
-static char	*get_complete_path(const char *suffix, char **path_array)
+static char	*get_complete_path(
+	const char *suffix,
+	char **path_array,
+	bool *accessible
+	)
 {
 	char	*path;
 	size_t	i;
@@ -39,7 +45,7 @@ static char	*get_complete_path(const char *suffix, char **path_array)
 		path = ft_strjoin(path_array[i], suffix);
 		if (path == NULL)
 			return (NULL);
-		if (access(path, X_OK) == 0)
+		if (access(path, F_OK) == 0)
 			break ;
 		free(path);
 		path = NULL;
@@ -47,6 +53,11 @@ static char	*get_complete_path(const char *suffix, char **path_array)
 	}
 	if (path != NULL)
 		clean_path(&path);
+	if (path != NULL && access(path, X_OK) == -1)
+	{
+		*accessible = false;
+		return (NULL);
+	}
 	return (path);
 }
 
@@ -70,7 +81,8 @@ static char	**get_split_path(char **env, const char *pathvar_name)
 char	*get_path_from_env(
 	const char *suffix,
 	const char *pathvar_name,
-	char **env
+	char **env,
+	bool *accessible
 	)
 {
 	char	**path_array;
@@ -82,7 +94,7 @@ char	*get_path_from_env(
 	path_array = get_split_path(env, pathvar_name);
 	if (path_array == NULL)
 		return (NULL);
-	path = get_complete_path(suffix, path_array);
+	path = get_complete_path(suffix, path_array, accessible);
 	free_strs(path_array);
 	return (path);
 }

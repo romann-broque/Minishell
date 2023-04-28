@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/28 11:05:08 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/28 14:51:57 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@
 # define SYNTAX_ERROR		"Syntax error"
 # define MALLOC_ERROR		"Malloc error"
 # define PARS_ERROR			"syntax error near unexpected token"
-# define CMD_NOT_FOUND		"command not found"
+# define CNF				"command not found"
 # define IS_DIR				"Is a directory"
 # define STAT_ERROR			"Failed to stat file"
 # define TOO_MANY_ARGS		"too many arguments"
@@ -128,6 +128,8 @@
 
 // return value
 
+# define NO_ACCESS		126
+# define NO_FILE		127
 # define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
 
@@ -279,9 +281,9 @@ void		clean_path(char **path);
 //// get_path.c
 
 bool		is_cmd_path(t_command *cmd);
-char		*get_path_from_cmd(t_command *cmd);
+char		*get_path_from_cmd(t_command *cmd, bool *accessible);
 char		*get_path_from_env(const char *suffix,
-				const char *pathvar_name, char **env);
+				const char *pathvar_name, char **env, bool *accessible);
 
 //// cmd_path_utils.c
 
@@ -367,6 +369,7 @@ void		exit_shell(void);
 /// exit_utils.c
 
 int			extract_return_status(int status);
+void		update_cmd_error_val(bool accessible);
 
 //			EXPANSION			//
 

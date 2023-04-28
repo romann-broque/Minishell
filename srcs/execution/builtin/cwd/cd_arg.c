@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_arg.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:00:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 10:35:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/28 14:38:18 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*get_cd_arg(t_command *cmd_data, const char *arg, bool *is_print)
 	{
 		if (arg[0] == '\0')
 			arg = DOT_STR;
-		new_arg = get_path_from_env(arg, CDPATH_VAR, cmd_data->env);
+		new_arg = get_path_from_env(arg, CDPATH_VAR, cmd_data->env, NULL);
 		if (new_arg != NULL)
 		{
 			*is_print = true;

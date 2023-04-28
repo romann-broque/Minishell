@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 15:52:27 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/28 14:51:13 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	child_job(t_command *cmd_data, char *path)
 {
 	if (is_folder(path) == true)
 	{
+		g_global.last_ret_val = NO_ACCESS;
 		print_error("%s: %s: %s\n", MINISHELL, path, IS_DIR);
 		free_manager();
 		exit(EXIT_FAILURE);
@@ -53,29 +54,35 @@ static void	exec_binary(t_command *cmd_data, char *path)
 		{
 			wait(&status);
 			g_global.last_ret_val = extract_return_status(status);
-		}	
+		}
 	}
 }
 
 static char	*get_path(t_command *cmd_data)
 {
 	char	*path;
+	bool	accessible;
 
+	accessible = true;
 	if (is_cmd_path(cmd_data) == true)
 	{
-		path = get_path_from_cmd(cmd_data);
+		path = get_path_from_cmd(cmd_data, &accessible);
 		if (path == NULL)
 		{
+			update_cmd_error_val(accessible);
 			print_error("%s: %s: ", MINISHELL, cmd_data->command[0]);
 			perror(EMPTY_STR);
 		}
 	}
 	else
 	{
-		path = get_path_from_env(cmd_data->command[0], PATH_VAR, cmd_data->env);
+		path = get_path_from_env(cmd_data->command[0],
+				PATH_VAR, cmd_data->env, &accessible);
 		if (path == NULL)
-			print_error("%s: %s: %s\n",
-				MINISHELL, cmd_data->command[0], CMD_NOT_FOUND);
+		{
+			update_cmd_error_val(accessible);
+			print_error("%s: %s: %s\n", MINISHELL, cmd_data->command[0], CNF);
+		}
 	}
 	return (path);
 }
