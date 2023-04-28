@@ -1,13 +1,13 @@
 /bin
 /bin
-/mnt/nfs/homes/mdorr/Documents/lvl 3/minishell/repo/tests
-/mnt/nfs/homes/mdorr/Documents/lvl 3/minishell/repo/tests/bin
-/mnt/nfs/homes/mdorr/Documents/lvl 3/minishell/repo/tests
+/home/mat/Desktop/42/Minishell/repo/tests
+/home/mat/Desktop/42/Minishell/repo/tests/bin
+/home/mat/Desktop/42/Minishell/repo/tests
 minishell: cd: bonjour: No such file or directory
 minishell: cd: repo: No such file or directory
-/mnt/nfs/homes/mdorr/Documents/lvl 3/minishell/repo/tests
-/mnt/nfs/homes/mdorr/Documents/lvl 3/minishell/repo/tests /mnt/nfs/homes/mdorr/Documents/lvl 3/minishell/repo/tests/bin
-/bin /mnt/nfs/homes/mdorr/Documents/lvl 3/minishell/repo/tests
+/home/mat/Desktop/42/Minishell/repo/tests
+/home/mat/Desktop/42/Minishell/repo/tests /home/mat/Desktop/42/Minishell/repo/tests/bin
+/bin /home/mat/Desktop/42/Minishell/repo/tests
 /bin
 /usr
 /
@@ -25,27 +25,24 @@ minishell: cd: ../../tests/CUNIT/..: No such file or directory
 /home
 /home
 minishell: cd: too many arguments
-/mnt/nfs/homes/mdorr
+/home/mat
 /home
 /home
-/mnt/nfs/homes/mdorr
-/mnt/nfs/homes/mdorr
+/home/mat
+/home/mat
 /home
-/mnt/nfs/homes/mdorr
-/mnt/nfs/homes/mdorr
+/home/mat
+/home/mat
 /home
-/mnt/nfs/homes/mdorr
+/home/mat
 mkdir: cannot create directory ‘new’: Permission denied
 minishell: cd: new: No such file or directory
-/mnt/nfs/homes/mdorr
+/home/mat
 pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-/mnt/nfs/homes/mdorr/lol /mnt/nfs/homes/mdorr
+/home/mat/lol /home/mat
 chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-minishell: cd: ..: Stale file handle
-pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-/mnt/nfs/homes/mdorr
+/home/mat
+/home/mat
 minishell: cd: pouet: No such file or directory
 /bin
 /dev/disk
@@ -53,5 +50,5 @@ minishell: cd: pouet: No such file or directory
 minishell: cd: ../../../../......./..////////: No such file or directory
 minishell: cd: /.//////./../../../......./..////////: No such file or directory
 /dev/disk
-/mnt/nfs/homes/mdorr
-/mnt/nfs/homes/mdorr /dev/disk
+/home/mat
+/home/mat /dev/disk
