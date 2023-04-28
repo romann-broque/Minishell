@@ -14,4 +14,16 @@ cd lol
 rm ../lol -fr
 pwd
 /bin/echo $?
+<
+echo $?
+||
+echo $?
+bonjour
+echo $?
+touch noperm
+chmod 000 noperm
+./noperm
+echo $?
+chmod 777 noperm
+rm noperm
 exit
