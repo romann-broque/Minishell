@@ -86,7 +86,10 @@ SRCS	 	+=	exit_shell.c
 
 ### srcs/expansion/
 
+SRCS		+=	assign_states_utils.c
+SRCS		+=	assign_states.c
 SRCS	 	+=	expand_command.c
+SRCS	 	+=	expand_utils.c
 SRCS	 	+=	merge_gen.c
 SRCS	 	+=	split_gen.c
 
@@ -119,10 +122,9 @@ SRCS		+=	are_quotes_closed.c
 
 ### srcs/lexer/tokens/
 
-SRCS		+=	assign_states_utils.c
-SRCS		+=	assign_states.c
 SRCS		+=	lexer.c
 SRCS		+=	token_utils.c
+SRCS		+=	tokenizer_utils.c
 SRCS		+=	tokenizer.c
 
 ### srcs/lexer/word/

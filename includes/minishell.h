@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/29 17:00:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/29 18:02:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -385,12 +385,31 @@ void		exit_shell(const int exit_value);
 
 //			EXPANSION			//
 
+//// assign_states_utils.c
+
+void		update_state_assign(const char c, t_qstate *state);
+bool		is_assign_tok(t_token *token);
+
+//// assign_states.c
+
+bool		start_state_assign(const char **word, t_qstate *state);
+bool		word_state_assign(const char **word, t_qstate *state);
+bool		squote_state_assign(const char **word, t_qstate *state);
+bool		dquote_state_assign(const char **word, t_qstate *state);
+
 /// expand_command.c
 
 void		expand_command(t_list **tokens);
 
+/// expand_utils.c
+
+void		remove_sep_tok(t_list **tokens);
+void		set_to_gen(t_token *token);
+void		set_assign(t_list *tokens);
+
 /// merge_gen.c
 
+bool		is_gen_tok(t_list *tokens);
 void		merge_gen_lst(t_list *tokens);
 
 /// split_gen.c
@@ -473,25 +492,17 @@ bool		are_quotes_closed(const char *str);
 t_list		*lexer_root(const char *str);
 t_list		*lexer(const char *str);
 
-//// assign_states_utils.c
-
-void		update_state_assign(const char c, t_qstate *state);
-bool		is_assign(const char *word);
-bool		is_qword(const char *word);
-
-//// assign_states.c
-
-bool		start_state_assign(const char **word, t_qstate *state);
-bool		word_state_assign(const char **word, t_qstate *state);
-bool		squote_state_assign(const char **word, t_qstate *state);
-bool		dquote_state_assign(const char **word, t_qstate *state);
-
 //// token_utils.c
 
 t_token		*init_token(t_toktype type, char *value);
 t_toktype	get_type_from_tok(t_token *tok);
 char		*get_str_from_tok(t_token *tok);
 void		free_token(t_token *tok);
+
+//// tokenizer_utils.c
+
+bool		is_assign(const char *word);
+bool		is_qword(const char *word);
 
 //// tokenizer.c
 
