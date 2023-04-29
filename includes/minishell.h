@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/29 15:57:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:00:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ typedef enum e_toktype
 	T_SEPARATOR,
 	T_ASSIGN,
 	T_GENERIC,
-	T_DGENERIC,
+	T_QGENERIC,
 	T_START,
 	T_END,
 	T_INVALID,
@@ -169,7 +169,7 @@ typedef enum e_toktype_short
 	T_SEP,
 	T_ASN,
 	T_G,
-	T_DG,
+	T_QG,
 	T_ST,
 	T_ED,
 	T_IVD,
@@ -477,7 +477,7 @@ t_list		*lexer(const char *str);
 
 void		update_state_assign(const char c, t_qstate *state);
 bool		is_assign(const char *word);
-bool		is_dword(const char *word);
+bool		is_qword(const char *word);
 
 //// assign_states.c
 

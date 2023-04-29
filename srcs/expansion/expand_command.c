@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:02:35 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/28 15:27:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:34:26 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	remove_sep_tok(t_list **tokens)
 
 static void	set_to_gen(t_token *token)
 {
-	if (token->type == T_DGENERIC)
+	if (token->type == T_QGENERIC)
 		token->type = T_GENERIC;
 }
 

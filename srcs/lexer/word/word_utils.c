@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:51:57 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 22:09:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:58:08 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,7 @@ void	quote_state(t_qmachine *const machine, const char quote)
 	if (is_opening_quote == false && prev_char == quote)
 	{
 		update_state(machine);
-		if (machine->state == E_EOF
-			|| machine->state == E_SPEC_TOK
-			|| machine->state == E_SEPARATOR
-			|| machine->state == E_DQUOTE
-			|| quote == DOUBLE_QUOTE)
-			add_token(machine);
+		add_token(machine);
 		is_opening_quote = true;
 	}
 	else

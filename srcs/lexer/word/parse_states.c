@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:41:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 22:45:57 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:58:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,11 @@ void	spec_tok_state(t_qmachine *const machine)
 void	word_state(t_qmachine *const machine)
 {
 	update_state(machine);
-	if (machine->state == E_EOF
-		|| machine->state == E_SEPARATOR
-		|| machine->state == E_SPEC_TOK
-		|| machine->state == E_DQUOTE)
-		add_token(machine);
-	else if (machine->state == E_WORD)
+	if (machine->state == E_WORD)
 	{
 		++(machine->word_len);
 		++(machine->str);
 	}
+	else
+		add_token(machine);
 }

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:23:22 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/28 11:30:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:34:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static bool	is_gen_tok(t_list *tokens)
 {
 	return (tokens != NULL
 		&& (get_type_from_tok(tokens->content) == T_GENERIC
-			|| get_type_from_tok(tokens->content) == T_DGENERIC));
+			|| get_type_from_tok(tokens->content) == T_QGENERIC));
 }
 
 static void	merge_gen_tok(t_list *tokens)

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:48:00 by mat               #+#    #+#             */
-/*   Updated: 2023/04/27 22:56:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:36:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ void	parser__test(void)
 		{.type = T_START, .value = NULL},
 		{.type = T_GENERIC, .value = "bonjour"},
 		{.type = T_SEPARATOR, .value = " "},
-		{.type = T_DGENERIC, .value = "\"Mister\""},
+		{.type = T_QGENERIC, .value = "\"Mister\""},
 		{.type = T_PIPE, .value = "|"},
 		{.type = T_DOUBLE_LCHEVRON, .value = "<<"},
 		{.type = T_SEPARATOR, .value = " "},
@@ -241,7 +241,7 @@ void	parser__test(void)
 		{.type = T_START, .value = NULL},
 		{.type = T_GENERIC, .value = "bonjour"},
 		{.type = T_SEPARATOR, .value = " "},
-		{.type = T_DGENERIC, .value = "\"Mister\""},
+		{.type = T_QGENERIC, .value = "\"Mister\""},
 		{.type = T_PIPE, .value = "|"},
 		{.type = T_DOUBLE_LCHEVRON, .value = "<<"},
 		{.type = T_DOUBLE_LCHEVRON, .value = "<<"},

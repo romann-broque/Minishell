@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:12:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 23:02:29 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:07:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,10 @@ void	lexer_root__test(void)
 	const char				str7[] = ">>\'wouah\'>>>>\"<wtf>\">|<>|||";
 	static const t_token	tok_lst7[] = {
 		{.type = T_DOUBLE_RCHEVRON, .value = DOUBLE_RCHEVRON},
-		{.type = T_GENERIC, .value = "\'wouah\'"},
+		{.type = T_QGENERIC, .value = "\'wouah\'"},
 		{.type = T_DOUBLE_RCHEVRON, .value = DOUBLE_RCHEVRON},
 		{.type = T_DOUBLE_RCHEVRON, .value = DOUBLE_RCHEVRON},
-		{.type = T_DGENERIC, .value = "\"<wtf>\""},
+		{.type = T_QGENERIC, .value = "\"<wtf>\""},
 		{.type = T_RCHEVRON, .value = RCHEVRON},
 		{.type = T_PIPE, .value = PIPE},
 		{.type = T_LCHEVRON, .value = LCHEVRON},
@@ -124,9 +124,9 @@ void	lexer_root__test(void)
 	const char				str8[] = ">>\'wou<|>ah\'>>\"<w|t|f>\">|<>|||";
 	static const t_token	tok_lst8[] = {
 		{.type = T_DOUBLE_RCHEVRON, .value = DOUBLE_RCHEVRON},
-		{.type = T_GENERIC, .value = "\'wou<|>ah\'"},
+		{.type = T_QGENERIC, .value = "\'wou<|>ah\'"},
 		{.type = T_DOUBLE_RCHEVRON, .value = DOUBLE_RCHEVRON},
-		{.type = T_DGENERIC, .value = "\"<w|t|f>\""},
+		{.type = T_QGENERIC, .value = "\"<w|t|f>\""},
 		{.type = T_RCHEVRON, .value = RCHEVRON},
 		{.type = T_PIPE, .value = PIPE},
 		{.type = T_LCHEVRON, .value = LCHEVRON},
@@ -136,7 +136,7 @@ void	lexer_root__test(void)
 	};
 	const char				str9[] = "\"\'wou<|>ah\'\" >< |>>        \"<w|t|f>\">|<>||>|   ";
 	static const t_token	tok_lst9[] = {
-		{.type = T_DGENERIC, .value = "\"\'wou<|>ah\'\""},
+		{.type = T_QGENERIC, .value = "\"\'wou<|>ah\'\""},
 		{.type = T_SEPARATOR, .value = SEP},
 		{.type = T_RCHEVRON, .value = RCHEVRON},
 		{.type = T_LCHEVRON, .value = LCHEVRON},
@@ -144,7 +144,7 @@ void	lexer_root__test(void)
 		{.type = T_PIPE, .value = PIPE},
 		{.type = T_DOUBLE_RCHEVRON, .value = DOUBLE_RCHEVRON},
 		{.type = T_SEPARATOR, .value = SEP},
-		{.type = T_DGENERIC, .value = "\"<w|t|f>\""},
+		{.type = T_QGENERIC, .value = "\"<w|t|f>\""},
 		{.type = T_RCHEVRON, .value = RCHEVRON},
 		{.type = T_PIPE, .value = PIPE},
 		{.type = T_LCHEVRON, .value = LCHEVRON},
@@ -157,16 +157,19 @@ void	lexer_root__test(void)
 	const char				str10[] = "    \" &&  \'|   \'\"<\'<>\' \'||\'& ";
 	static const t_token	tok_lst10[] = {
 		{.type = T_SEPARATOR, .value = SEP},
-		{.type = T_DGENERIC, .value = "\" &&  \'|   \'\""},
+		{.type = T_QGENERIC, .value = "\" &&  \'|   \'\""},
 		{.type = T_LCHEVRON, .value = LCHEVRON},
-		{.type = T_GENERIC, .value = "\'<>\'"},
+		{.type = T_QGENERIC, .value = "\'<>\'"},
 		{.type = T_SEPARATOR, .value = SEP},
-		{.type = T_GENERIC, .value = "\'||\'&"},
+		{.type = T_QGENERIC, .value = "\'||\'"},
+		{.type = T_GENERIC, .value = "&"},
 		{.type = T_SEPARATOR, .value = SEP},
 	};
 	const char				str11[] = "&\'wouah\'& ||";
 	static const t_token	tok_lst11[] = {
-		{.type = T_GENERIC, .value = "&\'wouah\'&"},
+		{.type = T_GENERIC, .value = "&"},
+		{.type = T_QGENERIC, .value = "\'wouah\'"},
+		{.type = T_GENERIC, .value = "&"},
 		{.type = T_SEPARATOR, .value = SEP},
 		{.type = T_OR, .value = OR},
 	};
@@ -174,14 +177,18 @@ void	lexer_root__test(void)
 	static const t_token	tok_lst12[] = {
 		{.type = T_GENERIC, .value = "lol"},
 		{.type = T_ASSIGN, .value = ASSIGN_EQ},
-		{.type = T_GENERIC, .value = "42&\'wouah\'&"},
+		{.type = T_GENERIC, .value = "42&"},
+		{.type = T_QGENERIC, .value = "\'wouah\'"},
+		{.type = T_GENERIC, .value = "&"},
 		{.type = T_SEPARATOR, .value = SEP},
 		{.type = T_OR, .value = OR},
 	};
 	const char				str13[] = "=42&\'wouah\'& ||";
 	static const t_token	tok_lst13[] = {
 		{.type = T_ASSIGN, .value = ASSIGN_EQ},
-		{.type = T_GENERIC, .value = "42&\'wouah\'&"},
+		{.type = T_GENERIC, .value = "42&"},
+		{.type = T_QGENERIC, .value = "\'wouah\'"},
+		{.type = T_GENERIC, .value = "&"},
 		{.type = T_SEPARATOR, .value = SEP},
 		{.type = T_OR, .value = OR},
 	};
@@ -211,13 +218,13 @@ void	lexer_root__test(void)
 	};
 	const char				str18[] = "\'lol=42\'";
 	static const t_token	tok_lst18[] = {
-		{.type = T_GENERIC, .value = "\'lol=42\'"},
+		{.type = T_QGENERIC, .value = "\'lol=42\'"},
 	};
 	const char				str19[] = "lol=\"\'lol=42\'\"";
 	static const t_token	tok_lst19[] = {
 		{.type = T_GENERIC, .value = "lol"},
 		{.type = T_ASSIGN, .value = ASSIGN_EQ},
-		{.type = T_DGENERIC, .value = "\"\'lol=42\'\""},
+		{.type = T_QGENERIC, .value = "\"\'lol=42\'\""},
 	};
 	const char				str20[] = "===";
 	static const t_token	tok_lst20[] = {
@@ -227,15 +234,15 @@ void	lexer_root__test(void)
 	};
 	const char				str21[] = "\"=\"==42";
 	static const t_token	tok_lst21[] = {
-		{.type = T_DGENERIC, .value = "\"=\""},
+		{.type = T_QGENERIC, .value = "\"=\""},
 		{.type = T_ASSIGN, .value = ASSIGN_EQ},
 		{.type = T_ASSIGN, .value = ASSIGN_EQ},
 		{.type = T_GENERIC, .value = "42"},
 	};
 	const char				str22[] = "\"=\"\'==42\'";
 	static const t_token	tok_lst22[] = {
-		{.type = T_DGENERIC, .value = "\"=\""},
-		{.type = T_GENERIC, .value = "\'==42\'"},
+		{.type = T_QGENERIC, .value = "\"=\""},
+		{.type = T_QGENERIC, .value = "\'==42\'"},
 	};
 
 	compare_tok_lst(str1, tok_lst1, 1);
@@ -247,10 +254,10 @@ void	lexer_root__test(void)
 	compare_tok_lst(str7, tok_lst7, 11);
 	compare_tok_lst(str8, tok_lst8, 10);
 	compare_tok_lst(str9, tok_lst9, 17);
-	compare_tok_lst(str10, tok_lst10, 7);
-	compare_tok_lst(str11, tok_lst11, 3);
-	compare_tok_lst(str12, tok_lst12, 5);
-	compare_tok_lst(str13, tok_lst13, 4);
+	compare_tok_lst(str10, tok_lst10, 8);
+	compare_tok_lst(str11, tok_lst11, 5);
+	compare_tok_lst(str12, tok_lst12, 7);
+	compare_tok_lst(str13, tok_lst13, 6);
 	compare_tok_lst(str14, tok_lst14, 5);
 	compare_tok_lst(str15, tok_lst15, 3);
 	compare_tok_lst(str16, tok_lst16, 2);

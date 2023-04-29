@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:35:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 22:29:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/29 16:58:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,9 @@ void	get_words__test(void)
 		"ec",
 		"\"ho\"",
 		" ",
-		"he\'\"\'l",
+		"he",
+		"\'\"\'",
+		"l",
 		"\"lo\"",
 	};
 	const char		*str12 = "    hey les   \"\"  \'  \'\'\'         amis";
@@ -126,7 +128,8 @@ void	get_words__test(void)
 		" ",
 		"\"\"",
 		" ",
-		"\'  \'\'\'",
+		"\'  \'",
+		"\'\'",
 		" ",
 		"amis"
 	};
@@ -193,7 +196,9 @@ void	get_words__test(void)
 		"po",
 		"\"u\'e\'t\"",
 		" ",
-		"o\'k\'\'\'",
+		"o",
+		"\'k\'",
+		"\'\'",
 		" ",
 		"t",
 		"\"\"",
@@ -214,8 +219,8 @@ void	get_words__test(void)
 	compare_tok_lst(str8, exp_tok8, 2);
 	compare_tok_lst(str9, exp_tok9, 1);
 	compare_tok_lst(str10, exp_tok10, 6);
-	compare_tok_lst(str11, exp_tok11, 5);
-	compare_tok_lst(str12, exp_tok12, 10);
+	compare_tok_lst(str11, exp_tok11, 7);
+	compare_tok_lst(str12, exp_tok12, 11);
 	compare_tok_lst_ptr(str13, exp_tok13, 1);
 	compare_tok_lst(str14, exp_tok14, 1);
 	compare_tok_lst(str15, exp_tok15, 4);
@@ -225,5 +230,5 @@ void	get_words__test(void)
 	compare_tok_lst(str19, exp_tok19, 3);
 	compare_tok_lst(str20, exp_tok20, 3);
 	compare_tok_lst(str21, exp_tok21, 5);
-	compare_tok_lst(str22, exp_tok22, 12);
+	compare_tok_lst(str22, exp_tok22, 14);
 }
