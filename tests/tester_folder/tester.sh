@@ -54,13 +54,27 @@ REF_BASH_FOLDER="${FOLDER}"ref_bash/
 # 	fi
 # done
 
+function put_format()
+{
+	local folder="$1"
+	local suffix="$2"
+	local files=("${@:3}")
+
+	for (( i=0; i<${#files[@]}; i++ )); do
+		files[$i]="${folder}${files[$i]}${suffix}"
+	done
+	echo "${files[@]}"
+}
+
 # BASH COMPARAISON
 
  echo -e "${BLUE}\n<====  BASH  ====>\n${NC}"
 
- inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"builtin_cwd.in "${IN_FOLDER}"echo_builtin.in)
- outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"builtin_cwd.out "${OUT_FOLDER}"echo_builtin.out)
- output_ref_bash=( "${REF_BASH_FOLDER}"basic.refb "${REF_BASH_FOLDER}"builtin_cwd.refb "${REF_BASH_FOLDER}"echo_builtin.refb)
+files=( "basic" "builtin_cwd" "echo_builtin" "expansion")
+
+inputs=($(put_format "$IN_FOLDER" ".in" "${files[@]}"))
+outputs=($(put_format "$OUT_FOLDER" ".out" "${files[@]}"))
+output_ref_bash=($(put_format "$REF_BASH_FOLDER" ".refb" "${files[@]}"))
 
  for i in "${!inputs[@]}"; do
  	# Run the program and redirect the output to the corresponding output file

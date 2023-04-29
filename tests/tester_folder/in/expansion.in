@@ -1,0 +1,5 @@
+/bin/echo " $pouet"pouet
+/bin/echo ' $pouet'pouet
+/bin/echo " $pouet" pouet
+/bin/echo pouet$pouet
+$empty

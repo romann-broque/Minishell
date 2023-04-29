@@ -206,6 +206,7 @@ TESTER			= $(MINTEST_FOLDER)/tester.sh
 
 CUNIT_FOLDER	= $(TESTER_FOLDER)/CUNIT/
 CUNIT			= $(CUNIT_FOLDER)/run_cunit.sh
+CUNIT_EXE		= $(CUNIT_FOLDER)/cunit
 
 ### VALGRIND
 
@@ -284,7 +285,8 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 test	:
-	$(MAKE) re -s
+	$(MAKE) -s
+	$(RM) $(CUNIT_EXE)
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
 	source $(ENV); $(CUNIT) $(VALGRIND)
