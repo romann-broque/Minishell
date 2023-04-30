@@ -50,6 +50,7 @@ SRCS		+= init_env.c
 
 SRCS		+=	clean_path.c
 SRCS		+=	get_path.c
+SRCS		+=	path_access.c
 SRCS		+=	cmd_path_utils.c
 
 ### srcs/execution/

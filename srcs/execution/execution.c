@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/28 14:51:13 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/30 16:41:49 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern t_global	g_global;
 
-static bool	is_folder(const char *path)
+bool	is_folder(const char *path)
 {
 	struct stat	file_stat;
 
@@ -34,10 +34,10 @@ static void	child_job(t_command *cmd_data, char *path)
 		g_global.last_ret_val = NO_ACCESS;
 		print_error("%s: %s: %s\n", MINISHELL, path, IS_DIR);
 		free_manager();
-		exit(EXIT_FAILURE);
+		exit(g_global.last_ret_val);
 	}
 	else if (execve(path, cmd_data->command, cmd_data->env) == -1)
-		exit(EXIT_FAILURE);
+		exit(g_global.last_ret_val);
 }
 
 static void	exec_binary(t_command *cmd_data, char *path)
@@ -61,27 +61,25 @@ static void	exec_binary(t_command *cmd_data, char *path)
 static char	*get_path(t_command *cmd_data)
 {
 	char	*path;
-	bool	accessible;
 
-	accessible = true;
 	if (is_cmd_path(cmd_data) == true)
-	{
-		path = get_path_from_cmd(cmd_data, &accessible);
-		if (path == NULL)
-		{
-			update_cmd_error_val(accessible);
-			print_error("%s: %s: ", MINISHELL, cmd_data->command[0]);
-			perror(EMPTY_STR);
-		}
-	}
+		path = get_cmd_path(cmd_data);
 	else
 	{
 		path = get_path_from_env(cmd_data->command[0],
-				PATH_VAR, cmd_data->env, &accessible);
+				PATH_VAR, cmd_data->env);
 		if (path == NULL)
 		{
-			update_cmd_error_val(accessible);
+			update_error_val(NO_FILE);
 			print_error("%s: %s: %s\n", MINISHELL, cmd_data->command[0], CNF);
+		}
+		else if (is_cmd_accessible(path) == false)
+		{
+			update_error_val(NO_ACCESS);
+			print_error("%s: %s: ", MINISHELL, path);
+			perror(EMPTY_STR);
+			free(path);
+			path = NULL;
 		}
 	}
 	return (path);

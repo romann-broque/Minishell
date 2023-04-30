@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/04/28 14:40:49 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/30 16:39:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,30 @@ bool	is_cmd_path(t_command *cmd)
 	return (is_in_str(cmd->command[0], FWD_SLASH));
 }
 
-char	*get_path_from_cmd(t_command *cmd, bool *accessible)
+char	*get_cmd_path(t_command *cmd_data)
 {
-	char *const	path = ft_strdup(cmd->command[0]);
+	char	*path;
 
-	if (path != NULL && access(path, X_OK) == 0)
-		return (path);
-	else if (path != NULL && access(path, F_OK) == 0)
-		*accessible = false;
-	free(path);
-	return (NULL);
+	path = dup_path_from_cmd(cmd_data);
+	if (path == NULL || is_cmd_accessible(path) == false)
+	{
+		print_error("%s: %s: ", MINISHELL, cmd_data->command[0]);
+		perror(EMPTY_STR);
+		if (path == NULL)
+			update_error_val(NO_FILE);
+		else
+		{
+			update_error_val(NO_ACCESS);
+			free(path);
+			path = NULL;
+		}
+	}
+	return (path);
 }
 
 static char	*get_complete_path(
 	const char *suffix,
-	char **path_array,
-	bool *accessible
+	char **path_array
 	)
 {
 	char	*path;
@@ -45,7 +53,7 @@ static char	*get_complete_path(
 		path = ft_strjoin(path_array[i], suffix);
 		if (path == NULL)
 			return (NULL);
-		if (access(path, F_OK) == 0)
+		if (access(path, F_OK) == 0 && is_folder(path) == false)
 			break ;
 		free(path);
 		path = NULL;
@@ -53,11 +61,6 @@ static char	*get_complete_path(
 	}
 	if (path != NULL)
 		clean_path(&path);
-	if (path != NULL && access(path, X_OK) == -1)
-	{
-		*accessible = false;
-		return (NULL);
-	}
 	return (path);
 }
 
@@ -81,8 +84,7 @@ static char	**get_split_path(char **env, const char *pathvar_name)
 char	*get_path_from_env(
 	const char *suffix,
 	const char *pathvar_name,
-	char **env,
-	bool *accessible
+	char **env
 	)
 {
 	char	**path_array;
@@ -94,7 +96,7 @@ char	*get_path_from_env(
 	path_array = get_split_path(env, pathvar_name);
 	if (path_array == NULL)
 		return (NULL);
-	path = get_complete_path(suffix, path_array, accessible);
+	path = get_complete_path(suffix, path_array);
 	free_strs(path_array);
 	return (path);
 }

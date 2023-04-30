@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/28 15:33:36 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/04/30 16:54:01 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,12 +281,17 @@ void		clean_path(char **path);
 //// get_path.c
 
 bool		is_cmd_path(t_command *cmd);
-char		*get_path_from_cmd(t_command *cmd, bool *accessible);
+char		*get_cmd_path(t_command *cmd_data);
 char		*get_path_from_env(const char *suffix,
-				const char *pathvar_name, char **env, bool *accessible);
+				const char *pathvar_name, char **env);
+
+//// path_access.c
+
+bool		is_cmd_accessible(char *path);
 
 //// cmd_path_utils.c
 
+char		*dup_path_from_cmd(t_command *cmd);
 void		add_fwd_slash(char **paths);
 bool		is_var_path_in_env(char **env, const char *pathvar_name);
 bool		is_empty_str(const char *str);
@@ -297,6 +302,7 @@ bool		is_path_var(const char *env_line, const char *pathvar_name);
 /// execution.c
 
 void		execution(t_command *command);
+bool		is_folder(const char *path);
 
 ///  BUILTIN  ///
 
@@ -369,7 +375,6 @@ void		exit_shell(void);
 /// exit_utils.c
 
 int			extract_return_status(int status);
-void		update_cmd_error_val(bool accessible);
 void		update_error_val(int error_nbr);
 
 //			EXPANSION			//
