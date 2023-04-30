@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:23:22 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/29 17:19:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/30 12:32:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ bool	is_gen_tok(t_list *tokens)
 			|| get_type_from_tok(tokens->content) == T_ASSIGN));
 }
 
+static void	get_merge_str(t_list **tokens, char **merge_str)
+{
+	while (is_gen_tok((*tokens)->next) == true)
+	{
+		*merge_str = ft_strjoin_free(*merge_str,
+				get_str_from_tok((*tokens)->next->content));
+		*tokens = (*tokens)->next;
+	}
+}
+
 static void	merge_gen_tok(t_list *tokens)
 {
 	t_list	*start;
@@ -28,12 +38,7 @@ static void	merge_gen_tok(t_list *tokens)
 
 	start = tokens;
 	merge_str = (char *)(((t_token *)(start->content))->value);
-	while (is_gen_tok(tokens->next) == true)
-	{
-		merge_str = ft_strjoin_free(merge_str,
-				get_str_from_tok(tokens->next->content));
-		tokens = tokens->next;
-	}
+	get_merge_str(&tokens, &merge_str);
 	if (merge_str != NULL)
 	{
 		tmp_lst = NULL;

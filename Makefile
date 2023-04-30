@@ -86,10 +86,9 @@ SRCS	 	+=	exit_shell.c
 
 ### srcs/expansion/
 
-SRCS		+=	assign_states_utils.c
-SRCS		+=	assign_states.c
 SRCS	 	+=	expand_command.c
 SRCS	 	+=	expand_utils.c
+SRCS		+=	is_assign_tok.c
 SRCS	 	+=	merge_gen.c
 SRCS	 	+=	split_gen.c
 
