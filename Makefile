@@ -198,6 +198,10 @@ TESTER_FOLDER	= ./tests/
 ENV_FOLDER		= $(TESTER_FOLDER)/env/
 ENV				= $(TESTER_FOLDER)/env/env.sh
 
+### NORM
+
+NORM			= $(TESTER_FOLDER)/norminette/norm.sh
+
 ### MIN
 
 MINTEST_FOLDER	= $(TESTER_FOLDER)/tester_folder/
@@ -285,6 +289,14 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 	mkdir -p $(PATH_OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
+run		: all
+	$(ECHOC) $(GREEN) "RUNNING $(NAME)"$(NC)"\n\n"
+	./$(NAME)
+
+norm	:
+	$(ECHOC) $(BLUE) "\n""NORM : "$(NC)""
+	./$(NORM)
+
 test	:
 	$(MAKE) -s
 	$(RM) $(CUNIT_EXE)
@@ -311,5 +323,5 @@ re 		: fclean
 	echo -e $(YELLOW) "\nRebuilding..." $(NC)
 	$(MAKE) -s
 
-.PHONY	: all test clean fclean re
-.SILENT	: all test clean fclean re $(NAME) $(OBJS) $(LIBFT)
+.PHONY	: all run test clean fclean re
+.SILENT	:
