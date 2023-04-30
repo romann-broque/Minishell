@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/04/28 10:11:50 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/30 11:35:09 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	replace_special_var(t_vmachine *const machine)
 		machine->line = replace_str_free(machine->line, array_str[index],
 				machine->index - 1, SPEC_VAR_LEN);
 	change_state(machine->prev_state, machine);
+	machine->index += ft_strlen(array_str[index]) - SPEC_VAR_LEN;
 	free(last_ret_str);
 }
 

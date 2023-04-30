@@ -11,3 +11,11 @@ valgrind
 pouet pouet
 minishell: pouet: command not found
 minishell: /pouet: No such file or directory
+includes
+libft
+Makefile
+minishell
+objs
+README.md
+srcs
+tests

@@ -24,4 +24,5 @@ echo $?
 chmod 777 noperm
 rm noperm
 echo $?
+ls
 exit
