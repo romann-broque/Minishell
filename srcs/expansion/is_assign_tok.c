@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_command.c                                   :+:      :+:    :+:   */
+/*   is_assign.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 10:02:35 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/30 12:23:03 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/06 15:46:12 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/30 12:38:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	expand(t_token *token)
+static bool	is_assign_tok_state(const char *str)
 {
-	char	*tmp;
-
-	if (token != NULL)
-	{
-		tmp = token->value;
-		if (tmp != NULL)
-			token->value = expand_var(tmp);
-		free(tmp);
-	}
+	return (*str != EQUAL_SIGN && is_in_str(str + 1, EQUAL_SIGN));
 }
 
-void	expand_command(t_list **tokens)
+bool	is_assign_tok(t_token *token)
 {
-	merge_gen_lst(*tokens);
-	ft_lstiter(*tokens, (void (*)(void *))expand);
-	split_gen(tokens);
-	remove_sep_tok(tokens);
-	ft_lstiter(*tokens, (void (*)(void *))set_to_gen);
-	set_assign(*tokens);
+	return ((token->type == T_GENERIC || token->type == T_QGENERIC)
+		&& is_assign_tok_state(token->value));
 }

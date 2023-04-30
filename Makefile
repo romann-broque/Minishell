@@ -87,7 +87,10 @@ SRCS	 	+=	exit_shell.c
 ### srcs/expansion/
 
 SRCS	 	+=	expand_command.c
-SRCS	 	+=	rm_empty_var.c
+SRCS	 	+=	expand_utils.c
+SRCS		+=	is_assign_tok.c
+SRCS	 	+=	merge_gen.c
+SRCS	 	+=	split_gen.c
 
 ### srcs/expansion/var/
 
@@ -118,10 +121,9 @@ SRCS		+=	are_quotes_closed.c
 
 ### srcs/lexer/tokens/
 
-SRCS		+=	assign_states_utils.c
-SRCS		+=	assign_states.c
 SRCS		+=	lexer.c
 SRCS		+=	token_utils.c
+SRCS		+=	tokenizer_utils.c
 SRCS		+=	tokenizer.c
 
 ### srcs/lexer/word/
@@ -205,6 +207,7 @@ TESTER			= $(MINTEST_FOLDER)/tester.sh
 
 CUNIT_FOLDER	= $(TESTER_FOLDER)/CUNIT/
 CUNIT			= $(CUNIT_FOLDER)/run_cunit.sh
+CUNIT_EXE		= $(CUNIT_FOLDER)/cunit
 
 ### VALGRIND
 
@@ -283,7 +286,8 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 test	:
-	$(MAKE) re -s
+	$(MAKE) -s
+	$(RM) $(CUNIT_EXE)
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
 	source $(ENV); $(CUNIT) $(VALGRIND)
