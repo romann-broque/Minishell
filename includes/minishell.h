@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/30 14:23:00 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/30 22:10:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,12 +242,6 @@ typedef struct s_deallocator
 	void	(*free_fct)(void *);
 }				t_deallocator;
 
-typedef struct s_resource_tracker
-{
-	t_deallocator	deallocator_array[NB_DEALLOCATOR];
-	size_t			index;
-}				t_resource_tracker;
-
 typedef struct s_builtin_mapper
 {
 	const char	*name;
@@ -256,9 +250,9 @@ typedef struct s_builtin_mapper
 
 typedef struct s_global
 {
-	t_resource_tracker	tracker;
-	char				**env;
-	bool				is_stoppable;
+	t_list	*garbage;
+	char	**env;
+	bool	is_stoppable;
 }				t_global;
 
 /////////////////
@@ -380,7 +374,7 @@ char		*ft_realpath(const char *path);
 
 /// exit_shell.c
 
-void		exit_shell(const int exit_value);
+void		exit_shell(const int exit_value, const bool is_print);
 
 //			EXPANSION			//
 

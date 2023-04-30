@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:35:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 17:21:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/30 22:07:42 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 extern t_global	g_global;
 
-void	exit_shell(const int exit_value)
+void	exit_shell(const int exit_value, const bool is_print)
 {
-	ft_dprintf(STDERR_FILENO, "%s\n", EXIT_MESSAGE);
+	if (is_print == true)
+		ft_dprintf(STDERR_FILENO, "%s\n", EXIT_MESSAGE);
 	free_manager();
 	free_strs(g_global.env);
 	exit(exit_value);
