@@ -16,11 +16,7 @@ minishell: bonjour: command not found
 minishell: ./noperm: Permission denied
 126
 0
-includes
-libft
-Makefile
-minishell
-objs
-README.md
-srcs
-tests
+ls: cannot access 'pouet': No such file or directory
+2
+minishell: pouet: command not found
+127 127

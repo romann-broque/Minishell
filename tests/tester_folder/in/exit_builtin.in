@@ -24,5 +24,13 @@ echo $?
 chmod 777 noperm
 rm noperm
 echo $?
-ls
+ls pouet
+
+
+
+echo $?
+
+pouet
+echo $? $?
+
 exit
