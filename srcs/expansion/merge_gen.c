@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:23:22 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/30 12:32:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/30 14:52:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ static void	get_merge_str(t_list **tokens, char **merge_str)
 
 static void	merge_gen_tok(t_list *tokens)
 {
-	t_list	*start;
+	t_list	*first_gen;
 	t_list	*tmp_lst;
 	char	*merge_str;
 
-	start = tokens;
-	merge_str = (char *)(((t_token *)(start->content))->value);
+	first_gen = tokens;
+	merge_str = (char *)(((t_token *)(first_gen->content))->value);
 	get_merge_str(&tokens, &merge_str);
 	if (merge_str != NULL)
 	{
@@ -47,9 +47,9 @@ static void	merge_gen_tok(t_list *tokens)
 			tmp_lst = tokens->next;
 			tokens->next = NULL;
 		}
-		((t_token *)(start->content))->value = merge_str;
-		ft_lstclear(&(start->next), (void (*)(void *))free_token);
-		start->next = tmp_lst;
+		((t_token *)(first_gen->content))->value = merge_str;
+		ft_lstclear(&(first_gen->next), (void (*)(void *))free_token);
+		first_gen->next = tmp_lst;
 	}
 }
 

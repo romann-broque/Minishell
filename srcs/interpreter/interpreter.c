@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:20:19 by mat               #+#    #+#             */
-/*   Updated: 2023/04/29 16:35:00 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/30 14:22:08 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ static void	skip_generic(t_list **tokens)
 	t_toktype	token_type;
 
 	token_type = get_type_from_tok((*tokens)->content);
-	while ((token_type == T_GENERIC || token_type == T_QGENERIC
-			|| token_type == T_SEPARATOR) && token_type != T_END)
+	while (token_type == T_GENERIC && token_type != T_END)
 	{
 		*tokens = (*tokens)->next;
 		token_type = get_type_from_tok((*tokens)->content);
@@ -52,8 +51,7 @@ static void	skip_until_generic(t_list **tokens)
 	t_toktype	token_type;
 
 	token_type = get_type_from_tok((*tokens)->content);
-	while (token_type != T_GENERIC && token_type != T_QGENERIC
-		&& token_type != T_END)
+	while (token_type != T_GENERIC && token_type != T_END)
 	{
 		*tokens = (*tokens)->next;
 		token_type = get_type_from_tok((*tokens)->content);

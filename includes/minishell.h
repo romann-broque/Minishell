@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/30 12:39:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/30 14:23:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,6 @@ typedef enum e_toktype_short
 	T_ST,
 	T_ED,
 	T_IVD,
-	T_VR
 }			t_toktype_short;
 
 typedef enum e_var_state
