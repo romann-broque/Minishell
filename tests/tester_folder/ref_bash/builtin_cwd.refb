@@ -38,11 +38,10 @@ minishell: cd: too many arguments
 mkdir: cannot create directory ‘new’: Permission denied
 minishell: cd: new: No such file or directory
 /home/screw
-mkdir: cannot create directory ‘lol’: File exists
-minishell: cd: lol: Not a directory
+pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+/home/screw/lol /home/screw
+chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 /home/screw
-/home/screw /home
-/home
 /home/screw
 minishell: cd: pouet: No such file or directory
 /bin
