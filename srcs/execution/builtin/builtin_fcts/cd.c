@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/28 11:02:32 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/01 10:26:16 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int	handle_chdir_err(char *const cd_arg)
 {
 	print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, cd_arg);
 	perror(EMPTY_STR);
-	free(cd_arg);
 	return (1);
 }
 
@@ -25,10 +24,12 @@ static int	execute_cd(t_command *cmd_data)
 	static bool		is_print = false;
 	char *const		cd_arg = get_cd_arg(cmd_data,
 			cmd_data->command[1], &is_print);
+	int				ret_val;
 
+	ret_val = 0;
 	check_pos(CHDIR);
 	if (cd_arg == NULL)
-		return (1);
+		ret_val = 1;
 	else
 	{
 		if (chdir(cd_arg) != -1)
@@ -38,11 +39,11 @@ static int	execute_cd(t_command *cmd_data)
 				print_pos();
 		}
 		else
-			return (handle_chdir_err(cd_arg));
+			ret_val = handle_chdir_err(cd_arg);
 	}
 	free(cd_arg);
 	is_print = false;
-	return (0);
+	return (ret_val);
 }
 
 int	cd_builtin(t_command *cmd_data)

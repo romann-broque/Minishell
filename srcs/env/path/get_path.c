@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/04/30 16:39:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/01 10:31:16 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	*get_complete_path(
 		path = ft_strjoin(path_array[i], suffix);
 		if (path == NULL)
 			return (NULL);
-		if (access(path, F_OK) == 0 && is_folder(path) == false)
+		if (access(path, F_OK) == 0)
 			break ;
 		free(path);
 		path = NULL;
