@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/30 16:54:01 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/01 11:43:26 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@
 
 # define NO_ACCESS		126
 # define NO_FILE		127
+# define INCORRECT_USE	2
 # define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
 
@@ -302,7 +303,10 @@ bool		is_path_var(const char *env_line, const char *pathvar_name);
 /// execution.c
 
 void		execution(t_command *command);
-bool		is_folder(const char *path);
+
+/// exec_binary.c
+
+void		exec_binary(t_command *cmd_data, char *path);
 
 ///  BUILTIN  ///
 

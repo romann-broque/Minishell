@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/28 15:34:52 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/01 11:41:27 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	handle_command(const char *command)
 			exec_command(&tokens);
 		}
 		else
-			update_error_val(2);
+			update_error_val(INCORRECT_USE);
 	}
 }
 
@@ -53,7 +53,7 @@ static void	get_command(void)
 		handle_command(line);
 	else
 	{
-		update_error_val(2);
+		update_error_val(INCORRECT_USE);
 		print_error("%s: %s\n", MINISHELL, SYNTAX_ERROR);
 	}
 	free_manager();

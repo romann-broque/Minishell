@@ -55,6 +55,7 @@ SRCS		+=	cmd_path_utils.c
 
 ### srcs/execution/
 
+SRCS	 	+=	exec_binary.c
 SRCS	 	+=	execution.c
 
 ### srcs/execution/builtin/
