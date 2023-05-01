@@ -1,13 +1,14 @@
 /bin
 /bin
 /home/mat/Desktop/42/Minishell/repo/tests
-/home/mat/Desktop/42/Minishell/repo/tests/bin
+minishell: cd: ./bin: No such file or directory
 /home/mat/Desktop/42/Minishell/repo/tests
+/home/mat/Desktop/42/Minishell/repo
 minishell: cd: bonjour: No such file or directory
 minishell: cd: repo: No such file or directory
-/home/mat/Desktop/42/Minishell/repo/tests
-/home/mat/Desktop/42/Minishell/repo/tests /home/mat/Desktop/42/Minishell/repo/tests/bin
-/bin /home/mat/Desktop/42/Minishell/repo/tests
+/home/mat/Desktop/42/Minishell/repo
+/home/mat/Desktop/42/Minishell/repo /home/mat/Desktop/42/Minishell/repo/tests
+/bin /home/mat/Desktop/42/Minishell/repo
 /bin
 /usr
 /

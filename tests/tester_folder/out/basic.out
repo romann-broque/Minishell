@@ -1,9 +1,7 @@
-bin
 CUNIT
 env
 tester_folder
 valgrind
-bin
 CUNIT
 env
 tester_folder
