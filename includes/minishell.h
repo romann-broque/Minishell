@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/30 22:10:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/30 23:30:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@
 
 // error string
 
-# define SYNTAX_ERROR		"Syntax error"
+# define SYNTAX_ERROR		"syntax error near unclosed quote"
 # define MALLOC_ERROR		"Malloc error"
 # define PARS_ERROR			"syntax error near unexpected token"
 # define CMD_NOT_FOUND		"command not found"

@@ -1,11 +1,13 @@
 bin
 CUNIT
 env
+norminette
 tester_folder
 valgrind
 bin
 CUNIT
 env
+norminette
 tester_folder
 valgrind
 pouet pouet
