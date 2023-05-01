@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 10:57:45 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/30 23:14:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ static bool	is_folder(const char *path)
 	if (stat(path, &file_stat) == -1)
 	{
 		perror(STAT_ERROR);
-		free_manager();
-		exit(EXIT_FAILURE);
+		exit_shell(EXIT_FAILURE, false);
 	}
 	return (S_ISDIR(file_stat.st_mode));
 }
@@ -30,11 +29,10 @@ static void	child_job(t_command *cmd_data, char *path)
 	if (is_folder(path) == true)
 	{
 		print_error("%s: %s: %s\n", MINISHELL, path, IS_DIR);
-		free_manager();
-		exit(EXIT_FAILURE);
+		exit_shell(EXIT_FAILURE, false);
 	}
 	else if (execve(path, cmd_data->command, cmd_data->env) == -1)
-		exit(EXIT_FAILURE);
+		exit_shell(EXIT_FAILURE, false);
 }
 
 static void	exec_binary(t_command *cmd_data, char *path)

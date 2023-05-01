@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_command.c                                   :+:      :+:    :+:   */
+/*   tokenizer_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 10:02:35 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/30 12:23:03 by rbroque          ###   ########.fr       */
+/*   Created: 2023/04/29 17:53:49 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/29 17:53:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	expand(t_token *token)
+bool	is_assign(const char *word)
 {
-	char	*tmp;
-
-	if (token != NULL)
-	{
-		tmp = token->value;
-		if (tmp != NULL)
-			token->value = expand_var(tmp);
-		free(tmp);
-	}
+	return (streq(word, ASSIGN_EQ) == true);
 }
 
-void	expand_command(t_list **tokens)
+bool	is_qword(const char *word)
 {
-	merge_gen_lst(*tokens);
-	ft_lstiter(*tokens, (void (*)(void *))expand);
-	split_gen(tokens);
-	remove_sep_tok(tokens);
-	ft_lstiter(*tokens, (void (*)(void *))set_to_gen);
-	set_assign(*tokens);
+	return (word[0] == SINGLE_QUOTE || word[0] == DOUBLE_QUOTE);
 }

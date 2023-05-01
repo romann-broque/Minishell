@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 23:28:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 19:30:57 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:00:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static t_toktype	get_type_array(
 	{
 		if (is_assign(word) == true)
 			return (T_ASSIGN);
+		if (is_qword(word) == true)
+			return (T_QGENERIC);
 		else
 			return (T_GENERIC);
 	}
@@ -42,6 +44,7 @@ static t_toktype	get_type(char *word)
 		PIPE,
 		OR,
 		AND,
+		SEP
 	};
 
 	return (get_type_array(type_str, word));
