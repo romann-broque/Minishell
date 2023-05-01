@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/01 11:41:27 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/01 14:25:02 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	handle_command(const char *command)
 
 	tokens = lexer(command);
 	if (tokens == NULL)
-		exit_shell();
+		exit_shell(g_global.last_ret_val, true);
 	else
 	{
 		add_deallocator(tokens, free_token_lst);

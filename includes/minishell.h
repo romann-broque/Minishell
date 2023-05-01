@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/01 11:43:26 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/01 14:26:42 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,13 @@
 # define PIPE				"|"
 # define OR					"||"
 # define AND				"&&"
+# define ASSIGN_EQ			"="
+# define SEP				" "
 # define END_STR			"newline"
 
 // error string
 
-# define SYNTAX_ERROR		"Syntax error"
+# define SYNTAX_ERROR		"syntax error near unclosed quote"
 # define MALLOC_ERROR		"Malloc error"
 # define PARS_ERROR			"syntax error near unexpected token"
 # define CNF				"command not found"
@@ -94,7 +96,7 @@
 
 // char types
 
-# define TOK_LEXEME		"<>|&"
+# define TOK_LEXEME		"<>|&="
 # define WHITESPACES	" \t\n\v\f\r"
 # define SEPARATORS		" \t\n"
 # define SPECIAL_VAR	"?0"
@@ -122,7 +124,7 @@
 
 // count
 
-# define NEXT_TOK_MAX	11
+# define NEXT_TOK_MAX	13
 # define NB_DEALLOCATOR	5
 # define CD_EXP_ARG		2
 
@@ -151,13 +153,33 @@ typedef enum e_toktype
 	T_PIPE,
 	T_OR,
 	T_AND,
+	T_SEPARATOR,
 	T_ASSIGN,
 	T_GENERIC,
+	T_QGENERIC,
 	T_START,
 	T_END,
 	T_INVALID,
 	T_VAR
 }			t_toktype;
+
+typedef enum e_toktype_short
+{
+	T_LCH,
+	T_RCH,
+	T_DLCH,
+	T_DRCH,
+	T_P,
+	T_O,
+	T_A,
+	T_SEP,
+	T_ASN,
+	T_G,
+	T_QG,
+	T_ST,
+	T_ED,
+	T_IVD,
+}			t_toktype_short;
 
 typedef enum e_var_state
 {
@@ -208,8 +230,8 @@ typedef struct s_qmachine
 
 typedef struct s_tokparse
 {
-	t_toktype	curr;
-	t_toktype	next[NEXT_TOK_MAX];
+	t_toktype		curr;
+	t_toktype_short	next[NEXT_TOK_MAX];
 }				t_tokparse;
 
 typedef struct s_command
@@ -226,12 +248,6 @@ typedef struct s_deallocator
 	void	(*free_fct)(void *);
 }				t_deallocator;
 
-typedef struct s_resource_tracker
-{
-	t_deallocator	deallocator_array[NB_DEALLOCATOR];
-	size_t			index;
-}				t_resource_tracker;
-
 typedef struct s_builtin_mapper
 {
 	const char	*name;
@@ -240,10 +256,10 @@ typedef struct s_builtin_mapper
 
 typedef struct s_global
 {
-	t_resource_tracker	tracker;
-	char				**env;
-	int					last_ret_val;
-	bool				is_stoppable;
+	int		last_ret_val;
+	t_list	*garbage;
+	char	**env;
+	bool	is_stoppable;
 }				t_global;
 
 /////////////////
@@ -374,7 +390,7 @@ char		*ft_realpath(const char *path);
 
 /// exit_shell.c
 
-void		exit_shell(void);
+void		exit_shell(const int exit_value, const bool is_print);
 
 /// exit_utils.c
 
@@ -383,14 +399,28 @@ void		update_error_val(int error_nbr);
 
 //			EXPANSION			//
 
+//// is_assign_tok.c
+
+bool		is_assign_tok(t_token *token);
+
 /// expand_command.c
 
 void		expand_command(t_list **tokens);
 
-/// rm_empty_var.c
+/// expand_utils.c
 
-void		flag_var(t_list *tokens);
-void		rm_empty_var(t_list **tokens);
+void		remove_sep_tok(t_list **tokens);
+void		set_to_gen(t_token *token);
+void		set_assign(t_list *tokens);
+
+/// merge_gen.c
+
+bool		is_gen_tok(t_list *tokens);
+void		merge_gen_lst(t_list *tokens);
+
+/// split_gen.c
+
+void		split_gen(t_list **tokens);
 
 ///  VAR  ///
 
@@ -468,24 +498,17 @@ bool		are_quotes_closed(const char *str);
 t_list		*lexer_root(const char *str);
 t_list		*lexer(const char *str);
 
-//// assign_states_utils.c
-
-void		update_state_assign(const char c, t_qstate *state);
-bool		is_assign(const char *word);
-
-//// assign_states.c
-
-bool		start_state_assign(const char **word, t_qstate *state);
-bool		word_state_assign(const char **word, t_qstate *state);
-bool		squote_state_assign(const char **word, t_qstate *state);
-bool		dquote_state_assign(const char **word, t_qstate *state);
-
 //// token_utils.c
 
 t_token		*init_token(t_toktype type, char *value);
 t_toktype	get_type_from_tok(t_token *tok);
 char		*get_str_from_tok(t_token *tok);
 void		free_token(t_token *tok);
+
+//// tokenizer_utils.c
+
+bool		is_assign(const char *word);
+bool		is_qword(const char *word);
 
 //// tokenizer.c
 

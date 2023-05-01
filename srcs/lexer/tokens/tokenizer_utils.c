@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_shell.c                                       :+:      :+:    :+:   */
+/*   tokenizer_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 12:35:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/01 14:27:52 by mat              ###   ########.fr       */
+/*   Created: 2023/04/29 17:53:49 by rbroque           #+#    #+#             */
+/*   Updated: 2023/04/29 17:53:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
-
-void	exit_shell(const int exit_value, const bool is_print)
+bool	is_assign(const char *word)
 {
-	if (is_print == true)
-		ft_dprintf(STDERR_FILENO, "%s\n", EXIT_MESSAGE);
-	free_manager();
-	free_strs(g_global.env);
-	exit(exit_value);
+	return (streq(word, ASSIGN_EQ) == true);
+}
+
+bool	is_qword(const char *word)
+{
+	return (word[0] == SINGLE_QUOTE || word[0] == DOUBLE_QUOTE);
 }

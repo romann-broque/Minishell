@@ -90,7 +90,10 @@ SRCS		+=	exit_utils.c
 ### srcs/expansion/
 
 SRCS	 	+=	expand_command.c
-SRCS	 	+=	rm_empty_var.c
+SRCS	 	+=	expand_utils.c
+SRCS		+=	is_assign_tok.c
+SRCS	 	+=	merge_gen.c
+SRCS	 	+=	split_gen.c
 
 ### srcs/expansion/var/
 
@@ -121,10 +124,9 @@ SRCS		+=	are_quotes_closed.c
 
 ### srcs/lexer/tokens/
 
-SRCS		+=	assign_states_utils.c
-SRCS		+=	assign_states.c
 SRCS		+=	lexer.c
 SRCS		+=	token_utils.c
+SRCS		+=	tokenizer_utils.c
 SRCS		+=	tokenizer.c
 
 ### srcs/lexer/word/
@@ -199,6 +201,10 @@ TESTER_FOLDER	= ./tests/
 ENV_FOLDER		= $(TESTER_FOLDER)/env/
 ENV				= $(TESTER_FOLDER)/env/env.sh
 
+### NORM
+
+NORM			= $(TESTER_FOLDER)/norminette/norm.sh
+
 ### MIN
 
 MINTEST_FOLDER	= $(TESTER_FOLDER)/tester_folder/
@@ -208,6 +214,7 @@ TESTER			= $(MINTEST_FOLDER)/tester.sh
 
 CUNIT_FOLDER	= $(TESTER_FOLDER)/CUNIT/
 CUNIT			= $(CUNIT_FOLDER)/run_cunit.sh
+CUNIT_EXE		= $(CUNIT_FOLDER)/cunit
 
 ### VALGRIND
 
@@ -285,8 +292,17 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 	mkdir -p $(PATH_OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
+run		: all
+	$(ECHOC) $(GREEN) "RUNNING $(NAME)"$(NC)"\n\n"
+	./$(NAME)
+
+norm	:
+	$(ECHOC) $(BLUE) "\n""NORM : "$(NC)""
+	./$(NORM)
+
 test	:
-	$(MAKE) re -s
+	$(MAKE) -s
+	$(RM) $(CUNIT_EXE)
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
 	source $(ENV); $(CUNIT) $(VALGRIND)
@@ -310,5 +326,5 @@ re 		: fclean
 	echo -e $(YELLOW) "\nRebuilding..." $(NC)
 	$(MAKE) -s
 
-.PHONY	: all test clean fclean re
-.SILENT	: all test clean fclean re $(NAME) $(OBJS) $(LIBFT)
+.PHONY	: all run test clean fclean re
+.SILENT	:
