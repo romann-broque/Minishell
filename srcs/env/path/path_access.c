@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   path_access.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 14:48:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/01 11:07:05 by mat              ###   ########.fr       */
+/*   Created: 2023/04/30 16:13:20 by mat               #+#    #+#             */
+/*   Updated: 2023/04/30 16:15:56 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	exit_builtin(__attribute__((unused)) t_command *cmd_data)
+bool	is_cmd_accessible(char *path)
 {
-	exit_shell();
-	return (EXIT_SUCCESS);
+	return (access(path, X_OK) == 0);
 }

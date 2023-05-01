@@ -52,7 +52,7 @@ mkdir -p new
 cd new
 cd ~
 pwd
-mkdir lol
+mkdir -p lol
 cd lol
 rm ../lol -fr
 pwd

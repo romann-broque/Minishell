@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:02:35 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/25 22:43:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/26 20:07:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ static void	expand(t_token *token)
 
 void	expand_command(t_list **tokens)
 {
+	flag_var(*tokens);
 	ft_lstiter(*tokens, (void (*)(void *))expand);
+	rm_empty_var(tokens);
 }

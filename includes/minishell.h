@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 11:24:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/01 11:43:26 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@
 # define DOT_STR		"."
 # define DOUBLE_DOT_STR	".."
 # define BATCH_OPT		"-c"
+# define ECHO_OPT		"-n"
 # define BACKPATH		"/.."
+# define NEWLINE_STR	"\n"
+# define SPACE_STR		" "
 
 // builtins
 
@@ -82,7 +85,7 @@
 # define SYNTAX_ERROR		"Syntax error"
 # define MALLOC_ERROR		"Malloc error"
 # define PARS_ERROR			"syntax error near unexpected token"
-# define CMD_NOT_FOUND		"command not found"
+# define CNF				"command not found"
 # define IS_DIR				"Is a directory"
 # define STAT_ERROR			"Failed to stat file"
 # define TOO_MANY_ARGS		"too many arguments"
@@ -125,6 +128,9 @@
 
 // return value
 
+# define NO_ACCESS		126
+# define NO_FILE		127
+# define INCORRECT_USE	2
 # define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
 
@@ -149,7 +155,8 @@ typedef enum e_toktype
 	T_GENERIC,
 	T_START,
 	T_END,
-	T_INVALID
+	T_INVALID,
+	T_VAR
 }			t_toktype;
 
 typedef enum e_var_state
@@ -228,13 +235,14 @@ typedef struct s_resource_tracker
 typedef struct s_builtin_mapper
 {
 	const char	*name;
-	void		(*fct)(t_command *cmd_data);
+	int			(*fct)(t_command *cmd_data);
 }				t_builtin_mapper;
 
 typedef struct s_global
 {
 	t_resource_tracker	tracker;
 	char				**env;
+	int					last_ret_val;
 	bool				is_stoppable;
 }				t_global;
 
@@ -274,12 +282,17 @@ void		clean_path(char **path);
 //// get_path.c
 
 bool		is_cmd_path(t_command *cmd);
-char		*get_path_from_cmd(t_command *cmd);
+char		*get_cmd_path(t_command *cmd_data);
 char		*get_path_from_env(const char *suffix,
 				const char *pathvar_name, char **env);
 
+//// path_access.c
+
+bool		is_cmd_accessible(char *path);
+
 //// cmd_path_utils.c
 
+char		*dup_path_from_cmd(t_command *cmd);
 void		add_fwd_slash(char **paths);
 bool		is_var_path_in_env(char **env, const char *pathvar_name);
 bool		is_empty_str(const char *str);
@@ -290,6 +303,10 @@ bool		is_path_var(const char *env_line, const char *pathvar_name);
 /// execution.c
 
 void		execution(t_command *command);
+
+/// exec_binary.c
+
+void		exec_binary(t_command *cmd_data, char *path);
 
 ///  BUILTIN  ///
 
@@ -303,17 +320,21 @@ bool		is_builtin(t_command *cmd_data);
 
 ////  BUILTIN_FCTS  ////
 
-///// exit.c
-
-void		exit_builtin(t_command *cmd_data);
-
 ///// cd.c
 
-void		cd_builtin(t_command *cmd_data);
+int			cd_builtin(t_command *cmd_data);
+
+///// echo.c
+
+int			echo_builtin(t_command	*cmd_data);
+
+///// exit.c
+
+int			exit_builtin(t_command *cmd_data);
 
 ///// pwd.c
 
-void		pwd_builtin(__attribute__((unused)) t_command *cmd_data);
+int			pwd_builtin(__attribute__((unused)) t_command *cmd_data);
 
 ////  CWD  ////
 
@@ -331,7 +352,7 @@ bool		is_prev_option(char **command);
 char		*ft_strstr(const char *big, const char *little);
 void		check_pos(const char *caller);
 void		update_cwd_var(const char *new_pwd);
-void		print_pos(void);
+int			print_pos(void);
 
 /// CLEAN_PATH ///
 
@@ -353,13 +374,23 @@ char		*ft_realpath(const char *path);
 
 /// exit_shell.c
 
-void		exit_shell(const int exit_value);
+void		exit_shell(void);
+
+/// exit_utils.c
+
+int			extract_return_status(int status);
+void		update_error_val(int error_nbr);
 
 //			EXPANSION			//
 
-// expand_command.c
+/// expand_command.c
 
 void		expand_command(t_list **tokens);
+
+/// rm_empty_var.c
+
+void		flag_var(t_list *tokens);
+void		rm_empty_var(t_list **tokens);
 
 ///  VAR  ///
 

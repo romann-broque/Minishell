@@ -1,0 +1,38 @@
+ls blata
+echo $?
+$?
+cd arg1 arg2
+echo $?
+cd blata
+echo $?
+./minishell
+ls blata
+exit
+echo $?
+mkdir lol
+cd lol
+rm ../lol -fr
+pwd
+/bin/echo $?
+cd ..
+bonjour
+echo $?
+touch noperm
+chmod 000 noperm
+./noperm
+echo $?
+chmod 777 noperm
+rm noperm
+echo $?
+ls pouet
+
+
+
+echo $?
+
+pouet
+echo $? $?
+
+echo $PATH
+
+exit

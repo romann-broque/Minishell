@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_path.test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 11:27:11 by mat               #+#    #+#             */
-/*   Updated: 2023/04/22 18:05:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/01 11:07:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cunit.test.h"
 
 extern t_global	g_global;
+
+static void	ASSERT_AND_FREE(char *str1, const char *str2)
+{
+	CU_ASSERT_STRING_EQUAL(str1, str2);
+	free(str1);
+}
 
 void	cmd_path__test(void)
 {

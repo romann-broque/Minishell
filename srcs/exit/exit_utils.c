@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 14:48:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/01 11:07:05 by mat              ###   ########.fr       */
+/*   Created: 2023/04/27 15:45:04 by mat               #+#    #+#             */
+/*   Updated: 2023/04/30 16:44:21 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	exit_builtin(__attribute__((unused)) t_command *cmd_data)
+extern t_global	g_global;
+
+//shifting the value 8 bits to the right and masking it with 0xFF
+
+int	extract_return_status(const int status)
 {
-	exit_shell();
-	return (EXIT_SUCCESS);
+	return ((status >> 8) & 0xFF);
+}
+
+void	update_error_val(const int error_nbr)
+{
+	g_global.last_ret_val = error_nbr;
 }
