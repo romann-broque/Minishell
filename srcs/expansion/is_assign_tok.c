@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:46:12 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/01 10:09:50 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/01 12:04:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static bool	is_assign_tok_state(const char *str)
 {
-	const ssize_t	eq_offset = index_of(str, EQUAL_SIGN);
+	const ssize_t	eq_index = index_of(str, EQUAL_SIGN);
 	ssize_t			i;
 	bool			is_assign;
 
 	i = 0;
 	is_assign = false;
-	if (eq_offset > 0 && is_in_var_start_charset(str[i]) == true)
+	if (eq_index > 0 && is_in_var_start_charset(str[i]) == true)
 	{
 		++i;
 		while (is_in_var_charset(str[i]) == true)
 			++i;
-		is_assign = (i == eq_offset);
+		is_assign = (i == eq_index);
 	}
 	return (is_assign);
 }
