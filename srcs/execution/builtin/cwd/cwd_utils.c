@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/27 16:08:47 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/01 11:10:41 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	print_pos(void)
 			PWD_BUILTIN, ERROR_ACCESS_DIR, GETCWD, ERROR_ACCESS_PAR_DIR);
 		perror(EMPTY_STR);
 		free(pos);
-		return (1);
+		return (EXIT_FAILURE);
 	}
 	free(pos);
-	return (0);
+	return (EXIT_SUCCESS);
 }

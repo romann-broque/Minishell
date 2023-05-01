@@ -62,10 +62,11 @@ REF_BASH_FOLDER="${FOLDER}"ref_bash/
  outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"builtin_cwd.out "${OUT_FOLDER}"echo_builtin.out "${OUT_FOLDER}"exit_builtin.out)
  output_ref_bash=( "${REF_BASH_FOLDER}"basic.refb "${REF_BASH_FOLDER}"builtin_cwd.refb "${REF_BASH_FOLDER}"echo_builtin.refb "${REF_BASH_FOLDER}"exit_builtin.refb)
 
+source $ENV
  for i in "${!inputs[@]}"; do
  	# Run the program and redirect the output to the corresponding output file
- 	source $ENV; cat "${inputs[i]}" | bash --posix &> "${output_ref_bash[i]}"
- 	source $ENV; cat "${inputs[i]}" | ./minishell &> "${outputs[i]}"
+ 	cat "${inputs[i]}" | bash --posix &> "${output_ref_bash[i]}"
+ 	cat "${inputs[i]}" | ./minishell &> "${outputs[i]}"
  	ret_val+=$?
 	# Replace Error of each line with minishell
 	sed -i -e 's/^bash: line [0-9]*: /minishell: /g' "${output_ref_bash[i]}"

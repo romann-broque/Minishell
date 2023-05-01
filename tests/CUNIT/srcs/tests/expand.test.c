@@ -6,13 +6,13 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:47:05 by mat               #+#    #+#             */
-/*   Updated: 2023/04/27 19:47:09 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/01 10:51:34 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cunit.test.h"
 
-void	ASSERT_AND_FREE(char *str1, const char *str2)
+static void	ASSERT_AND_FREE(char *str1, const char *str2)
 {
 	CU_ASSERT_STRING_EQUAL(str1, str2);
 	free(str1);

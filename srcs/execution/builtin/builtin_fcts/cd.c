@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/05/01 10:26:16 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/01 11:06:48 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	handle_chdir_err(char *const cd_arg)
 {
 	print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, cd_arg);
 	perror(EMPTY_STR);
-	return (1);
+	return (EXIT_FAILURE);
 }
 
 static int	execute_cd(t_command *cmd_data)
@@ -53,6 +53,6 @@ int	cd_builtin(t_command *cmd_data)
 	else
 	{
 		print_error("%s: %s: %s\n", MINISHELL, CD_BUILTIN, TOO_MANY_ARGS);
-		return (1);
+		return (EXIT_FAILURE);
 	}
 }
