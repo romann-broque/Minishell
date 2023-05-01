@@ -23,11 +23,12 @@ chmod 000 noperm
 echo $?
 chmod 777 noperm
 rm noperm
-echo $?
 ls pouet
+exit 42 blata
+echo $?
 
-
-
+./minishell
+exit bonjour je suis mathi
 echo $?
 
 pouet

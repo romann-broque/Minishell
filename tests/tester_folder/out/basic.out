@@ -1,16 +1,23 @@
+minishell $ 
+minishell $ ls tests
 CUNIT
 env
 norminette
 tester_folder
 valgrind
+minishell $ /bin/ls tests
 CUNIT
 env
 norminette
 tester_folder
 valgrind
+minishell $ /bin/echo pouet pouet
 pouet pouet
+minishell $ pouet
 minishell: pouet: command not found
+minishell $ /pouet
 minishell: /pouet: No such file or directory
+minishell $ ls
 includes
 libft
 Makefile
@@ -19,3 +26,5 @@ objs
 README.md
 srcs
 tests
+minishell $ exit
+exit

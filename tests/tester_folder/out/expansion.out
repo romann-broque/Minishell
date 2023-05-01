@@ -1,5 +1,12 @@
+minishell $ /bin/echo " $pouet"pouet
      ls         pouet  pouet  pouet
+minishell $ /bin/echo ' $pouet'pouet
  $pouetpouet
+minishell $ /bin/echo " $pouet" pouet
      ls         pouet  pouet   pouet
+minishell $ /bin/echo pouet$pouet
 pouet ls pouet pouet
+minishell $ $empty
+minishell $ /bin/echo        "'"''"$pouet     " "'''''' "wouah   '' l   '""' ''"$PWD  $pouet" 
 '    ls         pouet  pouet        '''''' wouah  l "" /home/mat/Desktop/42/Minishell/repo      ls         pouet  pouet  
+minishell $ exit

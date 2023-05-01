@@ -326,5 +326,5 @@ re 		: fclean
 	echo -e $(YELLOW) "\nRebuilding..." $(NC)
 	$(MAKE) -s
 
-.PHONY	: all run test clean fclean re
+.PHONY	: all run norm test clean fclean re
 .SILENT	:
