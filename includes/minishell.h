@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 14:53:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 15:37:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,12 @@
 
 # define ASSIGN_START	0
 
+// var_flag
+
+# define SET_MASK		0x0f
+# define EXPORT_MASK	0xf0
+# define ENV_MASK		0xff
+
 /////////////
 /// ENUM ///
 /////////////
@@ -154,7 +160,6 @@ typedef enum e_toktype
 	T_START,
 	T_END,
 	T_INVALID,
-	T_VAR
 }			t_toktype;
 
 typedef enum e_toktype_short

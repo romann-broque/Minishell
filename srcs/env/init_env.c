@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 14:37:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 15:29:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_var	*init_var_from_str(const char *str)
 	const char		*value = str + eq_index + 1;
 	t_var			*new_var;
 
-	new_var = init_var(name, value, 0);
+	new_var = init_var(name, value, ENV_MASK);
 	free(name);
 	return (new_var);
 }

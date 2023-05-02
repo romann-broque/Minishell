@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:44:29 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 15:00:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 15:19:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,4 +176,5 @@ void	interpreter__test(void)
 	CU_ASSERT_TRUE(is_cmd_valid(toks2, cmds2, 0));
 	CU_ASSERT_TRUE(is_cmd_valid(toks3, cmds3, 2));
 	CU_ASSERT_TRUE(is_cmd_valid(toks4, cmds4, 1));
+	free_strs(env_array);
 }

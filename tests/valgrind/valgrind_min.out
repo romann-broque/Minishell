@@ -1,14 +1,14 @@
-==46165== Memcheck, a memory error detector
-==46165== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==46165== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==46165== Command: ./tests/CUNIT/cunit
-==46165== Parent PID: 46164
-==46165== 
-==46165== 
-==46165== HEAP SUMMARY:
-==46165==     in use at exit: 0 bytes in 0 blocks
-==46165==   total heap usage: 1,573 allocs, 1,573 frees, 38,300 bytes allocated
-==46165== 
-==46165== All heap blocks were freed -- no leaks are possible
-==46165== 
-==46165== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==166574== Memcheck, a memory error detector
+==166574== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==166574== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==166574== Command: ./tests/CUNIT/cunit
+==166574== Parent PID: 166573
+==166574== 
+==166574== 
+==166574== HEAP SUMMARY:
+==166574==     in use at exit: 0 bytes in 0 blocks
+==166574==   total heap usage: 2,479 allocs, 2,479 frees, 65,367 bytes allocated
+==166574== 
+==166574== All heap blocks were freed -- no leaks are possible
+==166574== 
+==166574== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
