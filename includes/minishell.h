@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 10:56:04 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/02 12:15:44 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@
 # define TOO_MANY_ARGS		"too many arguments"
 # define ERROR_ACCESS_DIR		"error retrieving current directory"
 # define ERROR_ACCESS_PAR_DIR	"cannot access parent directories"
+# define NUM_ARG_REQ			"numeric argument required"
 
 // char types
 

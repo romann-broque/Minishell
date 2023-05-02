@@ -15,14 +15,23 @@ minishell: bonjour: command not found
 minishell: ./noperm: Permission denied
 126
 ls: cannot access 'pouet': No such file or directory
-minishell: exit: too many arguments
 2
+includes
+libft
+Makefile
+minishell
+objs
+README.md
+srcs
+tests
+minishell: exit: too many arguments
+1
 minishell: exit: bonjour: numeric argument required
 2
 0
 42
 minishell: exit: too many arguments
-0
+1
 255
 minishell: exit: 234782384908273480723847238047283074: numeric argument required
 2
@@ -33,9 +42,24 @@ minishell: exit: abc: numeric argument required
 minishell: exit: abc: numeric argument required
 2
 minishell: exit: too many arguments
-0
+1
 minishell: exit: too many arguments
-0
+1
+255
+minishell: exit: 9223372036854775808: numeric argument required
+2
+minishell: exit: -9223372036854775808: numeric argument required
+2
+minishell: exit: -9223372036854775809: numeric argument required
+2
+includes
+libft
+Makefile
+minishell
+objs
+README.md
+srcs
+tests
 includes
 libft
 Makefile

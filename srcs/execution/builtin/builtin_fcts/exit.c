@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:48:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 11:35:42 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/02 12:16:39 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,26 @@ static bool	check_and_updates_retval(long *ret_value, char *str)
 	return (false);
 }
 
+static int	exit_num_arg(const char *second_arg, const long nb)
+{
+	if (second_arg == NULL)
+		exit_shell(nb, true);
+	else
+	{
+		print_error("%s\n%s: %s: %s\n",
+			EXIT_MESSAGE, MINISHELL, EXIT_BUILTIN, TOO_MANY_ARGS);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
+static void	exit_invalid_arg(const char *invalid_arg)
+{
+	print_error("%s\n%s: %s: %s: %s\n",
+		EXIT_MESSAGE, MINISHELL, EXIT_BUILTIN, invalid_arg, NUM_ARG_REQ);
+	exit_shell(INCORRECT_USE, false);
+}
+
 int	exit_builtin(t_command *cmd_data)
 {
 	long	nb;
@@ -53,23 +73,9 @@ int	exit_builtin(t_command *cmd_data)
 	if (cmd_data->command[1] != NULL)
 	{
 		if (check_and_updates_retval(&nb, cmd_data->command[1]) == true)
-		{
-			if (cmd_data->command[2] == NULL)
-				exit_shell((unsigned char)nb, true);
-			else
-			{
-				print_error("%s\n%s: %s: too many arguments\n",
-					EXIT_MESSAGE, MINISHELL, cmd_data->command[0]);
-				return (g_global.last_ret_val);
-			}
-		}
+			return (exit_num_arg(cmd_data->command[2], nb));
 		else
-		{
-			print_error("%s\n%s: %s: %s: numeric argument required\n",
-				EXIT_MESSAGE, MINISHELL, cmd_data->command[0],
-				cmd_data->command[1]);
-			exit_shell(INCORRECT_USE, false);
-		}
+			exit_invalid_arg(cmd_data->command[1]);
 	}
 	exit_shell(g_global.last_ret_val, true);
 	return (EXIT_SUCCESS);

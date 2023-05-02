@@ -24,6 +24,8 @@ echo $?
 chmod 777 noperm
 rm noperm
 ls pouet
+echo $?
+ls
 exit 42 blata
 echo $?
 
@@ -60,6 +62,19 @@ echo $?
 ./minishell
 exit 42 abc
 echo $?
+./minishell
+exit 9223372036854775807
+echo $?
+./minishell
+exit 9223372036854775808
+echo $?
+./minishell
+exit -9223372036854775808
+echo $?
+./minishell
+exit -9223372036854775809
+echo $?
+ls
 ls
 exit
 
