@@ -111,8 +111,8 @@ SRCS		+=	init_shell.c
 
 ### srcs/interpreter/
 
-SRCS		+=	interpreter_utils.c
 SRCS		+=	interpreter.c
+SRCS		+=	interpreter_utils.c
 SRCS		+=	dup_env_lst_to_array.c
 
 ### srcs/lexer/

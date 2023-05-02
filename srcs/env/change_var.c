@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 15:44:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 16:14:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,5 @@ void	change_var(const char *var_name, const char *var_value)
 		}
 	}
 }
+
+// change name of change_var function

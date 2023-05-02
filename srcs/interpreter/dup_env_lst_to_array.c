@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:52:21 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 15:03:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 16:09:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*get_assign_from_var(t_var *var)
 {
-	char *const	assign = ft_strjoin(var->name, EQUAL_SIGN_STR);
+	char *const	assign = ft_strjoin(var->key, EQUAL_SIGN_STR);
 
 	return (ft_strjoin_free(assign, var->value));
 }

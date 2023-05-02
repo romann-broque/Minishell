@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:01:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 15:44:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 16:09:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_var	*init_var(const char *name, const char *value, const uint8_t flags)
 	new = (t_var *)malloc(sizeof(t_var));
 	if (new != NULL)
 	{
-		new->name = ft_strdup(name);
+		new->key = ft_strdup(name);
 		new->value = ft_strdup(value);
 		new->flags = flags;
 	}
@@ -37,7 +37,7 @@ t_var	*get_var(const char *var_name)
 	while (env != NULL)
 	{
 		var = env->content;
-		if (streq(var->name, var_name) == true)
+		if (streq(var->key, var_name) == true)
 			return (var);
 		env = env->next;
 	}
@@ -48,7 +48,7 @@ void	free_var(t_var *var)
 {
 	if (var != NULL)
 	{
-		free(var->name);
+		free(var->key);
 		free(var->value);
 	}
 	free(var);

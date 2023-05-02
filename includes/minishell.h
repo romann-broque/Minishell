@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 15:37:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 16:11:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,7 +255,7 @@ typedef struct s_builtin_mapper
 
 typedef struct s_var
 {
-	char	*name;
+	char	*key;
 	char	*value;
 	uint8_t	flags;
 }				t_var;
@@ -467,16 +467,16 @@ void		init_shell(char **env);
 
 //			INTERPRETER		//
 
+/// interpreter.c
+
+t_list		*interpreter(t_list *tokens, t_list *env);
+
 /// interpreter_utils.c
 
 void		free_command(t_command *cmd_data);
 size_t		get_word_count(t_list *tokens);
 char		**get_arg_array(t_list *tokens);
 char		*find_cmd_path(const char *cmd_name);
-
-/// interpreter.c
-
-t_list		*interpreter(t_list *tokens, t_list *env);
 
 /// dup_env_lst_to_array.c
 
