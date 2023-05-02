@@ -70,7 +70,15 @@ function put_format()
 
  echo -e "${BLUE}\n<====  BASH  ====>\n${NC}"
 
+<<<<<<< HEAD
 files=( "basic" "builtin_cwd" "echo_builtin" "expansion" "assign" "exit_builtin")
+=======
+files=( "basic" "builtin_cwd" "echo_builtin" "expansion" "assign")
+
+inputs=($(put_format "$IN_FOLDER" ".in" "${files[@]}"))
+outputs=($(put_format "$OUT_FOLDER" ".out" "${files[@]}"))
+output_ref_bash=($(put_format "$REF_BASH_FOLDER" ".refb" "${files[@]}"))
+>>>>>>> main
 
 inputs=($(put_format "$IN_FOLDER" ".in" "${files[@]}"))
 outputs=($(put_format "$OUT_FOLDER" ".out" "${files[@]}"))
@@ -85,7 +93,10 @@ source $ENV
 	# Replace Error of each line with minishell
 	sed -i -e 's/^bash: line [0-9]*: /minishell: /g' "${output_ref_bash[i]}"
 	sed -i '/^minishell /d' "${outputs[i]}"
+<<<<<<< HEAD
 	sed -i '/^minishell /d' "${output_ref_bash[i]}"
+=======
+>>>>>>> main
 	while grep -c "minishell " "${outputs[i]}" > /dev/null; do
 		sed -i -n '/minishell \$/!{p;d}; N; s/minishell \$.*\n//; P; D' "${outputs[i]}"
 	done

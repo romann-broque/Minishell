@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 12:15:44 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/02 16:56:30 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,7 +257,10 @@ typedef struct s_builtin_mapper
 
 typedef struct s_global
 {
+<<<<<<< HEAD
 	int		last_ret_val;
+=======
+>>>>>>> main
 	t_list	*garbage;
 	char	**env;
 	bool	is_stoppable;
@@ -347,6 +350,14 @@ int			echo_builtin(t_command	*cmd_data);
 ///// exit.c
 
 int			exit_builtin(t_command *cmd_data);
+
+///// echo.c
+
+void		echo_builtin(t_command	*cmd_data);
+
+///// exit.c
+
+void		exit_builtin(t_command *cmd_data);
 
 ///// pwd.c
 
