@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:28:17 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 11:10:49 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/02 17:56:50 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,13 @@ void	free_token_lst(void *ptr)
 
 static void	run_deallocator(t_deallocator *dealloc)
 {
-	dealloc->free_fct(dealloc->ptr);
+	if (dealloc->free_fct != NULL)
+		dealloc->free_fct(dealloc->ptr);
 }
 
 void	free_manager(void)
 {
-	const size_t	deallocator_count = g_global.tracker.index;
-	size_t			i;
-
-	i = 0;
-	while (i < deallocator_count)
-	{
-		run_deallocator(g_global.tracker.deallocator_array + i);
-		++i;
-	}
+	ft_lstiter(g_global.garbage, (void (*)(void *))run_deallocator);
+	ft_lstclear(&(g_global.garbage), free);
 	init_tracker();
 }

@@ -9,13 +9,19 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+=	srcs/
+PATH_SRCS	+=	srcs/batch/
+PATH_SRCS	+=	srcs/env/
+PATH_SRCS	+=	srcs/env/path/
 PATH_SRCS	+=	srcs/execution/
 PATH_SRCS	+=	srcs/execution/builtin/
-PATH_SRCS	+=	srcs/execution/builtin/exit_builtin/
+PATH_SRCS	+=	srcs/execution/builtin/builtin_fcts/
+PATH_SRCS	+=	srcs/execution/builtin/cwd/
+PATH_SRCS	+=	srcs/execution/builtin/cwd/clean_path/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/free/
 PATH_SRCS	+=	srcs/global/
+PATH_SRCS	+=	srcs/init/
 PATH_SRCS	+=	srcs/interpreter/
 PATH_SRCS	+=	srcs/expansion/var/
 PATH_SRCS	+=	srcs/lexer/
@@ -31,28 +37,64 @@ PATH_SRCS	+=	srcs/signal/
 
 SRCS	 	+=	minishell.c
 
+### srcs/
+
+SRCS		+=	batch.c
+
+### srcs/env/
+
+SRCS		+= change_var.c
+SRCS		+= ft_getenv.c
+SRCS		+= init_env.c
+
+### srcs/env/path/
+
+SRCS		+=	clean_path.c
+SRCS		+=	get_path.c
+SRCS		+=	path_access.c
+SRCS		+=	cmd_path_utils.c
+
 ### srcs/execution/
 
-SRCS		+=	cmd_path.c
-SRCS		+=	cmd_path_utils.c
+SRCS	 	+=	exec_binary.c
 SRCS	 	+=	execution.c
 
 ### srcs/execution/builtin/
 
-SRCS	 	+=	is_builtin.c
 SRCS	 	+=	exec_builtin.c
+SRCS	 	+=	is_builtin.c
 
-### srcs/execution/builtin/exit_builtin/
+### srcs/execution/builtin/builtin_fcts/
 
+SRCS		+=	echo.c
 SRCS	 	+=	exit.c
+SRCS		+=	cd.c
+SRCS		+=	pwd.c
+
+### srcs/execution/builtin/cwd/
+
+SRCS	 	+=	cd_arg.c
+SRCS	 	+=	cd_utils.c
+SRCS	 	+=	cwd_utils.c
+
+### srcs/execution/builtin/cwd/clean_path
+
+SRCS		+=	clean_pwd.c
+SRCS		+=	ft_realpath_utils.c
+SRCS	 	+=	ft_realpath.c
 
 ### srcs/exit/
 
 SRCS	 	+=	exit_shell.c
+SRCS		+=	exit_utils.c
 
 ### srcs/expansion/
 
 SRCS	 	+=	expand_command.c
+SRCS	 	+=	expand_utils.c
+SRCS		+=	is_assign_tok.c
+SRCS	 	+=	merge_gen.c
+SRCS	 	+=	split_gen.c
 
 ### srcs/expansion/var/
 
@@ -69,6 +111,9 @@ SRCS		+=	tracker.c
 ### srcs/global/
 
 SRCS		+=	global.c
+### srcs/init/
+
+SRCS		+=	init_shell.c
 
 ### srcs/interpreter/
 
@@ -83,10 +128,9 @@ SRCS		+=	are_quotes_closed.c
 
 ### srcs/lexer/tokens/
 
-SRCS		+=	assign_states_utils.c
-SRCS		+=	assign_states.c
 SRCS		+=	lexer.c
 SRCS		+=	token_utils.c
+SRCS		+=	tokenizer_utils.c
 SRCS		+=	tokenizer.c
 
 ### srcs/lexer/word/
@@ -161,6 +205,10 @@ TESTER_FOLDER	= ./tests/
 ENV_FOLDER		= $(TESTER_FOLDER)/env/
 ENV				= $(TESTER_FOLDER)/env/env.sh
 
+### NORM
+
+NORM			= $(TESTER_FOLDER)/norminette/norm.sh
+
 ### MIN
 
 MINTEST_FOLDER	= $(TESTER_FOLDER)/tester_folder/
@@ -170,6 +218,7 @@ TESTER			= $(MINTEST_FOLDER)/tester.sh
 
 CUNIT_FOLDER	= $(TESTER_FOLDER)/CUNIT/
 CUNIT			= $(CUNIT_FOLDER)/run_cunit.sh
+CUNIT_EXE		= $(CUNIT_FOLDER)/cunit
 
 ### VALGRIND
 
@@ -188,6 +237,7 @@ CC			=	cc
 
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra
+
 ifneq ($(no_error), true)
 	CFLAGS		+=	-Werror
 endif
@@ -246,13 +296,22 @@ $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
 	mkdir -p $(PATH_OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
+run		: all
+	$(ECHOC) $(GREEN) "RUNNING $(NAME)"$(NC)"\n\n"
+	./$(NAME)
+
+norm	:
+	$(ECHOC) $(BLUE) "\n""NORM : "$(NC)""
+	./$(NORM)
+
 test	:
-	$(MAKE) -s re
+	$(MAKE) -s
+	$(RM) $(CUNIT_EXE)
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
 	source $(ENV); $(CUNIT) $(VALGRIND)
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
-	source $(ENV); $(TESTER) $(VALGRIND)
+	$(TESTER) $(VALGRIND)
 
 clean	:
 	$(RM) -r $(PATH_OBJS)
@@ -271,5 +330,5 @@ re 		: fclean
 	echo -e $(YELLOW) "\nRebuilding..." $(NC)
 	$(MAKE) -s
 
-.PHONY	: all test clean fclean re
-.SILENT	: all test clean fclean re $(NAME) $(OBJS) $(LIBFT)
+.PHONY	: all run norm test clean fclean re
+.SILENT	:

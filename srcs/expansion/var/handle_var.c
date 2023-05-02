@@ -6,25 +6,27 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/04/20 14:16:06 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/02 16:59:05 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+extern t_global	g_global;
+
 void	replace_special_var(t_vmachine *const machine)
 {
 	const char		c = machine->line[machine->index];
-	static char		*array_str[] = {
-		QMARK_VAR,
-		ZERO_VAR
-	};
 	const size_t	index = abs_index(SPECIAL_VAR, c);
+	char *const		last_ret_str = ft_itoa(g_global.last_ret_val);
+	char *const		array_str[] = {last_ret_str, ZERO_VAR};
 
 	if (is_in_str(SEPARATORS, c) == false)
 		machine->line = replace_str_free(machine->line, array_str[index],
 				machine->index - 1, SPEC_VAR_LEN);
 	change_state(machine->prev_state, machine);
+	machine->index += ft_strlen(array_str[index]) - SPEC_VAR_LEN;
+	free(last_ret_str);
 }
 
 static char	*get_var_name(t_vmachine *const machine)
@@ -55,7 +57,7 @@ void	handle_var_start(t_vmachine *const machine)
 void	translate_var(t_vmachine *const mach)
 {
 	char *const	var_name = get_var_name(mach);
-	char *const	var_value = getenv(var_name);
+	char *const	var_value = ft_getenv(var_name);
 
 	free(var_name);
 	if (var_value == NULL)

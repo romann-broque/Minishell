@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:02:35 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 14:15:35 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/02 16:58:51 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,12 @@ static void	expand(t_token *token)
 	}
 }
 
-static int	is_empty_tok(t_token *token, char *data_ref)
-{
-	if (token->type == T_START || token->type == T_END)
-		return (IGNORE_TOK);
-	return (ft_strcmp(token->value, data_ref));
-}
-
-static void	rm_empty_tok(t_list **tokens)
-{
-	ft_list_remove_if(tokens, EMPTY_STR,
-		is_empty_tok, (void (*)(void *))free_token);
-}
-
 void	expand_command(t_list **tokens)
 {
+	merge_gen_lst(*tokens);
 	ft_lstiter(*tokens, (void (*)(void *))expand);
-	rm_empty_tok(tokens);
+	split_gen(tokens);
+	remove_sep_tok(tokens);
+	ft_lstiter(*tokens, (void (*)(void *))set_to_gen);
+	set_assign(*tokens);
 }

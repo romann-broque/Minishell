@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strs_to_lst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 22:21:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 14:13:46 by mat              ###   ########.fr       */
+/*   Updated: 2023/04/30 14:44:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@ static void	add_part_in_list(t_list **lst, const char *str, const size_t len)
 
 void	add_token(t_qmachine *machine)
 {
-	add_part_in_list(&(machine->words),
-		machine->str - machine->word_len,
-		machine->word_len);
+	if (machine->word_len > 0)
+	{
+		add_part_in_list(&(machine->words),
+			machine->str - machine->word_len,
+			machine->word_len);
+	}
 	machine->word_len = 0;
 }
 

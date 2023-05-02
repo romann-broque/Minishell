@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tracker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:27:19 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 11:11:10 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/02 17:56:56 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,27 @@
 
 extern t_global	g_global;
 
+static t_deallocator	*init_dealloc(void *ptr, void (*fct)(void *))
+{
+	t_deallocator	*dealloc;
+
+	dealloc = (t_deallocator *)malloc(sizeof(t_deallocator));
+	if (dealloc != NULL)
+	{
+		dealloc->ptr = ptr;
+		dealloc->free_fct = fct;
+	}
+	return (dealloc);
+}
+
 void	add_deallocator(void *ptr, void (*fct)(void *))
 {
-	t_deallocator *const		curr_deallocator
-		= g_global.tracker.deallocator_array + g_global.tracker.index;
+	t_deallocator *const	dealloc = init_dealloc(ptr, fct);
 
-	curr_deallocator->ptr = ptr;
-	curr_deallocator->free_fct = fct;
-	++(g_global.tracker.index);
+	ft_lstadd_front(&(g_global.garbage), ft_lstnew(dealloc));
 }
 
 void	init_tracker(void)
 {
-	t_deallocator *const		curr_dealloc
-		= g_global.tracker.deallocator_array;
-	size_t						i;
-
-	i = 0;
-	while (i < NB_DEALLOCATOR)
-	{
-		curr_dealloc[i].ptr = NULL;
-		curr_dealloc[i].free_fct = NULL;
-		++i;
-	}
-	g_global.tracker.index = 0;
+	g_global.garbage = NULL;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 15:15:55 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/02 17:55:22 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,15 @@
 # define EXIT_MESSAGE	"exit"
 # define QMARK_VAR		"LAST_RET_VAL"
 # define ZERO_VAR		"minishell"
-# define PATH_VAR		"PATH"
 # define FWD_SLASH_STR	"/"
 # define NEWLINE_STR	"\n"
+# define DOT_STR		"."
+# define DOUBLE_DOT_STR	".."
+# define BATCH_OPT		"-c"
+# define ECHO_OPT		"-n"
+# define BACKPATH		"/.."
+# define NEWLINE_STR	"\n"
+# define SPACE_STR		" "
 
 // builtins
 
@@ -50,6 +56,20 @@
 # define PWD_BUILTIN	"pwd"
 # define UNSET_BUILTIN	"unset"
 
+// fct
+
+# define GETCWD			"getcwd"
+# define CHDIR			"chdir"
+# define SHELL_INIT		"shell-init"
+
+// env
+
+# define HOME_VAR		"HOME"
+# define OLDPWD_VAR		"OLDPWD"
+# define PWD_VAR		"PWD"
+# define PATH_VAR		"PATH"
+# define CDPATH_VAR		"CDPATH"
+
 // tok_string
 
 # define LCHEVRON			"<"
@@ -59,24 +79,32 @@
 # define PIPE				"|"
 # define OR					"||"
 # define AND				"&&"
+# define ASSIGN_EQ			"="
+# define SEP				" "
 # define END_STR			"newline"
 
 // error string
 
-# define SYNTAX_ERROR		"Syntax error"
+# define SYNTAX_ERROR		"syntax error near unclosed quote"
 # define MALLOC_ERROR		"Malloc error"
 # define PARS_ERROR			"syntax error near unexpected token"
-# define CMD_NOT_FOUND		"command not found"
+# define CNF				"command not found"
 # define IS_DIR				"Is a directory"
 # define STAT_ERROR			"Failed to stat file"
+# define TOO_MANY_ARGS		"too many arguments"
+# define ERROR_ACCESS_DIR		"error retrieving current directory"
+# define ERROR_ACCESS_PAR_DIR	"cannot access parent directories"
+# define NUM_ARG_REQ			"numeric argument required"
 
 // char types
 
-# define TOK_LEXEME		"<>|&"
+# define TOK_LEXEME		"<>|&="
 # define WHITESPACES	" \t\n\v\f\r"
 # define SEPARATORS		" \t\n"
 # define SPECIAL_VAR	"?0"
 # define EMPTY_STR		""
+# define EQUAL_SIGN_STR	"="
+# define TIELD			"~"
 
 // char
 
@@ -88,20 +116,25 @@
 # define EQUAL_SIGN		'='
 # define FWD_SLASH		'/'
 # define COLON			':'
+# define DOT			'.'
 
 // len
 
 # define SPEC_VAR_LEN	2
 # define WRONG_VAR_LEN	2
-# define PATH_VAR_LEN	4
+# define BACKPATH_LEN	3
 
 // count
 
-# define NEXT_TOK_MAX	11
+# define NEXT_TOK_MAX	13
 # define NB_DEALLOCATOR	5
+# define CD_EXP_ARG		2
 
 // return value
 
+# define NO_ACCESS		126
+# define NO_FILE		127
+# define INCORRECT_USE	2
 # define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
 
@@ -122,12 +155,33 @@ typedef enum e_toktype
 	T_PIPE,
 	T_OR,
 	T_AND,
+	T_SEPARATOR,
 	T_ASSIGN,
 	T_GENERIC,
+	T_QGENERIC,
 	T_START,
 	T_END,
-	T_INVALID
+	T_INVALID,
+	T_VAR
 }			t_toktype;
+
+typedef enum e_toktype_short
+{
+	T_LCH,
+	T_RCH,
+	T_DLCH,
+	T_DRCH,
+	T_P,
+	T_O,
+	T_A,
+	T_SEP,
+	T_ASN,
+	T_G,
+	T_QG,
+	T_ST,
+	T_ED,
+	T_IVD,
+}			t_toktype_short;
 
 typedef enum e_var_state
 {
@@ -178,8 +232,8 @@ typedef struct s_qmachine
 
 typedef struct s_tokparse
 {
-	t_toktype	curr;
-	t_toktype	next[NEXT_TOK_MAX];
+	t_toktype		curr;
+	t_toktype_short	next[NEXT_TOK_MAX];
 }				t_tokparse;
 
 typedef struct s_command
@@ -196,76 +250,179 @@ typedef struct s_deallocator
 	void	(*free_fct)(void *);
 }				t_deallocator;
 
-typedef struct s_resource_tracker
-{
-	t_deallocator	deallocator_array[NB_DEALLOCATOR];
-	size_t			index;
-}				t_resource_tracker;
-
 typedef struct s_builtin_mapper
 {
 	const char	*name;
-	void		(*fct)(char **av);
+	int			(*fct)(t_command *cmd_data);
 }				t_builtin_mapper;
 
 typedef struct s_global
 {
-	t_resource_tracker	tracker;
-	char				**env;
-	bool				is_stoppable;
-	int					child_pid;
+	int			child_pid;
+	int			last_ret_val;
+	t_list		*garbage;
+	char		**env;
+	bool		is_stoppable;
 }				t_global;
 
 /////////////////
 /// FUNCTIONS ///
 /////////////////
 
-//			EXECUTION			//
+//			BATCH				//
 
-/// cmd_path.c
+///	batch.c
+
+bool		batch_mode(int ac, char **av);
+void		exec_batch(int ac, char **av);
+
+//			ENV					//
+
+/// change_var.c
+
+void		change_var(const char *var_name, const char *var_value);
+
+/// ft_getenv.c
+
+char		*ft_getenv(const char *var_name);
+
+/// init_env.c
+
+void		cpy_strs(char **dest, char **src);
+void		init_env(t_global *global, char **env);
+
+///			PATH				///
+
+//// clean_path.c
+
+void		clean_path(char **path);
+
+//// get_path.c
 
 bool		is_cmd_path(t_command *cmd);
-char		*get_path_from_cmd(t_command *cmd);
-char		*get_path_from_env(t_command *cmd);
+char		*get_cmd_path(t_command *cmd_data);
+char		*get_path_from_env(const char *suffix,
+				const char *pathvar_name, char **env);
 
-/// cmd_path_utils.c
+//// path_access.c
 
+bool		is_cmd_accessible(char *path);
+
+//// cmd_path_utils.c
+
+char		*dup_path_from_cmd(t_command *cmd);
 void		add_fwd_slash(char **paths);
-bool		is_var_path_in_env(char **env);
-bool		is_empty_cmd(t_command *cmd);
-bool		is_path_var(const char *env_line);
+bool		is_var_path_in_env(char **env, const char *pathvar_name);
+bool		is_empty_str(const char *str);
+bool		is_path_var(const char *env_line, const char *pathvar_name);
+
+//			EXECUTION			//
 
 /// execution.c
 
 void		execution(t_command *command);
 
+/// exec_binary.c
+
+void		exec_binary(t_command *cmd_data, char *path);
+
 ///  BUILTIN  ///
-
-//// is_builtin.c
-
-bool		is_builtin(t_command *cmd_data);
 
 //// exec_buitlin.c
 
 void		exec_builtin(t_command *command);
 
-////  EXIT_BUILTIN  ////
+//// is_builtin.c
+
+bool		is_builtin(t_command *cmd_data);
+
+////  BUILTIN_FCTS  ////
+
+///// cd.c
+
+int			cd_builtin(t_command *cmd_data);
+
+///// echo.c
+
+int			echo_builtin(t_command	*cmd_data);
 
 ///// exit.c
 
-void		exit_builtin(char **av);
+int			exit_builtin(t_command *cmd_data);
+
+///// pwd.c
+
+int			pwd_builtin(__attribute__((unused)) t_command *cmd_data);
+
+////  CWD  ////
+
+//// cd_arg.c
+
+char		*get_cd_arg(t_command *cmd_data, const char *arg, bool *is_print);
+
+//// cd_utils.c
+
+bool		is_correct_size(char **command);
+bool		is_prev_option(char **command);
+
+/// cwd_utils.c
+
+char		*ft_strstr(const char *big, const char *little);
+void		check_pos(const char *caller);
+void		update_cwd_var(const char *new_pwd);
+int			print_pos(void);
+
+/// CLEAN_PATH ///
+
+//// clean_pwd.c
+
+char		*clean_pwd(const char *new_pwd, const char *curr_path);
+
+//// ft_realpath_utils.c
+
+char		*clean_path_comp(char *left, size_t *left_len,
+				char *resolved, size_t *resolved_len);
+
+//// ft_realpath.c
+
+void		silent_trailing_slash(char *str, const size_t len);
+char		*ft_realpath(const char *path);
 
 //			EXIT			//
 
 /// exit_shell.c
 
-void		exit_shell(const int exit_value);
+void		exit_shell(const int exit_value, const bool is_print);
+
+/// exit_utils.c
+
+int			extract_return_status(int status);
+void		update_error_val(int error_nbr);
 
 //			EXPANSION			//
 
-// expand_command.c
+//// is_assign_tok.c
+
+bool		is_assign_tok(t_token *token);
+
+/// expand_command.c
 
 void		expand_command(t_list **tokens);
+
+/// expand_utils.c
+
+void		remove_sep_tok(t_list **tokens);
+void		set_to_gen(t_token *token);
+void		set_assign(t_list *tokens);
+
+/// merge_gen.c
+
+bool		is_gen_tok(t_list *tokens);
+void		merge_gen_lst(t_list *tokens);
+
+/// split_gen.c
+
+void		split_gen(t_list **tokens);
 
 ///  VAR  ///
 
@@ -316,6 +473,12 @@ void		init_tracker(void);
 void		init_global(void);
 void		update_global(void);
 
+//			INIT			//
+
+/// init_shell.c
+
+void		init_shell(char **env);
+
 //			INTERPRETER		//
 
 /// interpreter.c
@@ -344,24 +507,17 @@ bool		are_quotes_closed(const char *str);
 t_list		*lexer_root(const char *str);
 t_list		*lexer(const char *str);
 
-//// assign_states_utils.c
-
-void		update_state_assign(const char c, t_qstate *state);
-bool		is_assign(const char *word);
-
-//// assign_states.c
-
-bool		start_state_assign(const char **word, t_qstate *state);
-bool		word_state_assign(const char **word, t_qstate *state);
-bool		squote_state_assign(const char **word, t_qstate *state);
-bool		dquote_state_assign(const char **word, t_qstate *state);
-
 //// token_utils.c
 
 t_token		*init_token(t_toktype type, char *value);
 t_toktype	get_type_from_tok(t_token *tok);
 char		*get_str_from_tok(t_token *tok);
 void		free_token(t_token *tok);
+
+//// tokenizer_utils.c
+
+bool		is_assign(const char *word);
+bool		is_qword(const char *word);
 
 //// tokenizer.c
 
@@ -420,7 +576,7 @@ void		print_error(const char *format, ...);
 
 /// prompt.c
 
-void		prompt(char **env);
+void		prompt(void);
 
 //			SIGNAL			//
 

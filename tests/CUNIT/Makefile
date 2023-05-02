@@ -20,8 +20,11 @@ SRCS	 	+=	minishell.test.c
 ### srcs/tests/
 
 SRCS	 	+=	are_quotes_closed.test.c
+SRCS	 	+=	change_var.test.c
+SRCS		+=	clean_pwd.test.c
 SRCS		+=	cmd_path.test.c
 SRCS		+=	expand.test.c
+SRCS		+=	ft_getenv.test.c
 SRCS	 	+=	get_words.test.c
 SRCS	 	+=	interpreter.test.c
 SRCS		+=	lexer_root.test.c
