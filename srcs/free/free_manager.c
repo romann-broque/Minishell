@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:28:17 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 10:23:29 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/04/30 22:04:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,13 @@ void	free_token_lst(void *ptr)
 
 static void	run_deallocator(t_deallocator *dealloc)
 {
-	dealloc->free_fct(dealloc->ptr);
+	if (dealloc->free_fct != NULL)
+		dealloc->free_fct(dealloc->ptr);
 }
 
 void	free_manager(void)
 {
-	const size_t	deallocator_count = g_global.tracker.index;
-	size_t			i;
-
-	i = 0;
-	while (i < deallocator_count)
-	{
-		run_deallocator(g_global.tracker.deallocator_array + i);
-		++i;
-	}
+	ft_lstiter(g_global.garbage, (void (*)(void *))run_deallocator);
+	ft_lstclear(&(g_global.garbage), free);
 	init_tracker();
 }

@@ -54,13 +54,27 @@ REF_BASH_FOLDER="${FOLDER}"ref_bash/
 # 	fi
 # done
 
+function put_format()
+{
+	local folder="$1"
+	local suffix="$2"
+	local files=("${@:3}")
+
+	for (( i=0; i<${#files[@]}; i++ )); do
+		files[$i]="${folder}${files[$i]}${suffix}"
+	done
+	echo "${files[@]}"
+}
+
 # BASH COMPARAISON
 
  echo -e "${BLUE}\n<====  BASH  ====>\n${NC}"
 
- inputs=( "${IN_FOLDER}"basic.in "${IN_FOLDER}"builtin_cwd.in "${IN_FOLDER}"echo_builtin.in "${IN_FOLDER}"exit_builtin.in)
- outputs=( "${OUT_FOLDER}"basic.out "${OUT_FOLDER}"builtin_cwd.out "${OUT_FOLDER}"echo_builtin.out "${OUT_FOLDER}"exit_builtin.out)
- output_ref_bash=( "${REF_BASH_FOLDER}"basic.refb "${REF_BASH_FOLDER}"builtin_cwd.refb "${REF_BASH_FOLDER}"echo_builtin.refb "${REF_BASH_FOLDER}"exit_builtin.refb)
+files=( "basic" "builtin_cwd" "echo_builtin" "expansion" "assign" "exit_builtin")
+
+inputs=($(put_format "$IN_FOLDER" ".in" "${files[@]}"))
+outputs=($(put_format "$OUT_FOLDER" ".out" "${files[@]}"))
+output_ref_bash=($(put_format "$REF_BASH_FOLDER" ".refb" "${files[@]}"))
 
 source $ENV
  for i in "${!inputs[@]}"; do
@@ -75,8 +89,9 @@ source $ENV
 	while grep -c "minishell " "${outputs[i]}" > /dev/null; do
 		sed -i -n '/minishell \$/!{p;d}; N; s/minishell \$.*\n//; P; D' "${outputs[i]}"
 	done
-	sed -i '$d' "${outputs[i]}"
-	# sed -i '/^exit/d' "${outputs[i]}"
+	sed -i '/^exit/d' "${outputs[i]}"
+	sed -i '/^exit/d' "${output_ref_bash[i]}"
+
  	# Get the name of the input file without its path
  	filename=$(basename "${inputs[i]}")
 

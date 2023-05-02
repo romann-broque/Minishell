@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:58:46 by mat               #+#    #+#             */
-/*   Updated: 2023/04/30 16:10:54 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/01 14:19:28 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ bool	is_empty_str(const char *str)
 
 bool	is_path_var(const char *env_line, const char *pathvar_name)
 {
-	const size_t	pathvar_len = ft_strlen(pathvar_name);
+	const size_t	eq_offset = abs_index(env_line, EQUAL_SIGN);
 
-	return (ft_strncmp(pathvar_name, env_line, pathvar_len) == 0);
+	return (ft_strncmp(pathvar_name, env_line, eq_offset) == 0);
 }
 
 void	add_fwd_slash(char **path_array)

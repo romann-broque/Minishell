@@ -1,9 +1,11 @@
 CUNIT
 env
+norminette
 tester_folder
 valgrind
 CUNIT
 env
+norminette
 tester_folder
 valgrind
 pouet pouet

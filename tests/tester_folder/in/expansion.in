@@ -1,0 +1,6 @@
+/bin/echo " $pouet"pouet
+/bin/echo ' $pouet'pouet
+/bin/echo " $pouet" pouet
+/bin/echo pouet$pouet
+$empty
+/bin/echo        "'"''"$pouet     " "'''''' "wouah   '' l   '""' ''"$PWD  $pouet" 
