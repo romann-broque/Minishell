@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 11:27:11 by mat               #+#    #+#             */
-/*   Updated: 2023/04/22 18:05:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 14:55:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ void	cmd_path__test(void)
 	char *str_out_t6;
 	char *str_out_t7;
 	char *str_out_t8;
+	char	**env_array = dup_env_lst_to_array(g_global.env);
 
 	t_command	cmd1 = {
-		.env = g_global.env,
+		.env = env_array,
 		.command = (char *[]){
 			"ls",
 			"-a",
@@ -42,7 +43,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd2 = {
-		.env = g_global.env,
+		.env = env_array,
 		.command = (char *[]){
 			"cat",
 			"-e",
@@ -53,7 +54,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd3 = {
-		.env = g_global.env,
+		.env = env_array,
 		.command = (char *[]){
 			"env",
 			"-i",
@@ -64,7 +65,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd4 = {
-		.env = g_global.env,
+		.env = env_array,
 		.command = (char *[]){
 			"rev",
 			NULL
@@ -74,7 +75,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd5 = {
-		.env = g_global.env,
+		.env = env_array,
 		.command = (char *[]){
 			"blata",
 			"-a",
@@ -85,7 +86,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd6 = {
-		.env = g_global.env,
+		.env = env_array,
 		.command = (char *[]){
 			"awdfoawhd",
 			"-a",
@@ -96,7 +97,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd7 = {
-		.env = g_global.env,
+		.env = env_array,
 		.command = (char *[]){
 			"",
 			NULL
@@ -106,7 +107,7 @@ void	cmd_path__test(void)
 	};
 
 	t_command	cmd8 = {
-		.env = g_global.env,
+		.env = env_array,
 		.command = (char *[]){
 			"bonjour",
 			"comment",
@@ -141,4 +142,5 @@ void	cmd_path__test(void)
 	str_out_t8 = get_path_from_env(cmd8.command[0], PATH_VAR, cmd8.env);
 	CU_ASSERT_PTR_NULL(str_out_t8);
 
+	free_strs(env_array);
 }

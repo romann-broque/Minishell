@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:38:17 by mat               #+#    #+#             */
-/*   Updated: 2023/04/20 15:02:27 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/02 14:27:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void	free_command(t_command *cmd_data)
 {
 	if (cmd_data != NULL)
+	{
 		free_strs(cmd_data->command);
+		free_strs(cmd_data->env);
+	}
 	free(cmd_data);
 }
 

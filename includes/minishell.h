@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/30 23:30:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 16:11:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,12 @@
 
 # define ASSIGN_START	0
 
+// var_flag
+
+# define SET_MASK		0x0f
+# define EXPORT_MASK	0xf0
+# define ENV_MASK		0xff
+
 /////////////
 /// ENUM ///
 /////////////
@@ -154,7 +160,6 @@ typedef enum e_toktype
 	T_START,
 	T_END,
 	T_INVALID,
-	T_VAR
 }			t_toktype;
 
 typedef enum e_toktype_short
@@ -248,10 +253,17 @@ typedef struct s_builtin_mapper
 	void		(*fct)(t_command *cmd_data);
 }				t_builtin_mapper;
 
+typedef struct s_var
+{
+	char	*key;
+	char	*value;
+	uint8_t	flags;
+}				t_var;
+
 typedef struct s_global
 {
 	t_list	*garbage;
-	char	**env;
+	t_list	*env;
 	bool	is_stoppable;
 }				t_global;
 
@@ -272,14 +284,18 @@ void		exec_batch(int ac, char **av);
 
 void		change_var(const char *var_name, const char *var_value);
 
+/// env_utils.c
+
+t_var		*init_var(const char *name, const char *value, const uint8_t flags);
+t_var		*get_var(const char *var_name);
+void		free_var(t_var *var);
+
 /// ft_getenv.c
 
 char		*ft_getenv(const char *var_name);
 
 /// init_env.c
 
-size_t		get_size_strs(char **strs);
-void		cpy_strs(char **dest, char **src);
 void		init_env(t_global *global, char **env);
 
 ///			PATH				///
@@ -453,7 +469,7 @@ void		init_shell(char **env);
 
 /// interpreter.c
 
-t_list		*interpreter(t_list *tokens, char **env);
+t_list		*interpreter(t_list *tokens, t_list *env);
 
 /// interpreter_utils.c
 
@@ -461,6 +477,10 @@ void		free_command(t_command *cmd_data);
 size_t		get_word_count(t_list *tokens);
 char		**get_arg_array(t_list *tokens);
 char		*find_cmd_path(const char *cmd_name);
+
+/// dup_env_lst_to_array.c
+
+char		**dup_env_lst_to_array(t_list *env_lst);
 
 //			LEXER			//
 

@@ -6,54 +6,40 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 15:24:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 15:29:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	get_size_strs(char **strs)
+static t_var	*init_var_from_str(const char *str)
 {
-	size_t	size;
+	const size_t	eq_index = abs_index(str, EQUAL_SIGN);
+	char *const		name = ft_strndup(str, eq_index);
+	const char		*value = str + eq_index + 1;
+	t_var			*new_var;
 
-	size = 0;
-	while (strs[size] != NULL)
-		++size;
-	return (size);
+	new_var = init_var(name, value, ENV_MASK);
+	free(name);
+	return (new_var);
 }
 
-void	cpy_strs(char **dest, char **src)
+static t_list	*get_env_from_strs(char **env_strs)
 {
-	size_t	i;
+	t_list	*env_lst;
 
-	i = 0;
-	while (src[i] != NULL)
+	env_lst = NULL;
+	while (*env_strs != NULL)
 	{
-		dest[i] = ft_strdup(src[i]);
-		if (dest[i] == NULL)
-		{
-			free_strs(dest);
-			return ;
-		}
-		++i;
+		ft_lstadd_back(&env_lst, ft_lstnew(init_var_from_str(*env_strs)));
+		++env_strs;
 	}
-	dest[i] = NULL;
-}
-
-static char	**dup_strs(char **strs)
-{
-	const size_t	size = get_size_strs(strs);
-	char			**dup;
-
-	dup = (char **)malloc((size + 1) * sizeof(char *));
-	if (dup != NULL)
-		cpy_strs(dup, strs);
-	return (dup);
+	return (env_lst);
 }
 
 void	init_env(t_global *global, char **env)
 {
-	global->env = dup_strs(env);
+	global->env = get_env_from_strs(env);
 	if (global->env == NULL)
 	{
 		perror(MALLOC_ERROR);

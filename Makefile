@@ -43,6 +43,7 @@ SRCS		+=	batch.c
 ### srcs/env/
 
 SRCS		+= change_var.c
+SRCS		+= env_utils.c
 SRCS		+= ft_getenv.c
 SRCS		+= init_env.c
 
@@ -112,6 +113,7 @@ SRCS		+=	init_shell.c
 
 SRCS		+=	interpreter.c
 SRCS		+=	interpreter_utils.c
+SRCS		+=	dup_env_lst_to_array.c
 
 ### srcs/lexer/
 
