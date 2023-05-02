@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:00:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 16:37:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 17:38:59 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	is_spec_arg(const char *arg)
 		|| streq(arg, MINUS_SIGN));
 }
 
-static char	*get_spec_path(const char *arg, bool *is_print)
+static char	*get_spec_path(const char *arg, char **env, bool *is_print)
 {
 	char	*var_name;
 	char	*var_value;
@@ -32,7 +32,7 @@ static char	*get_spec_path(const char *arg, bool *is_print)
 		var_name = OLDPWD_VAR;
 		*is_print = true;
 	}
-	var_value = ft_getenv(var_name);
+	var_value = ft_getenv_local(var_name, env);
 	spec_path = NULL;
 	if (var_value != NULL)
 		spec_path = ft_strdup(var_value);
@@ -41,7 +41,6 @@ static char	*get_spec_path(const char *arg, bool *is_print)
 			CD_BUILTIN, var_name);
 	return (spec_path);
 }
-// change ft_getenv() to ft_getenv_local() which takes the local env
 
 static bool	can_be_found(const char *arg)
 {
@@ -53,7 +52,7 @@ char	*get_cd_arg(t_command *cmd_data, const char *arg, bool *is_print)
 	char	*new_arg;
 
 	if (is_spec_arg(arg) == true)
-		return (get_spec_path(arg, is_print));
+		return (get_spec_path(arg, cmd_data->env, is_print));
 	if (can_be_found(arg) == true)
 	{
 		if (arg[0] == '\0')
