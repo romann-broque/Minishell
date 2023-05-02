@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/21 15:24:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 10:32:14 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-size_t	get_size_strs(char **strs)
-{
-	size_t	size;
-
-	size = 0;
-	while (strs[size] != NULL)
-		++size;
-	return (size);
-}
 
 void	cpy_strs(char **dest, char **src)
 {

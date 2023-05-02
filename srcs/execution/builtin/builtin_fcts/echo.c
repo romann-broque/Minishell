@@ -6,18 +6,20 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:28:37 by mdorr             #+#    #+#             */
-/*   Updated: 2023/04/26 16:23:08 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/02 16:57:44 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+extern t_global	g_global;
+
 static bool	is_n_option(char *first_argument)
 {
-	return (first_argument != NULL && streq("-n", first_argument) == true);
+	return (first_argument != NULL && streq(ECHO_OPT, first_argument) == true);
 }
 
-void	echo_builtin(t_command *cmd_data)
+int	echo_builtin(t_command *cmd_data)
 {
 	bool	n_option;
 	char	**str_ptr;
@@ -32,9 +34,10 @@ void	echo_builtin(t_command *cmd_data)
 	{
 		printf("%s", str_ptr[i]);
 		if (str_ptr[i + 1] != NULL)
-			printf(" ");
+			printf(SPACE_STR);
 		i++;
 	}
 	if (n_option == false)
-		printf("\n");
+		printf(NEWLINE_STR);
+	return (EXIT_SUCCESS);
 }

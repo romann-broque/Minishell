@@ -6,13 +6,15 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:38:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 16:07:10 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/02 16:58:05 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	call_builtin(const t_builtin_mapper *map, t_command *cmd_data)
+extern t_global	g_global;
+
+static int	call_builtin(const t_builtin_mapper *map, t_command *cmd_data)
 {
 	const char	*cmd_name = cmd_data->command[0];
 	size_t		i;
@@ -25,7 +27,8 @@ static void	call_builtin(const t_builtin_mapper *map, t_command *cmd_data)
 		++i;
 	}
 	if (map[i].fct != NULL)
-		map[i].fct(cmd_data);
+		return (map[i].fct(cmd_data));
+	return (EXIT_FAILURE);
 }
 
 void	exec_builtin(t_command *command)
@@ -40,5 +43,5 @@ void	exec_builtin(t_command *command)
 	{NULL, NULL},
 	};
 
-	call_builtin(map, command);
+	g_global.last_ret_val = call_builtin(map, command);
 }
