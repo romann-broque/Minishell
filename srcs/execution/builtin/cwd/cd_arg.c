@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:00:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 10:35:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 16:37:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static char	*get_spec_path(const char *arg, bool *is_print)
 			CD_BUILTIN, var_name);
 	return (spec_path);
 }
+// change ft_getenv() to ft_getenv_local() which takes the local env
 
 static bool	can_be_found(const char *arg)
 {
