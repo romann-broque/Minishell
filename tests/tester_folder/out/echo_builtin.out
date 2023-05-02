@@ -1,25 +1,9 @@
-minishell $ echo bonjour
 bonjour
-minishell $ echo bonjour je suis mat
 bonjour je suis mat
-minishell $ echo bonjour je suis mat -n
 bonjour je suis mat -n
-minishell $ echo
 
-minishell $ echo bonjour -n
 bonjour -n
-minishell $ echo -n bonjour je suis mat
-bonjour je suis matminishell $ echo
+bonjour je suis mat
 
-minishell $ echo -n
-minishell $ echo ""
-
-minishell $ echo -n "" "test" "ahaha" "" "pouet"
- test ahaha  pouetminishell $ echo -n "q"w "e" r"t"y
-qw e rtyminishell $ echo "\nq"w      ""    "e" r"t"y
-\nqw  e rty
-minishell $ "ec"ho -n "po'ue'e"e'e$PATH'$PWDt
-po'ue'eee$PATHminishell $ echo bonjour je -n suis mat
-bonjour je -n suis mat
-minishell $ exit
-exit
+ test ahaha  pouetqw e rty\nqw  e rty
+po'ue'eee$PATHbonjour je -n suis mat

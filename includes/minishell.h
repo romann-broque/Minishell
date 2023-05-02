@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/01 14:26:42 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/02 10:56:04 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,7 +285,6 @@ char		*ft_getenv(const char *var_name);
 
 /// init_env.c
 
-size_t		get_size_strs(char **strs);
 void		cpy_strs(char **dest, char **src);
 void		init_env(t_global *global, char **env);
 

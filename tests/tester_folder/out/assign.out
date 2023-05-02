@@ -1,23 +1,9 @@
-minishell $ 
-minishell $ entourloupe=
-minishell $ =pouet
 minishell: =pouet: command not found
-minishell $ =====
 minishell: =====: command not found
-minishell $ lol==42
-minishell $ lol====43
-minishell $ =
 minishell: =: command not found
-minishell $ p=1
-minishell $ 9p=2
 minishell: 9p=2: command not found
-minishell $ _9=2
-minishell $ _p2=1
-minishell $ _1p_ =lol
 minishell: _1p_: command not found
-minishell $ 1_p=wtf
 minishell: 1_p=wtf: command not found
-minishell $ ls
 includes
 libft
 Makefile
@@ -26,4 +12,3 @@ objs
 README.md
 srcs
 tests
-minishell $ exit

@@ -30,6 +30,38 @@ echo $?
 ./minishell
 exit bonjour je suis mathi
 echo $?
+./minishell
+exit
+echo $?
+./minishell
+exit 42
+echo $?
+./minishell
+exit 42 42
+echo $?
+./minishell
+exit -1
+echo $?
+./minishell
+exit 234782384908273480723847238047283074
+echo $?
+./minishell
+exit abc
+echo $?
+./minishell
+exit abc 34
+echo $?
+./minishell
+exit abc abc
+echo $?
+./minishell
+exit 1 2 3
+echo $?
+./minishell
+exit 42 abc
+echo $?
+ls
+exit
 
 pouet
 echo $? $?

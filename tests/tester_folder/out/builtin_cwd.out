@@ -1,131 +1,56 @@
-minishell $ cd tests/
-minishell $ cd bin
 /bin
-minishell $ pwd
 /bin
-minishell $ cd -
 /home/mat/Desktop/42/Minishell/repo/tests
-minishell $ cd ./bin
 minishell: cd: ./bin: No such file or directory
-minishell $ pwd
 /home/mat/Desktop/42/Minishell/repo/tests
-minishell $ cd ..
-minishell $ pwd
 /home/mat/Desktop/42/Minishell/repo
-minishell $ cd bonjour
 minishell: cd: bonjour: No such file or directory
-minishell $ cd repo
 minishell: cd: repo: No such file or directory
-minishell $ pwd
 /home/mat/Desktop/42/Minishell/repo
-minishell $ /bin/echo $PWD $OLDPWD
 /home/mat/Desktop/42/Minishell/repo /home/mat/Desktop/42/Minishell/repo/tests
-minishell $ cd /bin
-minishell $ /bin/echo $PWD $OLDPWD
 /bin /home/mat/Desktop/42/Minishell/repo
-minishell $ pwd
 /bin
-minishell $ cd /usr/bin
-minishell $ cd ..
-minishell $ pwd
 /usr
-minishell $ cd ///////
-minishell $ pwd
 /
-minishell $ cd ""
 /
-minishell $ pwd
 /
-minishell $ cd "    "
 minishell: cd:     : No such file or directory
-minishell $ pwd
 /
-minishell $ cd /
-minishell $ pwd
 /
-minishell $ cd home/
 /home
-minishell $ pwd
 /home
-minishell $ cd /home
-minishell $ pwd
 /home
-minishell $ cd srcs/batch
 minishell: cd: srcs/batch: No such file or directory
-minishell $ pwd
 /home
-minishell $ cd ../../tests/CUNIT/..
 minishell: cd: ../../tests/CUNIT/..: No such file or directory
-minishell $ pwd
 /home
-minishell $ pwd blata bonjour noerror
 /home
-minishell $ cd .. blata
 minishell: cd: too many arguments
-minishell $ cd
-minishell $ pwd
 /home/mat
-minishell $ cd -
 /home
-minishell $ pwd
 /home
-minishell $ cd -
 /home/mat
-minishell $ pwd
 /home/mat
-minishell $ cd -
 /home
-minishell $ cd -
 /home/mat
-minishell $ pwd
 /home/mat
-minishell $ cd -
 /home
-minishell $ cd
-minishell $ pwd
 /home/mat
-minishell $ cd .
-minishell $ cd ..
-minishell $ mkdir -p new
 mkdir: cannot create directory ‘new’: Permission denied
-minishell $ cd new
 minishell: cd: new: No such file or directory
-minishell $ cd ~
-minishell $ pwd
 /home/mat
-minishell $ mkdir -p lol
 mkdir: cannot create directory ‘lol’: File exists
-minishell $ cd lol
 minishell: cd: lol: Not a directory
-minishell $ rm ../lol -fr
-minishell $ pwd
 /home/mat
-minishell $ /bin/echo $PWD $OLDPWD
 /home/mat /home
-minishell $ cd ..
-minishell $ pwd
 /home
-minishell $ cd ~
-minishell $ pwd
 /home/mat
-minishell $ cd pouet
 minishell: cd: pouet: No such file or directory
-minishell $ cd bin
 /bin
-minishell $ cd disk
 /dev/disk
-minishell $ pwd
 /dev/disk
-minishell $ cd
-minishell $ cd ../../../../......./..////////
 minishell: cd: ../../../../......./..////////: No such file or directory
-minishell $ cd /.//////./../../../......./..////////
 minishell: cd: /.//////./../../../......./..////////: No such file or directory
-minishell $ cd -
 /dev/disk
-minishell $ cd -
 /home/mat
-minishell $ /bin/echo $PWD $OLDPWD
 /home/mat /dev/disk
-minishell $ exit
-exit

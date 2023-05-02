@@ -1,67 +1,49 @@
-minishell $ ls blata
 ls: cannot access 'blata': No such file or directory
-minishell $ echo $?
 2
-minishell $ $?
 minishell: 0: command not found
-minishell $ cd arg1 arg2
 minishell: cd: too many arguments
-minishell $ echo $?
 1
-minishell $ cd blata
 minishell: cd: blata: No such file or directory
-minishell $ echo $?
 1
-minishell $ ./minishell
-minishell $ ls blata
 ls: cannot access 'blata': No such file or directory
-minishell $ exit
-exit
-minishell $ echo $?
 2
-minishell $ mkdir lol
-minishell $ cd lol
-minishell $ rm ../lol -fr
-minishell $ pwd
 pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-minishell $ /bin/echo $?
 1
-minishell $ cd ..
 chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-minishell $ bonjour
 minishell: bonjour: command not found
-minishell $ echo $?
 127
-minishell $ touch noperm
-minishell $ chmod 000 noperm
-minishell $ ./noperm
 minishell: ./noperm: Permission denied
-minishell $ echo $?
 126
-minishell $ chmod 777 noperm
-minishell $ rm noperm
-minishell $ ls pouet
 ls: cannot access 'pouet': No such file or directory
-minishell $ exit 42 blata
-exit
 minishell: exit: too many arguments
-minishell $ echo $?
 2
-minishell $ 
-minishell $ ./minishell
-minishell $ exit bonjour je suis mathi
-exit
 minishell: exit: bonjour: numeric argument required
-minishell $ echo $?
 2
-minishell $ 
-minishell $ pouet
+0
+42
+minishell: exit: too many arguments
+0
+255
+minishell: exit: 234782384908273480723847238047283074: numeric argument required
+2
+minishell: exit: abc: numeric argument required
+2
+minishell: exit: abc: numeric argument required
+2
+minishell: exit: abc: numeric argument required
+2
+minishell: exit: too many arguments
+0
+minishell: exit: too many arguments
+0
+includes
+libft
+Makefile
+minishell
+objs
+README.md
+srcs
+tests
 minishell: pouet: command not found
-minishell $ echo $? $?
 127 127
-minishell $ 
-minishell $ echo $PATH
 /home/mat/.local/bin:/home/mat/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/mat/Desktop/42/Minishell/repo
-minishell $ 
-minishell $ exit
-exit
