@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 16:07:29 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 18:40:08 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@
 
 // var_flag
 
+# define SLEEP_MASK		0x00
 # define SET_MASK		0x0f
 # define EXPORT_MASK	0xf0
 # define ENV_MASK		0xff
@@ -291,6 +292,7 @@ void		update_var(const char *key, const char *value, const uint8_t flags);
 t_var		*init_var(const char *name, const char *value, uint8_t flags);
 t_var		*dup_var(t_var *var);
 t_var		*get_var(const char *var_name);
+void		set_var_flag(const char *key, const uint8_t flags);
 void		free_var(t_var *var);
 
 /// ft_getenv.c

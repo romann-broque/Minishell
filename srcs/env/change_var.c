@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 16:07:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 18:33:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	change_var(
 	t_var *const	var = get_var(key);
 
 	if (value != NULL)
-		flags &= SET_MASK;
+		flags |= SET_MASK;
 	if (var == NULL)
 		ft_lstadd_back(env,
 			ft_lstnew(init_var(key, value, flags)));
@@ -32,6 +32,7 @@ void	change_var(
 	{
 		free(var->value);
 		var->value = ft_strdup(value);
+		var->flags |= flags;
 	}
 }
 

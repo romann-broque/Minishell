@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:01:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 15:31:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 18:39:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ t_var	*get_var(const char *var_name)
 		env = env->next;
 	}
 	return (NULL);
+}
+
+void	set_var_flag(const char *key, const uint8_t flags)
+{
+	t_var *const	var = get_var(key);
+
+	if (var != NULL)
+		var->flags = flags;
 }
 
 void	free_var(t_var *var)

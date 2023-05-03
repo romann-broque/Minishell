@@ -23,6 +23,7 @@ XDG_SESSION_TYPE=tty
 strange==2=1==42
 MAKEOVERRIDES=${-*-command-variables-*-}
 VSCODE_GIT_ASKPASS_NODE=/home/screw/.vscode-server/bin/704ed70d4fd1c6bd6342c436f1ede30d1cff4710/node
+debug=true
 MOTD_SHOWN=pam
 CDPATH=pouet:/:/dev
 VSCODE_INJECTION=1
@@ -37,7 +38,7 @@ SSH_CONNECTION=192.168.1.22 56355 192.168.1.26 22
 single=var1
 MFLAGS=
 VSCODE_GIT_ASKPASS_EXTRA_ARGS=
-MAKEFLAGS= -- valgrind=true
+MAKEFLAGS= -- debug=true
 XDG_SESSION_CLASS=user
 TERM=xterm-256color
 ZSH=/home/screw/.oh-my-zsh
@@ -46,7 +47,6 @@ USER=rbroque
 MAKE_TERMERR=/dev/pts/4
 VSCODE_GIT_IPC_HANDLE=/run/user/1000/vscode-git-74ab66d8d0.sock
 SHLVL=2
-valgrind=valgrind
 PAGER=less
 MAKELEVEL=1
 XDG_SESSION_ID=2
@@ -59,7 +59,6 @@ PATH=/home/screw/.vscode-server/bin/704ed70d4fd1c6bd6342c436f1ede30d1cff4710/bin
 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 MAIL=rbroque@student.42.fr
 empty1=1
-OLDPWD=
 TERM_PROGRAM=vscode
 VSCODE_IPC_HOOK_CLI=/run/user/1000/vscode-ipc-685e64aa-7bd1-499f-a25b-c26c73e45aba.sock
 _=./minishell
