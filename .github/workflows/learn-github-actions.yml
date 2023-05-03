@@ -14,6 +14,7 @@ on:
       - "MVE6-EXPORT"
       - "MVE7"
       - "MVE8"
+      - "MVE9"
 
 jobs:
   check-bats-version:

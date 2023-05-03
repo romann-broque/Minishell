@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/30 22:14:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/02 17:00:10 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	handle_command(const char *command)
 
 	tokens = lexer(command);
 	if (tokens == NULL)
-		exit_shell(LAST_RETVAL, true);
+		exit_shell(g_global.last_ret_val, true);
 	else
 	{
 		add_deallocator(tokens, free_token_lst);
@@ -38,6 +38,8 @@ static void	handle_command(const char *command)
 			expand_command(&tokens);
 			exec_command(&tokens);
 		}
+		else
+			update_error_val(INCORRECT_USE);
 	}
 }
 
@@ -50,7 +52,10 @@ static void	get_command(void)
 	if (are_quotes_closed(line) == true)
 		handle_command(line);
 	else
+	{
+		update_error_val(INCORRECT_USE);
 		print_error("%s: %s\n", MINISHELL, SYNTAX_ERROR);
+	}
 	free_manager();
 }
 

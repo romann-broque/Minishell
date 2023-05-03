@@ -51,10 +51,12 @@ SRCS		+= init_env.c
 
 SRCS		+=	clean_path.c
 SRCS		+=	get_path.c
+SRCS		+=	path_access.c
 SRCS		+=	cmd_path_utils.c
 
 ### srcs/execution/
 
+SRCS	 	+=	exec_binary.c
 SRCS	 	+=	execution.c
 
 ### srcs/execution/builtin/
@@ -84,6 +86,7 @@ SRCS	 	+=	ft_realpath.c
 ### srcs/exit/
 
 SRCS	 	+=	exit_shell.c
+SRCS		+=	exit_utils.c
 
 ### srcs/expansion/
 
@@ -325,5 +328,5 @@ re 		: fclean
 	echo -e $(YELLOW) "\nRebuilding..." $(NC)
 	$(MAKE) -s
 
-.PHONY	: all run test clean fclean re
+.PHONY	: all run norm test clean fclean re
 .SILENT	:
