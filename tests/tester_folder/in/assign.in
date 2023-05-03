@@ -14,3 +14,4 @@ _1p_ =lol
 echo lol=42
 ls pouet=1
 echo pouet="234     pouetpouet"
+env

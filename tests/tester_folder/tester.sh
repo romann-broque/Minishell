@@ -76,10 +76,11 @@ inputs=($(put_format "$IN_FOLDER" ".in" "${files[@]}"))
 outputs=($(put_format "$OUT_FOLDER" ".out" "${files[@]}"))
 output_ref_bash=($(put_format "$REF_BASH_FOLDER" ".refb" "${files[@]}"))
 
+source $ENV
  for i in "${!inputs[@]}"; do
  	# Run the program and redirect the output to the corresponding output file
- 	source $ENV; cat "${inputs[i]}" | bash --posix &> "${output_ref_bash[i]}"
- 	source $ENV; cat "${inputs[i]}" | ./minishell &> "${outputs[i]}"
+ 	cat "${inputs[i]}" | bash --posix &> "${output_ref_bash[i]}"
+ 	cat "${inputs[i]}" | ./minishell &> "${outputs[i]}"
  	ret_val+=$?
 	# Replace Error of each line with minishell
 	sed -i -e 's/^bash: line [0-9]*: /minishell: /g' "${output_ref_bash[i]}"

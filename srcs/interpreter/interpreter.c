@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:20:19 by mat               #+#    #+#             */
-/*   Updated: 2023/05/03 14:50:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 16:06:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	exec_assign_tok(t_token *tok)
 	{
 		var = init_var_from_str(tok->value);
 		if (var != NULL)
-			update_var(var->key, var->value);
+			update_var(var->key, var->value, SET_MASK);
 		free_var(var);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 15:48:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 16:07:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	change_var(
 	}
 }
 
-void	update_var(const char *key, const char *value)
+void	update_var(const char *key, const char *value, const uint8_t flags)
 {
-	change_var(key, value, ENV_MASK, &(g_global.env));
+	change_var(key, value, flags, &(g_global.env));
 }

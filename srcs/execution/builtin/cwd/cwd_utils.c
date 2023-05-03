@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 14:27:06 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 16:09:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	update_cwd_var(const char *pwd)
 	const char	*curr_path = ft_getenv(PWD_VAR);
 	char *const	new = clean_pwd(pwd, curr_path);
 
-	update_var(OLDPWD_VAR, curr_path);
-	update_var(PWD_VAR, new);
+	update_var(OLDPWD_VAR, curr_path, ENV_MASK);
+	update_var(PWD_VAR, new, ENV_MASK);
 	free(new);
 }
 

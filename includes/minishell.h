@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 15:46:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 16:07:29 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,7 +284,7 @@ void		exec_batch(int ac, char **av);
 
 void		change_var(const char *key, const char *value,
 				uint8_t flags, t_list **env);
-void		update_var(const char *key, const char *value);
+void		update_var(const char *key, const char *value, const uint8_t flags);
 
 /// env_utils.c
 
