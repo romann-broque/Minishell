@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 14:47:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 15:46:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,11 +282,14 @@ void		exec_batch(int ac, char **av);
 
 /// change_var.c
 
+void		change_var(const char *key, const char *value,
+				uint8_t flags, t_list **env);
 void		update_var(const char *key, const char *value);
 
 /// env_utils.c
 
 t_var		*init_var(const char *name, const char *value, uint8_t flags);
+t_var		*dup_var(t_var *var);
 t_var		*get_var(const char *var_name);
 void		free_var(t_var *var);
 
@@ -475,19 +478,22 @@ t_list		*interpreter(t_list *tokens, t_list *env);
 
 /// interpreter_utils.c
 
-t_list		*cmd_mode(t_list *tokens, t_list *env);
 bool		is_assign_mode(t_list *tokens);
+
+/// cmd_mode.c
+
+t_list		*cmd_mode(t_list *tokens, t_list *env);
 
 ///			COMMAND			///
 
 //// command_utils.c
 
-t_command	*init_command(t_list *tokens, t_list *env, t_list *local_env);
+t_command	*init_command(t_list *tokens, t_list *env);
 void		free_command(t_command *cmd_data);
 
-//// dup_envs_lst_to_array.c
+//// dup_env_lst_to_array.c
 
-char		**dup_envs_lst_to_array(t_list *env_lst1, t_list *env_lst2);
+char		**dup_env_lst_to_array(t_list *env_lst);
 
 //// get_arg_array.c
 

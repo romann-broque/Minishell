@@ -114,11 +114,12 @@ SRCS		+=	init_shell.c
 
 SRCS		+=	interpreter.c
 SRCS		+=	interpreter_utils.c
+SRCS		+=	cmd_mode.c
 
 ### srcs/interpreter/command/
 
 SRCS		+=	command_utils.c
-SRCS		+=	dup_envs_lst_to_array.c
+SRCS		+=	dup_env_lst_to_array.c
 SRCS		+=	get_arg_array.c
 
 ### srcs/lexer/

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:01:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 16:09:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 15:31:39 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ t_var	*init_var(const char *name, const char *value, const uint8_t flags)
 		new->flags = flags;
 	}
 	return (new);
+}
+
+t_var	*dup_var(t_var *var)
+{
+	return (init_var(var->key, var->value, var->flags));
 }
 
 t_var	*get_var(const char *var_name)

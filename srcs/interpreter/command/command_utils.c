@@ -6,17 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 14:43:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 15:24:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_command	*init_command(
-	t_list *tokens,
-	t_list *env,
-	t_list *local_env
-	)
+t_command	*init_command(t_list *tokens, t_list *env)
 {
 	t_command	*cmd_data;
 
@@ -26,7 +22,7 @@ t_command	*init_command(
 		cmd_data->command = get_arg_array(tokens);
 		if (cmd_data->command == NULL)
 			return (NULL);
-		cmd_data->env = dup_envs_lst_to_array(local_env, env);
+		cmd_data->env = dup_env_lst_to_array(env);
 		cmd_data->fdin = STDIN_FILENO;
 		cmd_data->fdout = STDOUT_FILENO;
 	}
