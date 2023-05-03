@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 11:27:11 by mat               #+#    #+#             */
-/*   Updated: 2023/05/02 14:55:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 10:29:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	cmd_path__test(void)
 	char *str_out_t6;
 	char *str_out_t7;
 	char *str_out_t8;
-	char	**env_array = dup_env_lst_to_array(g_global.env);
+	char	**env_array = dup_envs_lst_to_array(g_global.env, NULL);
 
 	t_command	cmd1 = {
 		.env = env_array,

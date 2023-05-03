@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:02:35 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/30 12:23:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 11:30:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	expand(t_token *token)
 
 void	expand_command(t_list **tokens)
 {
-	merge_gen_lst(*tokens);
 	ft_lstiter(*tokens, (void (*)(void *))expand);
 	split_gen(tokens);
+	merge_gen_lst(*tokens);
 	remove_sep_tok(tokens);
 	ft_lstiter(*tokens, (void (*)(void *))set_to_gen);
 	set_assign(*tokens);

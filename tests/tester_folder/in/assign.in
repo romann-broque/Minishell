@@ -11,3 +11,6 @@ _9=2
 _p2=1
 _1p_ =lol
 1_p=wtf
+echo lol=42
+ls pouet=1
+echo pouet="234     pouetpouet"

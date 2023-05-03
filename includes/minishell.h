@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 17:37:58 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 10:22:17 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,6 +297,7 @@ char		*ft_getenv(const char *var_name);
 
 /// init_env.c
 
+t_var		*init_var_from_str(const char *str);
 void		init_env(t_global *global, char **env);
 
 ///			PATH				///
@@ -479,9 +480,9 @@ size_t		get_word_count(t_list *tokens);
 char		**get_arg_array(t_list *tokens);
 char		*find_cmd_path(const char *cmd_name);
 
-/// dup_env_lst_to_array.c
+/// dup_envs_lst_to_array.c
 
-char		**dup_env_lst_to_array(t_list *env_lst);
+char		**dup_envs_lst_to_array(t_list *env_lst1, t_list *env_lst2);
 
 //			LEXER			//
 

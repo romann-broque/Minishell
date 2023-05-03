@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:38:17 by mat               #+#    #+#             */
-/*   Updated: 2023/05/02 14:27:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 10:10:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@ void	free_command(t_command *cmd_data)
 
 size_t	get_word_count(t_list *tokens)
 {
-	size_t	count;
+	t_toktype	type;
+	size_t		count;
 
 	count = 0;
-	while (get_type_from_tok(tokens->content) == T_GENERIC)
+	type = get_type_from_tok(tokens->content);
+	while (type == T_GENERIC || type == T_ASSIGN)
 	{
 		tokens = tokens->next;
+		type = get_type_from_tok(tokens->content);
 		++count;
 	}
 	return (count);
@@ -37,10 +40,12 @@ size_t	get_word_count(t_list *tokens)
 
 static void	cpy_arg_lst_to_array(char ***dest, t_list *tokens)
 {
-	size_t	i;
+	t_toktype	type;
+	size_t		i;
 
 	i = 0;
-	while (get_type_from_tok(tokens->content) == T_GENERIC)
+	type = get_type_from_tok(tokens->content);
+	while (type == T_GENERIC || type == T_ASSIGN)
 	{
 		(*dest)[i] = ft_strdup(get_str_from_tok(tokens->content));
 		if ((*dest)[i] == NULL)
@@ -51,6 +56,7 @@ static void	cpy_arg_lst_to_array(char ***dest, t_list *tokens)
 			return ;
 		}
 		tokens = tokens->next;
+		type = get_type_from_tok(tokens->content);
 		++i;
 	}
 	(*dest)[i] = NULL;

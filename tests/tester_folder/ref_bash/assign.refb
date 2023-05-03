@@ -4,3 +4,6 @@ minishell: =: command not found
 minishell: 9p=2: command not found
 minishell: _1p_: command not found
 minishell: 1_p=wtf: command not found
+lol=42
+ls: cannot access 'pouet=1': No such file or directory
+pouet=234     pouetpouet
