@@ -14,4 +14,13 @@ _1p_ =lol
 echo lol=42
 ls pouet=1
 echo pouet="234     pouetpouet"
-env
+printenv pouet
+animal=chien
+printenv chien
+printenv lol=
+CDPATH="" cd bin
+cd -
+CDPATH="/" cd bin
+pwd
+cd bin
+lol=lol pouet=21 orange=red space=amazing printenv lol pouet orange space PATH CDPATH

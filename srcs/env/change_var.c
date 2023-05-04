@@ -6,13 +6,27 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 18:33:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/04 10:40:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 extern t_global	g_global;
+
+t_var	*get_var_from_env(const char *key, t_list *env)
+{
+	t_var	*var;
+
+	while (env != NULL)
+	{
+		var = env->content;
+		if (streq(var->key, key) == true)
+			return (var);
+		env = env->next;
+	}
+	return (NULL);
+}
 
 void	change_var(
 	const char *key,
@@ -21,7 +35,7 @@ void	change_var(
 	t_list **env
 	)
 {
-	t_var *const	var = get_var(key);
+	t_var *const	var = get_var_from_env(key, *env);
 
 	if (value != NULL)
 		flags |= SET_MASK;
