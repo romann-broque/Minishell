@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/04 10:41:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/04 18:04:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_list	*get_cmd_env(t_list *glob_env, t_list *loc_env)
 	while (glob_env != NULL)
 	{
 		var = glob_env->content;
-		if (var->flags & EXPORT_MASK)
+		if (var->flags & SET_MASK)
 			ft_lstadd_back(&new, ft_lstnew(dup_var(var)));
 		glob_env = glob_env->next;
 	}
@@ -74,27 +74,27 @@ static void	process_assign(t_list **assign, t_list *tokens)
 
 t_list	*cmd_mode(t_list *tokens, t_list *env)
 {
-	t_list		*assign;
+	t_list		*local_env;
 	t_list		*commands;
 	t_toktype	toktype;
 
 	commands = NULL;
-	assign = NULL;
+	local_env = NULL;
 	toktype = get_type_from_tok(tokens->content);
 	while (toktype != T_END)
 	{
 		if (toktype == T_ASSIGN)
-			process_assign(&assign, tokens);
+			process_assign(&local_env, tokens);
 		else
 		{
 			if (toktype == T_GENERIC)
-				process_gen(&commands, &tokens, env, assign);
-			ft_lstclear(&assign, (void (*)(void *))free_var);
-			assign = NULL;
+				process_gen(&commands, &tokens, env, local_env);
+			ft_lstclear(&local_env, (void (*)(void *))free_var);
+			local_env = NULL;
 		}
 		tokens = tokens->next;
 		toktype = get_type_from_tok(tokens->content);
 	}
-	ft_lstclear(&assign, (void (*)(void *))free_var);
+	ft_lstclear(&local_env, (void (*)(void *))free_var);
 	return (commands);
 }
