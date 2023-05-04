@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_utils.c                                     :+:      :+:    :+:   */
+/*   update_tok_type.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 17:59:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/04 16:52:36 by rbroque          ###   ########.fr       */
+/*   Created: 2023/05/04 16:52:21 by rbroque           #+#    #+#             */
+/*   Updated: 2023/05/04 16:58:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	tok_comp(t_token *tok1, t_token *tok2)
+void	set_qgen_to_gen(t_token *tok)
 {
-	if (tok1->type == tok2->type && streq(tok1->value, tok2->value))
-		return (0);
-	return (1);
+	if (tok->type == T_QGENERIC)
+		tok->type = T_GENERIC;
 }
 
-void	remove_sep_tok(t_list **tokens)
+void	set_assign_tok(t_token *tok)
 {
-	static t_token	sep_tok = {.type = T_SEPARATOR, .value = SEP};
+	if (tok->type == T_GENERIC && is_assign_tok(tok) == true)
+		tok->type = T_ASSIGN;
+}
 
-	ft_list_remove_if(tokens, &sep_tok, tok_comp, (void (*)(void *))free_token);
+void	set_simple_eq_to_gen(t_token *tok)
+{
+	if (tok->type == T_ASSIGN
+		&& streq(tok->value, EQUAL_SIGN_STR) == true)
+		tok->type = T_GENERIC;
 }

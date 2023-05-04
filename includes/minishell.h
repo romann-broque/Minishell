@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/04 10:40:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/04 16:57:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -413,17 +413,20 @@ void		expand_command(t_list **tokens);
 /// expand_utils.c
 
 void		remove_sep_tok(t_list **tokens);
-void		set_to_gen(t_token *token);
-void		set_assign(t_list *tokens);
 
 /// merge_gen.c
 
-bool		is_gen_tok(t_list *tokens);
 void		merge_gen_lst(t_list *tokens);
 
 /// split_gen.c
 
 void		split_gen(t_list **tokens);
+
+/// update_tok_type.c
+
+void		set_qgen_to_gen(t_token *tok);
+void		set_assign_tok(t_token *tok);
+void		set_simple_eq_to_gen(t_token *tok);
 
 ///  VAR  ///
 

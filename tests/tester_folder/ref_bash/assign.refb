@@ -8,11 +8,6 @@ lol=42
 ls: cannot access 'pouet=1': No such file or directory
 pouet=234     pouetpouet
     ls         pouet  pouet  
-minishell: cd: bin: No such file or directory
-minishell: cd: OLDPWD not set
-/bin
-/bin
-/bin
 lol
 21
 red
@@ -20,3 +15,10 @@ amazing
 /home/screw/.vscode-server/bin/252e5463d60e63238250799aef7375787f68b4ee/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 pouet:/:/dev
 minishell: kiwi=green: command not found
+yellow
+minishell: kiwi=yellow: command not found
+minishell: cd: bin: No such file or directory
+minishell: cd: OLDPWD not set
+/bin
+/bin
+/bin
