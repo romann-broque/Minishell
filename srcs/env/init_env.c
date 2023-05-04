@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 15:29:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 09:47:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_var	*init_var_from_str(const char *str)
+t_var	*init_var_from_str(const char *str)
 {
 	const size_t	eq_index = abs_index(str, EQUAL_SIGN);
 	char *const		name = ft_strndup(str, eq_index);

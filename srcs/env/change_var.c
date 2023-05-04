@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 16:14:00 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/04 10:40:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,43 @@
 
 extern t_global	g_global;
 
-void	change_var(const char *var_name, const char *var_value)
+t_var	*get_var_from_env(const char *key, t_list *env)
 {
-	t_var *const	var = get_var(var_name);
+	t_var	*var;
 
-	if (var_value != NULL)
+	while (env != NULL)
 	{
-		if (var == NULL)
-			ft_lstadd_back(&(g_global.env),
-				ft_lstnew(init_var(var_name, var_value, ENV_MASK)));
-		else
-		{
-			free(var->value);
-			var->value = ft_strdup(var_value);
-		}
+		var = env->content;
+		if (streq(var->key, key) == true)
+			return (var);
+		env = env->next;
+	}
+	return (NULL);
+}
+
+void	change_var(
+	const char *key,
+	const char *value,
+	uint8_t flags,
+	t_list **env
+	)
+{
+	t_var *const	var = get_var_from_env(key, *env);
+
+	if (value != NULL)
+		flags |= SET_MASK;
+	if (var == NULL)
+		ft_lstadd_back(env,
+			ft_lstnew(init_var(key, value, flags)));
+	else
+	{
+		free(var->value);
+		var->value = ft_strdup(value);
+		var->flags |= flags;
 	}
 }
 
-// change name of change_var function
+void	update_var(const char *key, const char *value, const uint8_t flags)
+{
+	change_var(key, value, flags, &(g_global.env));
+}

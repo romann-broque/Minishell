@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:52:21 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 16:09:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 15:25:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,18 @@ static char	*get_assign_from_var(t_var *var)
 	return (ft_strjoin_free(assign, var->value));
 }
 
-static void	cpy_env_lst_to_array(char **array, t_list *env)
+static void	cpy_env_lst_to_array(char **array, t_list *env, const size_t size)
 {
-	while (env != NULL)
+	size_t	i;
+
+	i = 0;
+	while (i < size)
 	{
-		*array = get_assign_from_var(env->content);
+		array[i] = get_assign_from_var(env->content);
 		env = env->next;
-		++array;
+		++i;
 	}
-	*array = NULL;
+	array[i] = NULL;
 }
 
 char	**dup_env_lst_to_array(t_list *env_lst)
@@ -37,6 +40,6 @@ char	**dup_env_lst_to_array(t_list *env_lst)
 
 	env_array = (char **)malloc((size + 1) * sizeof(char *));
 	if (env_array != NULL)
-		cpy_env_lst_to_array(env_array, env_lst);
+		cpy_env_lst_to_array(env_array, env_lst, size);
 	return (env_array);
 }

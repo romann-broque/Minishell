@@ -22,6 +22,7 @@ PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/free/
 PATH_SRCS	+=	srcs/init/
 PATH_SRCS	+=	srcs/interpreter/
+PATH_SRCS	+=	srcs/interpreter/command/
 PATH_SRCS	+=	srcs/expansion/var/
 PATH_SRCS	+=	srcs/lexer/
 PATH_SRCS	+=	srcs/lexer/quotes/
@@ -92,6 +93,7 @@ SRCS	 	+=	expand_utils.c
 SRCS		+=	is_assign_tok.c
 SRCS	 	+=	merge_gen.c
 SRCS	 	+=	split_gen.c
+SRCS		+=	update_tok_type.c
 
 ### srcs/expansion/var/
 
@@ -113,7 +115,13 @@ SRCS		+=	init_shell.c
 
 SRCS		+=	interpreter.c
 SRCS		+=	interpreter_utils.c
+SRCS		+=	cmd_mode.c
+
+### srcs/interpreter/command/
+
+SRCS		+=	command_utils.c
 SRCS		+=	dup_env_lst_to_array.c
+SRCS		+=	get_arg_array.c
 
 ### srcs/lexer/
 
