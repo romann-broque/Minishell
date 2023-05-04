@@ -24,3 +24,5 @@ CDPATH="/" cd bin
 pwd
 cd bin
 lol=lol pouet=21 orange=red space=amazing printenv lol pouet orange space PATH CDPATH
+"kiwi=green" pineapple="yellow"
+printenv kiwi pineapple

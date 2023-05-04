@@ -1,21 +1,24 @@
+minishell: entourloupe=: command not found
 minishell: =pouet: command not found
 minishell: =====: command not found
+minishell: lol==42: command not found
+minishell: lol====43: command not found
 minishell: =: command not found
+minishell: p=1: command not found
 minishell: 9p=2: command not found
+minishell: _9=2: command not found
+minishell: _p2=1: command not found
 minishell: _1p_: command not found
 minishell: 1_p=wtf: command not found
 lol=42
 ls: cannot access 'pouet=1': No such file or directory
 pouet=234     pouetpouet
     ls         pouet  pouet  
-minishell: cd: bin: No such file or directory
+minishell: animal=chien: command not found
+minishell: CDPATH=: command not found
 minishell: cd: OLDPWD not set
+minishell: CDPATH=/: No such file or directory
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell
 /bin
-/bin
-/bin
-lol
-21
-red
-amazing
-/home/screw/.vscode-server/bin/252e5463d60e63238250799aef7375787f68b4ee/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-pouet:/:/dev
+minishell: lol=lol: command not found
+minishell: kiwi=green: command not found
