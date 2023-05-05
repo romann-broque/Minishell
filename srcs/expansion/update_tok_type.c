@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_shell.c                                       :+:      :+:    :+:   */
+/*   update_tok_type.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 18:40:27 by rbroque          ###   ########.fr       */
+/*   Created: 2023/05/04 16:52:21 by rbroque           #+#    #+#             */
+/*   Updated: 2023/05/04 16:58:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_global	g_global;
-
-static void	init_pwd(void)
+void	set_qgen_to_gen(t_token *tok)
 {
-	char *const	curr_pwd = getcwd(NULL, 0);
-
-	if (curr_pwd != NULL)
-	{
-		update_cwd_var(curr_pwd);
-		if (streq(ft_getenv(OLDPWD_VAR), EMPTY_STR) == true)
-			set_var_flag(OLDPWD_VAR, SLEEP_MASK);
-	}
-	free(curr_pwd);
+	if (tok->type == T_QGENERIC)
+		tok->type = T_GENERIC;
 }
 
-void	init_shell(char **env)
+void	set_assign_tok(t_token *tok)
 {
-	init_env(&g_global, env);
-	check_pos(SHELL_INIT);
-	init_pwd();
-	set_catcher();
-	init_tracker();
+	if (tok->type == T_GENERIC && is_assign_tok(tok) == true)
+		tok->type = T_ASSIGN;
+}
+
+void	set_simple_eq_to_gen(t_token *tok)
+{
+	if (tok->type == T_ASSIGN
+		&& streq(tok->value, EQUAL_SIGN_STR) == true)
+		tok->type = T_GENERIC;
 }

@@ -5,70 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 15:38:17 by mat               #+#    #+#             */
-/*   Updated: 2023/05/05 09:40:21 by mat              ###   ########.fr       */
+/*   Created: 2023/05/03 14:44:42 by rbroque           #+#    #+#             */
+/*   Updated: 2023/05/05 09:47:13 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_command(t_command *cmd_data)
+bool	is_assign_mode(t_list *tokens)
 {
-	if (cmd_data != NULL)
-	{
-		free_strs(cmd_data->command);
-		free_strs(cmd_data->env);
-	}
-	free(cmd_data);
-}
+	t_toktype	type;
 
-size_t	get_word_count(t_list *tokens)
-{
-	size_t	count;
-
-	count = 0;
-	while (get_type_from_tok(tokens->content) == T_GENERIC
-		|| get_type_from_tok(tokens->content) == T_ASSIGN)
+	type = get_type_from_tok(tokens->content);
+	while (type != T_END)
 	{
+		if (type != T_ASSIGN && type != T_START)
+			return (false);
 		tokens = tokens->next;
-		++count;
+		type = get_type_from_tok(tokens->content);
 	}
-	return (count);
-}
-
-static void	cpy_arg_lst_to_array(char ***dest, t_list *tokens)
-{
-	size_t	i;
-
-	i = 0;
-	while (get_type_from_tok(tokens->content) == T_GENERIC
-		|| get_type_from_tok(tokens->content) == T_ASSIGN)
-	{
-		(*dest)[i] = ft_strdup(get_str_from_tok(tokens->content));
-		if ((*dest)[i] == NULL)
-		{
-			free_strs(*dest);
-			perror(MALLOC_ERROR);
-			*dest = NULL;
-			return ;
-		}
-		tokens = tokens->next;
-		++i;
-	}
-	(*dest)[i] = NULL;
-}
-
-char	**get_arg_array(t_list *tokens)
-{
-	const size_t	size = get_word_count(tokens);
-	char			**arg_array;
-
-	arg_array = (char **)malloc(sizeof(char *) * (size + 1));
-	if (arg_array == NULL)
-	{
-		perror(MALLOC_ERROR);
-		return (NULL);
-	}
-	cpy_arg_lst_to_array(&arg_array, tokens);
-	return (arg_array);
+	return (true);
 }

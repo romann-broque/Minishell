@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 17:59:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/29 18:01:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/04 16:52:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,4 @@ void	remove_sep_tok(t_list **tokens)
 	static t_token	sep_tok = {.type = T_SEPARATOR, .value = SEP};
 
 	ft_list_remove_if(tokens, &sep_tok, tok_comp, (void (*)(void *))free_token);
-}
-
-void	set_to_gen(t_token *token)
-{
-	if (token->type == T_QGENERIC
-		|| token->type == T_ASSIGN)
-		token->type = T_GENERIC;
-}
-
-static void	set_assign_tok(t_token *token)
-{
-	if (is_assign_tok(token) == true)
-		token->type = T_ASSIGN;
-}
-
-void	set_assign(t_list *tokens)
-{
-	ft_lstiter(tokens, (void (*)(void *))set_assign_tok);
 }

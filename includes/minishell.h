@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 09:40:45 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 09:43:00 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@
 
 // var_flag
 
+# define SLEEP_MASK		0x00
 # define SET_MASK		0x0f
 # define EXPORT_MASK	0xf0
 # define ENV_MASK		0xff
@@ -291,7 +292,10 @@ void		exec_batch(int ac, char **av);
 
 /// change_var.c
 
-void		change_var(const char *var_name, const char *var_value);
+t_var		*get_var_from_env(const char *key, t_list *env);
+void		change_var(const char *key, const char *value,
+				uint8_t flags, t_list **env);
+void		update_var(const char *key, const char *value, const uint8_t flags);
 
 /// dup_export_lst_to_array.c
 
@@ -299,8 +303,10 @@ char		**dup_export_lst_to_array(t_list *env_lst);
 
 /// env_utils.c
 
-t_var		*init_var(const char *name, const char *value, const uint8_t flags);
+t_var		*init_var(const char *name, const char *value, uint8_t flags);
+t_var		*dup_var(t_var *var);
 t_var		*get_var(const char *var_name);
+void		set_var_flag(const char *key, const uint8_t flags);
 void		free_var(t_var *var);
 
 /// export_utils.c
@@ -312,10 +318,12 @@ void		sort_strings(char *strings[]);
 
 /// ft_getenv.c
 
+char		*ft_getenv_local(const char *var_name, char **env);
 char		*ft_getenv(const char *var_name);
 
 /// init_env.c
 
+t_var		*init_var_from_str(const char *str);
 void		init_env(t_global *global, char **env);
 
 ///			PATH				///
@@ -444,17 +452,20 @@ void		expand_command(t_list **tokens);
 /// expand_utils.c
 
 void		remove_sep_tok(t_list **tokens);
-void		set_to_gen(t_token *token);
-void		set_assign(t_list *tokens);
 
 /// merge_gen.c
 
-bool		is_gen_tok(t_list *tokens);
 void		merge_gen_lst(t_list *tokens);
 
 /// split_gen.c
 
 void		split_gen(t_list **tokens);
+
+/// update_tok_type.c
+
+void		set_qgen_to_gen(t_token *tok);
+void		set_assign_tok(t_token *tok);
+void		set_simple_eq_to_gen(t_token *tok);
 
 ///  VAR  ///
 
@@ -512,14 +523,26 @@ t_list		*interpreter(t_list *tokens, t_list *env);
 
 /// interpreter_utils.c
 
-void		free_command(t_command *cmd_data);
-size_t		get_word_count(t_list *tokens);
-char		**get_arg_array(t_list *tokens);
-char		*find_cmd_path(const char *cmd_name);
+bool		is_assign_mode(t_list *tokens);
 
-/// dup_env_lst_to_array.c
+/// cmd_mode.c
+
+t_list		*cmd_mode(t_list *tokens, t_list *env);
+
+///			COMMAND			///
+
+//// command_utils.c
+
+t_command	*init_command(t_list *tokens, t_list *env);
+void		free_command(t_command *cmd_data);
+
+//// dup_env_lst_to_array.c
 
 char		**dup_env_lst_to_array(t_list *env_lst);
+
+//// get_arg_array.c
+
+char		**get_arg_array(t_list *tokens);
 
 //			LEXER			//
 
