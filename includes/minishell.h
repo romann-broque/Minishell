@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 10:51:26 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 09:40:45 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,17 @@
 
 // error string
 
-# define SYNTAX_ERROR		"syntax error near unclosed quote"
-# define MALLOC_ERROR		"Malloc error"
-# define PARS_ERROR			"syntax error near unexpected token"
-# define CNF				"command not found"
-# define IS_DIR				"Is a directory"
-# define STAT_ERROR			"Failed to stat file"
-# define TOO_MANY_ARGS		"too many arguments"
+# define SYNTAX_ERROR			"syntax error near unclosed quote"
+# define MALLOC_ERROR			"Malloc error"
+# define PARS_ERROR				"syntax error near unexpected token"
+# define CNF					"command not found"
+# define IS_DIR					"Is a directory"
+# define STAT_ERROR				"Failed to stat file"
+# define TOO_MANY_ARGS			"too many arguments"
 # define ERROR_ACCESS_DIR		"error retrieving current directory"
 # define ERROR_ACCESS_PAR_DIR	"cannot access parent directories"
 # define NUM_ARG_REQ			"numeric argument required"
+# define INVALID_ID				"not a valid identifier"
 
 // char types
 
@@ -292,11 +293,22 @@ void		exec_batch(int ac, char **av);
 
 void		change_var(const char *var_name, const char *var_value);
 
+/// dup_export_lst_to_array.c
+
+char		**dup_export_lst_to_array(t_list *env_lst);
+
 /// env_utils.c
 
 t_var		*init_var(const char *name, const char *value, const uint8_t flags);
 t_var		*get_var(const char *var_name);
 void		free_var(t_var *var);
+
+/// export_utils.c
+
+t_var		*export_var_from_str(char *str, bool is_only_key);
+void		add_assignation_to_env(char *arg);
+void		add_key_to_env(char	*arg);
+void		sort_strings(char *strings[]);
 
 /// ft_getenv.c
 
@@ -365,6 +377,10 @@ int			echo_builtin(t_command	*cmd_data);
 
 int			exit_builtin(t_command *cmd_data);
 
+///// export.c
+
+int			export_builtin(t_command *cmd_data);
+
 ///// pwd.c
 
 int			pwd_builtin(__attribute__((unused)) t_command *cmd_data);
@@ -418,6 +434,7 @@ void		update_error_val(int error_nbr);
 
 //// is_assign_tok.c
 
+bool		is_assign_tok_state(const char *str);
 bool		is_assign_tok(t_token *token);
 
 /// expand_command.c

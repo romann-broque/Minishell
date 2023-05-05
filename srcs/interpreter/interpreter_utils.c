@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpreter_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:38:17 by mat               #+#    #+#             */
-/*   Updated: 2023/05/02 14:27:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/05 09:40:21 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ size_t	get_word_count(t_list *tokens)
 	size_t	count;
 
 	count = 0;
-	while (get_type_from_tok(tokens->content) == T_GENERIC)
+	while (get_type_from_tok(tokens->content) == T_GENERIC
+		|| get_type_from_tok(tokens->content) == T_ASSIGN)
 	{
 		tokens = tokens->next;
 		++count;
@@ -40,7 +41,8 @@ static void	cpy_arg_lst_to_array(char ***dest, t_list *tokens)
 	size_t	i;
 
 	i = 0;
-	while (get_type_from_tok(tokens->content) == T_GENERIC)
+	while (get_type_from_tok(tokens->content) == T_GENERIC
+		|| get_type_from_tok(tokens->content) == T_ASSIGN)
 	{
 		(*dest)[i] = ft_strdup(get_str_from_tok(tokens->content));
 		if ((*dest)[i] == NULL)
