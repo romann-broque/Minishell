@@ -3,43 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   dup_env_lst_to_array.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:52:21 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 15:25:30 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/05 10:54:52 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*get_assign_from_var(t_var *var)
+static size_t	get_env_size(t_list *env, const uint8_t mask)
 {
-	char *const	assign = ft_strjoin(var->key, EQUAL_SIGN_STR);
+	t_var	*var;
+	size_t	size;
 
-	return (ft_strjoin_free(assign, var->value));
-}
-
-static void	cpy_env_lst_to_array(char **array, t_list *env, const size_t size)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < size)
+	size = 0;
+	while (env != NULL)
 	{
-		array[i] = get_assign_from_var(env->content);
+		var = env->content;
+		if (var->flags & mask)
+			++size;
 		env = env->next;
-		++i;
 	}
-	array[i] = NULL;
+	return (size);
 }
 
-char	**dup_env_lst_to_array(t_list *env_lst)
+static void	cpy_env_lst_to_array(
+	char **array,
+	t_list *env,
+	const uint8_t mask,
+	char *(*assign_fct)(t_var *)
+	)
 {
-	const size_t	size = ft_lstsize(env_lst);
+	t_var	*var;
+
+	while (env != NULL)
+	{
+		var = env->content;
+		if (var->flags & mask)
+		{
+			*array = assign_fct(var);
+			++array;
+		}
+		env = env->next;
+	}
+	*array = NULL;
+}
+
+char	**dup_env_lst_to_array_gen(
+	t_list *env_lst,
+	const uint8_t mask,
+	char *(*assign_fct)(t_var *)
+	)
+{
+	const size_t	size = get_env_size(env_lst, mask);
 	char			**env_array;
 
 	env_array = (char **)malloc((size + 1) * sizeof(char *));
 	if (env_array != NULL)
-		cpy_env_lst_to_array(env_array, env_lst, size);
+		cpy_env_lst_to_array(env_array, env_lst, mask, assign_fct);
 	return (env_array);
 }

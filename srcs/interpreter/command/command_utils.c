@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 15:24:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/05 10:45:28 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static char	*get_assign_from_var(t_var *var)
+{
+	char *const	assign = ft_strjoin(var->key, EQUAL_SIGN_STR);
+
+	return (ft_strjoin_free(assign, var->value));
+}
+
+char	**dup_env_lst_to_array(t_list *env_lst)
+{
+	return (dup_env_lst_to_array_gen(env_lst, ENV_MASK, get_assign_from_var));
+}
 
 t_command	*init_command(t_list *tokens, t_list *env)
 {

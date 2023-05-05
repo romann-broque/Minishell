@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 09:43:00 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 10:50:28 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,9 +297,10 @@ void		change_var(const char *key, const char *value,
 				uint8_t flags, t_list **env);
 void		update_var(const char *key, const char *value, const uint8_t flags);
 
-/// dup_export_lst_to_array.c
+//// dup_env_lst_to_array.c
 
-char		**dup_export_lst_to_array(t_list *env_lst);
+char		**dup_env_lst_to_array_gen(t_list *env_lst,
+				const uint8_t mask, char *(*assign_fct)(t_var *));
 
 /// env_utils.c
 
@@ -362,6 +363,10 @@ void		execution(t_command *command);
 void		exec_binary(t_command *cmd_data, char *path);
 
 ///  BUILTIN  ///
+
+/// dup_export_lst_to_array.c
+
+char		**dup_export_lst_to_array(t_list *env_lst);
 
 //// exec_buitlin.c
 
@@ -533,12 +538,11 @@ t_list		*cmd_mode(t_list *tokens, t_list *env);
 
 //// command_utils.c
 
+char		**dup_env_lst_to_array(t_list *env_lst);
 t_command	*init_command(t_list *tokens, t_list *env);
 void		free_command(t_command *cmd_data);
 
-//// dup_env_lst_to_array.c
-
-char		**dup_env_lst_to_array(t_list *env_lst);
+////////////
 
 //// get_arg_array.c
 

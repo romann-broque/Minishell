@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:55:33 by mat               #+#    #+#             */
-/*   Updated: 2023/05/04 14:30:32 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 10:00:53 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,11 @@ static void	handle_export_arg(char *arg, bool *error)
 
 int	export_builtin(t_command *cmd_data)
 {
-	int		arg_nb;
 	int		index;
 	bool	error;
 
 	error = false;
-	arg_nb = get_size_strs(cmd_data->command);
-	if (arg_nb == 1)
+	if (cmd_data->command[1] == NULL)
 		print_export();
 	else
 	{
@@ -87,6 +85,6 @@ int	export_builtin(t_command *cmd_data)
 		}
 	}
 	if (error == true)
-		return (1);
-	return (0);
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
