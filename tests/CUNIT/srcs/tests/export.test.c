@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 14:45:49 by mat               #+#    #+#             */
-/*   Updated: 2023/05/05 11:08:50 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 14:47:25 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,14 @@ static bool	tvar_cmp(t_var	*ref, t_var *out)
 {
 	if (ft_strcmp(ref->key, out->key) != 0)
 		return (false);
-	if (ref->value != NULL)
+	if (ref->value != NULL && out->value != NULL)
 	{
 		if (ft_strcmp(ref->value, out->value) != 0)
 			return (false);
 	}
+	if ((ref->value == NULL && out->value != NULL) || (ref->value != NULL && out->value == NULL))
+		return (false);
 	return (true);
-}
-
-static t_var	*export_var_from_str(char *str, bool is_only_key)
-{
-	const size_t	eq_index = abs_index(str, EQUAL_SIGN);
-	char *const		name = ft_strndup(str, eq_index);
-	char			*value;
-	t_var			*new_var;
-
-	value = NULL;
-	if (is_only_key == false)
-	{
-		value = str + eq_index + 1;
-		new_var = init_var(name, value, ENV_MASK);
-	}
-	else
-		new_var = init_var(name, value, EXPORT_MASK);
-	free(name);
-	return (new_var);
 }
 
 void	export_var_from_str__test(void)
@@ -54,10 +37,10 @@ void	export_var_from_str__test(void)
 	t_var		*out3;
 	t_var		*out4;
 
-	out1 = export_var_from_str("bonjour=54", false);
-	out2 = export_var_from_str("hola=como", false);
-	out3 = export_var_from_str("estoy=ytu?", false);
-	out4 = export_var_from_str("BLATA", true);
+	out1 = export_var_from_str("bonjour=54", true);
+	out2 = export_var_from_str("hola=como", true);
+	out3 = export_var_from_str("estoy=ytu?", true);
+	out4 = export_var_from_str("BLATA", false);
 
 	CU_ASSERT_TRUE(tvar_cmp(&ref1, out1));
 	CU_ASSERT_TRUE(tvar_cmp(&ref2, out2));

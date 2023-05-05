@@ -3,11 +3,15 @@ env
 norminette
 tester_folder
 valgrind
+var
+var.c
 CUNIT
 env
 norminette
 tester_folder
 valgrind
+var
+var.c
 pouet pouet
 minishell: pouet: command not found
 minishell: /pouet: No such file or directory

@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:55:33 by mat               #+#    #+#             */
-/*   Updated: 2023/05/05 10:00:53 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 16:30:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,16 @@ extern t_global	g_global;
 
 static void	export_to_env(char	*arg)
 {
-	if (is_assign_tok_state(arg) == true)
-		add_assignation_to_env(arg);
+	t_var	*old_var;
+	t_var	*var;
+
+	var = export_var_from_str(arg, is_assign_tok_state(arg));
+	old_var = get_var(var->key);
+	if (old_var != NULL && var->value == NULL)
+		update_var(old_var->key, NULL, EXPORT_MASK);
 	else
-		add_key_to_env(arg);
+		update_var(var->key, var->value, EXPORT_MASK);
+	free_var(var);
 }
 
 static bool	is_valid_identifier(char *arg)
@@ -38,7 +44,7 @@ static bool	is_valid_identifier(char *arg)
 	return (true);
 }
 
-static void	print_export(void)
+static int	print_export(void)
 {
 	char	**export_array;
 	size_t	index;
@@ -52,9 +58,10 @@ static void	print_export(void)
 		index++;
 	}
 	free_strs(export_array);
+	return (EXIT_SUCCESS);
 }
 
-static void	handle_export_arg(char *arg, bool *error)
+static int	handle_export_arg(char *arg)
 {
 	if (is_valid_identifier(arg))
 		export_to_env(arg);
@@ -63,28 +70,27 @@ static void	handle_export_arg(char *arg, bool *error)
 		print_error("%s: %s: `%s': %s\n",
 			MINISHELL, EXPORT_BUILTIN, arg,
 			INVALID_ID);
-		*error = true;
+		return (EXIT_FAILURE);
 	}
+	return (EXIT_SUCCESS);
 }
 
 int	export_builtin(t_command *cmd_data)
 {
-	int		index;
-	bool	error;
+	int	index;
+	int	exit_status;
 
-	error = false;
+	exit_status = EXIT_FAILURE;
 	if (cmd_data->command[1] == NULL)
-		print_export();
+		exit_status = print_export();
 	else
 	{
 		index = 1;
 		while (cmd_data->command[index] != NULL)
 		{
-			handle_export_arg(cmd_data->command[index], &error);
+			exit_status = handle_export_arg(cmd_data->command[index]);
 			index++;
 		}
 	}
-	if (error == true)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	return (exit_status);
 }

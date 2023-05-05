@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_mode.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/04 18:04:24 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/05 11:35:43 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_list	*get_cmd_env(t_list *glob_env, t_list *loc_env)
 	while (glob_env != NULL)
 	{
 		var = glob_env->content;
-		if (var->flags & SET_MASK)
+		if (var->flags & EXPORT_MASK && var->flags & SET_MASK)
 			ft_lstadd_back(&new, ft_lstnew(dup_var(var)));
 		glob_env = glob_env->next;
 	}

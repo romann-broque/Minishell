@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 11:10:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 11:55:50 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,6 +315,7 @@ void		free_var(t_var *var);
 void		add_assignation_to_env(char *arg);
 void		add_key_to_env(char	*arg);
 void		sort_strings(char *strings[]);
+t_var		*export_var_from_str(char *str, bool is_only_key);
 
 /// ft_getenv.c
 

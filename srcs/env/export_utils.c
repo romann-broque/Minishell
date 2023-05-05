@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:30:43 by mat               #+#    #+#             */
-/*   Updated: 2023/05/05 11:01:16 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 12:00:31 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern t_global	g_global;
 
-static t_var	*export_var_from_str(char *str, bool is_only_key)
+t_var	*export_var_from_str(char *str, bool is_assign)
 {
 	const size_t	eq_index = abs_index(str, EQUAL_SIGN);
 	char *const		name = ft_strndup(str, eq_index);
@@ -22,7 +22,7 @@ static t_var	*export_var_from_str(char *str, bool is_only_key)
 	t_var			*new_var;
 
 	value = NULL;
-	if (is_only_key == false)
+	if (is_assign == true)
 	{
 		value = str + eq_index + 1;
 		new_var = init_var(name, value, ENV_MASK);
@@ -33,21 +33,21 @@ static t_var	*export_var_from_str(char *str, bool is_only_key)
 	return (new_var);
 }
 
-void	add_assignation_to_env(char *arg)
-{
-	t_var			*new_var;
+//void	add_assignation_to_env(char *arg)
+//{
+//	t_var			*new_var;
 
-	new_var = export_var_from_str(arg, false);
-	ft_lstadd_back(&(g_global.env), ft_lstnew(new_var));
-}
+//	new_var = export_var_from_str(arg, true);
+//	ft_lstadd_back(&(g_global.env), ft_lstnew(new_var));
+//}
 
-void	add_key_to_env(char	*arg)
-{
-	t_var			*new_var;
+//void	add_key_to_env(char	*arg)
+//{
+//	t_var			*new_var;
 
-	new_var = export_var_from_str(arg, true);
-	ft_lstadd_back(&(g_global.env), ft_lstnew(new_var));
-}
+//	new_var = export_var_from_str(arg, falaw);
+//	ft_lstadd_back(&(g_global.env), ft_lstnew(new_var));
+//}
 
 void	sort_strings(char *strings[])
 {

@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:01:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 09:43:26 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 11:51:23 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ t_var	*init_var(const char *key, const char *value, const uint8_t flags)
 	if (new != NULL)
 	{
 		new->key = ft_strdup(key);
+		new->value = NULL;
 		if (value != NULL)
 			new->value = ft_strdup(value);
-		else
-			new->value = NULL;
 		new->flags = flags;
 	}
 	return (new);
