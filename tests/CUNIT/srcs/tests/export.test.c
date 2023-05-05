@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 14:45:49 by mat               #+#    #+#             */
-/*   Updated: 2023/05/04 15:58:33 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 09:57:39 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ void	export_var_from_str__test(void)
 	CU_ASSERT_TRUE(tvar_cmp(&ref2, out2));
 	CU_ASSERT_TRUE(tvar_cmp(&ref3, out3));
 	CU_ASSERT_TRUE(tvar_cmp(&ref4, out4));
+	free_var(out1);
+	free_var(out2);
+	free_var(out3);
+	free_var(out4);
 	return ;
 }
 
