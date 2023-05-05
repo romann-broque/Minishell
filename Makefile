@@ -44,7 +44,7 @@ SRCS		+=	batch.c
 ### srcs/env/
 
 SRCS		+=	change_var.c
-0SRCS		+=	dup_env_lst_to_array.c
+SRCS		+=	get_env_array.c
 SRCS		+=	env_utils.c
 SRCS		+=	export_utils.c
 SRCS		+=	ft_getenv.c
@@ -64,7 +64,7 @@ SRCS	 	+=	execution.c
 
 ### srcs/execution/builtin/
 
-SRCS		+= dup_export_lst_to_array.c
+SRCS		+=	dup_export_lst_to_array.c
 SRCS	 	+=	exec_builtin.c
 SRCS	 	+=	is_builtin.c
 

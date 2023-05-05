@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:09:02 by mat               #+#    #+#             */
-/*   Updated: 2023/05/05 10:55:34 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 11:06:56 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ static char	*get_assign_from_export_var(t_var *var)
 
 char	**dup_export_lst_to_array(t_list *env_lst)
 {
-	return (dup_env_lst_to_array_gen(env_lst, EXPORT_MASK,
+	return (get_env_array(env_lst, EXPORT_MASK,
 			get_assign_from_export_var));
 }

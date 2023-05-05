@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 14:45:49 by mat               #+#    #+#             */
-/*   Updated: 2023/05/05 09:57:39 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 11:08:50 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,25 @@ static bool	tvar_cmp(t_var	*ref, t_var *out)
 			return (false);
 	}
 	return (true);
+}
+
+static t_var	*export_var_from_str(char *str, bool is_only_key)
+{
+	const size_t	eq_index = abs_index(str, EQUAL_SIGN);
+	char *const		name = ft_strndup(str, eq_index);
+	char			*value;
+	t_var			*new_var;
+
+	value = NULL;
+	if (is_only_key == false)
+	{
+		value = str + eq_index + 1;
+		new_var = init_var(name, value, ENV_MASK);
+	}
+	else
+		new_var = init_var(name, value, EXPORT_MASK);
+	free(name);
+	return (new_var);
 }
 
 void	export_var_from_str__test(void)

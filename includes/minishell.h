@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 10:50:28 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 11:10:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,8 +299,8 @@ void		update_var(const char *key, const char *value, const uint8_t flags);
 
 //// dup_env_lst_to_array.c
 
-char		**dup_env_lst_to_array_gen(t_list *env_lst,
-				const uint8_t mask, char *(*assign_fct)(t_var *));
+char		**get_env_array(t_list *env_lst, const uint8_t mask,
+				char *(*assign_fct)(t_var *));
 
 /// env_utils.c
 
@@ -312,7 +312,6 @@ void		free_var(t_var *var);
 
 /// export_utils.c
 
-t_var		*export_var_from_str(char *str, bool is_only_key);
 void		add_assignation_to_env(char *arg);
 void		add_key_to_env(char	*arg);
 void		sort_strings(char *strings[]);

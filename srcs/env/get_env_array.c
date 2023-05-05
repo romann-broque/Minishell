@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:52:21 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 10:54:52 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/05 11:06:03 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	cpy_env_lst_to_array(
 	*array = NULL;
 }
 
-char	**dup_env_lst_to_array_gen(
+char	**get_env_array(
 	t_list *env_lst,
 	const uint8_t mask,
 	char *(*assign_fct)(t_var *)
