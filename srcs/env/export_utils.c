@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:30:43 by mat               #+#    #+#             */
-/*   Updated: 2023/05/05 12:00:31 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/06 18:41:36 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,6 @@ t_var	*export_var_from_str(char *str, bool is_assign)
 	free(name);
 	return (new_var);
 }
-
-//void	add_assignation_to_env(char *arg)
-//{
-//	t_var			*new_var;
-
-//	new_var = export_var_from_str(arg, true);
-//	ft_lstadd_back(&(g_global.env), ft_lstnew(new_var));
-//}
-
-//void	add_key_to_env(char	*arg)
-//{
-//	t_var			*new_var;
-
-//	new_var = export_var_from_str(arg, falaw);
-//	ft_lstadd_back(&(g_global.env), ft_lstnew(new_var));
-//}
 
 void	sort_strings(char *strings[])
 {
