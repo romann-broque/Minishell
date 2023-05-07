@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:01:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/04 10:39:42 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/05 11:51:23 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 extern t_global	g_global;
 
-t_var	*init_var(const char *name, const char *value, const uint8_t flags)
+t_var	*init_var(const char *key, const char *value, const uint8_t flags)
 {
 	t_var	*new;
 
 	new = (t_var *)malloc(sizeof(t_var));
 	if (new != NULL)
 	{
-		new->key = ft_strdup(name);
-		new->value = ft_strdup(value);
+		new->key = ft_strdup(key);
+		new->value = NULL;
+		if (value != NULL)
+			new->value = ft_strdup(value);
 		new->flags = flags;
 	}
 	return (new);

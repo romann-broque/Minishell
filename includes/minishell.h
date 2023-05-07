@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/04 16:57:58 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/07 15:28:59 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@
 # define DOT_STR		"."
 # define DOUBLE_DOT_STR	".."
 # define BATCH_OPT		"-c"
+# define ECHO_OPT		"-n"
 # define BACKPATH		"/.."
+# define NEWLINE_STR	"\n"
+# define SPACE_STR		" "
+# define DQUOTE_STR		"\""
 
 // builtins
 
@@ -81,15 +85,17 @@
 
 // error string
 
-# define SYNTAX_ERROR		"syntax error near unclosed quote"
-# define MALLOC_ERROR		"Malloc error"
-# define PARS_ERROR			"syntax error near unexpected token"
-# define CMD_NOT_FOUND		"command not found"
-# define IS_DIR				"Is a directory"
-# define STAT_ERROR			"Failed to stat file"
-# define TOO_MANY_ARGS		"too many arguments"
+# define SYNTAX_ERROR			"syntax error near unclosed quote"
+# define MALLOC_ERROR			"Malloc error"
+# define PARS_ERROR				"syntax error near unexpected token"
+# define CNF					"command not found"
+# define IS_DIR					"Is a directory"
+# define STAT_ERROR				"Failed to stat file"
+# define TOO_MANY_ARGS			"too many arguments"
 # define ERROR_ACCESS_DIR		"error retrieving current directory"
 # define ERROR_ACCESS_PAR_DIR	"cannot access parent directories"
+# define NUM_ARG_REQ			"numeric argument required"
+# define INVALID_ID				"not a valid identifier"
 
 // char types
 
@@ -127,6 +133,9 @@
 
 // return value
 
+# define NO_ACCESS		126
+# define NO_FILE		127
+# define INCORRECT_USE	2
 # define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
 
@@ -251,7 +260,7 @@ typedef struct s_deallocator
 typedef struct s_builtin_mapper
 {
 	const char	*name;
-	void		(*fct)(t_command *cmd_data);
+	int			(*fct)(t_command *cmd_data);
 }				t_builtin_mapper;
 
 typedef struct s_var
@@ -263,6 +272,7 @@ typedef struct s_var
 
 typedef struct s_global
 {
+	int		last_ret_val;
 	t_list	*garbage;
 	t_list	*env;
 	bool	is_stoppable;
@@ -288,6 +298,11 @@ void		change_var(const char *key, const char *value,
 				uint8_t flags, t_list **env);
 void		update_var(const char *key, const char *value, const uint8_t flags);
 
+//// dup_env_lst_to_array.c
+
+char		**get_env_array(t_list *env_lst, const uint8_t mask,
+				char *(*assign_fct)(t_var *));
+
 /// env_utils.c
 
 t_var		*init_var(const char *name, const char *value, uint8_t flags);
@@ -295,6 +310,13 @@ t_var		*dup_var(t_var *var);
 t_var		*get_var(const char *var_name);
 void		set_var_flag(const char *key, const uint8_t flags);
 void		free_var(t_var *var);
+
+/// export_utils.c
+
+void		add_assignation_to_env(char *arg);
+void		add_key_to_env(char	*arg);
+void		sort_strings(char *strings[]);
+t_var		*export_var_from_str(char *str, bool is_only_key);
 
 /// ft_getenv.c
 
@@ -315,12 +337,17 @@ void		clean_path(char **path);
 //// get_path.c
 
 bool		is_cmd_path(t_command *cmd);
-char		*get_path_from_cmd(t_command *cmd);
+char		*get_cmd_path(t_command *cmd_data);
 char		*get_path_from_env(const char *suffix,
 				const char *pathvar_name, char **env);
 
+//// path_access.c
+
+bool		is_cmd_accessible(char *path);
+
 //// cmd_path_utils.c
 
+char		*dup_path_from_cmd(t_command *cmd);
 void		add_fwd_slash(char **paths);
 bool		is_var_path_in_env(char **env, const char *pathvar_name);
 bool		is_empty_str(const char *str);
@@ -332,7 +359,15 @@ bool		is_path_var(const char *env_line, const char *pathvar_name);
 
 void		execution(t_command *command);
 
+/// exec_binary.c
+
+void		exec_binary(t_command *cmd_data, char *path);
+
 ///  BUILTIN  ///
+
+/// dup_export_lst_to_array.c
+
+char		**dup_export_lst_to_array(t_list *env_lst);
 
 //// exec_buitlin.c
 
@@ -346,19 +381,23 @@ bool		is_builtin(t_command *cmd_data);
 
 ///// cd.c
 
-void		cd_builtin(t_command *cmd_data);
+int			cd_builtin(t_command *cmd_data);
 
 ///// echo.c
 
-void		echo_builtin(t_command	*cmd_data);
+int			echo_builtin(t_command	*cmd_data);
 
 ///// exit.c
 
-void		exit_builtin(t_command *cmd_data);
+int			exit_builtin(t_command *cmd_data);
+
+///// export.c
+
+int			export_builtin(t_command *cmd_data);
 
 ///// pwd.c
 
-void		pwd_builtin(__attribute__((unused)) t_command *cmd_data);
+int			pwd_builtin(__attribute__((unused)) t_command *cmd_data);
 
 ////  CWD  ////
 
@@ -376,7 +415,7 @@ bool		is_prev_option(char **command);
 char		*ft_strstr(const char *big, const char *little);
 void		check_pos(const char *caller);
 void		update_cwd_var(const char *new_pwd);
-void		print_pos(void);
+int			print_pos(void);
 
 /// CLEAN_PATH ///
 
@@ -400,10 +439,16 @@ char		*ft_realpath(const char *path);
 
 void		exit_shell(const int exit_value, const bool is_print);
 
+/// exit_utils.c
+
+int			extract_return_status(int status);
+void		update_error_val(int error_nbr);
+
 //			EXPANSION			//
 
 //// is_assign_tok.c
 
+bool		is_assign_tok_state(const char *str);
 bool		is_assign_tok(t_token *token);
 
 /// expand_command.c
@@ -494,12 +539,11 @@ t_list		*cmd_mode(t_list *tokens, t_list *env);
 
 //// command_utils.c
 
+char		**dup_env_lst_to_array(t_list *env_lst);
 t_command	*init_command(t_list *tokens, t_list *env);
 void		free_command(t_command *cmd_data);
 
-//// dup_env_lst_to_array.c
-
-char		**dup_env_lst_to_array(t_list *env_lst);
+////////////
 
 //// get_arg_array.c
 

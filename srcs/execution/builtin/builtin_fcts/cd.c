@@ -3,21 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/04/25 14:39:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/01 11:22:35 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	execute_cd(t_command *cmd_data)
+static void	handle_chdir_err(char *const cd_arg)
+{
+	print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, cd_arg);
+	perror(EMPTY_STR);
+}
+
+static int	execute_cd(t_command *cmd_data)
 {
 	static bool		is_print = false;
 	char *const		cd_arg = get_cd_arg(cmd_data,
 			cmd_data->command[1], &is_print);
+	int				ret_val;
 
+	ret_val = EXIT_FAILURE;
 	check_pos(CHDIR);
 	if (cd_arg != NULL)
 	{
@@ -26,21 +34,23 @@ static void	execute_cd(t_command *cmd_data)
 			update_cwd_var(cd_arg);
 			if (is_print == true)
 				print_pos();
+			ret_val = EXIT_SUCCESS;
 		}
 		else
-		{
-			print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, cd_arg);
-			perror(EMPTY_STR);
-		}
+			handle_chdir_err(cd_arg);
 	}
 	free(cd_arg);
 	is_print = false;
+	return (ret_val);
 }
 
-void	cd_builtin(t_command *cmd_data)
+int	cd_builtin(t_command *cmd_data)
 {
 	if (is_correct_size(cmd_data->command) == true)
-		execute_cd(cmd_data);
+		return (execute_cd(cmd_data));
 	else
+	{
 		print_error("%s: %s: %s\n", MINISHELL, CD_BUILTIN, TOO_MANY_ARGS);
+		return (EXIT_FAILURE);
+	}
 }

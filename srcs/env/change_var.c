@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/04 10:40:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/05 16:13:38 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@ void	change_var(
 			ft_lstnew(init_var(key, value, flags)));
 	else
 	{
-		free(var->value);
-		var->value = ft_strdup(value);
+		if (value != NULL)
+		{
+			free(var->value);
+			var->value = ft_strdup(value);
+		}
 		var->flags |= flags;
 	}
 }

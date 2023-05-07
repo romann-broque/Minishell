@@ -1,0 +1,72 @@
+ls: cannot access 'blata': No such file or directory
+2
+minishell: 0: command not found
+minishell: cd: too many arguments
+1
+minishell: cd: blata: No such file or directory
+1
+ls: cannot access 'blata': No such file or directory
+2
+pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+1
+chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+minishell: bonjour: command not found
+127
+minishell: ./noperm: Permission denied
+126
+ls: cannot access 'pouet': No such file or directory
+2
+includes
+libft
+Makefile
+minishell
+objs
+README.md
+srcs
+tests
+minishell: exit: too many arguments
+1
+minishell: exit: bonjour: numeric argument required
+2
+0
+42
+minishell: exit: too many arguments
+1
+255
+minishell: exit: 234782384908273480723847238047283074: numeric argument required
+2
+minishell: exit: abc: numeric argument required
+2
+minishell: exit: abc: numeric argument required
+2
+0
+minishell: exit: too many arguments
+1
+minishell: exit: too many arguments
+1
+255
+minishell: exit: 9223372036854775808: numeric argument required
+2
+minishell: exit: -9223372036854775808: numeric argument required
+2
+minishell: exit: -9223372036854775809: numeric argument required
+2
+includes
+libft
+Makefile
+minishell
+objs
+README.md
+srcs
+tests
+includes
+libft
+Makefile
+minishell
+objs
+README.md
+srcs
+tests
+minishell: pouet: command not found
+127 127
+/home/mat/.local/bin:/home/mat/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/mat/Desktop/42/Minishell/repo

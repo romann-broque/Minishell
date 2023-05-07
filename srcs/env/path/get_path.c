@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_path.c                                         :+:      :+:    :+:   */
+/*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/04/26 11:22:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/01 11:05:50 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,31 @@ bool	is_cmd_path(t_command *cmd)
 	return (is_in_str(cmd->command[0], FWD_SLASH));
 }
 
-char	*get_path_from_cmd(t_command *cmd)
+char	*get_cmd_path(t_command *cmd_data)
 {
-	char *const	path = ft_strdup(cmd->command[0]);
+	char	*path;
 
-	if (path != NULL && access(path, X_OK) == 0)
-		return (path);
-	free(path);
-	return (NULL);
+	path = dup_path_from_cmd(cmd_data);
+	if (path == NULL || is_cmd_accessible(path) == false)
+	{
+		print_error("%s: %s: ", MINISHELL, cmd_data->command[0]);
+		perror(EMPTY_STR);
+		if (path == NULL)
+			update_error_val(NO_FILE);
+		else
+		{
+			update_error_val(NO_ACCESS);
+			free(path);
+			path = NULL;
+		}
+	}
+	return (path);
 }
 
-static char	*get_complete_path(const char *suffix, char **path_array)
+static char	*get_complete_path(
+	const char *suffix,
+	char **path_array
+	)
 {
 	char	*path;
 	size_t	i;
@@ -39,7 +53,7 @@ static char	*get_complete_path(const char *suffix, char **path_array)
 		path = ft_strjoin(path_array[i], suffix);
 		if (path == NULL)
 			return (NULL);
-		if (access(path, X_OK) == 0)
+		if (access(path, F_OK) == 0)
 			break ;
 		free(path);
 		path = NULL;

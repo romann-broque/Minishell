@@ -1,0 +1,84 @@
+ls blata
+echo $?
+$?
+cd arg1 arg2
+echo $?
+cd blata
+echo $?
+./minishell
+ls blata
+exit
+echo $?
+mkdir lol
+cd lol
+rm ../lol -fr
+pwd
+/bin/echo $?
+cd ..
+bonjour
+echo $?
+touch noperm
+chmod 000 noperm
+./noperm
+echo $?
+chmod 777 noperm
+rm noperm
+ls pouet
+echo $?
+ls
+exit 42 blata
+echo $?
+
+./minishell
+exit bonjour je suis mathi
+echo $?
+./minishell
+exit
+echo $?
+./minishell
+exit 42
+echo $?
+./minishell
+exit 42 42
+echo $?
+./minishell
+exit -1
+echo $?
+./minishell
+exit 234782384908273480723847238047283074
+echo $?
+./minishell
+exit abc
+echo $?
+./minishell
+exit abc 34
+echo $?
+echo $?
+./minishell
+exit 1 2 3
+echo $?
+./minishell
+exit 42 abc
+echo $?
+./minishell
+exit 9223372036854775807
+echo $?
+./minishell
+exit 9223372036854775808
+echo $?
+./minishell
+exit -9223372036854775808
+echo $?
+./minishell
+exit -9223372036854775809
+echo $?
+ls
+ls
+exit
+
+pouet
+echo $? $?
+
+echo $PATH
+
+exit

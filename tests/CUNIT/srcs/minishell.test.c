@@ -32,7 +32,12 @@ void	set_tests(void)
 		},
 		{
 			.suite = NULL, .sname = "Expand", .tests = {
-				{.tname = "expand", expand__test},
+				{.tname = "expand", expand__test}
+			}
+		},
+		{
+			.suite = NULL, .sname = "Export", .tests = {
+				{.tname = "Export var from str", export_var_from_str__test}
 			}
 		},
 		{.suite = NULL, .sname = "Interpreter", .tests = {
