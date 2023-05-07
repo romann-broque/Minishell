@@ -3,14 +3,12 @@ env
 norminette
 tester_folder
 valgrind
-var
 var.c
 CUNIT
 env
 norminette
 tester_folder
 valgrind
-var
 var.c
 pouet pouet
 minishell: pouet: command not found
@@ -20,6 +18,7 @@ libft
 Makefile
 minishell
 objs
+print_var
 README.md
 srcs
 tests

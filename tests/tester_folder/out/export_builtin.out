@@ -1,5 +1,7 @@
 chocolat
 63
+var is [(null)]
+var is [chocolat]
 53
 minishell: export: `65=3934': not a valid identifier
 8

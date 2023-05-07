@@ -7,6 +7,10 @@ export abawd
 export abawd=63
 printenv abawd
 
+
+./print_var abwawd
+./print_var cacao
+
 export blata=53
 printenv blata
 export 65=3934
