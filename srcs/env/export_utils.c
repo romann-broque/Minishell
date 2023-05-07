@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:30:43 by mat               #+#    #+#             */
-/*   Updated: 2023/05/07 15:32:51 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/07 16:01:15 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ t_var	*export_var_from_str(char *str, const bool is_assign)
 {
 	const size_t	eq_index = abs_index(str, EQUAL_SIGN);
 	char *const		name = ft_strndup(str, eq_index);
-	char			*value;
+	const char		*value = get_value_from_assign(str, is_assign, eq_index);
 	t_var			*new_var;
 
-	value = get_value_from_assign(str, is_assign, eq_index);
 	new_var = init_var(name, value, EXPORT_MASK);
 	free(name);
 	return (new_var);
@@ -43,22 +42,17 @@ t_var	*export_var_from_str(char *str, const bool is_assign)
 
 void	sort_strings(char *strings[])
 {
-	int		i;
-	int		j;
-	char	*tmp;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
 	while (strings[i] != NULL)
 	{
-		j = 0;
+		j = i;
 		while (strings[j] != NULL)
 		{
 			if (ft_strcmp(strings[i], strings[j]) < 0)
-			{
-				tmp = strings[i];
-				strings[i] = strings[j];
-				strings[j] = tmp;
-			}
+				ft_swap((void **)&strings[i], (void **)&strings[j]);
 			j++;
 		}
 		i++;

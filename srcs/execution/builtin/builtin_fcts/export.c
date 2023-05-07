@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:55:33 by mat               #+#    #+#             */
-/*   Updated: 2023/05/07 15:29:53 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/07 15:41:53 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ static void	export_to_env(char *arg)
 	t_var			*old_var;
 
 	if (var != NULL)
+	{
 		old_var = get_var(var->key);
-	if (old_var != NULL && var->value == NULL)
-		update_var(old_var->key, NULL, EXPORT_MASK);
-	else
-		update_var(var->key, var->value, EXPORT_MASK);
+		if (old_var != NULL && var->value == NULL)
+			update_var(old_var->key, NULL, EXPORT_MASK);
+		else
+			update_var(var->key, var->value, EXPORT_MASK);
+	}
 	free_var(var);
 }
 
