@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 11:55:50 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/07 15:28:59 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define BACKPATH		"/.."
 # define NEWLINE_STR	"\n"
 # define SPACE_STR		" "
+# define DQUOTE_STR		"\""
 
 // builtins
 

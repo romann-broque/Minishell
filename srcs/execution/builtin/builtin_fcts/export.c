@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:55:33 by mat               #+#    #+#             */
-/*   Updated: 2023/05/05 16:30:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/07 15:29:53 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 extern t_global	g_global;
 
-static void	export_to_env(char	*arg)
+static void	export_to_env(char *arg)
 {
-	t_var	*old_var;
-	t_var	*var;
+	t_var *const	var = export_var_from_str(arg, is_assign_tok_state(arg));
+	t_var			*old_var;
 
-	var = export_var_from_str(arg, is_assign_tok_state(arg));
-	old_var = get_var(var->key);
+	if (var != NULL)
+		old_var = get_var(var->key);
 	if (old_var != NULL && var->value == NULL)
 		update_var(old_var->key, NULL, EXPORT_MASK);
 	else
@@ -35,7 +35,7 @@ static bool	is_valid_identifier(char *arg)
 	if (is_in_var_start_charset(arg[0]) == false)
 		return (false);
 	index = 1;
-	while (arg[index] != '\0' && arg[index] != '=')
+	while (arg[index] != '\0' && arg[index] != EQUAL_SIGN)
 	{
 		if (is_in_var_charset(arg[index]) == false)
 			return (false);

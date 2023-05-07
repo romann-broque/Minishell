@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:09:02 by mat               #+#    #+#             */
-/*   Updated: 2023/05/05 11:06:56 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/07 15:28:18 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static char	*get_assign_from_export_var(t_var *var)
 	tmp = NULL;
 	if (var->value != NULL)
 	{
-		tmp = ft_strjoin("\"", var->value);
-		tmp2 = ft_strjoin_free(tmp, "\"");
+		tmp = ft_strjoin(DQUOTE_STR, var->value);
+		tmp2 = ft_strjoin_free(tmp, DQUOTE_STR);
 		tmp = ft_strjoin(EQUAL_SIGN_STR, tmp2);
 		free(tmp2);
 	}

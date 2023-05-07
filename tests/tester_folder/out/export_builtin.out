@@ -2,7 +2,7 @@ chocolat
 63
 /home/mat/Desktop/42/Minishell/repo
 var is [(null)]
-minishell: ./tests/print_var: No such file or directory
+var is [chocolat]
 53
 minishell: export: `65=3934': not a valid identifier
 8
