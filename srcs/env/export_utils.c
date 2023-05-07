@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:30:43 by mat               #+#    #+#             */
-/*   Updated: 2023/05/07 16:01:15 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/07 16:08:48 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	sort_strings(char *strings[])
 		j = i;
 		while (strings[j] != NULL)
 		{
-			if (ft_strcmp(strings[i], strings[j]) < 0)
+			if (ft_strcmp(strings[i], strings[j]) > 0)
 				ft_swap((void **)&strings[i], (void **)&strings[j]);
 			j++;
 		}
