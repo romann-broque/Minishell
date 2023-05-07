@@ -7,9 +7,9 @@ export abawd
 export abawd=63
 printenv abawd
 
-
-./print_var abwawd
-./print_var cacao
+pwd
+./tests/var/print_var abwawd
+./tests/var/print_var cacao
 
 export blata=53
 printenv blata
