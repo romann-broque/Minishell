@@ -234,6 +234,10 @@ CUNIT_EXE		= $(CUNIT_FOLDER)/cunit
 CURR_FOLDER_VALGRIND = ./tests/valgrind/
 SUPPRESSION_FILE	= $(CURR_FOLDER_VALGRIND)suppressions.supp
 
+### VAR
+
+VAR_FOLDER		= $(TESTER_FOLDER)/var/
+
 ifeq ($(valgrind), true)
 	VALGRIND	+= valgrind
 endif
@@ -315,6 +319,7 @@ norm	:
 
 test	:
 	$(MAKE) -s
+	$(MAKE) -sC $(VAR_FOLDER)
 	$(RM) $(CUNIT_EXE)
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
@@ -324,12 +329,14 @@ test	:
 
 clean	:
 	$(RM) -r $(PATH_OBJS)
+	$(MAKE) -sC $(VAR_FOLDER) clean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) clean > /dev/null
 	$(MAKE) -sC $(CUNIT_FOLDER) clean > /dev/null
 	$(ECHOC) $(GREEN) "--> .o files deleted !"$(NC)"\n"
 
 fclean	:	clean
 	$(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
+	$(MAKE) -sC $(VAR_FOLDER) fclean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) fclean > /dev/null
 	$(MAKE) -sC $(CUNIT_FOLDER) fclean > /dev/null
 	$(RM) $(NAME)
