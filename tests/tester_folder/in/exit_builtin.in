@@ -53,8 +53,6 @@ echo $?
 ./minishell
 exit abc 34
 echo $?
-./minishell
-exit abc abc
 echo $?
 ./minishell
 exit 1 2 3

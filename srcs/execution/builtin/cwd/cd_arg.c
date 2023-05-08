@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:00:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/01 10:30:17 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/08 15:42:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	is_spec_arg(const char *arg)
 		|| streq(arg, MINUS_SIGN));
 }
 
-static char	*get_spec_path(const char *arg, bool *is_print)
+static char	*get_spec_path(const char *arg, char **env, bool *is_print)
 {
 	char	*var_name;
 	char	*var_value;
@@ -32,7 +32,7 @@ static char	*get_spec_path(const char *arg, bool *is_print)
 		var_name = OLDPWD_VAR;
 		*is_print = true;
 	}
-	var_value = ft_getenv(var_name);
+	var_value = ft_getenv_local(var_name, env);
 	spec_path = NULL;
 	if (var_value != NULL)
 		spec_path = ft_strdup(var_value);
@@ -52,7 +52,7 @@ char	*get_cd_arg(t_command *cmd_data, const char *arg, bool *is_print)
 	char	*new_arg;
 
 	if (is_spec_arg(arg) == true)
-		return (get_spec_path(arg, is_print));
+		return (get_spec_path(arg, cmd_data->env, is_print));
 	if (can_be_found(arg) == true)
 	{
 		if (arg[0] == '\0')

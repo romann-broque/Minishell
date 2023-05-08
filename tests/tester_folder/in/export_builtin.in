@@ -1,0 +1,20 @@
+cacao=chocolat
+printenv cacao
+export cacao
+printenv cacao
+
+export abawd
+export abawd=63
+printenv abawd
+
+pwd
+./tests/var/print_var abwawd
+./tests/var/print_var cacao
+
+export blata=53
+printenv blata
+export 65=3934
+export bonjour bouya=8
+printenv bouya
+export 5874 03843sohsrfs
+echo $?

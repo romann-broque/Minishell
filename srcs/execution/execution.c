@@ -6,11 +6,32 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 16:58:25 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/08 15:42:02 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	handle_error_path(t_command *cmd_data, char **path)
+{
+	if (*path == NULL)
+	{
+		update_error_val(NO_FILE);
+		print_error("%s: %s: ", MINISHELL, cmd_data->command[0]);
+		if (is_var_path_in_env(cmd_data->env, PATH_VAR) == true)
+			print_error("%s\n", CNF);
+		else
+			print_error("%s\n", NO_SUCH_FILE);
+	}
+	else if (is_cmd_accessible(*path) == false)
+	{
+		update_error_val(NO_ACCESS);
+		print_error("%s: %s: ", MINISHELL, *path);
+		perror(EMPTY_STR);
+		free(*path);
+		*path = NULL;
+	}
+}
 
 static char	*get_path(t_command *cmd_data)
 {
@@ -22,19 +43,7 @@ static char	*get_path(t_command *cmd_data)
 	{
 		path = get_path_from_env(cmd_data->command[0],
 				PATH_VAR, cmd_data->env);
-		if (path == NULL)
-		{
-			update_error_val(NO_FILE);
-			print_error("%s: %s: %s\n", MINISHELL, cmd_data->command[0], CNF);
-		}
-		else if (is_cmd_accessible(path) == false)
-		{
-			update_error_val(NO_ACCESS);
-			print_error("%s: %s: ", MINISHELL, path);
-			perror(EMPTY_STR);
-			free(path);
-			path = NULL;
-		}
+		handle_error_path(cmd_data, &path);
 	}
 	return (path);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   is_assign_tok.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:46:12 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/01 12:04:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/03 12:02:09 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	is_assign_tok_state(const char *str)
+bool	is_assign_tok_state(const char *str)
 {
 	const ssize_t	eq_index = index_of(str, EQUAL_SIGN);
 	ssize_t			i;

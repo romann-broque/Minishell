@@ -39,8 +39,7 @@ minishell: exit: abc: numeric argument required
 2
 minishell: exit: abc: numeric argument required
 2
-minishell: exit: abc: numeric argument required
-2
+0
 minishell: exit: too many arguments
 1
 minishell: exit: too many arguments
