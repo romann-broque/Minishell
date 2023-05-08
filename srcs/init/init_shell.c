@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 11:39:16 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/08 12:09:48 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,20 @@ static void	init_pwd(void)
 	free(curr_pwd);
 }
 
+static int	get_shlvl_value(void)
+{
+	const char	*shlvl_value = ft_getenv(SHLVL_VAR);
+
+	if (shlvl_value == NULL)
+		shlvl_value = SHLVL_DEFAULT;
+	return (ft_atoi(shlvl_value) + 1);
+}
+
 static void	init_shlvl(void)
 {
-	int		lvl;
-	char	*lvl_str;
+	const int	lvl = get_shlvl_value();
+	char *const	lvl_str = ft_itoa(lvl);
 
-	lvl = ft_atoi(ft_getenv(SHLVL_VAR)) + 1;
-	lvl_str = ft_itoa(lvl);
 	change_var(SHLVL_VAR, lvl_str, SLEEP_MASK, &g_global.env);
 	free(lvl_str);
 }
