@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 12:09:50 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/08 14:43:16 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define EXPORT_BUILTIN	"export"
 # define PWD_BUILTIN	"pwd"
 # define UNSET_BUILTIN	"unset"
+# define ENV_BUILTIN	"env"
 
 // fct
 
@@ -389,6 +390,10 @@ int			cd_builtin(t_command *cmd_data);
 
 int			echo_builtin(t_command	*cmd_data);
 
+///// env.c
+
+int			env_builtin(t_command *cmd_data);
+
 ///// exit.c
 
 int			exit_builtin(t_command *cmd_data);
@@ -400,6 +405,10 @@ int			export_builtin(t_command *cmd_data);
 ///// pwd.c
 
 int			pwd_builtin(__attribute__((unused)) t_command *cmd_data);
+
+///// unset.c
+
+int			unset_builtin(t_command *cmd);
 
 ////  CWD  ////
 
