@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 14:43:16 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/08 15:01:55 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@
 # define ERROR_ACCESS_PAR_DIR	"cannot access parent directories"
 # define NUM_ARG_REQ			"numeric argument required"
 # define INVALID_ID				"not a valid identifier"
+# define NO_SUCH_FILE			"No such file or directory"
 
 // char types
 

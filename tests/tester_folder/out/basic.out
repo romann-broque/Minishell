@@ -13,8 +13,6 @@ var
 pouet pouet
 minishell: pouet: command not found
 minishell: /pouet: No such file or directory
-env_builtin.out
-env_builtin.refb
 includes
 libft
 Makefile

@@ -16,8 +16,6 @@ minishell: ./noperm: Permission denied
 126
 ls: cannot access 'pouet': No such file or directory
 2
-env_builtin.out
-env_builtin.refb
 includes
 libft
 Makefile
@@ -53,8 +51,6 @@ minishell: exit: -9223372036854775808: numeric argument required
 2
 minishell: exit: -9223372036854775809: numeric argument required
 2
-env_builtin.out
-env_builtin.refb
 includes
 libft
 Makefile
@@ -63,8 +59,6 @@ objs
 README.md
 srcs
 tests
-env_builtin.out
-env_builtin.refb
 includes
 libft
 Makefile
@@ -75,4 +69,4 @@ srcs
 tests
 minishell: pouet: command not found
 127 127
-/home/screw/.vscode-server/bin/252e5463d60e63238250799aef7375787f68b4ee/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell
+/home/mat/.local/bin:/home/mat/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/mat/Desktop/42/Minishell/repo
