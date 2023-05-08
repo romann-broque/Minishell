@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 12:09:48 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/08 14:47:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	init_pwd(void)
 	{
 		update_cwd_var(curr_pwd);
 		old_pwd = ft_getenv(OLDPWD_VAR);
-		if (old_pwd != NULL && streq(old_pwd, EMPTY_STR) == true)
+		if (old_pwd == NULL || streq(old_pwd, EMPTY_STR) == true)
 			set_var_flag(OLDPWD_VAR, SLEEP_MASK);
 	}
 	free(curr_pwd);

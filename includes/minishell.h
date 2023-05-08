@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 14:43:16 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/08 14:49:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,7 +346,7 @@ char		*get_path_from_env(const char *suffix,
 
 //// path_access.c
 
-bool		is_cmd_accessible(char *path);
+bool		is_cmd_accessible(const char *path);
 
 //// cmd_path_utils.c
 
