@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:53:17 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/13 11:38:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/08 09:43:53 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ bool	is_builtin(t_command *cmd_data)
 		EXPORT_BUILTIN,
 		PWD_BUILTIN,
 		UNSET_BUILTIN,
+		ENV_BUILTIN,
 		NULL
 	};
 	const char			*cmd_name = cmd_data->command[0];

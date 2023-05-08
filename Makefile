@@ -70,10 +70,11 @@ SRCS	 	+=	is_builtin.c
 
 ### srcs/execution/builtin/builtin_fcts/
 
+SRCS		+=	cd.c
 SRCS		+=	echo.c
+SRCS		+=	env.c
 SRCS	 	+=	exit.c
 SRCS		+=	export.c
-SRCS		+=	cd.c
 SRCS		+=	pwd.c
 SRCS		+=	unset.c
 

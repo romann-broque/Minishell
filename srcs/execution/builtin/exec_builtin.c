@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:38:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 10:26:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/08 14:27:52 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	exec_builtin(t_command *command)
 	{.name = EXPORT_BUILTIN, .fct = export_builtin},
 	{.name = PWD_BUILTIN, .fct = pwd_builtin},
 	{.name = UNSET_BUILTIN, .fct = unset_builtin},
-	{NULL, NULL},
+	{.name = ENV_BUILTIN, .fct = env_builtin},
+	{NULL, NULL}
 	};
 
 	g_global.last_ret_val = call_builtin(map, command);

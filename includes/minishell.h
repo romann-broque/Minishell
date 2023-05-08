@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 14:06:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/08 14:27:50 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define EXPORT_BUILTIN	"export"
 # define PWD_BUILTIN	"pwd"
 # define UNSET_BUILTIN	"unset"
+# define ENV_BUILTIN	"env"
 
 // fct
 
@@ -388,6 +389,10 @@ int			cd_builtin(t_command *cmd_data);
 ///// echo.c
 
 int			echo_builtin(t_command	*cmd_data);
+
+///// env.c
+
+int			env_builtin(t_command *cmd_data);
 
 ///// exit.c
 
