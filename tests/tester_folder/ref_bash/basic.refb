@@ -1,15 +1,23 @@
-bin
 CUNIT
 env
 norminette
 tester_folder
 valgrind
-bin
+var
 CUNIT
 env
 norminette
 tester_folder
 valgrind
+var
 pouet pouet
 minishell: pouet: command not found
 minishell: /pouet: No such file or directory
+includes
+libft
+Makefile
+minishell
+objs
+README.md
+srcs
+tests

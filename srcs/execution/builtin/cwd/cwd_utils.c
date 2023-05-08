@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cwd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/25 22:53:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/05 09:44:13 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	update_cwd_var(const char *pwd)
 	const char	*curr_path = ft_getenv(PWD_VAR);
 	char *const	new = clean_pwd(pwd, curr_path);
 
-	change_var(OLDPWD_VAR, curr_path);
-	change_var(PWD_VAR, new);
+	update_var(OLDPWD_VAR, curr_path, ENV_MASK);
+	update_var(PWD_VAR, new, ENV_MASK);
 	free(new);
 }
 
@@ -35,7 +35,7 @@ void	check_pos(const char *caller)
 	free(curr_pwd);
 }
 
-void	print_pos(void)
+int	print_pos(void)
 {
 	const char	*cwd = ft_getenv(PWD_VAR);
 	char		*pos;
@@ -48,6 +48,9 @@ void	print_pos(void)
 		print_error("%s: %s: %s: %s: ",
 			PWD_BUILTIN, ERROR_ACCESS_DIR, GETCWD, ERROR_ACCESS_PAR_DIR);
 		perror(EMPTY_STR);
+		free(pos);
+		return (EXIT_FAILURE);
 	}
 	free(pos);
+	return (EXIT_SUCCESS);
 }

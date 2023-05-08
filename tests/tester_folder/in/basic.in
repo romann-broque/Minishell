@@ -4,4 +4,5 @@ ls tests
 /bin/echo pouet pouet
 pouet
 /pouet
+ls
 exit

@@ -32,7 +32,12 @@ void	set_tests(void)
 		},
 		{
 			.suite = NULL, .sname = "Expand", .tests = {
-				{.tname = "expand", expand__test},
+				{.tname = "expand", expand__test}
+			}
+		},
+		{
+			.suite = NULL, .sname = "Export", .tests = {
+				{.tname = "Export var from str", export_var_from_str__test}
 			}
 		},
 		{.suite = NULL, .sname = "Interpreter", .tests = {
@@ -65,7 +70,7 @@ void	exec_tests(void)
 	CU_basic_run_tests();
 
 	// Cleanup the CUnit test registry
-	free_strs(g_global.env);
+	ft_lstclear(&(g_global.env), (void (*)(void *))free_var);
 	exit_tests();
 }
 

@@ -24,6 +24,7 @@ SRCS	 	+=	change_var.test.c
 SRCS		+=	clean_pwd.test.c
 SRCS		+=	cmd_path.test.c
 SRCS		+=	expand.test.c
+SRCS		+=	export.test.c
 SRCS		+=	ft_getenv.test.c
 SRCS	 	+=	get_words.test.c
 SRCS	 	+=	interpreter.test.c

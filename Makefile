@@ -22,6 +22,7 @@ PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/free/
 PATH_SRCS	+=	srcs/init/
 PATH_SRCS	+=	srcs/interpreter/
+PATH_SRCS	+=	srcs/interpreter/command/
 PATH_SRCS	+=	srcs/expansion/var/
 PATH_SRCS	+=	srcs/lexer/
 PATH_SRCS	+=	srcs/lexer/quotes/
@@ -42,22 +43,28 @@ SRCS		+=	batch.c
 
 ### srcs/env/
 
-SRCS		+= change_var.c
-SRCS		+= ft_getenv.c
-SRCS		+= init_env.c
+SRCS		+=	change_var.c
+SRCS		+=	get_env_array.c
+SRCS		+=	env_utils.c
+SRCS		+=	export_utils.c
+SRCS		+=	ft_getenv.c
+SRCS		+=	init_env.c
 
 ### srcs/env/path/
 
 SRCS		+=	clean_path.c
 SRCS		+=	get_path.c
+SRCS		+=	path_access.c
 SRCS		+=	cmd_path_utils.c
 
 ### srcs/execution/
 
+SRCS	 	+=	exec_binary.c
 SRCS	 	+=	execution.c
 
 ### srcs/execution/builtin/
 
+SRCS		+=	dup_export_lst_to_array.c
 SRCS	 	+=	exec_builtin.c
 SRCS	 	+=	is_builtin.c
 
@@ -65,6 +72,7 @@ SRCS	 	+=	is_builtin.c
 
 SRCS		+=	echo.c
 SRCS	 	+=	exit.c
+SRCS		+=	export.c
 SRCS		+=	cd.c
 SRCS		+=	pwd.c
 
@@ -83,6 +91,7 @@ SRCS	 	+=	ft_realpath.c
 ### srcs/exit/
 
 SRCS	 	+=	exit_shell.c
+SRCS		+=	exit_utils.c
 
 ### srcs/expansion/
 
@@ -91,6 +100,7 @@ SRCS	 	+=	expand_utils.c
 SRCS		+=	is_assign_tok.c
 SRCS	 	+=	merge_gen.c
 SRCS	 	+=	split_gen.c
+SRCS		+=	update_tok_type.c
 
 ### srcs/expansion/var/
 
@@ -112,6 +122,12 @@ SRCS		+=	init_shell.c
 
 SRCS		+=	interpreter.c
 SRCS		+=	interpreter_utils.c
+SRCS		+=	cmd_mode.c
+
+### srcs/interpreter/command/
+
+SRCS		+=	command_utils.c
+SRCS		+=	get_arg_array.c
 
 ### srcs/lexer/
 
@@ -218,6 +234,10 @@ CUNIT_EXE		= $(CUNIT_FOLDER)/cunit
 CURR_FOLDER_VALGRIND = ./tests/valgrind/
 SUPPRESSION_FILE	= $(CURR_FOLDER_VALGRIND)suppressions.supp
 
+### VAR
+
+VAR_FOLDER		= $(TESTER_FOLDER)/var/
+
 ifeq ($(valgrind), true)
 	VALGRIND	+= valgrind
 endif
@@ -299,6 +319,7 @@ norm	:
 
 test	:
 	$(MAKE) -s
+	$(MAKE) -sC $(VAR_FOLDER)
 	$(RM) $(CUNIT_EXE)
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
@@ -308,12 +329,14 @@ test	:
 
 clean	:
 	$(RM) -r $(PATH_OBJS)
+	$(MAKE) -sC $(VAR_FOLDER) clean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) clean > /dev/null
 	$(MAKE) -sC $(CUNIT_FOLDER) clean > /dev/null
 	$(ECHOC) $(GREEN) "--> .o files deleted !"$(NC)"\n"
 
 fclean	:	clean
 	$(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
+	$(MAKE) -sC $(VAR_FOLDER) fclean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) fclean > /dev/null
 	$(MAKE) -sC $(CUNIT_FOLDER) fclean > /dev/null
 	$(RM) $(NAME)
@@ -323,5 +346,5 @@ re 		: fclean
 	echo -e $(YELLOW) "\nRebuilding..." $(NC)
 	$(MAKE) -s
 
-.PHONY	: all run test clean fclean re
+.PHONY	: all run norm test clean fclean re
 .SILENT	:
