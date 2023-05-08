@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/07 15:28:59 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/08 10:27:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -398,6 +398,10 @@ int			export_builtin(t_command *cmd_data);
 ///// pwd.c
 
 int			pwd_builtin(__attribute__((unused)) t_command *cmd_data);
+
+///// unset.c
+
+int			unset_builtin(t_command *cmd);
 
 ////  CWD  ////
 
