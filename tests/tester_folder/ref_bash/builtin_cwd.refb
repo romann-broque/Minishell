@@ -1,14 +1,14 @@
 /bin
 /bin
-/home/mat/Desktop/42/Minishell/repo/tests
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
 minishell: cd: ./bin: No such file or directory
-/home/mat/Desktop/42/Minishell/repo/tests
-/home/mat/Desktop/42/Minishell/repo
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell
 minishell: cd: bonjour: No such file or directory
 minishell: cd: repo: No such file or directory
-/home/mat/Desktop/42/Minishell/repo
-/home/mat/Desktop/42/Minishell/repo /home/mat/Desktop/42/Minishell/repo/tests
-/bin /home/mat/Desktop/42/Minishell/repo
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests
+/bin /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell
 /bin
 /usr
 /
@@ -26,25 +26,24 @@ minishell: cd: ../../tests/CUNIT/..: No such file or directory
 /home
 /home
 minishell: cd: too many arguments
-/home/mat
+/home/screw
 /home
 /home
-/home/mat
-/home/mat
+/home/screw
+/home/screw
 /home
-/home/mat
-/home/mat
+/home/screw
+/home/screw
 /home
-/home/mat
+/home/screw
 mkdir: cannot create directory ‘new’: Permission denied
 minishell: cd: new: No such file or directory
-/home/mat
-mkdir: cannot create directory ‘lol’: File exists
-minishell: cd: lol: Not a directory
-/home/mat
-/home/mat /home
-/home
-/home/mat
+/home/screw
+pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+/home/screw/lol /home/screw
+chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+/home/screw
+/home/screw
 minishell: cd: pouet: No such file or directory
 /bin
 /dev/disk
@@ -52,5 +51,6 @@ minishell: cd: pouet: No such file or directory
 minishell: cd: ../../../../......./..////////: No such file or directory
 minishell: cd: /.//////./../../../......./..////////: No such file or directory
 /dev/disk
-/home/mat
-/home/mat /dev/disk
+/home/screw
+/home/screw /dev/disk
+/home/screw
