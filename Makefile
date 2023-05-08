@@ -76,6 +76,7 @@ SRCS		+=	env.c
 SRCS	 	+=	exit.c
 SRCS		+=	export.c
 SRCS		+=	pwd.c
+SRCS		+=	unset.c
 
 ### srcs/execution/builtin/cwd/
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cwd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 09:44:13 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/08 11:26:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	print_pos(void)
 	pos = getcwd(NULL, 0);
 	if (pos != NULL && cwd != NULL)
 		ft_printf("%s\n", cwd);
+	else if (pos != NULL)
+		ft_printf("%s\n", pos);
 	else
 	{
 		print_error("%s: %s: %s: %s: ",

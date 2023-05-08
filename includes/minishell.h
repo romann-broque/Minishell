@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 09:57:46 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/08 14:27:50 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define NEWLINE_STR	"\n"
 # define SPACE_STR		" "
 # define DQUOTE_STR		"\""
+# define SHLVL_DEFAULT	"0"
 
 // builtins
 
@@ -70,6 +71,7 @@
 # define PWD_VAR		"PWD"
 # define PATH_VAR		"PATH"
 # define CDPATH_VAR		"CDPATH"
+# define SHLVL_VAR		"SHLVL"
 
 // tok_string
 
@@ -403,6 +405,10 @@ int			export_builtin(t_command *cmd_data);
 ///// pwd.c
 
 int			pwd_builtin(__attribute__((unused)) t_command *cmd_data);
+
+///// unset.c
+
+int			unset_builtin(t_command *cmd);
 
 ////  CWD  ////
 

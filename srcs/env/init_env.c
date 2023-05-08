@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 09:43:49 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/08 11:04:53 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_list	*get_env_from_strs(char **env_strs)
 void	init_env(t_global *global, char **env)
 {
 	global->env = get_env_from_strs(env);
-	if (global->env == NULL)
+	if (*env != NULL && global->env == NULL)
 	{
 		perror(MALLOC_ERROR);
 		exit(EXIT_FAILURE);
