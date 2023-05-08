@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 09:57:44 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 11:06:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/08 11:11:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ static void	unset_arg(char *arg)
 
 int	unset_builtin(t_command *cmd)
 {
-	char	**command;
+	char *const	*command = cmd->command + 1;
 
-	command = cmd->command + 1;
 	while (*command != NULL)
 	{
 		unset_arg(*command);
