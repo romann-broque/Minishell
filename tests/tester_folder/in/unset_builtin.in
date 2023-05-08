@@ -15,5 +15,9 @@ printenv strawberry
 export bibelot
 unset bibelot
 unset lolilol
-unset lolilol pouet PATH
+unset lolilol pouet PWD
+pwd
+printenv PWD
+PWD="lol"
+pwd
 exit 0
