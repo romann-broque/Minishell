@@ -12,6 +12,4 @@ export strawberry
 printenv strawberry
 unset strawberry
 printenv strawberry
-unset PATH OLDPWD PWD
-printenv PATH OLDPWD PWD
 exit 0
