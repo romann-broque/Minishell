@@ -1,0 +1,17 @@
+unset
+printenv PWD
+unset PWD
+printenv PWD
+pouet=43
+unset pouet
+strawberry=sugar
+printenv strawberry
+unset strawberry
+printenv strawberry
+export strawberry
+printenv strawberry
+unset strawberry
+printenv strawberry
+unset PATH OLDPWD PWD
+printenv PATH OLDPWD PWD
+exit 0
