@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 11:26:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/08 14:51:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ int	print_pos(void)
 	char		*pos;
 
 	pos = getcwd(NULL, 0);
-	if (pos != NULL && cwd != NULL)
-		ft_printf("%s\n", cwd);
-	else if (pos != NULL)
-		ft_printf("%s\n", pos);
+	if (pos != NULL)
+	{
+		if (cwd != NULL && is_cmd_accessible(cwd) == true)
+			ft_printf("%s\n", cwd);
+		else
+			ft_printf("%s\n", pos);
+	}
 	else
 	{
 		print_error("%s: %s: %s: %s: ",
