@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 10:27:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/08 14:06:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define NEWLINE_STR	"\n"
 # define SPACE_STR		" "
 # define DQUOTE_STR		"\""
+# define SHLVL_DEFAULT	"0"
 
 // builtins
 
@@ -69,6 +70,7 @@
 # define PWD_VAR		"PWD"
 # define PATH_VAR		"PATH"
 # define CDPATH_VAR		"CDPATH"
+# define SHLVL_VAR		"SHLVL"
 
 // tok_string
 
