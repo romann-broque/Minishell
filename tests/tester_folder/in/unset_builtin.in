@@ -12,4 +12,8 @@ export strawberry
 printenv strawberry
 unset strawberry
 printenv strawberry
+export bibelot
+unset bibelot
+unset lolilol
+unset lolilol pouet PATH
 exit 0
