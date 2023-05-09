@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/09 15:01:02 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/09 15:42:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static void	dup_files(int in, int out)
 
 void	execution(t_command *cmd_data)
 {
-	const int	stdout = dup(STDOUT_FILENO);
 	const int	stdin = dup(STDIN_FILENO);
+	const int	stdout = dup(STDOUT_FILENO);
 	char		*path;
 
 	dup_files(cmd_data->fdin, cmd_data->fdout);
