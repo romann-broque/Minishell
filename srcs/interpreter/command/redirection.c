@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:12:14 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/09 11:59:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/09 12:01:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static void	change_output(
 	t_toktype tok_type
 	)
 {
+	if (curr_cmd->fdout != STDOUT_FILENO)
+		close(curr_cmd->fdout);
 	curr_cmd->fdout = get_out_fd(tok_value, tok_type);
 }
 
