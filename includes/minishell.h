@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 15:01:55 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/09 11:59:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <errno.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 ///////////////
 /// DEFINES ///
@@ -559,7 +561,12 @@ void		free_command(t_command *cmd_data);
 
 //// get_arg_array.c
 
+void		append_to_arg_array(t_command *cmd, t_list *tokens);
 char		**get_arg_array(t_list *tokens);
+
+//// redirection.c
+
+void		update_fds(t_toktype toktype, t_token *tok, t_command *cmd);
 
 //			LEXER			//
 

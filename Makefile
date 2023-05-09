@@ -130,6 +130,7 @@ SRCS		+=	cmd_mode.c
 
 SRCS		+=	command_utils.c
 SRCS		+=	get_arg_array.c
+SRCS		+=	redirection.c
 
 ### srcs/lexer/
 

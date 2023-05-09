@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 15:08:06 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/09 11:57:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	execution(t_command *cmd_data)
 {
 	char	*path;
 
+	printf("in->%d\nout->%d\n\n", cmd_data->fdin, cmd_data->fdout);
 	if (is_builtin(cmd_data) == true)
 		exec_builtin(cmd_data);
 	else
