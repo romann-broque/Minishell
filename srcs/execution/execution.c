@@ -6,11 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/09 15:42:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/09 16:06:40 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_global	g_global;
 
 static void	handle_error_path(t_command *cmd_data, char **path)
 {
@@ -56,8 +58,6 @@ static void	dup_files(int in, int out)
 
 void	execution(t_command *cmd_data)
 {
-	const int	stdin = dup(STDIN_FILENO);
-	const int	stdout = dup(STDOUT_FILENO);
 	char		*path;
 
 	dup_files(cmd_data->fdin, cmd_data->fdout);
@@ -69,11 +69,9 @@ void	execution(t_command *cmd_data)
 		add_deallocator(path, free);
 		exec_binary(cmd_data, path);
 	}
-	dup_files(stdin, stdout);
+	dup_files(g_global.stdin, g_global.stdout);
 	if (cmd_data->fdin != STDIN_FILENO)
 		close(cmd_data->fdin);
 	if (cmd_data->fdout != STDOUT_FILENO)
 		close(cmd_data->fdout);
-	close(stdin);
-	close(stdout);
 }

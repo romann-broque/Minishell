@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/09 15:37:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/09 16:05:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,8 @@ typedef struct s_global
 	t_list	*garbage;
 	t_list	*env;
 	bool	is_stoppable;
+	int		stdin;
+	int		stdout;
 }				t_global;
 
 /////////////////

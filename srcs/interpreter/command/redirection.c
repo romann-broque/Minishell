@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:12:14 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/09 12:01:57 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/09 16:23:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 static int	get_out_fd(char *out, t_toktype tok_type)
 {
-	int	fd;
-	int	mask;
+	static int	perm_mask = (S_IRUSR | S_IWUSR)
+		| (S_IRGRP | S_IWGRP)
+		| (S_IROTH);
+	int			mask;
+	int			fd;
 
-	mask = O_WRONLY;
+	mask = O_RDWR;
 	if (access(out, F_OK) != 0)
 		mask |= O_CREAT;
 	if (tok_type == T_RCHEVRON)
 		mask |= O_TRUNC;
 	else
 		mask |= O_APPEND;
-	fd = open(out, mask);
+	fd = open(out, mask, perm_mask);
 	if (fd == -1)
 		perror(EMPTY_STR);
 	return (fd);
