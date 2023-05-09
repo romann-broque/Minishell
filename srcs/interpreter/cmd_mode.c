@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_mode.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/09 13:28:54 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/09 17:13:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ t_list	*cmd_mode(t_list *tokens, t_list *env)
 			process_assign(&local_env, tokens);
 		else
 		{
-			if (toktype == T_GENERIC)
+			if (toktype == T_GENERIC || toktype == T_LCHEVRON
+				|| toktype == T_DOUBLE_LCHEVRON)
 				generate_cmd(&commands, &tokens, env, local_env);
 			clear_local_env(&local_env);
 			toktype = get_type_from_tok(tokens->content);

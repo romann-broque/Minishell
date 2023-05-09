@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:12:14 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/09 16:23:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/09 17:14:05 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,22 @@ static void	change_output(
 		close(curr_cmd->fdout);
 	curr_cmd->fdout = get_out_fd(tok_value, tok_type);
 }
+
+// get_in_fd(char *in, t_toktype tok_type)
+// {
+// }
+
+// static void	change_input(
+// 	t_command *curr_cmd,
+// 	char *tok_value,
+// 	t_toktype tok_type
+// )
+// {
+// 	if (tok_type == DOUBLE_LCHEVRON)
+// 		printf("HEREDOC\n");
+// 	else
+// 		curr_cmd->fdout = get_in_fd(tok_value, tok_type);
+// }
 
 void	update_fds(t_toktype toktype, t_token *tok, t_command *cmd)
 {
