@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/09 11:57:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:20:52 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,24 @@ static char	*get_path(t_command *cmd_data)
 	return (path);
 }
 
+static void	dup_files(int in, int out)
+{
+	dup2(in, STDIN_FILENO);
+	dup2(out, STDOUT_FILENO);
+}
+
+static void	revert_dup_files(int in, int out)
+{
+	dup2(STDIN_FILENO, in);
+	dup2(STDOUT_FILENO, out);
+}
+
 void	execution(t_command *cmd_data)
 {
 	char	*path;
 
 	printf("in->%d\nout->%d\n\n", cmd_data->fdin, cmd_data->fdout);
+	dup_files(cmd_data->fdin, cmd_data->fdout);
 	if (is_builtin(cmd_data) == true)
 		exec_builtin(cmd_data);
 	else
@@ -61,4 +74,5 @@ void	execution(t_command *cmd_data)
 		add_deallocator(path, free);
 		exec_binary(cmd_data, path);
 	}
+	revert_dup_files(cmd_data->fdin, cmd_data->fdout);
 }

@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 11:07:29 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/09 13:23:05 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,6 @@ t_command	*init_command(t_list *tokens, t_list *env)
 	}
 	return (cmd_data);
 }
-
-// NOTES
-//For the MVE with redirections and PIPES :
-//		We will have to pass into argument of init_command the type of the token
-//		following the command so that we know which fdin and fdout to set.
 
 void	free_command(t_command *cmd_data)
 {
