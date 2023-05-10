@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/10 14:22:20 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/10 14:24:11 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -553,12 +553,17 @@ bool		is_assign_mode(t_list *tokens);
 
 t_list		*cmd_mode(t_list *tokens, t_list *env);
 
+/// cmd_mode_utils.c
+
+void		clean_commands(t_list **commands);
+void		clear_local_env(t_list **env);
+
 ///			COMMAND			///
 
 //// command_utils.c
 
 char		**dup_env_lst_to_array(t_list *env_lst);
-t_command	*init_command(t_list *tokens, t_list *env);
+t_command	*init_command(void);
 void		free_command(t_command *cmd_data);
 
 ////////////

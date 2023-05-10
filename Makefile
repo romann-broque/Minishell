@@ -126,6 +126,7 @@ SRCS		+=	init_shell.c
 SRCS		+=	interpreter.c
 SRCS		+=	interpreter_utils.c
 SRCS		+=	cmd_mode.c
+SRCS		+=	cmd_mode_utils.c
 
 ### srcs/interpreter/command/
 

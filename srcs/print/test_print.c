@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:08:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 15:03:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/10 10:41:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	print_cmd(t_list *cmds)
 {
 	t_command	*cmd_data;
 
+	printf("COMMAND:\n");
 	while (cmds != NULL)
 	{
 		cmd_data = cmds->content;

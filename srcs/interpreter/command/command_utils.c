@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/09 13:23:05 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/10 10:38:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,15 @@ char	**dup_env_lst_to_array(t_list *env_lst)
 	return (get_env_array(env_lst, ENV_MASK, get_assign_from_var));
 }
 
-t_command	*init_command(t_list *tokens, t_list *env)
+t_command	*init_command(void)
 {
 	t_command	*cmd_data;
 
 	cmd_data = (t_command *)malloc(sizeof(t_command));
 	if (cmd_data != NULL)
 	{
-		cmd_data->command = get_arg_array(tokens);
-		if (cmd_data->command == NULL)
-			return (NULL);
-		cmd_data->env = dup_env_lst_to_array(env);
+		cmd_data->command = NULL;
+		cmd_data->env = NULL;
 		cmd_data->fdin = STDIN_FILENO;
 		cmd_data->fdout = STDOUT_FILENO;
 	}
