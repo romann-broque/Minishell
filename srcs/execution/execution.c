@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/10 14:21:37 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/10 15:13:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,21 @@ static void	dup_files(int in, int out)
 
 void	execution(t_command *cmd_data)
 {
-	char		*path;
+	char	*path;
 
-	dup_files(cmd_data->fdin, cmd_data->fdout);
-	if (is_builtin(cmd_data) == true)
-		exec_builtin(cmd_data);
-	else
+	if (cmd_data->fdin != -1 && cmd_data->fdout != -1)
 	{
-		path = get_path(cmd_data);
-		add_deallocator(path, free);
-		exec_binary(cmd_data, path);
+		dup_files(cmd_data->fdin, cmd_data->fdout);
+		if (is_builtin(cmd_data) == true)
+			exec_builtin(cmd_data);
+		else
+		{
+			path = get_path(cmd_data);
+			add_deallocator(path, free);
+			exec_binary(cmd_data, path);
+		}
+		dup_files(g_global.stdin, g_global.stdout);
 	}
-	dup_files(g_global.stdin, g_global.stdout);
 	if (cmd_data->fdin != STDIN_FILENO)
 		close(cmd_data->fdin);
 	if (cmd_data->fdout != STDOUT_FILENO)

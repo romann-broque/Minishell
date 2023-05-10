@@ -1,37 +1,36 @@
-total 168
-drwxrwxr-x  9 mat mat   4096 May 10 14:12 .
-drwxrwxr-x  5 mat mat   4096 May  9 15:02 ..
-drwxrwxr-x  8 mat mat   4096 May 10 09:00 .git
-drwxrwxr-x  3 mat mat   4096 May  2 16:50 .github
--rw-rw-r--  1 mat mat    474 May  2 16:50 .gitignore
--rw-rw-r--  1 mat mat     80 May  2 16:50 .gitmodules
-drwxrwxr-x  2 mat mat   4096 May 10 09:00 includes
-drwxrwxr-x  6 mat mat   4096 May 10 10:17 libft
--rw-rw-r--  1 mat mat   6384 May 10 09:26 Makefile
--rwxrwxr-x  1 mat mat 106736 May 10 14:04 minishell
-drwxrwxr-x  2 mat mat   4096 May 10 14:04 objs
--rw-rw-r--  1 mat mat      0 May 10 14:12 out
--rw-rw-r--  1 mat mat     69 May 10 14:11 out2
--rw-rw-r--  1 mat mat     71 May  2 16:50 README.md
-drwxrwxr-x 16 mat mat   4096 May 10 09:14 srcs
-drwxrwxr-x  8 mat mat   4096 May  8 15:58 tests
-total 164
-drwxrwxr-x  9 mat mat   4096 May 10 14:12 .
-drwxrwxr-x  5 mat mat   4096 May  9 15:02 ..
-drwxrwxr-x  8 mat mat   4096 May 10 09:00 .git
-drwxrwxr-x  3 mat mat   4096 May  2 16:50 .github
--rw-rw-r--  1 mat mat    474 May  2 16:50 .gitignore
--rw-rw-r--  1 mat mat     80 May  2 16:50 .gitmodules
-drwxrwxr-x  2 mat mat   4096 May 10 09:00 includes
-drwxrwxr-x  6 mat mat   4096 May 10 10:17 libft
--rw-rw-r--  1 mat mat   6384 May 10 09:26 Makefile
--rwxrwxr-x  1 mat mat 106736 May 10 14:04 minishell
-drwxrwxr-x  2 mat mat   4096 May 10 14:04 objs
--rw-rw-r--  1 mat mat      0 May 10 14:12 out
--rw-rw-r--  1 mat mat      0 May 10 14:12 out2
--rw-rw-r--  1 mat mat     71 May  2 16:50 README.md
-drwxrwxr-x 16 mat mat   4096 May 10 09:14 srcs
-drwxrwxr-x  8 mat mat   4096 May  8 15:58 tests
+.
+..
+.git
+.github
+.gitignore
+.gitmodules
+includes
+libft
+Makefile
+minishell
+objs
+out
+README.md
+srcs
+tests
+.vscode
+.
+..
+.git
+.github
+.gitignore
+.gitmodules
+includes
+libft
+Makefile
+minishell
+objs
+out
+out2
+README.md
+srcs
+tests
+.vscode
 bonjour
 includes
 libft
@@ -43,6 +42,45 @@ out2
 README.md
 srcs
 tests
+includes
+libft
+Makefile
+minishell
+objs
+out1
+out2
+README.md
+srcs
+tests
+includes
+libft
+Makefile
+minishell
+objs
+out1
+out2
+README.md
+srcs
+tests
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main(int ac, char **av)
+{
+	int		i;
+	char	*var_value;
+
+	if (ac > 1)
+	{
+		i = 0;
+		while (av[i + 1] != NULL)
+		{
+			var_value = getenv(av[i + 1]);
+			printf("var is [%s]\n", var_value);
+			++i;
+		}
+	}
+}
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -81,3 +119,56 @@ int	main(int ac, char **av)
 }		
 }	
 }
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main(int ac, char **av)
+{
+	int		i;
+	char	*var_value;
+
+	if (ac > 1)
+	{
+		i = 0;
+		while (av[i + 1] != NULL)
+		{
+			var_value = getenv(av[i + 1]);
+			printf("var is [%s]\n", var_value);
+			++i;
+		}
+	}
+}
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main(int ac, char **av)
+{
+	int		i;
+	char	*var_value;
+
+	if (ac > 1)
+	{
+		i = 0;
+		while (av[i + 1] != NULL)
+		{
+			var_value = getenv(av[i + 1]);
+			printf("var is [%s]\n", var_value);
+			++i;
+		}
+	}
+}
+appended
+wouah
+lol
+wouah and lol are dead
+cat: result: Permission denied
+wouah
+
+
+instructions
+minishell: lol: Permission denied
+minishell: lol: Permission denied
+
+
+instructions
+instructions

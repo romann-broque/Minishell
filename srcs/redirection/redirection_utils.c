@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 09:15:11 by mat               #+#    #+#             */
-/*   Updated: 2023/05/10 14:21:29 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/10 15:20:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern t_global	g_global;
 
-static int	ft_heredoc(char *end_str)
+static void	ft_heredoc(char *end_str)
 {
 	int		fd_tmp;
 	char	*line;
@@ -22,7 +22,7 @@ static int	ft_heredoc(char *end_str)
 
 	g_global.heredoc = true;
 	limiter = ft_strjoin(end_str, NEWLINE_STR);
-	fd_tmp = open(HDOC_TMP_FILE, O_RDWR | O_TRUNC | O_CREAT, 0644);
+	fd_tmp = open(HDOC_TMP_FILE, O_RDWR | O_CREAT, 0644);
 	while (1)
 	{
 		write(1, "> ", 2);
@@ -34,7 +34,7 @@ static int	ft_heredoc(char *end_str)
 		free(line);
 	}
 	free(limiter);
-	return (fd_tmp);
+	close(fd_tmp);
 }
 
 int	get_out_fd(char *out, t_toktype tok_type)
@@ -45,7 +45,7 @@ int	get_out_fd(char *out, t_toktype tok_type)
 	int			mask;
 	int			fd;
 
-	mask = O_RDWR;
+	mask = O_WRONLY;
 	if (access(out, F_OK) != 0)
 		mask |= O_CREAT;
 	if (tok_type == T_RCHEVRON)
@@ -54,7 +54,10 @@ int	get_out_fd(char *out, t_toktype tok_type)
 		mask |= O_APPEND;
 	fd = open(out, mask, perm_mask);
 	if (fd == -1)
+	{
+		print_error("%s: %s: ", MINISHELL, out);
 		perror(EMPTY_STR);
+	}
 	return (fd);
 }
 
@@ -64,13 +67,18 @@ int	get_in_fd(char *in, t_toktype tok_type)
 
 	fd = -1;
 	if (tok_type == T_DOUBLE_LCHEVRON)
-		return (ft_heredoc(in));
-	else
 	{
-		if (access(in, F_OK | R_OK) == -1)
-			perror(EMPTY_STR);
-		else
-			fd = open(in, O_RDONLY);
-		return (fd);
+		in = HDOC_TMP_FILE;
+		ft_heredoc(in);
 	}
+	if (access(in, F_OK) == 0)
+	{
+		fd = open(in, O_RDONLY);
+	}
+	if (fd == -1)
+	{
+		print_error("%s: %s: ", MINISHELL, in);
+		perror(EMPTY_STR);
+	}
+	return (fd);
 }

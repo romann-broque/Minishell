@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:28:37 by mdorr             #+#    #+#             */
-/*   Updated: 2023/05/09 14:42:20 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/10 15:00:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	echo_builtin(t_command *cmd_data)
 	i = 0;
 	while (str_ptr[i] != NULL)
 	{
-		printf("%s", str_ptr[i]);
+		ft_printf("%s", str_ptr[i]);
 		if (str_ptr[i + 1] != NULL)
-			printf(SPACE_STR);
+			ft_printf(SPACE_STR);
 		i++;
 	}
 	if (n_option == false)
-		printf(NEWLINE_STR);
+		ft_printf(NEWLINE_STR);
 	return (EXIT_SUCCESS);
 }
