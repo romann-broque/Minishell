@@ -21,6 +21,8 @@ libft
 Makefile
 minishell
 objs
+out
+out2
 README.md
 srcs
 tests
@@ -56,6 +58,8 @@ libft
 Makefile
 minishell
 objs
+out
+out2
 README.md
 srcs
 tests
@@ -64,9 +68,11 @@ libft
 Makefile
 minishell
 objs
+out
+out2
 README.md
 srcs
 tests
 minishell: pouet: command not found
 127 127
-/home/screw/.vscode-server/bin/252e5463d60e63238250799aef7375787f68b4ee/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell
+/home/mat/.local/bin:/home/mat/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/mat/Desktop/42/Minishell/repo

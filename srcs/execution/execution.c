@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/09 16:06:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/10 14:21:37 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,6 @@ void	execution(t_command *cmd_data)
 		close(cmd_data->fdin);
 	if (cmd_data->fdout != STDOUT_FILENO)
 		close(cmd_data->fdout);
+	if (g_global.heredoc == true)
+		unlink(HDOC_TMP_FILE);
 }

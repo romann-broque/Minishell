@@ -1,0 +1,14 @@
+ls -la > out
+cat out
+ls -la > out > out2
+cat out
+cat out2
+rm out out2
+ls > out > out2 -la
+echo bonjour
+> out2 ls
+cat out2
+rm out out2
+
+< tests/var/var.c cat
+rev < tests/var/var.c

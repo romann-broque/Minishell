@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/09 16:05:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/10 13:50:20 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	init_fds(void)
 {
 	g_global.stdin = dup(STDIN_FILENO);
 	g_global.stdout = dup(STDOUT_FILENO);
+	g_global.heredoc = false;
 }
 
 void	init_shell(char **env)

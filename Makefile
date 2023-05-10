@@ -31,6 +31,7 @@ PATH_SRCS	+=	srcs/lexer/word/
 PATH_SRCS	+=	srcs/parser/
 PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
+PATH_SRCS	+=	srcs/redirection/
 PATH_SRCS	+=	srcs/signal/
 
 ### srcs/
@@ -130,7 +131,6 @@ SRCS		+=	cmd_mode.c
 
 SRCS		+=	command_utils.c
 SRCS		+=	get_arg_array.c
-SRCS		+=	redirection.c
 
 ### srcs/lexer/
 
@@ -165,6 +165,11 @@ SRCS		+=	print_error.c
 ### srcs/prompt/
 
 SRCS	 	+=	prompt.c
+
+### srcs/redirection/
+
+SRCS		+=	redirection.c
+SRCS		+=	redirection_utils.c
 
 ### srcs/signal/
 
