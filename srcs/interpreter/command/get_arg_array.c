@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:10:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/09 11:22:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/10 10:31:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	**get_arg_array(t_list *tokens)
 	const size_t	size = get_word_count(tokens);
 	char			**arg_array;
 
-	arg_array = (char **)calloc(sizeof(char *), (size + 1));
+	arg_array = (char **)ft_calloc(sizeof(char *), (size + 1));
 	if (arg_array == NULL)
 	{
 		perror(MALLOC_ERROR);
