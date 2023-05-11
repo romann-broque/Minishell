@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 09:15:11 by mat               #+#    #+#             */
-/*   Updated: 2023/05/10 15:20:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/11 10:15:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ static void	ft_heredoc(char *end_str)
 	{
 		write(1, "> ", 2);
 		line = get_next_line(STDIN_FILENO);
-		if (line == NULL || (ft_strlen(limiter) == ft_strlen(line)
-				&& streq(limiter, line) == true))
+		if (line == NULL || (streq(limiter, line) == true))
 			break ;
-		write(fd_tmp, line, ft_strlen(line));
+		ft_dprintf(fd_tmp, line);
 		free(line);
 	}
 	free(limiter);
@@ -68,13 +67,11 @@ int	get_in_fd(char *in, t_toktype tok_type)
 	fd = -1;
 	if (tok_type == T_DOUBLE_LCHEVRON)
 	{
-		in = HDOC_TMP_FILE;
 		ft_heredoc(in);
+		in = HDOC_TMP_FILE;
 	}
 	if (access(in, F_OK) == 0)
-	{
 		fd = open(in, O_RDONLY);
-	}
 	if (fd == -1)
 	{
 		print_error("%s: %s: ", MINISHELL, in);
