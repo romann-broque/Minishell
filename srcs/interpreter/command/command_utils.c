@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/10 10:38:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/11 11:18:58 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ void	free_command(t_command *cmd_data)
 	{
 		free_strs(cmd_data->command);
 		free_strs(cmd_data->env);
+		if (cmd_data->fdin != STDIN_FILENO)
+			close(cmd_data->fdin);
+		if (cmd_data->fdout != STDOUT_FILENO)
+			close(cmd_data->fdout);
 	}
 	free(cmd_data);
 }

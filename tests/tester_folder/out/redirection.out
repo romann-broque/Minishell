@@ -13,7 +13,6 @@ out
 README.md
 srcs
 tests
-.vscode
 .
 ..
 .git
@@ -30,7 +29,6 @@ out2
 README.md
 srcs
 tests
-.vscode
 bonjour
 includes
 libft

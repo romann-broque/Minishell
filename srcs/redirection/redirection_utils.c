@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 09:15:11 by mat               #+#    #+#             */
-/*   Updated: 2023/05/11 10:15:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/11 11:16:05 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,29 @@
 
 extern t_global	g_global;
 
-static void	ft_heredoc(char *end_str)
+static int	ft_heredoc(char *end_str)
 {
-	int		fd_tmp;
 	char	*line;
 	char	*limiter;
+	int		hd_pipe[2];
 
-	g_global.heredoc = true;
+	pipe(hd_pipe);
 	limiter = ft_strjoin(end_str, NEWLINE_STR);
-	fd_tmp = open(HDOC_TMP_FILE, O_RDWR | O_CREAT, 0644);
 	while (1)
 	{
-		write(1, "> ", 2);
+		ft_dprintf(STDIN_FILENO, "> ");
 		line = get_next_line(STDIN_FILENO);
 		if (line == NULL || (streq(limiter, line) == true))
+		{
+			free(line);
 			break ;
-		ft_dprintf(fd_tmp, line);
+		}
+		ft_dprintf(hd_pipe[1], line);
 		free(line);
 	}
 	free(limiter);
-	close(fd_tmp);
+	close(hd_pipe[1]);
+	return (hd_pipe[0]);
 }
 
 int	get_out_fd(char *out, t_toktype tok_type)
@@ -66,10 +69,7 @@ int	get_in_fd(char *in, t_toktype tok_type)
 
 	fd = -1;
 	if (tok_type == T_DOUBLE_LCHEVRON)
-	{
-		ft_heredoc(in);
-		in = HDOC_TMP_FILE;
-	}
+		return (ft_heredoc(in));
 	if (access(in, F_OK) == 0)
 		fd = open(in, O_RDONLY);
 	if (fd == -1)
