@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/11 11:37:24 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/11 18:04:27 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,15 @@ static void	process_tok(
 	t_toktype	toktype;
 	t_command	*cmd;
 
+	cmd = NULL;
 	toktype = get_type_from_tok((*tokens)->content);
-	if (toktype == T_START || toktype == T_PIPE)
+	if (toktype == T_START)
 	{
 		cmd = init_command();
 		ft_lstadd_back(cmd_lst, ft_lstnew(cmd));
 	}
+	else if (toktype == T_PIPE)
+		init_pipe_and_command(cmd_lst, cmd);
 	else if (toktype == T_ASSIGN)
 		process_assign(local_env, *tokens);
 	else if (toktype == T_GENERIC)
