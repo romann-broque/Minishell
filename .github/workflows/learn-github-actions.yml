@@ -15,6 +15,7 @@ on:
       - "MVE7"
       - "MVE8"
       - "MVE9"
+      - "MVE10"
 
 jobs:
   check-bats-version:

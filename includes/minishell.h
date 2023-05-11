@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 15:37:03 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/11 11:32:25 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <errno.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 ///////////////
 /// DEFINES ///
@@ -280,6 +282,8 @@ typedef struct s_global
 	t_list	*garbage;
 	t_list	*env;
 	bool	is_stoppable;
+	int		stdin;
+	int		stdout;
 }				t_global;
 
 /////////////////
@@ -547,19 +551,29 @@ bool		is_assign_mode(t_list *tokens);
 
 t_list		*cmd_mode(t_list *tokens, t_list *env);
 
+/// cmd_mode_utils.c
+
+void		clean_commands(t_list **commands);
+void		clear_local_env(t_list **env);
+
 ///			COMMAND			///
 
 //// command_utils.c
 
 char		**dup_env_lst_to_array(t_list *env_lst);
-t_command	*init_command(t_list *tokens, t_list *env);
+t_command	*init_command(void);
 void		free_command(t_command *cmd_data);
 
 ////////////
 
 //// get_arg_array.c
 
+void		append_to_arg_array(t_command *cmd, t_list *tokens);
 char		**get_arg_array(t_list *tokens);
+
+//// redirection.c
+
+void		update_fds(t_toktype toktype, t_token *tok, t_command *cmd);
 
 //			LEXER			//
 
@@ -646,6 +660,17 @@ void		print_error(const char *format, ...);
 /// prompt.c
 
 void		prompt(void);
+
+//			REDIRECTION			//
+
+/// redirection.c
+
+void		update_fds(t_toktype toktype, t_token *tok, t_command *cmd);
+
+/// redirection utils.c
+
+int			get_out_fd(char *out, t_toktype tok_type);
+int			get_in_fd(char *in, t_toktype tok_type);
 
 //			SIGNAL			//
 

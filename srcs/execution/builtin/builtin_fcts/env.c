@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 09:36:04 by mat               #+#    #+#             */
-/*   Updated: 2023/05/08 14:30:45 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/11 11:33:20 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	env_builtin(t_command *cmd_data)
 
 	index = 0;
 	while (cmd_data->env[index] != NULL)
-		printf("%s\n", cmd_data->env[index++]);
+		ft_printf("%s\n", cmd_data->env[index++]);
 	return (EXIT_SUCCESS);
 }
