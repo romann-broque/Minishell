@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 09:15:11 by mat               #+#    #+#             */
-/*   Updated: 2023/05/11 10:15:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/11 10:59:14 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@ static void	ft_heredoc(char *end_str)
 
 	g_global.heredoc = true;
 	limiter = ft_strjoin(end_str, NEWLINE_STR);
-	fd_tmp = open(HDOC_TMP_FILE, O_RDWR | O_CREAT, 0644);
+	fd_tmp = open(HDOC_TMP_FILE, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	while (1)
 	{
-		write(1, "> ", 2);
+		ft_dprintf(STDIN_FILENO, "> ");
 		line = get_next_line(STDIN_FILENO);
 		if (line == NULL || (streq(limiter, line) == true))
+		{
+			free(line);
 			break ;
-		ft_dprintf(fd_tmp, line);
+		}
 		free(line);
 	}
 	free(limiter);
