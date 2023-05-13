@@ -1,9 +1,11 @@
+> bonjour
+> bla
 bonjour
-comment
-va
-minishell: limit: command not found
-minishell: hello: command not found
-minishell: how: command not found
-minishell: are: command not found
-minishell: you: command not found
-minishell: limit: command not found
+includes
+libft
+Makefile
+minishell
+objs
+README.md
+srcs
+tests

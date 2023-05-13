@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/11 11:40:23 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/13 10:47:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@
 # define SPACE_STR		" "
 # define DQUOTE_STR		"\""
 # define SHLVL_DEFAULT	"0"
+# define HD_PROMPT		"> "
+# define WARNING		"warning"
+# define HD_EOF_WARN	"here document delimited by end of file"
 
 // builtins
 

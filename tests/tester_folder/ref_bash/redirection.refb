@@ -1,6 +1,5 @@
 .
 ..
-forbidden
 .git
 .github
 .gitignore
@@ -14,9 +13,9 @@ out
 README.md
 srcs
 tests
+.vscode
 .
 ..
-forbidden
 .git
 .github
 .gitignore
@@ -31,8 +30,8 @@ out2
 README.md
 srcs
 tests
+.vscode
 bonjour
-forbidden
 includes
 libft
 Makefile
@@ -43,7 +42,6 @@ out2
 README.md
 srcs
 tests
-forbidden
 includes
 libft
 Makefile
@@ -54,7 +52,6 @@ out2
 README.md
 srcs
 tests
-forbidden
 includes
 libft
 Makefile
@@ -175,3 +172,8 @@ minishell: lol: Permission denied
 
 instructions
 instructions
+minishell: lol: Permission denied
+$
+$
+instructions$
+instructions$

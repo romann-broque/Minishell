@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:45:04 by mat               #+#    #+#             */
-/*   Updated: 2023/04/30 16:44:21 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/12 10:31:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 extern t_global	g_global;
 
-//shifting the value 8 bits to the right and masking it with 0xFF
-
 int	extract_return_status(const int status)
 {
-	return ((status >> 8) & 0xFF);
+	return (WEXITSTATUS(status));
 }
 
 void	update_error_val(const int error_nbr)

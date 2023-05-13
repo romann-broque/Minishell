@@ -16,7 +16,6 @@ minishell: ./noperm: Permission denied
 126
 ls: cannot access 'pouet': No such file or directory
 2
-forbidden
 includes
 libft
 Makefile
@@ -52,7 +51,6 @@ minishell: exit: -9223372036854775808: numeric argument required
 2
 minishell: exit: -9223372036854775809: numeric argument required
 2
-forbidden
 includes
 libft
 Makefile
@@ -61,7 +59,6 @@ objs
 README.md
 srcs
 tests
-forbidden
 includes
 libft
 Makefile
@@ -72,4 +69,4 @@ srcs
 tests
 minishell: pouet: command not found
 127 127
-/home/mat/.local/bin:/home/mat/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/mat/Desktop/42/Minishell/repo
+/home/screw/.vscode-server/bin/b3e4e68a0bc097f0ae7907b217c1119af9e03435/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell

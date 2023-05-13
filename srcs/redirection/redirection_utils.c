@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 09:15:11 by mat               #+#    #+#             */
-/*   Updated: 2023/05/11 11:26:02 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/13 11:17:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,29 @@
 
 extern t_global	g_global;
 
-static int	ft_heredoc(char *end_str)
+static void	fill_heredoc(const int fd_in, const char *end_str)
 {
 	char	*line;
-	char	*limiter;
-	int		hd_pipe[2];
+
+	line = readline(HD_PROMPT);
+	while (line != NULL && streq(end_str, line) == false)
+	{
+		ft_dprintf(fd_in, "%s\n", line);
+		free(line);
+		line = readline(HD_PROMPT);
+	}
+	if (line == NULL)
+		print_error("%s: %s: %s (wanted `%s')\n",
+			MINISHELL, WARNING, HD_EOF_WARN, end_str);
+	free(line);
+}
+
+static int	ft_heredoc(char *end_str)
+{
+	int	hd_pipe[2];
 
 	pipe(hd_pipe);
-	limiter = ft_strjoin(end_str, NEWLINE_STR);
-	while (1)
-	{
-		ft_dprintf(STDIN_FILENO, "> ");
-		line = get_next_line(STDIN_FILENO);
-		if (line == NULL || (streq(limiter, line) == true))
-		{
-			free(line);
-			break ;
-		}
-		ft_dprintf(hd_pipe[1], line);
-		free(line);
-	}
-	free(limiter);
+	fill_heredoc(hd_pipe[1], end_str);
 	close(hd_pipe[1]);
 	return (hd_pipe[0]);
 }
