@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_binary.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/02 17:53:37 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/15 00:40:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ static void	child_job(t_command *cmd_data, char *path)
 		exit(g_global.last_ret_val);
 }
 
+static void	signal_manag_child(const int status)
+{
+	if (WIFSIGNALED(status) == true)
+	{
+		if (WTERMSIG(status) == SIGINT)
+		{
+			printf("update global\n");
+			update_global();
+		}
+		if (WTERMSIG(status) == SIGQUIT)
+			printf("Quit (core dumped)\n");
+	}
+}
+
 void	exec_binary(t_command *cmd_data, char *path)
 {
 	int	status;
@@ -48,11 +62,15 @@ void	exec_binary(t_command *cmd_data, char *path)
 	{
 		g_global.child_pid = fork();
 		if (g_global.child_pid == 0)
+		{
+			update_signal_state(S_EXEC);
 			child_job(cmd_data, path);
+		}
 		else if (g_global.child_pid > 0)
 		{
 			wait(&status);
 			g_global.last_ret_val = extract_return_status(status);
+			signal_manag_child(status);
 		}
 	}
 }

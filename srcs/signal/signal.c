@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:54:40 by mat               #+#    #+#             */
-/*   Updated: 2023/04/27 11:24:17 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/15 00:40:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,44 +16,40 @@ extern t_global	g_global;
 
 static bool	have_killable_child(void)
 {
-	return (g_global.is_stoppable == true && g_global.child_pid != 0);
+	return (g_global.child_pid != 0);
 }
 
 static void	handle_sigint(__attribute__((unused)) int signal)
 {
 	printf(NEWLINE_STR);
-	g_global.is_stoppable = false;
-	if (have_killable_child() == true)
-	{
-		update_global();
-	}
-	else
-	{
-		rl_on_new_line();
-		rl_replace_line(EMPTY_STR, 0);
-		rl_redisplay();
-	}
+	rl_on_new_line();
+	rl_replace_line(EMPTY_STR, 0);
+	rl_redisplay();
 	g_global.is_stoppable = true;
 }
 
 static void	handle_sigquit(__attribute__((unused)) int signal)
 {
 	if (have_killable_child() == true)
-	{
-		printf("Quit (core dumped)");
-		printf(NEWLINE_STR);
-		kill(g_global.child_pid, SIGKILL);
 		update_global();
+	else
+	{
+		rl_on_new_line();
+		rl_replace_line(EMPTY_STR, 0);
+		rl_redisplay();
 	}
 }
 
-void	update_sigquit_catcher(void)
-{
-	signal(SIGQUIT, handle_sigquit);
-}
-
-void	set_catcher(void)
+static void	set_default_catcher(void)
 {
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, SIG_IGN);
+}
+
+void	update_signal_state(const t_sigstate state)
+{
+	if (state == S_EXEC)
+		signal(SIGQUIT, handle_sigquit);
+	else
+		set_default_catcher();
 }

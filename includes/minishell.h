@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 17:55:22 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/15 00:40:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,12 @@ typedef enum e_quote_state
 	E_WORD,
 	E_EOF
 }			t_qstate;
+
+typedef enum e_sig_state
+{
+	S_DEFAULT,
+	S_EXEC,
+}			t_sigstate;
 
 //////////////////
 /// STRUCTURES ///
@@ -582,7 +588,6 @@ void		prompt(void);
 
 /// signal.c
 
-void		set_catcher(void);
-void		update_sigquit_catcher(void);
+void		update_signal_state(const t_sigstate state);
 
 #endif

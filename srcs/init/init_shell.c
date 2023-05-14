@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 10:30:07 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/15 00:40:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	init_shell(char **env)
 	init_env(&g_global, env);
 	check_pos(SHELL_INIT);
 	init_pwd();
-	set_catcher();
+	update_signal_state(S_DEFAULT);
 	init_tracker();
 }
