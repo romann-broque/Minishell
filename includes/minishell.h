@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 00:40:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/15 11:25:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define MINISHELL		"minishell"
 # define PROMPT			"minishell $ "
 # define EXIT_MESSAGE	"exit"
+# define QUIT_CDUMP		"Quit (core dumped)"
 # define QMARK_VAR		"LAST_RET_VAL"
 # define ZERO_VAR		"minishell"
 # define FWD_SLASH_STR	"/"
@@ -207,6 +208,7 @@ typedef enum e_sig_state
 {
 	S_DEFAULT,
 	S_EXEC,
+	S_SLEEP
 }			t_sigstate;
 
 //////////////////
@@ -264,11 +266,9 @@ typedef struct s_builtin_mapper
 
 typedef struct s_global
 {
-	int			child_pid;
 	int			last_ret_val;
 	t_list		*garbage;
 	char		**env;
-	bool		is_stoppable;
 }				t_global;
 
 /////////////////
@@ -472,13 +472,6 @@ void		free_manager(void);
 void		add_deallocator(void *ptr, void (*fct)(void *));
 void		init_tracker(void);
 
-//			GLOBAL			//
-
-// global.c
-
-void		init_global(void);
-void		update_global(void);
-
 //			INIT			//
 
 /// init_shell.c
@@ -579,6 +572,10 @@ void		print_cmd(t_list *cmds);
 void		print_error(const char *format, ...);
 
 //			PROMPT			//
+
+/// line_utils.c
+
+void		clear_line(void);
 
 /// prompt.c
 

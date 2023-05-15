@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 17:57:09 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/15 11:10:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	exec_command(t_list **token_lst)
 
 	cmds = interpreter(*token_lst, g_global.env);
 	add_deallocator(cmds, free_command_lst);
-	g_global.is_stoppable = true;
 	ft_lstiter(cmds, (void (*)(void *))execution);
 }
 

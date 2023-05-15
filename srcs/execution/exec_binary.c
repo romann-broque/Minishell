@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/15 00:40:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/15 11:26:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,37 +40,34 @@ static void	child_job(t_command *cmd_data, char *path)
 		exit(g_global.last_ret_val);
 }
 
-static void	signal_manag_child(const int status)
+static void	print_child_signal(const int status)
 {
-	if (WIFSIGNALED(status) == true)
-	{
-		if (WTERMSIG(status) == SIGINT)
-		{
-			printf("update global\n");
-			update_global();
-		}
-		if (WTERMSIG(status) == SIGQUIT)
-			printf("Quit (core dumped)\n");
-	}
+	if (WIFSIGNALED(status) == true
+		&& WTERMSIG(status) == SIGQUIT)
+		ft_printf(QUIT_CDUMP);
+	ft_printf(NEWLINE_STR);
 }
 
 void	exec_binary(t_command *cmd_data, char *path)
 {
 	int	status;
+	int	pid;
 
 	if (path != NULL)
 	{
-		g_global.child_pid = fork();
-		if (g_global.child_pid == 0)
+		pid = fork();
+		if (pid == 0)
 		{
 			update_signal_state(S_EXEC);
 			child_job(cmd_data, path);
 		}
-		else if (g_global.child_pid > 0)
+		else if (pid > 0)
 		{
+			update_signal_state(S_SLEEP);
 			wait(&status);
 			g_global.last_ret_val = extract_return_status(status);
-			signal_manag_child(status);
+			print_child_signal(status);
 		}
+		update_signal_state(S_DEFAULT);
 	}
 }

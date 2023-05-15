@@ -6,50 +6,44 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:54:40 by mat               #+#    #+#             */
-/*   Updated: 2023/05/15 00:40:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/15 11:21:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
-
-static bool	have_killable_child(void)
+void	clear_line_handler(__attribute__((unused)) int signal)
 {
-	return (g_global.child_pid != 0);
+	clear_line();
 }
 
-static void	handle_sigint(__attribute__((unused)) int signal)
+static void	handle_sigint_default(__attribute__((unused)) int signal)
 {
 	printf(NEWLINE_STR);
-	rl_on_new_line();
-	rl_replace_line(EMPTY_STR, 0);
-	rl_redisplay();
-	g_global.is_stoppable = true;
-}
-
-static void	handle_sigquit(__attribute__((unused)) int signal)
-{
-	if (have_killable_child() == true)
-		update_global();
-	else
-	{
-		rl_on_new_line();
-		rl_replace_line(EMPTY_STR, 0);
-		rl_redisplay();
-	}
+	clear_line();
 }
 
 static void	set_default_catcher(void)
 {
-	signal(SIGINT, handle_sigint);
+	signal(SIGINT, handle_sigint_default);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+static void	set_sleep_catcher(void)
+{
+	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 }
 
 void	update_signal_state(const t_sigstate state)
 {
 	if (state == S_EXEC)
-		signal(SIGQUIT, handle_sigquit);
+	{
+		signal(SIGINT, clear_line_handler);
+		signal(SIGQUIT, clear_line_handler);
+	}
+	else if (state == S_SLEEP)
+		set_sleep_catcher();
 	else
 		set_default_catcher();
 }

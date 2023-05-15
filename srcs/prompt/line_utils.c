@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   global.c                                           :+:      :+:    :+:   */
+/*   line_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 13:31:24 by mat               #+#    #+#             */
-/*   Updated: 2023/05/14 10:53:14 by rbroque          ###   ########.fr       */
+/*   Created: 2023/05/15 11:16:24 by rbroque           #+#    #+#             */
+/*   Updated: 2023/05/15 11:17:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
-
-void	init_global(void)
+void	clear_line(void)
 {
-	init_tracker();
-	g_global.is_stoppable = true;
-	g_global.child_pid = 0;
-}
-
-void	update_global(void)
-{
-	if (g_global.is_stoppable == true)
-	{
-		g_global.is_stoppable = false;
-		g_global.child_pid = 0;
-	}
+	rl_on_new_line();
+	rl_replace_line(EMPTY_STR, 0);
+	rl_redisplay();
 }

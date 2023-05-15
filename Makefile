@@ -20,7 +20,6 @@ PATH_SRCS	+=	srcs/execution/builtin/cwd/clean_path/
 PATH_SRCS	+=	srcs/exit/
 PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/free/
-PATH_SRCS	+=	srcs/global/
 PATH_SRCS	+=	srcs/init/
 PATH_SRCS	+=	srcs/interpreter/
 PATH_SRCS	+=	srcs/expansion/var/
@@ -108,9 +107,6 @@ SRCS		+=	var_utils.c
 SRCS		+=	free_manager.c
 SRCS		+=	tracker.c
 
-### srcs/global/
-
-SRCS		+=	global.c
 ### srcs/init/
 
 SRCS		+=	init_shell.c
@@ -152,6 +148,7 @@ SRCS		+=	print_error.c
 
 ### srcs/prompt/
 
+SRCS	 	+=	line_utils.c
 SRCS	 	+=	prompt.c
 
 ### srcs/signal/
