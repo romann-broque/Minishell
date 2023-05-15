@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 16:46:38 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/15 20:34:13 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	free_command(t_command *cmd_data)
 			close(cmd_data->fdin);
 		if (cmd_data->fdout != STDOUT_FILENO)
 			close(cmd_data->fdout);
-		//dup_files(g_global.stdin, g_global.stdout);
 		dup_files(STDIN_FILENO, STDOUT_FILENO);
 	}
 	free(cmd_data);

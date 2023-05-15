@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 17:51:01 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/15 20:38:06 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,8 +284,6 @@ typedef struct s_global
 	t_list	*env;
 	size_t	cmd_nbr;
 	bool	is_stoppable;
-	int		stdin;
-	int		stdout;
 	int		pipes[2];
 }				t_global;
 
@@ -673,7 +671,6 @@ void		prompt(void);
 void		init_pipe_and_command(t_list	**cmd_lst, t_command *cmd);
 void		close_pipes_parent(t_command *cmd_data);
 void		close_pipes_child(t_command *cmd_data);
-
 
 /// redirection.c
 

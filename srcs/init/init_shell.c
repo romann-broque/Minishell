@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/12 14:35:44 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/15 20:35:01 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ static void	init_shlvl(void)
 
 void	init_fds_and_pipes(void)
 {
-	//g_global.stdin = dup(STDIN_FILENO);
-	//g_global.stdout = dup(STDOUT_FILENO);
 	if (pipe(g_global.pipes) == -1)
 		exit_shell(EXIT_FAILURE, true);
 }

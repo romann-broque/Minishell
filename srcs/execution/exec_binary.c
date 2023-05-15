@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/15 18:19:37 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/15 20:37:54 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	exec_binary(t_command *cmd_data, char *path)
 
 	if (path != NULL)
 	{
-
 		pid = fork();
 		if (pid == 0)
 			child_job(cmd_data, path);

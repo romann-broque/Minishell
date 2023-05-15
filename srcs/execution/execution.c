@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 17:54:29 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/15 20:33:40 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	execution(t_command *cmd_data)
 {
 	char	*path;
 
-	printf("fd in is -> %d, fd out is -> %d\n", cmd_data->fdin, cmd_data->fdout);
-	printf("cmd index is -> %zu\n", cmd_data->index);
 	if (cmd_data->fdin != -1 && cmd_data->fdout != -1)
 	{
 		if (is_builtin(cmd_data) == true)
@@ -74,9 +72,5 @@ void	execution(t_command *cmd_data)
 			add_deallocator(path, free);
 			exec_binary(cmd_data, path);
 		}
-		//if (cmd_data->fdin != STDIN_FILENO)
-		//	close(cmd_data->fdin);
-		//if (cmd_data->fdout != STDOUT_FILENO)
-		//	close(cmd_data->fdout);
 	}
 }
