@@ -85,6 +85,7 @@ MINISHELL_LIB	=	libminishell.a
 ###############
 
 LINKS += -lcunit
+LINKS += -lreadline
 
 #####################
 #### COMPILATION ####
@@ -139,7 +140,7 @@ $(MINISHELL_LIB): $(MIN_OBJS)
 	echo -e $(BLUE) "\n====> Building CUNIT TESTS <===="$(NC)"\n"
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(LINKS) $(MINISHELL_LIB) $(LIBFT)
+	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(MINISHELL_LIB) $(LIBFT) $(LINKS)
 	$(ECHOC) $(GREEN) "--> $(NAME) COMPILED !"$(NC)"\n\n"
 
 $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)

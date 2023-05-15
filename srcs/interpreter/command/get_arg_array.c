@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interpreter_utils.c                                :+:      :+:    :+:   */
+/*   get_arg_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 15:38:17 by mat               #+#    #+#             */
-/*   Updated: 2023/05/03 14:42:51 by rbroque          ###   ########.fr       */
+/*   Created: 2023/05/09 11:10:28 by rbroque           #+#    #+#             */
+/*   Updated: 2023/05/15 10:33:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,37 +19,29 @@ static size_t	get_word_count(t_list *tokens)
 
 	count = 0;
 	type = get_type_from_tok(tokens->content);
-	while (type == T_GENERIC || type == T_ASSIGN)
+	while (type != T_END && type != T_PIPE)
 	{
+		count += (type == T_GENERIC || type == T_ASSIGN);
 		tokens = tokens->next;
 		type = get_type_from_tok(tokens->content);
-		++count;
 	}
 	return (count);
 }
 
-static void	cpy_arg_lst_to_array(char ***dest, t_list *tokens)
+void	append_to_arg_array(t_command *cmd, t_list *tokens)
 {
-	t_toktype	type;
-	size_t		i;
+	char **const	dest = cmd->command;
+	t_toktype		type;
+	size_t			i;
 
-	i = 0;
 	type = get_type_from_tok(tokens->content);
-	while (type == T_GENERIC || type == T_ASSIGN)
+	if (type == T_GENERIC || type == T_ASSIGN)
 	{
-		(*dest)[i] = ft_strdup(get_str_from_tok(tokens->content));
-		if ((*dest)[i] == NULL)
-		{
-			free_strs(*dest);
-			perror(MALLOC_ERROR);
-			*dest = NULL;
-			return ;
-		}
-		tokens = tokens->next;
-		type = get_type_from_tok(tokens->content);
-		++i;
+		i = 0;
+		while (dest[i] != NULL)
+			++i;
+		dest[i] = ft_strdup(get_str_from_tok(tokens->content));
 	}
-	(*dest)[i] = NULL;
 }
 
 char	**get_arg_array(t_list *tokens)
@@ -57,12 +49,11 @@ char	**get_arg_array(t_list *tokens)
 	const size_t	size = get_word_count(tokens);
 	char			**arg_array;
 
-	arg_array = (char **)malloc(sizeof(char *) * (size + 1));
+	arg_array = (char **)ft_calloc(sizeof(char *), (size + 1));
 	if (arg_array == NULL)
 	{
 		perror(MALLOC_ERROR);
 		return (NULL);
 	}
-	cpy_arg_lst_to_array(&arg_array, tokens);
 	return (arg_array);
 }

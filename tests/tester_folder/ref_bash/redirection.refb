@@ -1,0 +1,179 @@
+.
+..
+.git
+.github
+.gitignore
+.gitmodules
+includes
+libft
+Makefile
+minishell
+objs
+out
+README.md
+srcs
+tests
+.vscode
+.
+..
+.git
+.github
+.gitignore
+.gitmodules
+includes
+libft
+Makefile
+minishell
+objs
+out
+out2
+README.md
+srcs
+tests
+.vscode
+bonjour
+includes
+libft
+Makefile
+minishell
+objs
+out
+out2
+README.md
+srcs
+tests
+includes
+libft
+Makefile
+minishell
+objs
+out1
+out2
+README.md
+srcs
+tests
+includes
+libft
+Makefile
+minishell
+objs
+out1
+out2
+README.md
+srcs
+tests
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main(int ac, char **av)
+{
+	int		i;
+	char	*var_value;
+
+	if (ac > 1)
+	{
+		i = 0;
+		while (av[i + 1] != NULL)
+		{
+			var_value = getenv(av[i + 1]);
+			printf("var is [%s]\n", var_value);
+			++i;
+		}
+	}
+}
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main(int ac, char **av)
+{
+	int		i;
+	char	*var_value;
+
+	if (ac > 1)
+	{
+		i = 0;
+		while (av[i + 1] != NULL)
+		{
+			var_value = getenv(av[i + 1]);
+			printf("var is [%s]\n", var_value);
+			++i;
+		}
+	}
+}
+>h.oidts< edulcni#
+>h.bildts< edulcni#
+
+)va** rahc ,ca tni(niam	tni
+{
+;i		tni	
+;eulav_rav*	rahc	
+
+)1 > ca( fi	
+{	
+;0 = i		
+)LLUN =! ]1 + i[va( elihw		
+{		
+;)]1 + i[va(vneteg = eulav_rav			
+;)eulav_rav ,"n\]s%[ si rav"(ftnirp			
+;i++			
+}		
+}	
+}
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main(int ac, char **av)
+{
+	int		i;
+	char	*var_value;
+
+	if (ac > 1)
+	{
+		i = 0;
+		while (av[i + 1] != NULL)
+		{
+			var_value = getenv(av[i + 1]);
+			printf("var is [%s]\n", var_value);
+			++i;
+		}
+	}
+}
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main(int ac, char **av)
+{
+	int		i;
+	char	*var_value;
+
+	if (ac > 1)
+	{
+		i = 0;
+		while (av[i + 1] != NULL)
+		{
+			var_value = getenv(av[i + 1]);
+			printf("var is [%s]\n", var_value);
+			++i;
+		}
+	}
+}
+appended
+wouah
+lol
+wouah and lol are dead
+cat: result: Permission denied
+wouah
+
+
+instructions
+minishell: lol: Permission denied
+minishell: lol: Permission denied
+
+
+instructions
+instructions
+minishell: lol: Permission denied
+$
+$
+instructions$
+instructions$

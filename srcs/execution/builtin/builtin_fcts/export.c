@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:55:33 by mat               #+#    #+#             */
-/*   Updated: 2023/05/08 10:36:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/15 10:29:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	print_export(void)
 	index = 0;
 	while (export_array[index] != NULL)
 	{
-		printf("%s %s\n", EXPORT_BUILTIN, export_array[index]);
+		ft_printf("%s %s\n", EXPORT_BUILTIN, export_array[index]);
 		index++;
 	}
 	free_strs(export_array);

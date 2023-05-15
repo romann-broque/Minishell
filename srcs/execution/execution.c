@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 15:42:02 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/15 10:30:50 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_global	g_global;
 
 static void	handle_error_path(t_command *cmd_data, char **path)
 {
@@ -48,16 +50,27 @@ static char	*get_path(t_command *cmd_data)
 	return (path);
 }
 
+static void	dup_files(int in, int out)
+{
+	dup2(in, STDIN_FILENO);
+	dup2(out, STDOUT_FILENO);
+}
+
 void	execution(t_command *cmd_data)
 {
 	char	*path;
 
-	if (is_builtin(cmd_data) == true)
-		exec_builtin(cmd_data);
-	else
+	if (cmd_data->fdin != INVALID_FD && cmd_data->fdout != INVALID_FD)
 	{
-		path = get_path(cmd_data);
-		add_deallocator(path, free);
-		exec_binary(cmd_data, path);
+		dup_files(cmd_data->fdin, cmd_data->fdout);
+		if (is_builtin(cmd_data) == true)
+			exec_builtin(cmd_data);
+		else
+		{
+			path = get_path(cmd_data);
+			add_deallocator(path, free);
+			exec_binary(cmd_data, path);
+		}
+		dup_files(g_global.stdin, g_global.stdout);
 	}
 }

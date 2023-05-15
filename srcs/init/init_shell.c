@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 14:47:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/15 10:28:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,15 @@ static void	init_shlvl(void)
 	free(lvl_str);
 }
 
+static void	init_fds(void)
+{
+	g_global.stdin = dup(STDIN_FILENO);
+	g_global.stdout = dup(STDOUT_FILENO);
+}
+
 void	init_shell(char **env)
 {
+	init_fds();
 	init_env(&g_global, env);
 	check_pos(SHELL_INIT);
 	init_pwd();
