@@ -169,7 +169,7 @@ SRCS	 	+=	prompt.c
 
 ### srcs/redirection/
 
-SRCS		+=	pipes.c
+SRCS		+=	pipes_utils.c
 SRCS		+=	redirection.c
 SRCS		+=	redirection_utils.c
 

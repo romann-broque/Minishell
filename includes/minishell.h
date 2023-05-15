@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/11 15:40:31 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/15 17:51:01 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,7 @@ typedef struct s_command
 {
 	char	**command;
 	char	**env;
+	size_t	index;
 	int		fdin;
 	int		fdout;
 }				t_command;
@@ -281,6 +282,7 @@ typedef struct s_global
 	int		last_ret_val;
 	t_list	*garbage;
 	t_list	*env;
+	size_t	cmd_nbr;
 	bool	is_stoppable;
 	int		stdin;
 	int		stdout;
@@ -366,6 +368,7 @@ bool		is_path_var(const char *env_line, const char *pathvar_name);
 
 /// execution.c
 
+void		dup_files(int in, int out);
 void		execution(t_command *command);
 
 /// exec_binary.c
@@ -537,6 +540,7 @@ void		init_tracker(void);
 /// init_shell.c
 
 void		init_shell(char **env);
+void		init_fds_and_pipes(void);
 
 //			INTERPRETER		//
 
@@ -667,6 +671,9 @@ void		prompt(void);
 /// pipes.c
 
 void		init_pipe_and_command(t_list	**cmd_lst, t_command *cmd);
+void		close_pipes_parent(t_command *cmd_data);
+void		close_pipes_child(t_command *cmd_data);
+
 
 /// redirection.c
 

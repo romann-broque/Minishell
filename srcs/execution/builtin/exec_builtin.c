@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:38:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/11 11:34:27 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/15 16:50:26 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	call_builtin(const t_builtin_mapper *map, t_command *cmd_data)
 	size_t		i;
 
 	i = 0;
+	dup_files(cmd_data->fdin, cmd_data->fdout);
 	while (map[i].name != NULL)
 	{
 		if (streq(map[i].name, cmd_name) == true)
@@ -43,6 +44,19 @@ void	exec_builtin(t_command *command)
 	{.name = ENV_BUILTIN, .fct = env_builtin},
 	{NULL, NULL}
 	};
+	int								pid;
 
-	g_global.last_ret_val = call_builtin(map, command);
+	pid = fork();
+	if (pid == 0)
+	{
+		if (streq(EXIT_BUILTIN, command->command[0]) == false)
+			g_global.last_ret_val = call_builtin(map, command);
+		exit_shell(g_global.last_ret_val, false);
+	}
+	else if (pid > 0)
+	{
+		wait(NULL);
+		if (streq(EXIT_BUILTIN, command->command[0]) == true)
+			g_global.last_ret_val = call_builtin(map, command);
+	}
 }

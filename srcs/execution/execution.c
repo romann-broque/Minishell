@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/11 18:05:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/15 17:54:29 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ static char	*get_path(t_command *cmd_data)
 	return (path);
 }
 
-static void	dup_files(int in, int out)
+void	dup_files(int in, int out)
 {
-	dup2(in, STDIN_FILENO);
-	dup2(out, STDOUT_FILENO);
+	if (in != STDIN_FILENO)
+		dup2(in, STDIN_FILENO);
+	if (out != STDOUT_FILENO)
+		dup2(out, STDOUT_FILENO);
 }
 
 void	execution(t_command *cmd_data)
@@ -61,9 +63,9 @@ void	execution(t_command *cmd_data)
 	char	*path;
 
 	printf("fd in is -> %d, fd out is -> %d\n", cmd_data->fdin, cmd_data->fdout);
+	printf("cmd index is -> %zu\n", cmd_data->index);
 	if (cmd_data->fdin != -1 && cmd_data->fdout != -1)
 	{
-		dup_files(cmd_data->fdin, cmd_data->fdout);
 		if (is_builtin(cmd_data) == true)
 			exec_builtin(cmd_data);
 		else
@@ -72,10 +74,9 @@ void	execution(t_command *cmd_data)
 			add_deallocator(path, free);
 			exec_binary(cmd_data, path);
 		}
-		dup_files(g_global.stdin, g_global.stdout);
-		if (cmd_data->fdin != STDIN_FILENO)
-			close(cmd_data->fdin);
-		if (cmd_data->fdout != STDOUT_FILENO)
-			close(cmd_data->fdout);
+		//if (cmd_data->fdin != STDIN_FILENO)
+		//	close(cmd_data->fdin);
+		//if (cmd_data->fdout != STDOUT_FILENO)
+		//	close(cmd_data->fdout);
 	}
 }

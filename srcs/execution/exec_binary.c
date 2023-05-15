@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_binary.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/01 11:32:11 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/15 18:19:37 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,21 @@ static bool	is_folder(const char *path)
 	return (S_ISDIR(file_stat.st_mode));
 }
 
+//static void	dup_child(t_command *cmd_data)
+//{
+//	if (cmd_data->index == 1 && g_global.cmd_nbr > 1)
+//		dup_files(cmd_data->fdin, g_global.pipes[1]);
+//	else if (cmd_data->index == g_global.cmd_nbr && g_global.cmd_nbr > 1)
+//		dup_files(g_global.pipes[0], cmd_data->fdout);
+//	else if (g_global.cmd_nbr > 1)
+//		dup_files(g_global.pipes[0], g_global.pipes[1]);
+//}
+
 static void	child_job(t_command *cmd_data, char *path)
 {
+	dup_files(cmd_data->fdin, cmd_data->fdout);
+	printf("in child fdin is %d, fdout is %d", cmd_data->fdin, cmd_data->fdout);
+	close_pipes_child(cmd_data);
 	if (is_folder(path) == true)
 	{
 		g_global.last_ret_val = NO_ACCESS;
@@ -47,12 +60,14 @@ void	exec_binary(t_command *cmd_data, char *path)
 
 	if (path != NULL)
 	{
+
 		pid = fork();
 		if (pid == 0)
 			child_job(cmd_data, path);
 		else if (pid > 0)
 		{
 			wait(&status);
+			close_pipes_parent(cmd_data);
 			g_global.last_ret_val = extract_return_status(status);
 		}
 	}

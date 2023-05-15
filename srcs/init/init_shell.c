@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/11 18:04:47 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/12 14:35:44 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,16 @@ static void	init_shlvl(void)
 	free(lvl_str);
 }
 
-static void	init_fds_and_pipes(void)
+void	init_fds_and_pipes(void)
 {
-	g_global.stdin = dup(STDIN_FILENO);
-	g_global.stdout = dup(STDOUT_FILENO);
+	//g_global.stdin = dup(STDIN_FILENO);
+	//g_global.stdout = dup(STDOUT_FILENO);
 	if (pipe(g_global.pipes) == -1)
 		exit_shell(EXIT_FAILURE, true);
 }
 
 void	init_shell(char **env)
 {
-	init_fds_and_pipes();
 	init_env(&g_global, env);
 	check_pos(SHELL_INIT);
 	init_pwd();
