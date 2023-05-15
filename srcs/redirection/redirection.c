@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:12:14 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/10 14:24:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/15 10:03:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ void	update_fds(t_toktype toktype, t_token *tok, t_command *cmd)
 {
 	if (toktype == T_RCHEVRON || toktype == T_DOUBLE_RCHEVRON)
 		change_output(cmd, tok->value, toktype);
-	if (toktype == T_LCHEVRON || toktype == T_DOUBLE_LCHEVRON)
+	else if (toktype == T_LCHEVRON || toktype == T_DOUBLE_LCHEVRON)
 		change_input(cmd, tok->value, toktype);
 }

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 09:15:11 by mat               #+#    #+#             */
-/*   Updated: 2023/05/13 11:17:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/15 10:18:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,14 @@ static int	ft_heredoc(char *end_str)
 {
 	int	hd_pipe[2];
 
-	pipe(hd_pipe);
-	fill_heredoc(hd_pipe[1], end_str);
+	if (pipe(hd_pipe) == 0)
+		fill_heredoc(hd_pipe[1], end_str);
+	else
+	{
+		print_error("%s: %s: ", MINISHELL, HERE_DOC);
+		perror(EMPTY_STR);
+		hd_pipe[0] = INVALID_FD;
+	}
 	close(hd_pipe[1]);
 	return (hd_pipe[0]);
 }
@@ -69,12 +75,12 @@ int	get_in_fd(char *in, t_toktype tok_type)
 {
 	int	fd;
 
-	fd = -1;
 	if (tok_type == T_DOUBLE_LCHEVRON)
 		return (ft_heredoc(in));
+	fd = INVALID_FD;
 	if (access(in, F_OK) == 0)
 		fd = open(in, O_RDONLY);
-	if (fd == -1)
+	if (fd == INVALID_FD)
 	{
 		print_error("%s: %s: ", MINISHELL, in);
 		perror(EMPTY_STR);

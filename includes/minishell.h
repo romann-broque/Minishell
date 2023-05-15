@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/13 10:47:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/15 10:16:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@
 # define GETCWD			"getcwd"
 # define CHDIR			"chdir"
 # define SHELL_INIT		"shell-init"
+# define HERE_DOC		"heredoc"
 
 // env
 
@@ -144,6 +145,7 @@
 
 # define NO_ACCESS		126
 # define NO_FILE		127
+# define INVALID_FD		-1
 # define INCORRECT_USE	2
 # define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
@@ -567,16 +569,10 @@ char		**dup_env_lst_to_array(t_list *env_lst);
 t_command	*init_command(void);
 void		free_command(t_command *cmd_data);
 
-////////////
-
 //// get_arg_array.c
 
 void		append_to_arg_array(t_command *cmd, t_list *tokens);
 char		**get_arg_array(t_list *tokens);
-
-//// redirection.c
-
-void		update_fds(t_toktype toktype, t_token *tok, t_command *cmd);
 
 //			LEXER			//
 
