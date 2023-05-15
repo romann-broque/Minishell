@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/24 22:03:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/05 16:13:38 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,67 +14,46 @@
 
 extern t_global	g_global;
 
-static void	change_value(char **assign, const char *var_value)
+t_var	*get_var_from_env(const char *key, t_list *env)
 {
-	const size_t	len = ft_strlen(*assign);
-	const size_t	offset = abs_index(*assign, EQUAL_SIGN);
+	t_var	*var;
 
-	*assign = replace_str_free(*assign, var_value, offset + 1, len - offset);
-}
-
-static void	add_str_in_strs(char ***strs, char *new)
-{
-	const size_t	size = get_size_strs(*strs);
-	char			**new_strs;
-
-	new_strs = (char **)malloc((size + 2) * sizeof(char *));
-	if (new_strs != NULL)
+	while (env != NULL)
 	{
-		cpy_strs(new_strs, *strs);
-		new_strs[size] = new;
-		new_strs[size + 1] = NULL;
+		var = env->content;
+		if (streq(var->key, key) == true)
+			return (var);
+		env = env->next;
 	}
-	*strs = new_strs;
+	return (NULL);
 }
 
-static void	add_var(const char *var_name, const char *var_value)
+void	change_var(
+	const char *key,
+	const char *value,
+	uint8_t flags,
+	t_list **env
+	)
 {
-	char	**tmp_strs;
-	char	*tmp_str;
-	char	*assign;
+	t_var *const	var = get_var_from_env(key, *env);
 
-	if (var_name != NULL && var_value != NULL)
+	if (value != NULL)
+		flags |= SET_MASK;
+	if (var == NULL)
+		ft_lstadd_back(env,
+			ft_lstnew(init_var(key, value, flags)));
+	else
 	{
-		tmp_strs = g_global.env;
-		assign = ft_strjoin(var_name, EQUAL_SIGN_STR);
-		tmp_str = assign;
-		assign = ft_strjoin(assign, var_value);
-		add_str_in_strs(&(g_global.env), assign);
-		free_strs(tmp_strs);
-		free(tmp_str);
-	}
-}
-
-void	change_var(const char *var_name, const char *var_value)
-{
-	const size_t	len = ft_strlen(var_name);
-	size_t			offset;
-	size_t			i;
-
-	if (var_value != NULL)
-	{
-		i = 0;
-		while (g_global.env[i] != NULL)
+		if (value != NULL)
 		{
-			offset = abs_index(g_global.env[i], EQUAL_SIGN);
-			if (offset == len
-				&& ft_strncmp(g_global.env[i], var_name, offset) == 0)
-				break ;
-			++i;
+			free(var->value);
+			var->value = ft_strdup(value);
 		}
-		if (g_global.env[i] != NULL)
-			change_value(g_global.env + i, var_value);
-		else
-			add_var(var_name, var_value);
+		var->flags |= flags;
 	}
+}
+
+void	update_var(const char *key, const char *value, const uint8_t flags)
+{
+	change_var(key, value, flags, &(g_global.env));
 }

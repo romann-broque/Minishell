@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   path_access.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 16:13:20 by mat               #+#    #+#             */
-/*   Updated: 2023/04/30 16:15:56 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/15 10:29:05 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	is_cmd_accessible(char *path)
+bool	is_cmd_accessible(const char *path)
 {
 	return (access(path, X_OK) == 0);
 }

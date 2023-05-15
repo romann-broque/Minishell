@@ -24,6 +24,7 @@ SRCS	 	+=	change_var.test.c
 SRCS		+=	clean_pwd.test.c
 SRCS		+=	cmd_path.test.c
 SRCS		+=	expand.test.c
+SRCS		+=	export.test.c
 SRCS		+=	ft_getenv.test.c
 SRCS	 	+=	get_words.test.c
 SRCS	 	+=	interpreter.test.c
@@ -84,6 +85,7 @@ MINISHELL_LIB	=	libminishell.a
 ###############
 
 LINKS += -lcunit
+LINKS += -lreadline
 
 #####################
 #### COMPILATION ####
@@ -138,7 +140,7 @@ $(MINISHELL_LIB): $(MIN_OBJS)
 	echo -e $(BLUE) "\n====> Building CUNIT TESTS <===="$(NC)"\n"
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(LINKS) $(MINISHELL_LIB) $(LIBFT)
+	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(MINISHELL_LIB) $(LIBFT) $(LINKS)
 	$(ECHOC) $(GREEN) "--> $(NAME) COMPILED !"$(NC)"\n\n"
 
 $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)

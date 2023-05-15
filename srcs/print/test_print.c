@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:08:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/20 15:03:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/15 10:20:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,15 @@ void	print_cmd(t_list *cmds)
 {
 	t_command	*cmd_data;
 
+	printf("COMMAND:\n");
 	while (cmds != NULL)
 	{
 		cmd_data = cmds->content;
 		printf("ARG :\n");
-		print_strs(cmd_data->command);
+		if (cmd_data->command == NULL)
+			printf("NULL\n");
+		else
+			print_strs(cmd_data->command);
 		printf("\nENV :\n");
 		print_env(cmd_data->env);
 		cmds = cmds->next;

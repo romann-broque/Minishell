@@ -22,6 +22,7 @@ PATH_SRCS	+=	srcs/expansion/
 PATH_SRCS	+=	srcs/free/
 PATH_SRCS	+=	srcs/init/
 PATH_SRCS	+=	srcs/interpreter/
+PATH_SRCS	+=	srcs/interpreter/command/
 PATH_SRCS	+=	srcs/expansion/var/
 PATH_SRCS	+=	srcs/lexer/
 PATH_SRCS	+=	srcs/lexer/quotes/
@@ -30,6 +31,7 @@ PATH_SRCS	+=	srcs/lexer/word/
 PATH_SRCS	+=	srcs/parser/
 PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
+PATH_SRCS	+=	srcs/redirection/
 PATH_SRCS	+=	srcs/signal/
 
 ### srcs/
@@ -42,9 +44,12 @@ SRCS		+=	batch.c
 
 ### srcs/env/
 
-SRCS		+= change_var.c
-SRCS		+= ft_getenv.c
-SRCS		+= init_env.c
+SRCS		+=	change_var.c
+SRCS		+=	get_env_array.c
+SRCS		+=	env_utils.c
+SRCS		+=	export_utils.c
+SRCS		+=	ft_getenv.c
+SRCS		+=	init_env.c
 
 ### srcs/env/path/
 
@@ -60,15 +65,19 @@ SRCS	 	+=	execution.c
 
 ### srcs/execution/builtin/
 
+SRCS		+=	dup_export_lst_to_array.c
 SRCS	 	+=	exec_builtin.c
 SRCS	 	+=	is_builtin.c
 
 ### srcs/execution/builtin/builtin_fcts/
 
-SRCS		+=	echo.c
-SRCS	 	+=	exit.c
 SRCS		+=	cd.c
+SRCS		+=	echo.c
+SRCS		+=	env.c
+SRCS	 	+=	exit.c
+SRCS		+=	export.c
 SRCS		+=	pwd.c
+SRCS		+=	unset.c
 
 ### srcs/execution/builtin/cwd/
 
@@ -94,6 +103,7 @@ SRCS	 	+=	expand_utils.c
 SRCS		+=	is_assign_tok.c
 SRCS	 	+=	merge_gen.c
 SRCS	 	+=	split_gen.c
+SRCS		+=	update_tok_type.c
 
 ### srcs/expansion/var/
 
@@ -115,6 +125,13 @@ SRCS		+=	init_shell.c
 
 SRCS		+=	interpreter.c
 SRCS		+=	interpreter_utils.c
+SRCS		+=	cmd_mode.c
+SRCS		+=	cmd_mode_utils.c
+
+### srcs/interpreter/command/
+
+SRCS		+=	command_utils.c
+SRCS		+=	get_arg_array.c
 
 ### srcs/lexer/
 
@@ -150,6 +167,11 @@ SRCS		+=	print_error.c
 
 SRCS	 	+=	line_utils.c
 SRCS	 	+=	prompt.c
+
+### srcs/redirection/
+
+SRCS		+=	redirection.c
+SRCS		+=	redirection_utils.c
 
 ### srcs/signal/
 
@@ -221,6 +243,10 @@ CUNIT_EXE		= $(CUNIT_FOLDER)/cunit
 
 CURR_FOLDER_VALGRIND = ./tests/valgrind/
 SUPPRESSION_FILE	= $(CURR_FOLDER_VALGRIND)suppressions.supp
+
+### VAR
+
+VAR_FOLDER		= $(TESTER_FOLDER)/var/
 
 ifeq ($(valgrind), true)
 	VALGRIND	+= valgrind
@@ -303,6 +329,7 @@ norm	:
 
 test	:
 	$(MAKE) -s
+	$(MAKE) -sC $(VAR_FOLDER)
 	$(RM) $(CUNIT_EXE)
 	$(MAKE) -sC $(CUNIT_FOLDER)
 	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
@@ -312,12 +339,14 @@ test	:
 
 clean	:
 	$(RM) -r $(PATH_OBJS)
+	$(MAKE) -sC $(VAR_FOLDER) clean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) clean > /dev/null
 	$(MAKE) -sC $(CUNIT_FOLDER) clean > /dev/null
 	$(ECHOC) $(GREEN) "--> .o files deleted !"$(NC)"\n"
 
 fclean	:	clean
 	$(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
+	$(MAKE) -sC $(VAR_FOLDER) fclean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) fclean > /dev/null
 	$(MAKE) -sC $(CUNIT_FOLDER) fclean > /dev/null
 	$(RM) $(NAME)

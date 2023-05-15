@@ -10,9 +10,12 @@ on:
       - "MVE3"
       - "MVE4"
       - "MVE5"
+      - "MVE6"
+      - "MVE6-EXPORT"
       - "MVE7"
       - "MVE8"
       - "MVE9"
+      - "MVE10"
 
 jobs:
   check-bats-version:

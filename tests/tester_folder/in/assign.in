@@ -11,4 +11,23 @@ _9=2
 _p2=1
 _1p_ =lol
 1_p=wtf
-ls
+echo lol=42
+ls pouet=1
+echo pouet="234     pouetpouet"
+printenv pouet
+animal=chien
+printenv chien
+printenv lol=
+lol=lol pouet=21 orange=red space=amazing printenv lol pouet orange space PATH CDPATH
+"kiwi=green" pineapple="yellow"
+printenv kiwi pineapple
+kiwi=yellow ./minishell
+printenv kiwi
+exit
+"kiwi=yellow" ./minishell
+CDPATH="" cd bin
+cd -
+CDPATH="/" cd bin
+pwd
+cd bin
+exit

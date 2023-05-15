@@ -1,0 +1,62 @@
+ls -a > out
+cat out
+ls -a > out > out2
+cat out
+cat out2
+rm out out2
+ls > out > out2 -la
+echo bonjour
+> out2 ls
+cat out2
+rm out out2
+> out1 ls > out2
+ls
+cat out1
+cat out2
+rm out1
+rm out2
+
+< tests/var/var.c cat
+< Makefile cat < tests/var/var.c
+rev < tests/var/var.c
+
+< Makefile < tests/var/var.c < Makefile cat < tests/var/var.c
+
+< tests/var/var.c
+< tests/var/var.c cat > new_var.c
+cat new_var.c
+< tests/var/var.c pouet=32 cat > new_var.c
+rm new_var.c
+
+echo wouah > incroyable
+echo appended
+cat incroyable
+echo lol > incroyable
+cat incroyable
+echo wouah and lol are dead > incroyable
+cat incroyable
+rm incroyable
+
+< Makefile pouet=24 ./tests/var/print_var >result pouet
+
+chmod -r result
+cat result
+< Makefile pouet=76 ./tests/var/print_var >>result pouet
+chmod +r result
+rm result
+
+echo "" > lol
+echo wouah
+echo "" >> lol
+echo "instructions" >> lol
+cat lol
+chmod -r lol
+<lol cat
+echo "instructions" >> lol
+chmod +r lol
+chmod -w lol
+echo "inexistant instruction" >> lol
+cat lol
+echo " " > lol 
+cat -e lol
+rm lol

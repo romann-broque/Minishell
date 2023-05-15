@@ -71,4 +71,7 @@ cd /.//////./../../../......./..////////
 cd -
 cd -
 /bin/echo $PWD $OLDPWD
-exit
+unset PWD
+pwd
+printenv PWD
+exit 0

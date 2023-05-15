@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 11:25:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/15 11:33:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <errno.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 ///////////////
 /// DEFINES ///
@@ -47,6 +49,11 @@
 # define BACKPATH		"/.."
 # define NEWLINE_STR	"\n"
 # define SPACE_STR		" "
+# define DQUOTE_STR		"\""
+# define SHLVL_DEFAULT	"0"
+# define HD_PROMPT		"> "
+# define WARNING		"warning"
+# define HD_EOF_WARN	"here document delimited by end of file"
 
 // builtins
 
@@ -56,12 +63,14 @@
 # define EXPORT_BUILTIN	"export"
 # define PWD_BUILTIN	"pwd"
 # define UNSET_BUILTIN	"unset"
+# define ENV_BUILTIN	"env"
 
 // fct
 
 # define GETCWD			"getcwd"
 # define CHDIR			"chdir"
 # define SHELL_INIT		"shell-init"
+# define HERE_DOC		"heredoc"
 
 // env
 
@@ -70,6 +79,7 @@
 # define PWD_VAR		"PWD"
 # define PATH_VAR		"PATH"
 # define CDPATH_VAR		"CDPATH"
+# define SHLVL_VAR		"SHLVL"
 
 // tok_string
 
@@ -86,16 +96,18 @@
 
 // error string
 
-# define SYNTAX_ERROR		"syntax error near unclosed quote"
-# define MALLOC_ERROR		"Malloc error"
-# define PARS_ERROR			"syntax error near unexpected token"
-# define CNF				"command not found"
-# define IS_DIR				"Is a directory"
-# define STAT_ERROR			"Failed to stat file"
-# define TOO_MANY_ARGS		"too many arguments"
+# define SYNTAX_ERROR			"syntax error near unclosed quote"
+# define MALLOC_ERROR			"Malloc error"
+# define PARS_ERROR				"syntax error near unexpected token"
+# define CNF					"command not found"
+# define IS_DIR					"Is a directory"
+# define STAT_ERROR				"Failed to stat file"
+# define TOO_MANY_ARGS			"too many arguments"
 # define ERROR_ACCESS_DIR		"error retrieving current directory"
 # define ERROR_ACCESS_PAR_DIR	"cannot access parent directories"
 # define NUM_ARG_REQ			"numeric argument required"
+# define INVALID_ID				"not a valid identifier"
+# define NO_SUCH_FILE			"No such file or directory"
 
 // char types
 
@@ -135,6 +147,7 @@
 
 # define NO_ACCESS		126
 # define NO_FILE		127
+# define INVALID_FD		-1
 # define INCORRECT_USE	2
 # define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
@@ -142,6 +155,13 @@
 // enum
 
 # define ASSIGN_START	0
+
+// var_flag
+
+# define SLEEP_MASK		0x00
+# define SET_MASK		0x0f
+# define EXPORT_MASK	0xf0
+# define ENV_MASK		0xff
 
 /////////////
 /// ENUM ///
@@ -163,7 +183,6 @@ typedef enum e_toktype
 	T_START,
 	T_END,
 	T_INVALID,
-	T_VAR
 }			t_toktype;
 
 typedef enum e_toktype_short
@@ -264,11 +283,20 @@ typedef struct s_builtin_mapper
 	int			(*fct)(t_command *cmd_data);
 }				t_builtin_mapper;
 
+typedef struct s_var
+{
+	char	*key;
+	char	*value;
+	uint8_t	flags;
+}				t_var;
+
 typedef struct s_global
 {
-	int			last_ret_val;
-	t_list		*garbage;
-	char		**env;
+	int		last_ret_val;
+	t_list	*garbage;
+	t_list	*env;
+	int		stdin;
+	int		stdout;
 }				t_global;
 
 /////////////////
@@ -286,15 +314,39 @@ void		exec_batch(int ac, char **av);
 
 /// change_var.c
 
-void		change_var(const char *var_name, const char *var_value);
+t_var		*get_var_from_env(const char *key, t_list *env);
+void		change_var(const char *key, const char *value,
+				uint8_t flags, t_list **env);
+void		update_var(const char *key, const char *value, const uint8_t flags);
+
+//// dup_env_lst_to_array.c
+
+char		**get_env_array(t_list *env_lst, const uint8_t mask,
+				char *(*assign_fct)(t_var *));
+
+/// env_utils.c
+
+t_var		*init_var(const char *name, const char *value, uint8_t flags);
+t_var		*dup_var(t_var *var);
+t_var		*get_var(const char *var_name);
+void		set_var_flag(const char *key, const uint8_t flags);
+void		free_var(t_var *var);
+
+/// export_utils.c
+
+void		add_assignation_to_env(char *arg);
+void		add_key_to_env(char	*arg);
+void		sort_strings(char *strings[]);
+t_var		*export_var_from_str(char *str, bool is_only_key);
 
 /// ft_getenv.c
 
+char		*ft_getenv_local(const char *var_name, char **env);
 char		*ft_getenv(const char *var_name);
 
 /// init_env.c
 
-void		cpy_strs(char **dest, char **src);
+t_var		*init_var_from_str(const char *str);
 void		init_env(t_global *global, char **env);
 
 ///			PATH				///
@@ -312,7 +364,7 @@ char		*get_path_from_env(const char *suffix,
 
 //// path_access.c
 
-bool		is_cmd_accessible(char *path);
+bool		is_cmd_accessible(const char *path);
 
 //// cmd_path_utils.c
 
@@ -334,6 +386,10 @@ void		exec_binary(t_command *cmd_data, char *path);
 
 ///  BUILTIN  ///
 
+/// dup_export_lst_to_array.c
+
+char		**dup_export_lst_to_array(t_list *env_lst);
+
 //// exec_buitlin.c
 
 void		exec_builtin(t_command *command);
@@ -352,13 +408,25 @@ int			cd_builtin(t_command *cmd_data);
 
 int			echo_builtin(t_command	*cmd_data);
 
+///// env.c
+
+int			env_builtin(t_command *cmd_data);
+
 ///// exit.c
 
 int			exit_builtin(t_command *cmd_data);
 
+///// export.c
+
+int			export_builtin(t_command *cmd_data);
+
 ///// pwd.c
 
 int			pwd_builtin(__attribute__((unused)) t_command *cmd_data);
+
+///// unset.c
+
+int			unset_builtin(t_command *cmd);
 
 ////  CWD  ////
 
@@ -409,6 +477,7 @@ void		update_error_val(int error_nbr);
 
 //// is_assign_tok.c
 
+bool		is_assign_tok_state(const char *str);
 bool		is_assign_tok(t_token *token);
 
 /// expand_command.c
@@ -418,17 +487,20 @@ void		expand_command(t_list **tokens);
 /// expand_utils.c
 
 void		remove_sep_tok(t_list **tokens);
-void		set_to_gen(t_token *token);
-void		set_assign(t_list *tokens);
 
 /// merge_gen.c
 
-bool		is_gen_tok(t_list *tokens);
 void		merge_gen_lst(t_list *tokens);
 
 /// split_gen.c
 
 void		split_gen(t_list **tokens);
+
+/// update_tok_type.c
+
+void		set_qgen_to_gen(t_token *tok);
+void		set_assign_tok(t_token *tok);
+void		set_simple_eq_to_gen(t_token *tok);
 
 ///  VAR  ///
 
@@ -482,14 +554,33 @@ void		init_shell(char **env);
 
 /// interpreter.c
 
-t_list		*interpreter(t_list *tokens, char **env);
+t_list		*interpreter(t_list *tokens, t_list *env);
 
 /// interpreter_utils.c
 
+bool		is_assign_mode(t_list *tokens);
+
+/// cmd_mode.c
+
+t_list		*cmd_mode(t_list *tokens, t_list *env);
+
+/// cmd_mode_utils.c
+
+void		clean_commands(t_list **commands);
+void		clear_local_env(t_list **env);
+
+///			COMMAND			///
+
+//// command_utils.c
+
+char		**dup_env_lst_to_array(t_list *env_lst);
+t_command	*init_command(void);
 void		free_command(t_command *cmd_data);
-size_t		get_word_count(t_list *tokens);
+
+//// get_arg_array.c
+
+void		append_to_arg_array(t_command *cmd, t_list *tokens);
 char		**get_arg_array(t_list *tokens);
-char		*find_cmd_path(const char *cmd_name);
 
 //			LEXER			//
 
@@ -580,6 +671,17 @@ void		clear_line(void);
 /// prompt.c
 
 void		prompt(void);
+
+//			REDIRECTION			//
+
+/// redirection.c
+
+void		update_fds(t_toktype toktype, t_token *tok, t_command *cmd);
+
+/// redirection utils.c
+
+int			get_out_fd(char *out, t_toktype tok_type);
+int			get_in_fd(char *in, t_toktype tok_type);
 
 //			SIGNAL			//
 

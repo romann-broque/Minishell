@@ -10,6 +10,12 @@
 minishell
 cunit
 
+# Output test files
+
+*.out
+*.ref
+*.refb
+
 # Object files
 *.o
 *.ko

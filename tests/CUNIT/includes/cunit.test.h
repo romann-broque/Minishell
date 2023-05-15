@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cunit.test.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:44:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/01 10:51:24 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/15 10:33:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ void	cmd_path__test(void);
 // expand.test.c
 
 void	expand__test(void);
+
+// export.test.c
+
+void 	export_var_from_str__test(void);
 
 // ft_getenv.test.c
 

@@ -70,7 +70,8 @@ function put_format()
 
  echo -e "${BLUE}\n<====  BASH  ====>\n${NC}"
 
-files=( "basic" "builtin_cwd" "echo_builtin" "expansion" "assign" "exit_builtin")
+files=( "basic" "builtin_cwd" "echo_builtin" "expansion" "assign" "exit_builtin" "export_builtin" "unset_builtin" "redirection")
+
 
 inputs=($(put_format "$IN_FOLDER" ".in" "${files[@]}"))
 outputs=($(put_format "$OUT_FOLDER" ".out" "${files[@]}"))

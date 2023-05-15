@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/15 11:26:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/15 11:39:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ static void	child_job(t_command *cmd_data, char *path)
 
 static void	print_child_signal(const int status)
 {
-	if (WIFSIGNALED(status) == true
-		&& WTERMSIG(status) == SIGQUIT)
-		ft_printf(QUIT_CDUMP);
-	ft_printf(NEWLINE_STR);
+	if (WIFSIGNALED(status) == true)
+	{
+		if (WTERMSIG(status) == SIGQUIT)
+			ft_printf(QUIT_CDUMP);
+		ft_printf(NEWLINE_STR);
+	}
 }
 
 void	exec_binary(t_command *cmd_data, char *path)
