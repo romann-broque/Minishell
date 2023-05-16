@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:36:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/16 15:47:08 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,7 @@ typedef struct s_command
 {
 	char	**command;
 	char	**env;
+	int		index;
 	int		fdin;
 	int		fdout;
 }				t_command;
@@ -287,8 +288,8 @@ typedef struct s_global
 	t_list	*garbage;
 	t_list	*env;
 	bool	is_stoppable;
-	int		stdin;
-	int		stdout;
+	int		cmd_nbr;
+	int		prev_pipe;
 }				t_global;
 
 /////////////////

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/16 15:05:36 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_global	g_global;
 
 static char	*get_assign_from_var(t_var *var)
 {
@@ -31,6 +33,8 @@ t_command	*init_command(void)
 	cmd_data = (t_command *)malloc(sizeof(t_command));
 	if (cmd_data != NULL)
 	{
+		g_global.cmd_nbr++;
+		cmd_data->index = g_global.cmd_nbr;
 		cmd_data->command = NULL;
 		cmd_data->env = NULL;
 		cmd_data->fdin = STDIN_FILENO;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/16 15:03:16 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	get_command(void)
 {
 	char *const	line = readline(PROMPT);
 
+	g_global.cmd_nbr = 0;
 	add_history(line);
 	add_deallocator(line, free);
 	if (are_quotes_closed(line) == true)
