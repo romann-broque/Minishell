@@ -6,11 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 19:30:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/17 19:31:37 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/17 19:34:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_global	g_global;
 
 static char	*ft_readline(const char *prompt)
 {

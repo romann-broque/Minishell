@@ -6,13 +6,11 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 09:15:11 by mat               #+#    #+#             */
-/*   Updated: 2023/05/17 19:31:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/17 19:34:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-extern t_global	g_global;
 
 int	get_out_fd(char *out, t_toktype tok_type)
 {
