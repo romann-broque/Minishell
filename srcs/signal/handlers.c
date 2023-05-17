@@ -6,11 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 19:32:39 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/17 19:33:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/17 19:35:08 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_global	g_global;
 
 void	clear_line_handler(__attribute__((unused)) int signal)
 {
