@@ -6,11 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/17 19:18:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_global	g_global;
 
 static t_list	*get_cmd_env(t_list *glob_env, t_list *loc_env)
 {
@@ -90,7 +92,9 @@ static void	process_tok(
 	if (toktype == T_START || toktype == T_PIPE)
 	{
 		cmd = init_command();
+		add_deallocator(cmd, (void (*)(void *))free_command);
 		ft_lstadd_back(cmd_lst, ft_lstnew(cmd));
+		add_deallocator(ft_lstlast(*cmd_lst), free);
 	}
 	else if (toktype == T_ASSIGN)
 		process_assign(local_env, *tokens);
@@ -116,7 +120,7 @@ t_list	*cmd_mode(t_list *tokens, t_list *env)
 	commands = NULL;
 	local_env = NULL;
 	toktype = get_type_from_tok(tokens->content);
-	while (toktype != T_END)
+	while (toktype != T_END && g_global.s_state == S_INTERP)
 	{
 		process_tok(&commands, &tokens, env, &local_env);
 		toktype = get_type_from_tok(tokens->content);

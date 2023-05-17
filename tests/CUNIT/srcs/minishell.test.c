@@ -80,5 +80,6 @@ int	main(
 	char **env)
 {
 	init_env(&g_global, env);
+	g_global.s_state = S_DEFAULT;
 	exec_tests();
 }

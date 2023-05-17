@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/15 11:39:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/17 16:52:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,7 @@ void	exec_binary(t_command *cmd_data, char *path)
 	{
 		pid = fork();
 		if (pid == 0)
-		{
-			update_signal_state(S_EXEC);
 			child_job(cmd_data, path);
-		}
 		else if (pid > 0)
 		{
 			update_signal_state(S_SLEEP);
@@ -70,6 +67,6 @@ void	exec_binary(t_command *cmd_data, char *path)
 			g_global.last_ret_val = extract_return_status(status);
 			print_child_signal(status);
 		}
-		update_signal_state(S_DEFAULT);
+		update_signal_state(S_EXEC);
 	}
 }

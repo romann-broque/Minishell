@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:35:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/17 19:25:17 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ void	exit_shell(const int exit_value, const bool is_print)
 	ft_lstclear(&(g_global.env), (void (*)(void *))free_var);
 	close(g_global.stdin);
 	close(g_global.stdout);
+	close(g_global.pipe_in);
+	close(g_global.pipe_out);
 	exit(exit_value);
 }

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 11:37:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/17 19:24:05 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	init_fds(void)
 {
 	g_global.stdin = dup(STDIN_FILENO);
 	g_global.stdout = dup(STDOUT_FILENO);
+	g_global.pipe_in = INVALID_FD;
+	g_global.pipe_out = INVALID_FD;
 }
 
 void	init_shell(char **env)

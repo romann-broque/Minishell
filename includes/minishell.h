@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 11:33:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/17 19:33:42 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@
 
 // return value
 
+# define SIGINT_RETVAL	130
 # define NO_ACCESS		126
 # define NO_FILE		127
 # define INVALID_FD		-1
@@ -226,6 +227,7 @@ typedef enum e_quote_state
 typedef enum e_sig_state
 {
 	S_DEFAULT,
+	S_INTERP,
 	S_EXEC,
 	S_SLEEP
 }			t_sigstate;
@@ -292,11 +294,14 @@ typedef struct s_var
 
 typedef struct s_global
 {
-	int		last_ret_val;
-	t_list	*garbage;
-	t_list	*env;
-	int		stdin;
-	int		stdout;
+	int			last_ret_val;
+	t_sigstate	s_state;
+	t_list		*garbage;
+	t_list		*env;
+	int			stdin;
+	int			stdout;
+	int			pipe_in;
+	int			pipe_out;
 }				t_global;
 
 /////////////////
@@ -542,6 +547,7 @@ void		free_manager(void);
 // tracker.c
 
 void		add_deallocator(void *ptr, void (*fct)(void *));
+void		rm_deallocator(void *ptr);
 void		init_tracker(void);
 
 //			INIT			//
@@ -674,6 +680,10 @@ void		prompt(void);
 
 //			REDIRECTION			//
 
+/// heredoc.c
+
+int			ft_heredoc(char *end_str);
+
 /// redirection.c
 
 void		update_fds(t_toktype toktype, t_token *tok, t_command *cmd);
@@ -684,6 +694,12 @@ int			get_out_fd(char *out, t_toktype tok_type);
 int			get_in_fd(char *in, t_toktype tok_type);
 
 //			SIGNAL			//
+
+/// handlers.c
+
+void		clear_line_handler(__attribute__((unused)) int signal);
+void		handle_sigint_default(__attribute__((unused)) int signal);
+void		handle_sigint_inter(__attribute__((unused))int signal);
 
 /// signal.c
 

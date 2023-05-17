@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:44:29 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:34:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/15 14:13:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ static bool	is_cmd_valid(t_token *tok_array, t_command *cmd_array, const size_t 
 
 void	interpreter__test(void)
 {
+	g_global.s_state = S_INTERP;
 	char	**env_array = dup_env_lst_to_array(g_global.env);
 	t_token	toks1[] = {
 		{.type = T_START, .value = NULL},
@@ -177,4 +178,5 @@ void	interpreter__test(void)
 	CU_ASSERT_TRUE(is_cmd_valid(toks3, cmds3, 2));
 	CU_ASSERT_TRUE(is_cmd_valid(toks4, cmds4, 1));
 	free_strs(env_array);
+	g_global.s_state = S_DEFAULT;
 }

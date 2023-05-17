@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:27:19 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 11:37:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/17 18:55:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ void	add_deallocator(void *ptr, void (*fct)(void *))
 	t_deallocator *const	dealloc = init_dealloc(ptr, fct);
 
 	ft_lstadd_front(&(g_global.garbage), ft_lstnew(dealloc));
+}
+
+bool	are_same_ptr(void *ptr1, void *ptr2)
+{
+	return (ptr1 == ptr2);
+}
+
+void	rm_deallocator(void *ptr)
+{
+	ft_list_remove_if(&(g_global.garbage), ptr, are_same_ptr, free);
 }
 
 void	init_tracker(void)
