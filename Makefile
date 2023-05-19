@@ -170,11 +170,13 @@ SRCS	 	+=	prompt.c
 
 ### srcs/redirection/
 
+SRCS		+=	heredoc.c
 SRCS		+=	redirection.c
 SRCS		+=	redirection_utils.c
 
 ### srcs/signal/
 
+SRCS		+=	handlers.c
 SRCS		+=	signal.c
 
 vpath %.c $(PATH_SRCS)

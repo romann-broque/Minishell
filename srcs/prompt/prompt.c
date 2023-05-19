@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 11:36:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/19 15:10:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void	exec_command(t_list **token_lst)
 	t_list	*cmds;
 
 	cmds = interpreter(*token_lst, g_global.env);
-	add_deallocator(cmds, free_command_lst);
 	ft_lstiter(cmds, (void (*)(void *))execution);
 }
 
@@ -47,7 +46,8 @@ static void	get_command(void)
 {
 	char *const	line = readline(PROMPT);
 
-	add_history(line);
+	if (line != NULL && *line != '\0')
+		add_history(line);
 	add_deallocator(line, free);
 	if (are_quotes_closed(line) == true)
 		handle_command(line);

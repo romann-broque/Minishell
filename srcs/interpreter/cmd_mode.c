@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/19 15:19:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ static void	process_tok(
 	{
 		cmd = init_command();
 		ft_lstadd_back(cmd_lst, ft_lstnew(cmd));
+		add_deallocator(ft_lstlast(*cmd_lst), free);
+		add_deallocator(cmd, (void (*)(void *))free_command);
 	}
 	else if (toktype == T_ASSIGN)
 		process_assign(local_env, *tokens);
@@ -125,6 +127,5 @@ t_list	*cmd_mode(t_list *tokens, t_list *env)
 		toktype = get_type_from_tok(tokens->content);
 	}
 	clear_local_env(&local_env);
-	clean_commands(&commands);
 	return (commands);
 }

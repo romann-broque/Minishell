@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 11:33:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/19 15:21:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@
 # define INCORRECT_USE	2
 # define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
+# define SIGINT_RETVAL			130
 
 // enum
 
@@ -226,6 +227,7 @@ typedef enum e_quote_state
 typedef enum e_sig_state
 {
 	S_DEFAULT,
+	S_INTER,
 	S_EXEC,
 	S_SLEEP
 }			t_sigstate;
@@ -297,6 +299,8 @@ typedef struct s_global
 	t_list	*env;
 	int		stdin;
 	int		stdout;
+	int		hd_pipe_in;
+	int		hd_pipe_out;
 }				t_global;
 
 /////////////////
@@ -566,7 +570,6 @@ t_list		*cmd_mode(t_list *tokens, t_list *env);
 
 /// cmd_mode_utils.c
 
-void		clean_commands(t_list **commands);
 void		clear_local_env(t_list **env);
 
 ///			COMMAND			///
@@ -674,6 +677,10 @@ void		prompt(void);
 
 //			REDIRECTION			//
 
+/// heredoc.c
+
+int			ft_heredoc(const char *end_str);
+
 /// redirection.c
 
 void		update_fds(t_toktype toktype, t_token *tok, t_command *cmd);
@@ -684,6 +691,12 @@ int			get_out_fd(char *out, t_toktype tok_type);
 int			get_in_fd(char *in, t_toktype tok_type);
 
 //			SIGNAL			//
+
+/// handlers.c
+
+void		clear_line_handler(__attribute__((unused)) int signal);
+void		handle_sigint_default(__attribute__((unused)) int signal);
+void		handle_sigint_inter(__attribute__((unused))int signal);
 
 /// signal.c
 
