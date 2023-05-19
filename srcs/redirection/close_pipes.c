@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:34:08 by mat               #+#    #+#             */
-/*   Updated: 2023/05/19 09:59:55 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/19 10:17:50 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	close_child(int *end)
 	close(g_global.prev_pipe);
 }
 
-void	close_parent(int *end, t_command *cmd_data)
+void	close_parent(t_command *cmd_data)
 {
-	close(end[1]);
+	close(cmd_data->end[1]);
 	if (g_global.cmd_nbr > 1 && cmd_data->index > 1)
 		close(g_global.prev_pipe);
 	if (cmd_data->index == g_global.cmd_nbr)
-		close(end[0]);
+		close(cmd_data->end[0]);
 }

@@ -15,12 +15,9 @@ minishell: pouet: command not found
 minishell: /pouet: No such file or directory
 includes
 libft
-lsuef
-lut
 Makefile
 minishell
 objs
-out
 README.md
 srcs
 tests

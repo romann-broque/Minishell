@@ -6,8 +6,6 @@
 .gitmodules
 includes
 libft
-lsuef
-lut
 Makefile
 minishell
 objs
@@ -24,8 +22,6 @@ tests
 .gitmodules
 includes
 libft
-lsuef
-lut
 Makefile
 minishell
 objs
@@ -38,8 +34,6 @@ tests
 bonjour
 includes
 libft
-lsuef
-lut
 Makefile
 minishell
 objs
@@ -50,8 +44,6 @@ srcs
 tests
 includes
 libft
-lsuef
-lut
 Makefile
 minishell
 objs
@@ -62,8 +54,6 @@ srcs
 tests
 includes
 libft
-lsuef
-lut
 Makefile
 minishell
 objs

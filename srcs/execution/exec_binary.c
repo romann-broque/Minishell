@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/17 11:52:07 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/19 10:17:06 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static bool	is_folder(const char *path)
 	return (S_ISDIR(file_stat.st_mode));
 }
 
-static void	child_job(t_command *cmd_data, char *path, int *end)
+static void	child_job(t_command *cmd_data, char *path)
 {
-	dup_child(cmd_data, end);
-	close_child(end);
+	dup_child(cmd_data);
+	close_child(cmd_data->end);
 	if (is_folder(path) == true)
 	{
 		g_global.last_ret_val = NO_ACCESS;
@@ -44,22 +44,21 @@ static void	child_job(t_command *cmd_data, char *path, int *end)
 
 void	exec_binary(t_command *cmd_data, char *path)
 {
-	int	end[2];
 	int	pid;
 	int	status;
 
-	pipe(end);
+	pipe(cmd_data->end);
 	if (path != NULL)
 	{
 		pid = fork();
 		if (pid == 0)
-			child_job(cmd_data, path, end);
+			child_job(cmd_data, path);
 		else if (pid > 0)
 		{
 			wait(&status);
-			close_parent(end, cmd_data);
+			close_parent(cmd_data);
 			g_global.last_ret_val = extract_return_status(status);
-			g_global.prev_pipe = end[0];
+			g_global.prev_pipe = cmd_data->end[0];
 		}
 	}
 }

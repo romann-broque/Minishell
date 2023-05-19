@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/19 09:41:38 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/19 10:17:18 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,6 +261,7 @@ typedef struct s_command
 	int		index;
 	int		fdin;
 	int		fdout;
+	int		end[2];
 }				t_command;
 
 typedef struct s_deallocator
@@ -677,13 +678,11 @@ int			get_in_fd(char *in, t_toktype tok_type);
 /// close_pipes.c
 
 void		close_child(int *end);
-void		close_parent(int *end, t_command *cmd_data);
+void		close_parent(t_command *cmd_data);
 
 /// dup.c
 
-void		dup_infile(t_command *cmd_data);
-void		dup_outfile(t_command *cmd_data, int *end);
-void		dup_child(t_command *cmd_data, int *end);
+void		dup_child(t_command *cmd_data);
 
 
 //			SIGNAL			//
