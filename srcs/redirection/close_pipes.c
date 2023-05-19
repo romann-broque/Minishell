@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_shell.c                                       :+:      :+:    :+:   */
+/*   close_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 12:35:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/19 09:44:22 by mat              ###   ########.fr       */
+/*   Created: 2023/05/17 11:34:08 by mat               #+#    #+#             */
+/*   Updated: 2023/05/19 09:59:55 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 
 extern t_global	g_global;
 
-void	exit_shell(const int exit_value, const bool is_print)
+void	close_child(int *end)
 {
-	if (is_print == true)
-		ft_dprintf(STDERR_FILENO, "%s\n", EXIT_MESSAGE);
-	free_manager();
-	ft_lstclear(&(g_global.env), (void (*)(void *))free_var);
-	close(g_global.stdin);
-	close(g_global.stdout);
-	exit(exit_value);
+	close(end[0]);
+	close(end[1]);
+	close(g_global.prev_pipe);
+}
+
+void	close_parent(int *end, t_command *cmd_data)
+{
+	close(end[1]);
+	if (g_global.cmd_nbr > 1 && cmd_data->index > 1)
+		close(g_global.prev_pipe);
+	if (cmd_data->index == g_global.cmd_nbr)
+		close(end[0]);
 }

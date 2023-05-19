@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/16 15:48:45 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/19 09:42:00 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,16 @@ static void	init_shlvl(void)
 	free(lvl_str);
 }
 
+static void	init_fds(void)
+{
+	g_global.stdin = dup(STDIN_FILENO);
+	g_global.stdout = dup(STDOUT_FILENO);
+}
+
 void	init_shell(char **env)
 {
 	init_env(&g_global, env);
+	init_fds();
 	check_pos(SHELL_INIT);
 	init_pwd();
 	init_shlvl();

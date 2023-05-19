@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/16 15:47:08 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/19 09:41:38 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,6 +290,8 @@ typedef struct s_global
 	bool	is_stoppable;
 	int		cmd_nbr;
 	int		prev_pipe;
+	int		stdin;
+	int		stdout;
 }				t_global;
 
 /////////////////
@@ -671,6 +673,18 @@ void		update_fds(t_toktype toktype, t_token *tok, t_command *cmd);
 
 int			get_out_fd(char *out, t_toktype tok_type);
 int			get_in_fd(char *in, t_toktype tok_type);
+
+/// close_pipes.c
+
+void		close_child(int *end);
+void		close_parent(int *end, t_command *cmd_data);
+
+/// dup.c
+
+void		dup_infile(t_command *cmd_data);
+void		dup_outfile(t_command *cmd_data, int *end);
+void		dup_child(t_command *cmd_data, int *end);
+
 
 //			SIGNAL			//
 

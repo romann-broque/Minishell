@@ -171,6 +171,8 @@ SRCS	 	+=	prompt.c
 
 SRCS		+=	redirection.c
 SRCS		+=	redirection_utils.c
+SRCS		+=	dup.c
+SRCS		+=	close_pipes.c
 
 ### srcs/signal/
 
