@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/18 11:38:10 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/22 11:33:55 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,18 @@ static char	*get_path(t_command *cmd_data)
 	return (path);
 }
 
+static bool	is_executable_cmd(t_command *cmd)
+{
+	return (cmd->fdin != INVALID_FD
+		&& cmd->fdout != INVALID_FD
+		&& cmd->command != NULL);
+}
+
 void	execution(t_command *cmd_data)
 {
 	char	*path;
 
-	if (cmd_data->fdin != INVALID_FD && cmd_data->fdout != INVALID_FD)
+	if (is_executable_cmd(cmd_data) == true)
 	{
 		if (is_builtin(cmd_data) == true)
 			exec_builtin(cmd_data);

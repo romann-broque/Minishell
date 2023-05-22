@@ -14,3 +14,7 @@ ls > out | < tests/var/var.c > out
 ls | < Makefile cat > out | env | grep PATH | wc
 cat out
 rm out
+
+exit 40 | exit 21
+echo $?
+exit 0

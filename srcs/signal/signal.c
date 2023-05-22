@@ -6,21 +6,44 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:54:40 by mat               #+#    #+#             */
-/*   Updated: 2023/05/10 15:02:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:16:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	handle_sigint(__attribute__((unused)) int signal)
+static void	set_default_catcher(void)
 {
-	ft_printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	signal(SIGINT, handle_sigint_default);
+	signal(SIGQUIT, SIG_IGN);
 }
 
-void	set_catcher(void)
+static void	set_sleep_catcher(void)
 {
-	signal(SIGINT, handle_sigint);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+static void	set_hd_catcher(void)
+{
+	signal(SIGINT, handle_sigint_hd);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+static void	set_exec_catcher(void)
+{
+	signal(SIGINT, clear_line_handler);
+	signal(SIGQUIT, clear_line_handler);
+}
+
+void	update_signal_state(const t_sigstate state)
+{
+	if (state == S_EXEC)
+		set_exec_catcher();
+	else if (state == S_HEREDOC)
+		set_hd_catcher();
+	else if (state == S_SLEEP)
+		set_sleep_catcher();
+	else
+		set_default_catcher();
 }

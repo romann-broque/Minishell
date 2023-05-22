@@ -165,10 +165,12 @@ SRCS		+=	print_error.c
 
 ### srcs/prompt/
 
+SRCS	 	+=	line_utils.c
 SRCS	 	+=	prompt.c
 
 ### srcs/redirection/
 
+SRCS		+=	heredoc.c
 SRCS		+=	redirection.c
 SRCS		+=	redirection_utils.c
 SRCS		+=	dup.c
@@ -176,6 +178,7 @@ SRCS		+=	close_pipes.c
 
 ### srcs/signal/
 
+SRCS		+=	handlers.c
 SRCS		+=	signal.c
 
 vpath %.c $(PATH_SRCS)

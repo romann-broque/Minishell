@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_mode.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 11:25:10 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_global	g_global;
 
 static t_list	*get_cmd_env(t_list *glob_env, t_list *loc_env)
 {
@@ -89,8 +91,11 @@ static void	process_tok(
 	toktype = get_type_from_tok((*tokens)->content);
 	if (toktype == T_START || toktype == T_PIPE)
 	{
+		g_global.cmd_nbr++;
 		cmd = init_command();
 		ft_lstadd_back(cmd_lst, ft_lstnew(cmd));
+		add_deallocator(ft_lstlast(*cmd_lst), free);
+		add_deallocator(cmd, (void (*)(void *))free_command);
 	}
 	else if (toktype == T_ASSIGN)
 		process_assign(local_env, *tokens);
@@ -125,6 +130,5 @@ t_list	*cmd_mode(t_list *tokens, t_list *env)
 		toktype = get_type_from_tok(tokens->content);
 	}
 	clear_local_env(&local_env);
-	clean_commands(&commands);
 	return (commands);
 }

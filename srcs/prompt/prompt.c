@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/16 15:03:16 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/22 11:26:33 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	exec_command(t_list **token_lst)
 	t_list	*cmds;
 
 	cmds = interpreter(*token_lst, g_global.env);
-	add_deallocator(cmds, free_command_lst);
 	ft_lstiter(cmds, (void (*)(void *))execution);
+	update_signal_state(S_DEFAULT);
 }
 
 static void	handle_command(const char *command)
@@ -43,12 +43,19 @@ static void	handle_command(const char *command)
 	}
 }
 
+static void	add_line_to_history(const char *line)
+{
+	if (line != NULL && *line != '\0')
+		add_history(line);
+}
+
 static void	get_command(void)
 {
 	char *const	line = readline(PROMPT);
 
+	update_signal_state(S_SLEEP);
 	g_global.cmd_nbr = 0;
-	add_history(line);
+	add_line_to_history(line);
 	add_deallocator(line, free);
 	if (are_quotes_closed(line) == true)
 		handle_command(line);
@@ -58,6 +65,7 @@ static void	get_command(void)
 		print_error("%s: %s\n", MINISHELL, SYNTAX_ERROR);
 	}
 	free_manager();
+	update_signal_state(S_DEFAULT);
 }
 
 void	prompt(void)

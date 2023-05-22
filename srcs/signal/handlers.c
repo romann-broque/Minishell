@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_utils.c                                     :+:      :+:    :+:   */
+/*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 17:59:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 11:35:17 by rbroque          ###   ########.fr       */
+/*   Created: 2023/05/17 19:32:39 by rbroque           #+#    #+#             */
+/*   Updated: 2023/05/22 10:07:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	are_same_tok(t_token *tok1, t_token *tok2)
+extern t_global	g_global;
+
+void	clear_line_handler(__attribute__((unused)) int signal)
 {
-	return (tok1->type == tok2->type && streq(tok1->value, tok2->value));
+	clear_line();
 }
 
-void	remove_sep_tok(t_list **tokens)
+void	handle_sigint_default(__attribute__((unused)) int signal)
 {
-	static t_token	sep_tok = {.type = T_SEPARATOR, .value = SEP};
+	ft_printf(NEWLINE_STR);
+	clear_line();
+	g_global.last_ret_val = SIGINT_RETVAL;
+}
 
-	ft_list_remove_if(tokens, &sep_tok,
-		(bool (*)(void *, void *))are_same_tok, (void (*)(void *))free_token);
+void	handle_sigint_hd(__attribute__((unused))int signal)
+{
+	ft_printf(NEWLINE_STR);
+	exit_shell(SIGINT_RETVAL, false);
 }
