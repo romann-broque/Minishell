@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/15 11:39:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:33:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,9 @@ void	exec_binary(t_command *cmd_data, char *path)
 		}
 		else if (pid > 0)
 		{
-			update_signal_state(S_SLEEP);
 			wait(&status);
 			g_global.last_ret_val = extract_return_status(status);
 			print_child_signal(status);
 		}
-		update_signal_state(S_DEFAULT);
 	}
 }

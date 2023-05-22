@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 10:21:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:35:50 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	get_command(void)
 {
 	char *const	line = readline(PROMPT);
 
+	update_signal_state(S_SLEEP);
 	add_line_to_history(line);
 	add_deallocator(line, free);
 	if (are_quotes_closed(line) == true)
@@ -63,6 +64,7 @@ static void	get_command(void)
 		print_error("%s: %s\n", MINISHELL, SYNTAX_ERROR);
 	}
 	free_manager();
+	update_signal_state(S_DEFAULT);
 }
 
 void	prompt(void)

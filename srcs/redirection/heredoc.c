@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:19:40 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 10:27:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:43:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,33 @@ static void	fill_heredoc(const int fd_in, const char *end_str)
 	free(line);
 }
 
+static int	hd_parent_waiting(const int fd)
+{
+	int	exit_status;
+	int	status;
+
+	update_signal_state(S_SLEEP);
+	wait(&status);
+	exit_status = WEXITSTATUS(status);
+	g_global.last_ret_val = exit_status;
+	if (exit_status == SIGINT_RETVAL)
+		return (INVALID_FD);
+	return (fd);
+}
+
 static int	process_heredoc(int hd_pipe[2], const char *end_str)
 {
 	int	pid;
-	int	status;
 
-	update_signal_state(S_HEREDOC);
 	pid = fork();
 	if (pid == 0)
 	{
 		ft_memcpy(g_global.hd_pipe, hd_pipe, 2 * sizeof(int));
+		update_signal_state(S_HEREDOC);
 		fill_heredoc(hd_pipe[1], end_str);
 		exit_shell(EXIT_SUCCESS, false);
 	}
-	else
-	{
-		update_signal_state(S_SLEEP);
-		wait(&status);
-		if (WEXITSTATUS(status) == SIGINT_RETVAL)
-			return (INVALID_FD);
-	}
-	return (hd_pipe[0]);
+	return (hd_parent_waiting(hd_pipe[0]));
 }
 
 int	ft_heredoc(const char *end_str)
