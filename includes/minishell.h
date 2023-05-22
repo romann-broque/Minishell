@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 11:15:28 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/22 11:34:50 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -701,7 +701,6 @@ void		close_parent(t_command *cmd_data);
 /// dup.c
 
 void		dup_child(t_command *cmd_data);
-
 
 //			SIGNAL			//
 
