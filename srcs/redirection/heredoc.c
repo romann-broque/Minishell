@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:19:40 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 10:43:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:46:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ static int	hd_parent_waiting(const int fd)
 
 static int	process_heredoc(int hd_pipe[2], const char *end_str)
 {
-	int	pid;
-
-	pid = fork();
-	if (pid == 0)
+	if (fork() == 0)
 	{
 		ft_memcpy(g_global.hd_pipe, hd_pipe, 2 * sizeof(int));
 		update_signal_state(S_HEREDOC);
