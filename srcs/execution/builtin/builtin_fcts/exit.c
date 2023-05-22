@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:48:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:29:42 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:18:14 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ static bool	check_and_updates_retval(long *ret_value, char *str)
 
 static int	exit_num_arg(const char *second_arg, const long nb)
 {
-	if (second_arg == NULL)
+	if (second_arg == NULL && g_global.cmd_nbr == 1)
 		exit_shell(nb, true);
+	else if (second_arg == NULL)
+		exit_shell(nb, false);
 	else
 	{
 		print_error("%s\n%s: %s: %s\n",
@@ -77,6 +79,9 @@ int	exit_builtin(t_command *cmd_data)
 		else
 			exit_invalid_arg(cmd_data->command[1]);
 	}
-	exit_shell(g_global.last_ret_val, true);
+	if (g_global.cmd_nbr == 1)
+		exit_shell(g_global.last_ret_val, true);
+	else
+		exit_shell(g_global.last_ret_val, false);
 	return (EXIT_SUCCESS);
 }

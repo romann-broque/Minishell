@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:38:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/19 10:20:15 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/22 15:58:28 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	call_builtin(const t_builtin_mapper *map, t_command *cmd_data)
 	size_t		i;
 
 	i = 0;
-	dup_child(cmd_data);
 	while (map[i].name != NULL)
 	{
 		if (streq(map[i].name, cmd_name) == true)
@@ -45,10 +44,5 @@ void	exec_builtin(t_command *cmd_data)
 	{NULL, NULL}
 	};
 
-	pipe(cmd_data->end);
 	g_global.last_ret_val = call_builtin(map, cmd_data);
-	close_parent(cmd_data);
-	dup2(g_global.stdin, STDIN_FILENO);
-	dup2(g_global.stdout, STDOUT_FILENO);
-	g_global.prev_pipe = cmd_data->end[0];
 }

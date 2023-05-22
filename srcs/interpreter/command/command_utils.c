@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 11:24:45 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/22 15:57:09 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ void	free_command(t_command *cmd_data)
 			close(cmd_data->fdin);
 		if (cmd_data->fdout != STDOUT_FILENO)
 			close(cmd_data->fdout);
-		close(cmd_data->end[0]);
-		close(cmd_data->end[1]);
+		if (g_global.cmd_nbr > 1)
+		{
+			close(cmd_data->end[0]);
+			close(cmd_data->end[1]);
+		}
 	}
 	free(cmd_data);
 }

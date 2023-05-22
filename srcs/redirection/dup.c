@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:31:37 by mat               #+#    #+#             */
-/*   Updated: 2023/05/19 10:16:32 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/22 16:21:49 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,20 @@ void	dup_child(t_command *cmd_data)
 {
 	dup_infile(cmd_data);
 	dup_outfile(cmd_data);
+}
+
+void	dup_files(t_command *cmd_data)
+{
+	if (cmd_data->fdin != STDIN_FILENO)
+		dup2(cmd_data->fdin, STDIN_FILENO);
+	if (cmd_data->fdout != STDOUT_FILENO)
+		dup2(cmd_data->fdout, STDOUT_FILENO);
+}
+
+void	revert_dup(t_command *cmd_data)
+{
+	if (cmd_data->fdin != STDIN_FILENO)
+		dup2(g_global.stdin, STDIN_FILENO);
+	if (cmd_data->fdout != STDOUT_FILENO)
+		dup2(g_global.stdout, STDOUT_FILENO);
 }

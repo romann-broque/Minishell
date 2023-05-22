@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 11:33:55 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/22 16:26:33 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,12 @@ static bool	is_executable_cmd(t_command *cmd)
 		&& cmd->command != NULL);
 }
 
-void	execution(t_command *cmd_data)
+static void	execute_cmd(t_command *cmd_data)
 {
 	char	*path;
 
+	if (g_global.cmd_nbr == 1)
+		dup_files(cmd_data);
 	if (is_executable_cmd(cmd_data) == true)
 	{
 		if (is_builtin(cmd_data) == true)
@@ -70,6 +72,36 @@ void	execution(t_command *cmd_data)
 			path = get_path(cmd_data);
 			add_deallocator(path, free);
 			exec_binary(cmd_data, path);
+		}
+	}
+	if (g_global.cmd_nbr == 1)
+		revert_dup(cmd_data);
+}
+
+void	execution(t_command *cmd_data)
+{
+	int	pid;
+	int	status;
+
+	if (g_global.cmd_nbr == 1)
+		execute_cmd(cmd_data);
+	else
+	{
+		pipe(cmd_data->end);
+		pid = fork();
+		if (pid == 0)
+		{
+			dup_child(cmd_data);
+			update_signal_state(S_EXEC);
+			execute_cmd(cmd_data);
+			exit_shell(g_global.last_ret_val, false);
+		}
+		else
+		{
+			wait(&status);
+			close_parent(cmd_data);
+			g_global.last_ret_val = extract_return_status(status);
+			g_global.prev_pipe = cmd_data->end[0];
 		}
 	}
 }
