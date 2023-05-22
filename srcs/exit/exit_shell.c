@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:35:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 10:23:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:24:40 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void	close_fds(void)
 {
 	close_safe(g_global.stdin);
 	close_safe(g_global.stdout);
-	close_safe(g_global.hd_pipe_in);
-	close_safe(g_global.hd_pipe_out);
+	close_safe(g_global.hd_pipe[0]);
+	close_safe(g_global.hd_pipe[1]);
 }
 
 void	exit_shell(const int exit_value, const bool is_print)

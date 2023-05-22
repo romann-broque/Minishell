@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 09:53:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:24:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,8 +299,7 @@ typedef struct s_global
 	t_list	*env;
 	int		stdin;
 	int		stdout;
-	int		hd_pipe_in;
-	int		hd_pipe_out;
+	int		hd_pipe[2];
 }				t_global;
 
 /////////////////

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:19:40 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 10:06:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:27:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ static int	process_heredoc(int hd_pipe[2], const char *end_str)
 	pid = fork();
 	if (pid == 0)
 	{
-		g_global.hd_pipe_in = hd_pipe[0];
-		g_global.hd_pipe_out = hd_pipe[1];
+		ft_memcpy(g_global.hd_pipe, hd_pipe, 2 * sizeof(int));
 		fill_heredoc(hd_pipe[1], end_str);
 		exit_shell(EXIT_SUCCESS, false);
 	}
