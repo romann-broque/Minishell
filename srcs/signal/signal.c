@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:54:40 by mat               #+#    #+#             */
-/*   Updated: 2023/05/22 09:53:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:16:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,16 @@ static void	set_hd_catcher(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
+static void	set_exec_catcher(void)
+{
+	signal(SIGINT, clear_line_handler);
+	signal(SIGQUIT, clear_line_handler);
+}
+
 void	update_signal_state(const t_sigstate state)
 {
 	if (state == S_EXEC)
-	{
-		signal(SIGINT, clear_line_handler);
-		signal(SIGQUIT, clear_line_handler);
-	}
+		set_exec_catcher();
 	else if (state == S_HEREDOC)
 		set_hd_catcher();
 	else if (state == S_SLEEP)
