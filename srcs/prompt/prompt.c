@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 10:12:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:21:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	exec_command(t_list **token_lst)
 
 	cmds = interpreter(*token_lst, g_global.env);
 	ft_lstiter(cmds, (void (*)(void *))execution);
+	update_signal_state(S_DEFAULT);
 }
 
 static void	handle_command(const char *command)
