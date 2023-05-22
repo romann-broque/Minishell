@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 19:32:39 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/19 15:17:23 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:07:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ void	handle_sigint_default(__attribute__((unused)) int signal)
 	g_global.last_ret_val = SIGINT_RETVAL;
 }
 
-void	handle_sigint_inter(__attribute__((unused))int signal)
+void	handle_sigint_hd(__attribute__((unused))int signal)
 {
 	ft_printf(NEWLINE_STR);
-	close(g_global.hd_pipe_in);
-	close(g_global.hd_pipe_out);
 	exit_shell(SIGINT_RETVAL, false);
 }

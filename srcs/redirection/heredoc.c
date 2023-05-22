@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:19:40 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/19 15:22:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:06:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,20 @@ static int	process_heredoc(int hd_pipe[2], const char *end_str)
 	int	pid;
 	int	status;
 
-	update_signal_state(S_INTER);
+	update_signal_state(S_HEREDOC);
 	pid = fork();
 	if (pid == 0)
 	{
 		g_global.hd_pipe_in = hd_pipe[0];
 		g_global.hd_pipe_out = hd_pipe[1];
 		fill_heredoc(hd_pipe[1], end_str);
-		close(g_global.hd_pipe_in);
-		close(g_global.hd_pipe_out);
 		exit_shell(EXIT_SUCCESS, false);
 	}
 	else
 	{
 		update_signal_state(S_SLEEP);
 		wait(&status);
-		if (WIFSTOPPED(status) && WSTOPSIG(status) == SIGINT)
+		if (WEXITSTATUS(status) == SIGINT_RETVAL)
 			return (INVALID_FD);
 	}
 	return (hd_pipe[0]);

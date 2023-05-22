@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/19 15:21:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 09:53:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,7 +227,7 @@ typedef enum e_quote_state
 typedef enum e_sig_state
 {
 	S_DEFAULT,
-	S_INTER,
+	S_HEREDOC,
 	S_EXEC,
 	S_SLEEP
 }			t_sigstate;
@@ -696,7 +696,7 @@ int			get_in_fd(char *in, t_toktype tok_type);
 
 void		clear_line_handler(__attribute__((unused)) int signal);
 void		handle_sigint_default(__attribute__((unused)) int signal);
-void		handle_sigint_inter(__attribute__((unused))int signal);
+void		handle_sigint_hd(__attribute__((unused))int signal);
 
 /// signal.c
 
