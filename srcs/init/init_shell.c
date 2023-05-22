@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:28:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:25:14 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_global	g_global;
+extern t_global	g_global;
 
 static void	init_pwd(void)
 {
@@ -51,6 +51,8 @@ static void	init_fds(void)
 {
 	g_global.stdin = dup(STDIN_FILENO);
 	g_global.stdout = dup(STDOUT_FILENO);
+	g_global.hd_pipe[0] = INVALID_FD;
+	g_global.hd_pipe[1] = INVALID_FD;
 }
 
 void	init_shell(char **env)
@@ -59,7 +61,7 @@ void	init_shell(char **env)
 	init_env(&g_global, env);
 	check_pos(SHELL_INIT);
 	init_pwd();
+	update_signal_state(S_DEFAULT);
 	init_shlvl();
-	set_catcher();
 	init_tracker();
 }

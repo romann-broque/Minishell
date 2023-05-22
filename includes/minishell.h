@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:36:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:24:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@
 # define MINISHELL		"minishell"
 # define PROMPT			"minishell $ "
 # define EXIT_MESSAGE	"exit"
+# define QUIT_CDUMP		"Quit (core dumped)"
 # define QMARK_VAR		"LAST_RET_VAL"
 # define ZERO_VAR		"minishell"
 # define FWD_SLASH_STR	"/"
+# define NEWLINE_STR	"\n"
 # define DOT_STR		"."
 # define DOUBLE_DOT_STR	".."
 # define BATCH_OPT		"-c"
@@ -149,6 +151,7 @@
 # define INCORRECT_USE	2
 # define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
+# define SIGINT_RETVAL			130
 
 // enum
 
@@ -221,6 +224,14 @@ typedef enum e_quote_state
 	E_EOF
 }			t_qstate;
 
+typedef enum e_sig_state
+{
+	S_DEFAULT,
+	S_HEREDOC,
+	S_EXEC,
+	S_SLEEP
+}			t_sigstate;
+
 //////////////////
 /// STRUCTURES ///
 //////////////////
@@ -286,9 +297,9 @@ typedef struct s_global
 	int		last_ret_val;
 	t_list	*garbage;
 	t_list	*env;
-	bool	is_stoppable;
 	int		stdin;
 	int		stdout;
+	int		hd_pipe[2];
 }				t_global;
 
 /////////////////
@@ -558,7 +569,6 @@ t_list		*cmd_mode(t_list *tokens, t_list *env);
 
 /// cmd_mode_utils.c
 
-void		clean_commands(t_list **commands);
 void		clear_local_env(t_list **env);
 
 ///			COMMAND			///
@@ -656,11 +666,19 @@ void		print_error(const char *format, ...);
 
 //			PROMPT			//
 
+/// line_utils.c
+
+void		clear_line(void);
+
 /// prompt.c
 
 void		prompt(void);
 
 //			REDIRECTION			//
+
+/// heredoc.c
+
+int			ft_heredoc(const char *end_str);
 
 /// redirection.c
 
@@ -673,8 +691,14 @@ int			get_in_fd(char *in, t_toktype tok_type);
 
 //			SIGNAL			//
 
+/// handlers.c
+
+void		clear_line_handler(__attribute__((unused)) int signal);
+void		handle_sigint_default(__attribute__((unused)) int signal);
+void		handle_sigint_hd(__attribute__((unused))int signal);
+
 /// signal.c
 
-void		set_catcher(void);
+void		update_signal_state(const t_sigstate state);
 
 #endif

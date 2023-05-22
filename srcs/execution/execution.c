@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:30:50 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/19 15:23:40 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,18 @@ static void	dup_files(int in, int out)
 	dup2(out, STDOUT_FILENO);
 }
 
+static bool	is_executable_cmd(t_command *cmd)
+{
+	return (cmd->fdin != INVALID_FD
+		&& cmd->fdout != INVALID_FD
+		&& cmd->command != NULL);
+}
+
 void	execution(t_command *cmd_data)
 {
 	char	*path;
 
-	if (cmd_data->fdin != INVALID_FD && cmd_data->fdout != INVALID_FD)
+	if (is_executable_cmd(cmd_data) == true)
 	{
 		dup_files(cmd_data->fdin, cmd_data->fdout);
 		if (is_builtin(cmd_data) == true)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_binary.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/01 11:32:11 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/22 10:33:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,34 @@ static void	child_job(t_command *cmd_data, char *path)
 		exit(g_global.last_ret_val);
 }
 
+static void	print_child_signal(const int status)
+{
+	if (WIFSIGNALED(status) == true)
+	{
+		if (WTERMSIG(status) == SIGQUIT)
+			ft_printf(QUIT_CDUMP);
+		ft_printf(NEWLINE_STR);
+	}
+}
+
 void	exec_binary(t_command *cmd_data, char *path)
 {
-	int	pid;
 	int	status;
+	int	pid;
 
 	if (path != NULL)
 	{
 		pid = fork();
 		if (pid == 0)
+		{
+			update_signal_state(S_EXEC);
 			child_job(cmd_data, path);
+		}
 		else if (pid > 0)
 		{
 			wait(&status);
 			g_global.last_ret_val = extract_return_status(status);
+			print_child_signal(status);
 		}
 	}
 }

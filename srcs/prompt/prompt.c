@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/22 10:35:50 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	exec_command(t_list **token_lst)
 	t_list	*cmds;
 
 	cmds = interpreter(*token_lst, g_global.env);
-	add_deallocator(cmds, free_command_lst);
 	ft_lstiter(cmds, (void (*)(void *))execution);
+	update_signal_state(S_DEFAULT);
 }
 
 static void	handle_command(const char *command)
@@ -43,11 +43,18 @@ static void	handle_command(const char *command)
 	}
 }
 
+static void	add_line_to_history(const char *line)
+{
+	if (line != NULL && *line != '\0')
+		add_history(line);
+}
+
 static void	get_command(void)
 {
 	char *const	line = readline(PROMPT);
 
-	add_history(line);
+	update_signal_state(S_SLEEP);
+	add_line_to_history(line);
 	add_deallocator(line, free);
 	if (are_quotes_closed(line) == true)
 		handle_command(line);
@@ -57,6 +64,7 @@ static void	get_command(void)
 		print_error("%s: %s\n", MINISHELL, SYNTAX_ERROR);
 	}
 	free_manager();
+	update_signal_state(S_DEFAULT);
 }
 
 void	prompt(void)
