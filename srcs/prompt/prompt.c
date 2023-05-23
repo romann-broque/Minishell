@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/23 16:59:06 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/23 17:11:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@ extern t_global	g_global;
 static void	wait_for_exec(void)
 {
 	size_t	i;
-	int		status;
 
 	i = 0;
 	while (i < g_global.cmd_nbr)
 	{
-		wait(&status);
+		wait(NULL);
 		++i;
 	}
-	g_global.last_ret_val = extract_return_status(status);
 }
 
 static void	exec_command(t_list **token_lst)
