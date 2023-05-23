@@ -19,4 +19,10 @@ echo bla
 
 exit 40 | exit 21
 echo $?
+exit 0 | pouet
+echo $?
+ls | rev < Makefile > incroyable
+echo $?
+cat incroyable
+rm incroyable
 exit 0

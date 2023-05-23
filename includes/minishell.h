@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 16:22:18 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/23 11:57:26 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,7 +272,7 @@ typedef struct s_command
 	int		index;
 	int		fdin;
 	int		fdout;
-	int		end[2];
+	int		pipe_fds[2];
 }				t_command;
 
 typedef struct s_deallocator
@@ -542,7 +542,6 @@ void		delete_quote(t_vmachine *const machine);
 
 // free_manager.c
 
-void		free_command_lst(void *ptr);
 void		free_token_lst(void *ptr);
 void		free_manager(void);
 
@@ -563,12 +562,10 @@ void		init_shell(char **env);
 
 t_list		*interpreter(t_list *tokens, t_list *env);
 
-/// interpreter_utils.c
-
-bool		is_assign_mode(t_list *tokens);
-
 /// cmd_mode.c
 
+t_list		*get_cmd_env(t_list *glob_env, t_list *loc_env);
+void		process_assign(t_list **assign, t_list *tokens);
 t_list		*cmd_mode(t_list *tokens, t_list *env);
 
 /// cmd_mode_utils.c
@@ -695,7 +692,6 @@ int			get_in_fd(char *in, t_toktype tok_type);
 
 /// close_pipes.c
 
-void		close_child(int *end);
 void		close_parent(t_command *cmd_data);
 
 /// dup.c
@@ -715,5 +711,11 @@ void		handle_sigint_hd(__attribute__((unused))int signal);
 /// signal.c
 
 void		update_signal_state(const t_sigstate state);
+
+//			UTILS			//
+
+/// close_safe.c
+
+void		close_safe(const int fd);
 
 #endif

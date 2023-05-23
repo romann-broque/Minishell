@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 15:57:09 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/23 11:40:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ t_command	*init_command(void)
 		cmd_data->env = NULL;
 		cmd_data->fdin = STDIN_FILENO;
 		cmd_data->fdout = STDOUT_FILENO;
+		cmd_data->pipe_fds[0] = INVALID_FD;
+		cmd_data->pipe_fds[1] = INVALID_FD;
 	}
 	return (cmd_data);
 }
@@ -54,8 +56,8 @@ void	free_command(t_command *cmd_data)
 			close(cmd_data->fdout);
 		if (g_global.cmd_nbr > 1)
 		{
-			close(cmd_data->end[0]);
-			close(cmd_data->end[1]);
+			close_safe(cmd_data->pipe_fds[0]);
+			close_safe(cmd_data->pipe_fds[1]);
 		}
 	}
 	free(cmd_data);

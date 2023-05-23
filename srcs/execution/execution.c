@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 16:26:33 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/23 11:49:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	execution(t_command *cmd_data)
 		execute_cmd(cmd_data);
 	else
 	{
-		pipe(cmd_data->end);
+		pipe(cmd_data->pipe_fds);
 		pid = fork();
 		if (pid == 0)
 		{
@@ -100,8 +100,8 @@ void	execution(t_command *cmd_data)
 		{
 			wait(&status);
 			close_parent(cmd_data);
+			g_global.prev_pipe = cmd_data->pipe_fds[0];
 			g_global.last_ret_val = extract_return_status(status);
-			g_global.prev_pipe = cmd_data->end[0];
 		}
 	}
 }

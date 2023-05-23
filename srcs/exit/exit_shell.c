@@ -3,22 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:35:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 11:19:33 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/23 11:43:50 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 extern t_global	g_global;
-
-static void	close_safe(const int fd)
-{
-	if (fd != INVALID_FD)
-		close(fd);
-}
 
 static void	close_fds(void)
 {

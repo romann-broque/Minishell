@@ -33,12 +33,13 @@ PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/redirection/
 PATH_SRCS	+=	srcs/signal/
+PATH_SRCS	+=	srcs/utils/
 
 ### srcs/
 
 SRCS	 	+=	minishell.c
 
-### srcs/
+### srcs/batch/
 
 SRCS		+=	batch.c
 
@@ -124,7 +125,6 @@ SRCS		+=	init_shell.c
 ### srcs/interpreter/
 
 SRCS		+=	interpreter.c
-SRCS		+=	interpreter_utils.c
 SRCS		+=	cmd_mode.c
 SRCS		+=	cmd_mode_utils.c
 
@@ -180,6 +180,10 @@ SRCS		+=	close_pipes.c
 
 SRCS		+=	handlers.c
 SRCS		+=	signal.c
+
+### srcs/utils/
+
+SRCS		+=	close_safe.c
 
 vpath %.c $(PATH_SRCS)
 
