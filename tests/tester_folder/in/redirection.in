@@ -60,3 +60,12 @@ cat lol
 echo " " > lol 
 cat -e lol
 rm lol
+
+< Makefile
+echo $?
+< lol
+echo $?
+ls
+ls pouet
+< Makefile
+echo $?

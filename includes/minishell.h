@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/23 11:57:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/23 14:28:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -386,6 +386,11 @@ bool		is_path_var(const char *env_line, const char *pathvar_name);
 /// execution.c
 
 void		execution(t_command *command);
+
+/// execution_utils.c
+
+char		*get_path(t_command *cmd_data);
+bool		is_executable_cmd(t_command *cmd);
 
 /// exec_binary.c
 

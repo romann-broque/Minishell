@@ -1,187 +1,187 @@
-==28776== Memcheck, a memory error detector
-==28776== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==28776== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==28776== Command: ./tests/CUNIT/cunit
-==28776== Parent PID: 28773
-==28776== 
-==28776== 
-==28776== HEAP SUMMARY:
-==28776==     in use at exit: 256 bytes in 16 blocks
-==28776==   total heap usage: 3,505 allocs, 3,489 frees, 94,890 bytes allocated
-==28776== 
-==28776== 16 bytes in 1 blocks are still reachable in loss record 1 of 12
-==28776==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==28776==    by 0x113897: init_dealloc (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x1138E7: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A27: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10E08F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776== 
-==28776== 16 bytes in 1 blocks are still reachable in loss record 2 of 12
-==28776==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==28776==    by 0x10F89B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x1138F3: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A27: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10E08F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776== 
-==28776== 16 bytes in 1 blocks are still reachable in loss record 3 of 12
-==28776==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==28776==    by 0x113897: init_dealloc (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x1138E7: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A37: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10E08F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776== 
-==28776== 16 bytes in 1 blocks are still reachable in loss record 4 of 12
-==28776==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==28776==    by 0x10F89B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x1138F3: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A37: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10E08F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776== 
-==28776== 16 bytes in 1 blocks are still reachable in loss record 5 of 12
-==28776==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==28776==    by 0x113897: init_dealloc (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x1138E7: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A27: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10E14F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776== 
-==28776== 16 bytes in 1 blocks are still reachable in loss record 6 of 12
-==28776==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==28776==    by 0x10F89B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x1138F3: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A27: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10E14F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776== 
-==28776== 16 bytes in 1 blocks are still reachable in loss record 7 of 12
-==28776==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==28776==    by 0x113897: init_dealloc (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x1138E7: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A37: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10E14F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776== 
-==28776== 16 bytes in 1 blocks are still reachable in loss record 8 of 12
-==28776==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==28776==    by 0x10F89B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x1138F3: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A37: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10E14F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776== 
-==28776== 32 bytes in 2 blocks are still reachable in loss record 9 of 12
-==28776==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==28776==    by 0x113897: init_dealloc (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x1138E7: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A27: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10E10F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776== 
-==28776== 32 bytes in 2 blocks are still reachable in loss record 10 of 12
-==28776==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==28776==    by 0x10F89B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x1138F3: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A27: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10E10F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776== 
-==28776== 32 bytes in 2 blocks are still reachable in loss record 11 of 12
-==28776==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==28776==    by 0x113897: init_dealloc (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x1138E7: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A37: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10E10F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776== 
-==28776== 32 bytes in 2 blocks are still reachable in loss record 12 of 12
-==28776==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==28776==    by 0x10F89B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x1138F3: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A37: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x10E10F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
-==28776==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
-==28776== 
-==28776== LEAK SUMMARY:
-==28776==    definitely lost: 0 bytes in 0 blocks
-==28776==    indirectly lost: 0 bytes in 0 blocks
-==28776==      possibly lost: 0 bytes in 0 blocks
-==28776==    still reachable: 256 bytes in 16 blocks
-==28776==         suppressed: 0 bytes in 0 blocks
-==28776== 
-==28776== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==34564== Memcheck, a memory error detector
+==34564== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==34564== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==34564== Command: ./tests/CUNIT/cunit
+==34564== Parent PID: 34561
+==34564== 
+==34564== 
+==34564== HEAP SUMMARY:
+==34564==     in use at exit: 256 bytes in 16 blocks
+==34564==   total heap usage: 3,505 allocs, 3,489 frees, 94,890 bytes allocated
+==34564== 
+==34564== 16 bytes in 1 blocks are still reachable in loss record 1 of 12
+==34564==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==34564==    by 0x113897: init_dealloc (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x1138E7: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A27: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10E08F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564== 
+==34564== 16 bytes in 1 blocks are still reachable in loss record 2 of 12
+==34564==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==34564==    by 0x10F89B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x1138F3: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A27: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10E08F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564== 
+==34564== 16 bytes in 1 blocks are still reachable in loss record 3 of 12
+==34564==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==34564==    by 0x113897: init_dealloc (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x1138E7: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A37: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10E08F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564== 
+==34564== 16 bytes in 1 blocks are still reachable in loss record 4 of 12
+==34564==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==34564==    by 0x10F89B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x1138F3: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A37: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10E08F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564== 
+==34564== 16 bytes in 1 blocks are still reachable in loss record 5 of 12
+==34564==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==34564==    by 0x113897: init_dealloc (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x1138E7: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A27: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10E14F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564== 
+==34564== 16 bytes in 1 blocks are still reachable in loss record 6 of 12
+==34564==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==34564==    by 0x10F89B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x1138F3: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A27: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10E14F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564== 
+==34564== 16 bytes in 1 blocks are still reachable in loss record 7 of 12
+==34564==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==34564==    by 0x113897: init_dealloc (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x1138E7: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A37: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10E14F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564== 
+==34564== 16 bytes in 1 blocks are still reachable in loss record 8 of 12
+==34564==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==34564==    by 0x10F89B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x1138F3: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A37: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10E14F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564== 
+==34564== 32 bytes in 2 blocks are still reachable in loss record 9 of 12
+==34564==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==34564==    by 0x113897: init_dealloc (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x1138E7: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A27: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10E10F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564== 
+==34564== 32 bytes in 2 blocks are still reachable in loss record 10 of 12
+==34564==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==34564==    by 0x10F89B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x1138F3: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A27: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10E10F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564== 
+==34564== 32 bytes in 2 blocks are still reachable in loss record 11 of 12
+==34564==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==34564==    by 0x113897: init_dealloc (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x1138E7: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A37: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10E10F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564== 
+==34564== 32 bytes in 2 blocks are still reachable in loss record 12 of 12
+==34564==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==34564==    by 0x10F89B: ft_lstnew (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x1138F3: add_deallocator (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A37: add_cmd (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112A93: process_tok (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x112B9B: cmd_mode (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x11129B: interpreter (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10DE43: is_cmd_valid (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x10E10F: interpreter__test (in /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/tests/CUNIT/cunit)
+==34564==    by 0x48A346F: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A382B: ??? (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564==    by 0x48A48FB: CU_run_all_tests (in /usr/lib/aarch64-linux-gnu/libcunit.so.1.0.1)
+==34564== 
+==34564== LEAK SUMMARY:
+==34564==    definitely lost: 0 bytes in 0 blocks
+==34564==    indirectly lost: 0 bytes in 0 blocks
+==34564==      possibly lost: 0 bytes in 0 blocks
+==34564==    still reachable: 256 bytes in 16 blocks
+==34564==         suppressed: 0 bytes in 0 blocks
+==34564== 
+==34564== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

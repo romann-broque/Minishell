@@ -24,5 +24,9 @@ echo $?
 ls | rev < Makefile > incroyable
 echo $?
 cat incroyable
+echo wouah | pouet | rev
+echo $?
+lol | cat
+cat Makefile | rev | head >> incroyable
 rm incroyable
 exit 0
