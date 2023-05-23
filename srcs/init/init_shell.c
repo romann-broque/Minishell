@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 11:20:20 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/24 00:29:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	init_fds(void)
 	g_global.stdout = dup(STDOUT_FILENO);
 	g_global.hd_pipe[0] = INVALID_FD;
 	g_global.hd_pipe[1] = INVALID_FD;
+	g_global.prev_pipe = INVALID_FD;
 }
 
 void	init_shell(char **env)

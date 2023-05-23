@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/23 17:04:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 00:39:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	execution(t_command *cmd_data)
 		execute_cmd(cmd_data);
 	else
 	{
-		pipe(cmd_data->pipe_fds);
 		pid = fork();
 		if (pid == 0)
 		{
@@ -65,7 +64,6 @@ void	execution(t_command *cmd_data)
 			waitpid(pid, &status, 0);
 			g_global.last_ret_val = extract_return_status(status);
 			close_parent(cmd_data);
-			g_global.prev_pipe = cmd_data->pipe_fds[0];
 		}
 	}
 }

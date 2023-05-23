@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/23 11:40:57 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 00:28:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_command	*init_command(void)
 		cmd_data->fdout = STDOUT_FILENO;
 		cmd_data->pipe_fds[0] = INVALID_FD;
 		cmd_data->pipe_fds[1] = INVALID_FD;
+		cmd_data->prev_pipe = g_global.prev_pipe;
 	}
 	return (cmd_data);
 }

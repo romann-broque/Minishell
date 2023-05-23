@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:31:37 by mat               #+#    #+#             */
-/*   Updated: 2023/05/23 11:44:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 00:37:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	dup_infile(t_command *cmd_data)
 	if (cmd_data->fdin == STDIN_FILENO && g_global.cmd_nbr > 1)
 	{
 		if (cmd_data->index > 1)
-			cmd_data->fdin = g_global.prev_pipe;
+			cmd_data->fdin = cmd_data->prev_pipe;
 	}
 	dup2(cmd_data->fdin, STDIN_FILENO);
 }
