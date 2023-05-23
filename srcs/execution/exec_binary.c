@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/23 15:38:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/23 17:02:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ static void	child_job(t_command *cmd_data, char *path)
 		g_global.last_ret_val = NO_ACCESS;
 		print_error("%s: %s: %s\n", MINISHELL, path, IS_DIR);
 		free_manager();
-		exit(g_global.last_ret_val);
+		exit_shell(g_global.last_ret_val, false);
 	}
-	else if (execve(path, cmd_data->command, cmd_data->env) == -1)
-		exit(g_global.last_ret_val);
+	update_signal_state(S_EXEC);
+	execve(path, cmd_data->command, cmd_data->env);
+	update_signal_state(S_SLEEP);
+	exit_shell(g_global.last_ret_val, false);
 }
 
 static void	print_child_signal(const int status)
@@ -62,8 +64,7 @@ void	exec_binary(t_command *cmd_data, char *path)
 			child_job(cmd_data, path);
 		else if (pid > 0)
 		{
-			update_signal_state(S_SLEEP);
-			waitpid(pid, &status, 0);
+			wait(&status);
 			g_global.last_ret_val = extract_return_status(status);
 			print_child_signal(status);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:38:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 15:58:28 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/23 16:59:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ void	exec_builtin(t_command *cmd_data)
 	{NULL, NULL}
 	};
 
+	update_signal_state(S_EXEC);
 	g_global.last_ret_val = call_builtin(map, cmd_data);
+	update_signal_state(S_SLEEP);
 }

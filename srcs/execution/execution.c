@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/23 15:43:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/23 17:04:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,9 @@ static void	execute_cmd(t_command *cmd_data)
 
 void	execution(t_command *cmd_data)
 {
-	int	pid;
 	int	status;
+	int	pid;
 
-	update_signal_state(S_EXEC);
 	if (g_global.cmd_nbr == 1)
 		execute_cmd(cmd_data);
 	else
@@ -64,10 +63,9 @@ void	execution(t_command *cmd_data)
 		else
 		{
 			waitpid(pid, &status, 0);
+			g_global.last_ret_val = extract_return_status(status);
 			close_parent(cmd_data);
 			g_global.prev_pipe = cmd_data->pipe_fds[0];
-			g_global.last_ret_val = extract_return_status(status);
 		}
 	}
-	update_signal_state(S_SLEEP);
 }

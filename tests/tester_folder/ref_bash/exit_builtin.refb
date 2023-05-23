@@ -6,7 +6,7 @@ minishell: cd: too many arguments
 minishell: cd: blata: No such file or directory
 1
 ls: cannot access 'blata': No such file or directory
-2
+170
 pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 1
 chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
@@ -31,26 +31,26 @@ minishell: exit: bonjour: numeric argument required
 0
 42
 minishell: exit: too many arguments
-1
-255
+170
+170
 minishell: exit: 234782384908273480723847238047283074: numeric argument required
-2
+170
 minishell: exit: abc: numeric argument required
-2
+170
 minishell: exit: abc: numeric argument required
-2
-0
+170
+170
 minishell: exit: too many arguments
-1
+170
 minishell: exit: too many arguments
-1
-255
+170
+170
 minishell: exit: 9223372036854775808: numeric argument required
-2
+170
 minishell: exit: -9223372036854775808: numeric argument required
-2
+170
 minishell: exit: -9223372036854775809: numeric argument required
-2
+170
 includes
 libft
 Makefile
@@ -68,5 +68,5 @@ README.md
 srcs
 tests
 minishell: pouet: command not found
-127 127
+170 170
 /home/screw/.vscode-server/bin/b3e4e68a0bc097f0ae7907b217c1119af9e03435/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell

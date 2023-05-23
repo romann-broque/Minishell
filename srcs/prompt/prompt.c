@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/23 15:43:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:59:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,27 @@
 
 extern t_global	g_global;
 
+static void	wait_for_exec(void)
+{
+	size_t	i;
+	int		status;
+
+	i = 0;
+	while (i < g_global.cmd_nbr)
+	{
+		wait(&status);
+		++i;
+	}
+	g_global.last_ret_val = extract_return_status(status);
+}
+
 static void	exec_command(t_list **token_lst)
 {
 	t_list	*cmds;
 
 	cmds = interpreter(*token_lst, g_global.env);
 	ft_lstiter(cmds, (void (*)(void *))execution);
+	wait_for_exec();
 	update_signal_state(S_DEFAULT);
 }
 
@@ -41,12 +56,6 @@ static void	handle_command(const char *command)
 		else
 			update_error_val(INCORRECT_USE);
 	}
-}
-
-static void	add_line_to_history(const char *line)
-{
-	if (line != NULL && *line != '\0')
-		add_history(line);
 }
 
 static void	get_command(void)
