@@ -28,5 +28,7 @@ echo wouah | pouet | rev
 echo $?
 lol | cat
 cat Makefile | rev | head >> incroyable
+< Makefile cat >> pouet | rev | head >> incroyable
+rm pouet
 rm incroyable
 exit 0

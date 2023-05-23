@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_binary.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/22 15:54:42 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/23 15:38:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	exec_binary(t_command *cmd_data, char *path)
 			child_job(cmd_data, path);
 		else if (pid > 0)
 		{
-			wait(&status);
+			update_signal_state(S_SLEEP);
+			waitpid(pid, &status, 0);
 			g_global.last_ret_val = extract_return_status(status);
 			print_child_signal(status);
 		}
