@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 16:00:00 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 16:48:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,7 @@ static int	execute(t_command *cmd_data)
 	{
 		path = get_path(cmd_data);
 		add_deallocator(path, free);
-		if (g_global.cmd_nbr == 1)
-			ret_val = exec_binary(cmd_data, path);
-		else
-		{
-			if (path != NULL)
-				child_job(cmd_data, path);
-			ret_val = g_global.last_ret_val;
-		}
+		ret_val = exec_binary(cmd_data, path);
 	}
 	return (ret_val);
 }

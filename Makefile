@@ -185,6 +185,7 @@ SRCS		+=	close_pipes.c
 ### srcs/signal/
 
 SRCS		+=	handlers.c
+SRCS		+=	print_child_signal.c
 SRCS		+=	signal.c
 
 ### srcs/utils/

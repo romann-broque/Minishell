@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/24 15:51:42 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 17:22:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	is_folder(const char *path)
 	return (S_ISDIR(file_stat.st_mode));
 }
 
-void	child_job(t_command *cmd_data, char *path)
+static void	child_job(t_command *cmd_data, char *path)
 {
 	if (is_folder(path) == true)
 	{
@@ -40,16 +40,6 @@ void	child_job(t_command *cmd_data, char *path)
 	exit_shell(g_global.last_ret_val, false);
 }
 
-static void	print_child_signal(const int status)
-{
-	if (WIFSIGNALED(status) == true)
-	{
-		if (WTERMSIG(status) == SIGQUIT)
-			ft_printf(QUIT_CDUMP);
-		ft_printf(NEWLINE_STR);
-	}
-}
-
 int	exec_binary(t_command *cmd_data, char *path)
 {
 	int	status;
@@ -59,15 +49,20 @@ int	exec_binary(t_command *cmd_data, char *path)
 	ret_val = g_global.last_ret_val;
 	if (path != NULL)
 	{
-		pid = fork();
-		if (pid == 0)
-			child_job(cmd_data, path);
-		else if (pid > 0)
+		if (g_global.cmd_nbr == 1)
 		{
-			waitpid(pid, &status, 0);
-			ret_val = extract_return_status(status);
-			print_child_signal(status);
+			pid = fork();
+			if (pid == 0)
+				child_job(cmd_data, path);
+			else if (pid > 0)
+			{
+				waitpid(pid, &status, WUNTRACED);
+				ret_val = extract_return_status(status);
+				print_child_signal(status);
+			}
 		}
+		else
+			child_job(cmd_data, path);
 	}
 	return (ret_val);
 }

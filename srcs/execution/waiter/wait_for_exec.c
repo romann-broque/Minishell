@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 02:16:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 16:00:57 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 17:22:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ static size_t	get_index_from_pid(const pid_t pid)
 
 void	wait_for_exec(void)
 {
+	bool	is_sigprinted;
 	int		status;
 	pid_t	pid;
 	size_t	pid_index;
 	size_t	i;
 
+	is_sigprinted = false;
 	close_pipe_fds();
 	i = 0;
 	while (i < g_global.cmd_nbr)
@@ -47,6 +49,11 @@ void	wait_for_exec(void)
 		pid_index = get_index_from_pid(pid);
 		if (pid_index + 1 == g_global.cmd_nbr)
 			g_global.last_ret_val = WEXITSTATUS(status);
+		if (WIFSIGNALED(status) && is_sigprinted == false)
+		{
+			print_child_signal(status);
+			is_sigprinted = true;
+		}
 		++i;
 	}
 }

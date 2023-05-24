@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 16:01:23 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 17:22:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -399,7 +399,6 @@ bool		is_executable_cmd(t_command *cmd);
 /// exec_binary.c
 
 int			exec_binary(t_command *cmd_data, char *path);
-void		child_job(t_command *cmd_data, char *path);
 
 ///  BUILTIN  ///
 
@@ -725,6 +724,10 @@ void		revert_dup(t_command *cmd_data);
 void		clear_line_handler(__attribute__((unused)) int signal);
 void		handle_sigint_default(__attribute__((unused)) int signal);
 void		handle_sigint_hd(__attribute__((unused))int signal);
+
+/// print_child_signal.c
+
+void		print_child_signal(const int status);
 
 /// signal.c
 
