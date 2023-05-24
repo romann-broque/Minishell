@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 00:28:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 10:37:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_command	*init_command(void)
 	cmd_data = (t_command *)malloc(sizeof(t_command));
 	if (cmd_data != NULL)
 	{
-		cmd_data->index = g_global.cmd_nbr;
+		cmd_data->index = g_global.cmd_index;
 		cmd_data->command = NULL;
 		cmd_data->env = NULL;
 		cmd_data->fdin = STDIN_FILENO;

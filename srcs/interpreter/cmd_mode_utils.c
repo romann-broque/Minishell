@@ -6,11 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:09:53 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/23 11:51:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 10:52:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_global	g_global;
 
 t_list	*get_cmd_env(t_list *glob_env, t_list *loc_env)
 {
@@ -46,4 +48,26 @@ void	clear_local_env(t_list **env)
 {
 	ft_lstclear(env, (void (*)(void *))free_var);
 	*env = NULL;
+}
+
+static size_t	get_nb_cmd(t_list *tokens)
+{
+	t_toktype	type;
+	size_t		nb;
+
+	nb = 0;
+	while (tokens != NULL)
+	{
+		type = get_type_from_tok(tokens->content);
+		nb += (type == T_START || type == T_PIPE);
+		tokens = tokens->next;
+	}
+	return (nb);
+}
+
+void	init_cmd_mode(t_list *tokens)
+{
+	g_global.prev_pipe = INVALID_FD;
+	g_global.cmd_index = 0;
+	g_global.cmd_nbr = get_nb_cmd(tokens);
 }

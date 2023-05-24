@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 02:19:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 10:51:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,6 +302,7 @@ typedef struct s_global
 	t_list	*pid_lst;
 	t_list	*env;
 	size_t	cmd_nbr;
+	size_t	cmd_index;
 	int		prev_pipe;
 	int		stdin;
 	int		stdout;
@@ -584,6 +585,7 @@ t_list		*cmd_mode(t_list *tokens, t_list *env);
 /// cmd_mode_utils.c
 
 void		clear_local_env(t_list **env);
+void		init_cmd_mode(t_list *tokens);
 
 ///			COMMAND			///
 
