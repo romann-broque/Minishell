@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 15:30:37 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 16:01:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -483,7 +483,7 @@ char		*ft_realpath(const char *path);
 
 //// wait_for_exec.c
 
-void		wait_for_exec(t_list *cmd_lst);
+void		wait_for_exec(void);
 
 //			EXIT			//
 
@@ -710,7 +710,7 @@ int			get_in_fd(char *in, t_toktype tok_type);
 
 /// close_pipes.c
 
-void		close_parent(t_command *cmd_data);
+void		close_pipe_fds(void);
 
 /// dup.c
 

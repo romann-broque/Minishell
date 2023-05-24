@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 02:16:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 15:40:57 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 16:00:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ static size_t	get_index_from_pid(const pid_t pid)
 	return (index);
 }
 
-void	wait_for_exec(t_list *cmd_lst)
+void	wait_for_exec(void)
 {
 	int		status;
 	pid_t	pid;
 	size_t	pid_index;
 	size_t	i;
 
+	close_pipe_fds();
 	i = 0;
-	ft_lstiter(cmd_lst, (void (*)(void *))close_parent);
 	while (i < g_global.cmd_nbr)
 	{
 		pid = wait(&status);
