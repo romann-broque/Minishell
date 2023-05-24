@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 10:48:45 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 12:40:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static int	execute_cmd(t_command *cmd_data)
 	if (is_executable_cmd(cmd_data) == true)
 	{
 		dup_files(cmd_data);
+		close(cmd_data->pipe_fds[0]);
+		close(cmd_data->pipe_fds[1]);
 		ret_val = execute(cmd_data);
 		revert_dup(cmd_data);
 	}
