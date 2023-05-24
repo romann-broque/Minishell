@@ -34,4 +34,7 @@ rm incroyable
 yes | head -n 10 | cat
 pouet | cat
 pls | ls
+<Makefile exit lol > ananas | ls | cat >> ananas
+cat ananas
+rm ananas
 exit 0
