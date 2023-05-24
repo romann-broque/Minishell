@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/24 15:41:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 15:51:42 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static bool	is_folder(const char *path)
 	if (stat(path, &file_stat) == -1)
 	{
 		perror(STAT_ERROR);
-		free_manager();
-		exit(EXIT_FAILURE);
+		exit_shell(EXIT_FAILURE, false);
 	}
 	return (S_ISDIR(file_stat.st_mode));
 }

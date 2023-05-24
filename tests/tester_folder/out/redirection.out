@@ -10,7 +10,6 @@ Makefile
 minishell
 objs
 out
-pouet
 README.md
 srcs
 tests
@@ -28,7 +27,6 @@ minishell
 objs
 out
 out2
-pouet
 README.md
 srcs
 tests
@@ -41,7 +39,6 @@ minishell
 objs
 out
 out2
-pouet
 README.md
 srcs
 tests
@@ -52,7 +49,6 @@ minishell
 objs
 out1
 out2
-pouet
 README.md
 srcs
 tests
@@ -63,7 +59,6 @@ minishell
 objs
 out1
 out2
-pouet
 README.md
 srcs
 tests
@@ -190,9 +185,8 @@ libft
 Makefile
 minishell
 objs
-pouet
 README.md
 srcs
 tests
-pouet
+ls: cannot access 'pouet': No such file or directory
 0

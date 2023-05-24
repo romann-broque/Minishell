@@ -31,4 +31,5 @@ cat Makefile | rev | head >> incroyable
 < Makefile cat >> pouet | rev | head >> incroyable
 rm pouet
 rm incroyable
+yes | head -n 10 | cat
 exit 0

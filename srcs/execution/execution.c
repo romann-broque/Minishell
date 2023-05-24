@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 15:41:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 15:51:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ static int	execute(t_command *cmd_data)
 		if (g_global.cmd_nbr == 1)
 			ret_val = exec_binary(cmd_data, path);
 		else
-			child_job(cmd_data, path);
+		{
+			if (path != NULL)
+				child_job(cmd_data, path);
+			ret_val = g_global.last_ret_val;
+		}
 	}
 	return (ret_val);
 }
