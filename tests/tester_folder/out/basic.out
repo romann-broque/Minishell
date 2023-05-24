@@ -11,13 +11,14 @@ tester_folder
 valgrind
 var
 pouet pouet
-minishell: pouet: command not found
+minishell: /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/pouet: Permission denied
 minishell: /pouet: No such file or directory
 includes
 libft
 Makefile
 minishell
 objs
+pouet
 README.md
 srcs
 tests

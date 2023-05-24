@@ -14,13 +14,14 @@ minishell: bonjour: command not found
 127
 minishell: ./noperm: Permission denied
 126
-ls: cannot access 'pouet': No such file or directory
-2
+pouet
+0
 includes
 libft
 Makefile
 minishell
 objs
+pouet
 README.md
 srcs
 tests
@@ -56,6 +57,7 @@ libft
 Makefile
 minishell
 objs
+pouet
 README.md
 srcs
 tests
@@ -64,9 +66,10 @@ libft
 Makefile
 minishell
 objs
+pouet
 README.md
 srcs
 tests
-minishell: pouet: command not found
-127 127
+minishell: /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell/pouet: Permission denied
+126 126
 /home/screw/.vscode-server/bin/b3e4e68a0bc097f0ae7907b217c1119af9e03435/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell

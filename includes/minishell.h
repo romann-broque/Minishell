@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 10:51:37 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 15:30:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,6 +300,7 @@ typedef struct s_global
 	int		last_ret_val;
 	t_list	*garbage;
 	t_list	*pid_lst;
+	t_list	*cmd_lst;
 	t_list	*env;
 	size_t	cmd_nbr;
 	size_t	cmd_index;
@@ -398,6 +399,7 @@ bool		is_executable_cmd(t_command *cmd);
 /// exec_binary.c
 
 int			exec_binary(t_command *cmd_data, char *path);
+void		child_job(t_command *cmd_data, char *path);
 
 ///  BUILTIN  ///
 

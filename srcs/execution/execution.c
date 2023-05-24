@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 12:40:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 15:41:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,24 @@ static int	execute(t_command *cmd_data)
 	int		ret_val;
 	char	*path;
 
+	ret_val = EXIT_SUCCESS;
 	if (is_builtin(cmd_data) == true)
 		ret_val = exec_builtin(cmd_data);
 	else
 	{
 		path = get_path(cmd_data);
 		add_deallocator(path, free);
-		ret_val = exec_binary(cmd_data, path);
+		if (g_global.cmd_nbr == 1)
+			ret_val = exec_binary(cmd_data, path);
+		else
+			child_job(cmd_data, path);
 	}
 	return (ret_val);
+}
+
+static void	close_pipe_fds(void)
+{
+	ft_lstiter(g_global.cmd_lst, (void (*)(void *))close_parent);
 }
 
 static int	execute_cmd(t_command *cmd_data)
@@ -37,8 +46,7 @@ static int	execute_cmd(t_command *cmd_data)
 	if (is_executable_cmd(cmd_data) == true)
 	{
 		dup_files(cmd_data);
-		close(cmd_data->pipe_fds[0]);
-		close(cmd_data->pipe_fds[1]);
+		close_pipe_fds();
 		ret_val = execute(cmd_data);
 		revert_dup(cmd_data);
 	}
