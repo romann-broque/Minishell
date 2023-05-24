@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 02:16:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 17:32:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 17:37:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,9 @@ static size_t	get_index_from_pid(const pid_t pid)
 
 static void	process_waiting(int *status)
 {
-	pid_t	pid;
-	size_t	pid_index;
+	const pid_t	pid = wait(status);
+	size_t		pid_index;
 
-	pid = wait(status);
 	pid_index = get_index_from_pid(pid);
 	if (pid_index + 1 == g_global.cmd_nbr)
 		g_global.last_ret_val = WEXITSTATUS(*status);

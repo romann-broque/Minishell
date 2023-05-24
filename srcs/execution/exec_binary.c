@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/24 17:22:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 17:37:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,33 @@ static void	child_job(t_command *cmd_data, char *path)
 	exit_shell(g_global.last_ret_val, false);
 }
 
+static int	exec_unique_cmd(t_command *cmd_data, char *path)
+{
+	int	pid;
+	int	status;
+	int	ret_val;
+
+	pid = fork();
+	if (pid == 0)
+		child_job(cmd_data, path);
+	else if (pid > 0)
+	{
+		waitpid(pid, &status, WUNTRACED);
+		ret_val = extract_return_status(status);
+		print_child_signal(status);
+	}
+	return (ret_val);
+}
+
 int	exec_binary(t_command *cmd_data, char *path)
 {
-	int	status;
-	int	pid;
 	int	ret_val;
 
 	ret_val = g_global.last_ret_val;
 	if (path != NULL)
 	{
 		if (g_global.cmd_nbr == 1)
-		{
-			pid = fork();
-			if (pid == 0)
-				child_job(cmd_data, path);
-			else if (pid > 0)
-			{
-				waitpid(pid, &status, WUNTRACED);
-				ret_val = extract_return_status(status);
-				print_child_signal(status);
-			}
-		}
+			ret_val = exec_unique_cmd(cmd_data, path);
 		else
 			child_job(cmd_data, path);
 	}

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 16:48:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 17:37:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	execute(t_command *cmd_data)
 	int		ret_val;
 	char	*path;
 
-	ret_val = EXIT_SUCCESS;
+	ret_val = EXIT_FAILURE;
 	if (is_builtin(cmd_data) == true)
 		ret_val = exec_builtin(cmd_data);
 	else
