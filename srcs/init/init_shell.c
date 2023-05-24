@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 00:47:55 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 00:05:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	init_fds(void)
 {
 	g_global.stdin = dup(STDIN_FILENO);
 	g_global.stdout = dup(STDOUT_FILENO);
+	g_global.stderr = dup(STDERR_FILENO);
 	g_global.hd_pipe[0] = INVALID_FD;
 	g_global.hd_pipe[1] = INVALID_FD;
 	g_global.prev_pipe = INVALID_FD;
@@ -58,12 +59,13 @@ static void	init_fds(void)
 
 void	init_shell(char **env)
 {
+	update_signal_state(S_SLEEP);
 	init_env(&g_global, env);
 	g_global.pid_lst = NULL;
 	init_fds();
 	check_pos(SHELL_INIT);
 	init_pwd();
-	update_signal_state(S_DEFAULT);
 	init_shlvl();
 	init_tracker();
+	update_signal_state(S_DEFAULT);
 }

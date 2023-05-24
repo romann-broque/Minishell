@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 17:22:37 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 00:04:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +272,7 @@ typedef struct s_command
 	size_t	index;
 	int		fdin;
 	int		fdout;
+	int		fderr;
 	int		prev_pipe;
 	int		pipe_fds[2];
 }				t_command;
@@ -299,14 +300,15 @@ typedef struct s_global
 {
 	int		last_ret_val;
 	t_list	*garbage;
+	t_list	*env;
 	t_list	*pid_lst;
 	t_list	*cmd_lst;
-	t_list	*env;
 	size_t	cmd_nbr;
 	size_t	cmd_index;
 	int		prev_pipe;
 	int		stdin;
 	int		stdout;
+	int		stderr;
 	int		hd_pipe[2];
 }				t_global;
 

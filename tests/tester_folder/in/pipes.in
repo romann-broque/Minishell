@@ -33,4 +33,5 @@ rm pouet
 rm incroyable
 yes | head -n 10 | cat
 pouet | cat
+pls | ls
 exit 0
