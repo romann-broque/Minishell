@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:28:17 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/23 11:49:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 01:21:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ void	free_manager(void)
 {
 	ft_lstiter(g_global.garbage, (void (*)(void *))run_deallocator);
 	ft_lstclear(&(g_global.garbage), free);
+	ft_lstclear(&(g_global.pid_lst), NULL);
+	g_global.pid_lst = NULL;
 	init_tracker();
 }

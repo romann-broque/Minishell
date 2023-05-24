@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 00:28:37 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 02:19:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,6 +299,7 @@ typedef struct s_global
 {
 	int		last_ret_val;
 	t_list	*garbage;
+	t_list	*pid_lst;
 	t_list	*env;
 	size_t	cmd_nbr;
 	int		prev_pipe;
@@ -395,7 +396,7 @@ bool		is_executable_cmd(t_command *cmd);
 
 /// exec_binary.c
 
-void		exec_binary(t_command *cmd_data, char *path);
+int			exec_binary(t_command *cmd_data, char *path);
 
 ///  BUILTIN  ///
 
@@ -405,7 +406,7 @@ char		**dup_export_lst_to_array(t_list *env_lst);
 
 //// exec_buitlin.c
 
-void		exec_builtin(t_command *command);
+int			exec_builtin(t_command *command);
 
 //// is_builtin.c
 
@@ -474,6 +475,12 @@ char		*clean_path_comp(char *left, size_t *left_len,
 
 void		silent_trailing_slash(char *str, const size_t len);
 char		*ft_realpath(const char *path);
+
+///		WAITER		///
+
+//// wait_for_exec.c
+
+void		wait_for_exec(t_list *cmd_lst);
 
 //			EXIT			//
 

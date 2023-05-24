@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/23 17:11:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 02:19:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,14 @@
 
 extern t_global	g_global;
 
-static void	wait_for_exec(void)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < g_global.cmd_nbr)
-	{
-		wait(NULL);
-		++i;
-	}
-}
-
 static void	exec_command(t_list **token_lst)
 {
 	t_list	*cmds;
 
 	cmds = interpreter(*token_lst, g_global.env);
 	ft_lstiter(cmds, (void (*)(void *))execution);
-	wait_for_exec();
+	if (g_global.cmd_nbr > 1)
+		wait_for_exec(cmds);
 	update_signal_state(S_DEFAULT);
 }
 

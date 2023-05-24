@@ -13,6 +13,7 @@ PATH_SRCS	+=	srcs/batch/
 PATH_SRCS	+=	srcs/env/
 PATH_SRCS	+=	srcs/env/path/
 PATH_SRCS	+=	srcs/execution/
+PATH_SRCS	+=	srcs/execution/waiter/
 PATH_SRCS	+=	srcs/execution/builtin/
 PATH_SRCS	+=	srcs/execution/builtin/builtin_fcts/
 PATH_SRCS	+=	srcs/execution/builtin/cwd/
@@ -92,6 +93,10 @@ SRCS	 	+=	cwd_utils.c
 SRCS		+=	clean_pwd.c
 SRCS		+=	ft_realpath_utils.c
 SRCS	 	+=	ft_realpath.c
+
+### srcs/execution/waiter/
+
+SRCS	 	+=	wait_for_exec.c
 
 ### srcs/exit/
 

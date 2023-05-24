@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:28:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 02:06:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static t_list	*get_env_from_strs(char **env_strs)
 
 void	init_env(t_global *global, char **env)
 {
+	global->prev_pipe = INVALID_FD;
 	global->env = get_env_from_strs(env);
 	if (*env != NULL && global->env == NULL)
 	{

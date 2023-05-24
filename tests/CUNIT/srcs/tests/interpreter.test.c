@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:44:29 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:34:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 02:11:29 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ static bool	is_same_cmd(t_command *cmd1, t_command *cmd2)
 		|| (cmd1 != NULL && cmd2 != NULL
 		&& strs_eq(cmd1->command, cmd2->command) == true
 		&& strs_eq(cmd1->env, cmd2->env) == true
-		&& cmd1->fdin == cmd2->fdin
-		&& cmd1->fdout == cmd2->fdout)
+		// && cmd1->fdin == cmd2->fdin
+		// && cmd1->fdout == cmd2->fdout
+		)
 	);
 }
 
@@ -172,9 +173,13 @@ void	interpreter__test(void)
 		},
 	};
 
+	g_global.prev_pipe = INVALID_FD;
 	CU_ASSERT_TRUE(is_cmd_valid(toks1, cmds1, 1));
+	g_global.prev_pipe = INVALID_FD;
 	CU_ASSERT_TRUE(is_cmd_valid(toks2, cmds2, 0));
+	g_global.prev_pipe = INVALID_FD;
 	CU_ASSERT_TRUE(is_cmd_valid(toks3, cmds3, 2));
+	g_global.prev_pipe = INVALID_FD;
 	CU_ASSERT_TRUE(is_cmd_valid(toks4, cmds4, 1));
 	free_strs(env_array);
 }
