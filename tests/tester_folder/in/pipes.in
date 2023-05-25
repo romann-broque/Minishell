@@ -1,6 +1,6 @@
 ls | rev
 echo bonjour | wc
-env | grep PATH
+cat ./tests/env/env.sh | grep PATH
 
 ls | < tests/env/env.sh grep all
 env | < tests/env/env.sh grep all
