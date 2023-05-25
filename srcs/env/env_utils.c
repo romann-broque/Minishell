@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:01:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 11:51:23 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/25 16:38:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,23 @@ t_var	*init_var(const char *key, const char *value, const uint8_t flags)
 	new = (t_var *)malloc(sizeof(t_var));
 	if (new != NULL)
 	{
+		new->flags = flags;
 		new->key = ft_strdup(key);
+		if (new->key == NULL)
+		{
+			free(new);
+			return (NULL);
+		}
 		new->value = NULL;
 		if (value != NULL)
+		{
 			new->value = ft_strdup(value);
-		new->flags = flags;
+			if (new->value == NULL)
+			{
+				free(new);
+				return (NULL);
+			}
+		}
 	}
 	return (new);
 }

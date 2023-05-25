@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 16:13:38 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/25 18:42:50 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,16 @@ void	change_var(
 	if (value != NULL)
 		flags |= SET_MASK;
 	if (var == NULL)
-		ft_lstadd_back(env,
-			ft_lstnew(init_var(key, value, flags)));
+		ft_lstaddback_fatal(env,
+			init_var(key, value, flags), (void (*)(void *))free_var);
 	else
 	{
 		if (value != NULL)
 		{
 			free(var->value);
 			var->value = ft_strdup(value);
+			if (var->value == NULL)
+				exit_alloc();
 		}
 		var->flags |= flags;
 	}

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 11:19:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 18:31:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -488,6 +488,10 @@ void		wait_for_exec(void);
 
 //			EXIT			//
 
+/// exit_alloc.c
+
+void		exit_alloc(void);
+
 /// exit_shell.c
 
 void		exit_shell(const int exit_value, const bool is_print);
@@ -742,5 +746,13 @@ void		update_signal_state(const t_sigstate state);
 /// close_safe.c
 
 void		close_safe(const int fd);
+
+/// list_fatal.c
+
+t_list		*ft_lstnew_fatal(void *ptr, void (*free_func)(void *));
+void		ft_lstaddback_fatal(t_list **lst,
+				void *ptr, void (*free_fct)(void *));
+void		ft_lstaddfront_fatal(t_list **lst,
+				void *ptr, void (*free_fct)(void *));
 
 #endif

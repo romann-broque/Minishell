@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:09:53 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 10:52:00 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 18:41:29 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_list	*get_cmd_env(t_list *glob_env, t_list *loc_env)
 	{
 		var = glob_env->content;
 		if (var->flags & EXPORT_MASK && var->flags & SET_MASK)
-			ft_lstadd_back(&new, ft_lstnew(dup_var(var)));
+			ft_lstaddback_fatal(&new, dup_var(var), (void (*)(void *))free_var);
 		glob_env = glob_env->next;
 	}
 	while (loc_env != NULL)
@@ -41,7 +41,7 @@ void	process_assign(t_list **assign, t_list *tokens)
 	t_token *const	tok = tokens->content;
 	t_var *const	tmp_var = init_var_from_str(tok->value);
 
-	ft_lstadd_back(assign, ft_lstnew(tmp_var));
+	ft_lstaddback_fatal(assign, tmp_var, (void (*)(void *))free_var);
 }
 
 void	clear_local_env(t_list **env)

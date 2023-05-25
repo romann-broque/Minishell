@@ -100,6 +100,7 @@ SRCS	 	+=	wait_for_exec.c
 
 ### srcs/exit/
 
+SRCS	 	+=	exit_alloc.c
 SRCS	 	+=	exit_shell.c
 SRCS		+=	exit_utils.c
 
@@ -191,6 +192,7 @@ SRCS		+=	signal.c
 ### srcs/utils/
 
 SRCS		+=	close_safe.c
+SRCS		+=	list_fatal.c
 
 vpath %.c $(PATH_SRCS)
 

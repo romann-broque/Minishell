@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_machine.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:20:05 by mat               #+#    #+#             */
-/*   Updated: 2023/04/04 16:19:34 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/25 15:57:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	init_vmachine(t_vmachine *const machine, const char *line)
 	machine->word_len = 0;
 	machine->index = 0;
 	machine->line = ft_strdup(line);
+	if (machine->line == NULL)
+		exit_alloc();
 }
 
 char	*expand_var(const char *line)

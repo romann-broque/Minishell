@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:27:19 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 11:37:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 15:46:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,15 @@ static t_deallocator	*init_dealloc(void *ptr, void (*fct)(void *))
 void	add_deallocator(void *ptr, void (*fct)(void *))
 {
 	t_deallocator *const	dealloc = init_dealloc(ptr, fct);
+	t_list *const			new_deal = ft_lstnew(dealloc);
 
-	ft_lstadd_front(&(g_global.garbage), ft_lstnew(dealloc));
+	if (new_deal == NULL || dealloc == NULL)
+	{
+		free(dealloc);
+		free(new_deal);
+		exit_alloc();
+	}
+	ft_lstadd_front(&(g_global.garbage), new_deal);
 }
 
 void	init_tracker(void)

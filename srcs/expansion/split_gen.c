@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:26:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 11:33:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 18:41:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ static t_list	*get_toklist_from_array(char **strs, const size_t size)
 	i = 0;
 	while (i < size)
 	{
-		ft_lstadd_back(&tokens_list, ft_lstnew(init_token(T_GENERIC, strs[i])));
+		ft_lstaddback_fatal(&tokens_list,
+			init_token(T_GENERIC, strs[i]), (void (*)(void *))free_token);
 		if (strs[i + 1] != NULL)
-			ft_lstadd_back(&tokens_list,
-				ft_lstnew(init_token(T_SEPARATOR, SEP)));
+		{
+			ft_lstaddback_fatal(&tokens_list,
+				init_token(T_SEPARATOR, SEP), (void (*)(void *))free_token);
+		}
 		i++;
 	}
 	return (tokens_list);
@@ -34,9 +37,13 @@ static t_list	*split_gen_tok(t_token *token)
 {
 	char *const		content = token->value;
 	char **const	split = ft_split_set(content, SEPARATORS);
-	const size_t	size = get_size_strs(split);
-	t_list *const	split_lst = get_toklist_from_array(split, size);
+	size_t			size;
+	t_list			*split_lst;
 
+	if (split == NULL)
+		exit_alloc();
+	size = get_size_strs(split);
+	split_lst = get_toklist_from_array(split, size);
 	free_strs(split);
 	return (split_lst);
 }
@@ -45,7 +52,9 @@ static t_list	*dup_toknode(t_list *node)
 {
 	t_token *const	curr_tok = node->content;
 
-	return (ft_lstnew(init_token(curr_tok->type, curr_tok->value)));
+	return (ft_lstnew_fatal(
+			init_token(curr_tok->type, curr_tok->value),
+			(void (*)(void *))free_token));
 }
 
 static t_list	*get_split_gen(t_list *tokens)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:59:53 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/11 15:48:01 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/25 15:52:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,14 @@ t_token	*init_token(t_toktype type, char *value)
 		tok->type = type;
 		tok->value = NULL;
 		if (value != NULL)
+		{
 			tok->value = ft_strdup(value);
+			if (tok->value == NULL)
+			{
+				free(tok);
+				tok = NULL;
+			}
+		}
 	}
 	return (tok);
 }
