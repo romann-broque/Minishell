@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 18:50:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 20:09:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	init_shell(char **env)
 	update_signal_state(S_SLEEP);
 	init_env(&g_global, env);
 	g_global.pid_lst = NULL;
+	g_global.is_stopped = false;
 	init_fds();
 	check_pos(SHELL_INIT);
 	init_pwd();

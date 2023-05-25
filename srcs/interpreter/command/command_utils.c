@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 20:04:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 20:30:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	free_command(t_command *cmd_data)
 		free_strs(cmd_data->command);
 		free_strs(cmd_data->env);
 		if (cmd_data->fdin != STDIN_FILENO)
-			close(cmd_data->fdin);
+			close_safe(cmd_data->fdin);
 		if (cmd_data->fdout != STDOUT_FILENO)
-			close(cmd_data->fdout);
+			close_safe(cmd_data->fdout);
 		if (cmd_data->fderr != STDERR_FILENO)
-			close(cmd_data->fderr);
+			close_safe(cmd_data->fderr);
 		close_parent(cmd_data);
 	}
 	free(cmd_data);

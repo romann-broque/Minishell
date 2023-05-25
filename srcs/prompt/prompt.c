@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 20:05:23 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 20:13:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ static void	exec_command(t_list **token_lst)
 
 	cmds = interpreter(*token_lst, g_global.env);
 	g_global.cmd_lst = cmds;
-	ft_lstiter(cmds, (void (*)(void *))execution);
+	if (g_global.is_stopped == false)
+		ft_lstiter(cmds, (void (*)(void *))execution);
 	close_pipe_fds();
-	if (g_global.cmd_nbr > 1)
+	if (g_global.is_stopped == false && g_global.cmd_nbr > 1)
 		wait_for_exec();
 	update_signal_state(S_DEFAULT);
 }
@@ -64,6 +65,7 @@ static void	get_command(void)
 	}
 	free_manager();
 	update_signal_state(S_DEFAULT);
+	g_global.is_stopped = false;
 }
 
 void	prompt(void)

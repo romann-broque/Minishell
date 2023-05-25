@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 18:31:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 20:08:59 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,6 +310,7 @@ typedef struct s_global
 	int		stdout;
 	int		stderr;
 	int		hd_pipe[2];
+	bool	is_stopped;
 }				t_global;
 
 /////////////////
