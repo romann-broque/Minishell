@@ -3,10 +3,10 @@ echo bonjour | wc
 cat ./tests/env/env.sh | grep PATH
 
 ls | < tests/env/env.sh grep all
-env | < tests/env/env.sh grep all
+cat ./tests/env/env.sh | < tests/env/env.sh grep all
 
 ls > out | wc
-cat out
+cat ouot
 
 < tests/env/env.sh cat | < out rev
 ls > out | < ./tests/env/env.sh > out
