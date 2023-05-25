@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 20:50:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 21:02:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	generate_cmd(
 	cmd_env = get_cmd_env(env, local_env);
 	new_cmd->env = dup_env_lst_to_array(cmd_env);
 	new_cmd->command = get_arg_array(*tokens);
+	ft_lstclear(&cmd_env, (void (*)(void *))free_var);
 	toktype = get_type_from_tok((*tokens)->content);
 	while (is_cmd_finished(toktype) == false)
 	{
@@ -51,7 +52,6 @@ static void	generate_cmd(
 			toktype = get_type_from_tok((*tokens)->content);
 		}
 	}
-	ft_lstclear(&cmd_env, (void (*)(void *))free_var);
 }
 
 static void	add_cmd(t_list **cmd_lst)
