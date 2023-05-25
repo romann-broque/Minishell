@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 10:51:42 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 11:19:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	add_cmd(t_list **cmd_lst)
 	cmd = init_command();
 	pipe(cmd->pipe_fds);
 	g_global.prev_pipe = cmd->pipe_fds[0];
-	dup_child(cmd);
+	assign_end_pipe(cmd);
 	++(g_global.cmd_index);
 	ft_lstadd_back(cmd_lst, ft_lstnew(cmd));
 	add_deallocator(ft_lstlast(*cmd_lst), free);

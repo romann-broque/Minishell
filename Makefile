@@ -180,7 +180,7 @@ SRCS		+=	heredoc.c
 SRCS		+=	redirection.c
 SRCS		+=	redirection_utils.c
 SRCS		+=	dup.c
-SRCS		+=	close_pipes.c
+SRCS		+=	pipe.c
 
 ### srcs/signal/
 
