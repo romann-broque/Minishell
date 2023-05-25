@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 00:04:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 11:01:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -711,6 +711,7 @@ int			get_in_fd(char *in, t_toktype tok_type);
 
 /// close_pipes.c
 
+void		close_parent(t_command *cmd_data);
 void		close_pipe_fds(void);
 
 /// dup.c
