@@ -69,3 +69,8 @@ ls
 ls pouet
 < Makefile
 echo $?
+> koala
+cat koala
+echo lol >> koala
+cat koala
+rm koala
