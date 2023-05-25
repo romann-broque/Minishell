@@ -31,9 +31,9 @@ cat ./tests/env/env.sh | rev | head >> incroyable
 < ./tests/env/env.sh cat >> pouet | rev | head >> incroyable
 rm pouet
 rm incroyable
-yes | head -n 10 | cat
+yes | head -n 10
 pouet | cat
-pls | ls
+ls
 <./tests/env/env.sh exit lol > ananas | ls | cat >> ananas
 cat ananas
 rm ananas
