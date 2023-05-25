@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 09:15:11 by mat               #+#    #+#             */
-/*   Updated: 2023/05/19 15:20:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 10:16:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	get_out_fd(char *out, t_toktype tok_type)
 	fd = open(out, mask, perm_mask);
 	if (fd == -1)
 	{
+		ft_dprintf("THIS OPEN ERROR !\n");
 		print_error("%s: %s: ", MINISHELL, out);
 		perror(EMPTY_STR);
 	}
