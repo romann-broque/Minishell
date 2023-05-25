@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:27:39 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 10:19:59 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 10:22:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,5 @@ bool	is_executable_cmd(t_command *cmd)
 {
 	return (cmd->fdin != INVALID_FD
 		&& cmd->fdout != INVALID_FD
-		&& cmd->fderr != INVALID_FD
 		&& cmd->command != NULL);
 }

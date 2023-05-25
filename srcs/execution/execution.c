@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 10:20:10 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 10:27:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ static int	execute_cmd(t_command *cmd_data)
 	}
 	else
 		ret_val = (cmd_data->fdin == INVALID_FD
-				|| cmd_data->fdout == INVALID_FD
-				|| cmd_data->fderr == INVALID_FD);
+				|| cmd_data->fdout == INVALID_FD);
 	return (ret_val);
 }
 
