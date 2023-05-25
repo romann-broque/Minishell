@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 16:29:58 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 20:04:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,7 @@ void	free_command(t_command *cmd_data)
 			close(cmd_data->fdout);
 		if (cmd_data->fderr != STDERR_FILENO)
 			close(cmd_data->fderr);
-		if (g_global.cmd_nbr > 1)
-		{
-			close_safe(cmd_data->pipe_fds[0]);
-			close_safe(cmd_data->pipe_fds[1]);
-		}
+		close_parent(cmd_data);
 	}
 	free(cmd_data);
 }
