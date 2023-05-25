@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:34:08 by mat               #+#    #+#             */
-/*   Updated: 2023/05/25 10:06:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 10:07:51 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	close_parent(t_command *cmd_data)
 {
 	if (cmd_data != NULL)
 	{
+		close_safe(cmd_data->prev_pipe);
 		close_safe(cmd_data->pipe_fds[1]);
 		close_safe(cmd_data->pipe_fds[0]);
 	}

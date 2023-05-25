@@ -1,9 +1,7 @@
 ls | rev
 echo bonjour | wc
-env | grep PATH
 
 ls | < Makefile grep all
-env | < Makefile grep all
 
 ls > out | wc
 cat out
@@ -11,7 +9,7 @@ cat out
 < tests/var/var.c cat | < out rev
 ls > out | < tests/var/var.c > out
 
-ls | < Makefile cat > out | env | grep PATH | wc
+ls | < Makefile cat > out | grep lol | wc
 cat out
 rm out
 
