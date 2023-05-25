@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 18:25:36 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 18:50:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static void	init_shlvl(void)
 	const int	lvl = get_shlvl_value();
 	char *const	lvl_str = ft_itoa(lvl);
 
+	if (lvl_str == NULL)
+		exit_alloc();
 	change_var(SHLVL_VAR, lvl_str, SLEEP_MASK, &g_global.env);
 	free(lvl_str);
 }
