@@ -2,16 +2,16 @@ ls | rev
 echo bonjour | wc
 env | grep PATH
 
-ls | < Makefile grep all
-env | < Makefile grep all
+ls | < tests/env/env.sh grep all
+env | < tests/env/env.sh grep all
 
 ls > out | wc
 cat out
 
-< tests/var/var.c cat | < out rev
-ls > out | < tests/var/var.c > out
+< tests/env/env.sh cat | < out rev
+ls > out | < ./tests/env/env.sh > out
 
-ls | < Makefile cat > out | env | grep PATH | wc
+ls | < ./tests/env/env.sh cat > out | env | grep PATH | wc
 cat out
 rm out
 
@@ -21,20 +21,20 @@ exit 40 | exit 21
 echo $?
 exit 0 | pouet
 echo $?
-ls | rev < Makefile > incroyable
+ls | rev < ./tests/env/env.sh > incroyable
 echo $?
 cat incroyable
 echo wouah | pouet | rev
 echo $?
 lol | cat
-cat Makefile | rev | head >> incroyable
-< Makefile cat >> pouet | rev | head >> incroyable
+cat ./tests/env/env.sh | rev | head >> incroyable
+< ./tests/env/env.sh cat >> pouet | rev | head >> incroyable
 rm pouet
 rm incroyable
 yes | head -n 10 | cat
 pouet | cat
 pls | ls
-<Makefile exit lol > ananas | ls | cat >> ananas
+<./tests/env/env.sh exit lol > ananas | ls | cat >> ananas
 cat ananas
 rm ananas
 exit 0
