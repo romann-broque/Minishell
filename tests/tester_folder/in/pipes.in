@@ -11,7 +11,7 @@ cat out
 < tests/env/env.sh cat | < out rev
 ls > out | < ./tests/env/env.sh > out
 
-ls | < ./tests/env/env.sh cat > out | env | grep PATH | wc
+ls | < ./tests/env/env.sh cat > out | cat ./tests/env/env.sh | grep PATH | wc
 cat out
 rm out
 
