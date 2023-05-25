@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:35:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 10:24:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 10:26:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,11 @@
 
 extern t_global	g_global;
 
-static void	close_safe(const int fd)
-{
-	if (fd != INVALID_FD)
-		close(fd);
-}
-
 static void	close_fds(void)
 {
 	close_safe(g_global.stdin);
 	close_safe(g_global.stdout);
+	close_safe(g_global.stderr);
 	close_safe(g_global.hd_pipe[0]);
 	close_safe(g_global.hd_pipe[1]);
 }

@@ -6,11 +6,26 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:20:19 by mat               #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/23 11:50:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static bool	is_assign_mode(t_list *tokens)
+{
+	t_toktype	type;
+
+	type = get_type_from_tok(tokens->content);
+	while (type != T_END)
+	{
+		if (type != T_ASSIGN && type != T_START)
+			return (false);
+		tokens = tokens->next;
+		type = get_type_from_tok(tokens->content);
+	}
+	return (true);
+}
 
 static void	exec_assign_tok(t_token *tok)
 {

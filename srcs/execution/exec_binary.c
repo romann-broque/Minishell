@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/22 10:33:55 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 17:37:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static bool	is_folder(const char *path)
 	if (stat(path, &file_stat) == -1)
 	{
 		perror(STAT_ERROR);
-		free_manager();
-		exit(EXIT_FAILURE);
+		exit_shell(EXIT_FAILURE, false);
 	}
 	return (S_ISDIR(file_stat.st_mode));
 }
@@ -33,41 +32,43 @@ static void	child_job(t_command *cmd_data, char *path)
 	{
 		g_global.last_ret_val = NO_ACCESS;
 		print_error("%s: %s: %s\n", MINISHELL, path, IS_DIR);
-		free_manager();
-		exit(g_global.last_ret_val);
+		exit_shell(g_global.last_ret_val, false);
 	}
-	else if (execve(path, cmd_data->command, cmd_data->env) == -1)
-		exit(g_global.last_ret_val);
+	update_signal_state(S_EXEC);
+	execve(path, cmd_data->command, cmd_data->env);
+	update_signal_state(S_SLEEP);
+	exit_shell(g_global.last_ret_val, false);
 }
 
-static void	print_child_signal(const int status)
+static int	exec_unique_cmd(t_command *cmd_data, char *path)
 {
-	if (WIFSIGNALED(status) == true)
-	{
-		if (WTERMSIG(status) == SIGQUIT)
-			ft_printf(QUIT_CDUMP);
-		ft_printf(NEWLINE_STR);
-	}
-}
-
-void	exec_binary(t_command *cmd_data, char *path)
-{
-	int	status;
 	int	pid;
+	int	status;
+	int	ret_val;
 
+	pid = fork();
+	if (pid == 0)
+		child_job(cmd_data, path);
+	else if (pid > 0)
+	{
+		waitpid(pid, &status, WUNTRACED);
+		ret_val = extract_return_status(status);
+		print_child_signal(status);
+	}
+	return (ret_val);
+}
+
+int	exec_binary(t_command *cmd_data, char *path)
+{
+	int	ret_val;
+
+	ret_val = g_global.last_ret_val;
 	if (path != NULL)
 	{
-		pid = fork();
-		if (pid == 0)
-		{
-			update_signal_state(S_EXEC);
+		if (g_global.cmd_nbr == 1)
+			ret_val = exec_unique_cmd(cmd_data, path);
+		else
 			child_job(cmd_data, path);
-		}
-		else if (pid > 0)
-		{
-			wait(&status);
-			g_global.last_ret_val = extract_return_status(status);
-			print_child_signal(status);
-		}
 	}
+	return (ret_val);
 }

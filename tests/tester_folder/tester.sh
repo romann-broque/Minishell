@@ -97,10 +97,14 @@ source $ENV
  	filename=$(basename "${inputs[i]}")
 
  	# Compare the output file with the corresponding reference file using diff
- 	if diff -a "${output_ref_bash[i]}" "${outputs[i]}"; then
+ 	if diff "${output_ref_bash[i]}" "${outputs[i]}"; then
  		echo -e "${GREEN}${filename} : OK${NC}"
  	else
  		ret_val+=$?
+		echo "BASH --POSIX"
+		cat "${output_ref_bash[i]}"
+		echo "MINISHELL"
+		cat "${outputs[i]}"
  		echo -e "${RED}${filename} KO${NC}"
 		if [[ -n "$VALGRIND" ]]; then
 			cat $LOG_FILE

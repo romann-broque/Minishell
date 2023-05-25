@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:38:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:30:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/24 01:01:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	call_builtin(const t_builtin_mapper *map, t_command *cmd_data)
 	return (EXIT_FAILURE);
 }
 
-void	exec_builtin(t_command *command)
+int	exec_builtin(t_command *cmd_data)
 {
 	static const t_builtin_mapper	map[] = {
 	{.name = CD_BUILTIN, .fct = cd_builtin},
@@ -43,6 +43,10 @@ void	exec_builtin(t_command *command)
 	{.name = ENV_BUILTIN, .fct = env_builtin},
 	{NULL, NULL}
 	};
+	int								ret_val;
 
-	g_global.last_ret_val = call_builtin(map, command);
+	update_signal_state(S_EXEC);
+	ret_val = call_builtin(map, cmd_data);
+	update_signal_state(S_SLEEP);
+	return (ret_val);
 }

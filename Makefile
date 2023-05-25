@@ -13,6 +13,7 @@ PATH_SRCS	+=	srcs/batch/
 PATH_SRCS	+=	srcs/env/
 PATH_SRCS	+=	srcs/env/path/
 PATH_SRCS	+=	srcs/execution/
+PATH_SRCS	+=	srcs/execution/waiter/
 PATH_SRCS	+=	srcs/execution/builtin/
 PATH_SRCS	+=	srcs/execution/builtin/builtin_fcts/
 PATH_SRCS	+=	srcs/execution/builtin/cwd/
@@ -33,12 +34,13 @@ PATH_SRCS	+=	srcs/print/
 PATH_SRCS	+=	srcs/prompt/
 PATH_SRCS	+=	srcs/redirection/
 PATH_SRCS	+=	srcs/signal/
+PATH_SRCS	+=	srcs/utils/
 
 ### srcs/
 
 SRCS	 	+=	minishell.c
 
-### srcs/
+### srcs/batch/
 
 SRCS		+=	batch.c
 
@@ -62,6 +64,7 @@ SRCS		+=	cmd_path_utils.c
 
 SRCS	 	+=	exec_binary.c
 SRCS	 	+=	execution.c
+SRCS	 	+=	execution_utils.c
 
 ### srcs/execution/builtin/
 
@@ -90,6 +93,10 @@ SRCS	 	+=	cwd_utils.c
 SRCS		+=	clean_pwd.c
 SRCS		+=	ft_realpath_utils.c
 SRCS	 	+=	ft_realpath.c
+
+### srcs/execution/waiter/
+
+SRCS	 	+=	wait_for_exec.c
 
 ### srcs/exit/
 
@@ -124,7 +131,6 @@ SRCS		+=	init_shell.c
 ### srcs/interpreter/
 
 SRCS		+=	interpreter.c
-SRCS		+=	interpreter_utils.c
 SRCS		+=	cmd_mode.c
 SRCS		+=	cmd_mode_utils.c
 
@@ -173,11 +179,18 @@ SRCS	 	+=	prompt.c
 SRCS		+=	heredoc.c
 SRCS		+=	redirection.c
 SRCS		+=	redirection_utils.c
+SRCS		+=	dup.c
+SRCS		+=	pipe.c
 
 ### srcs/signal/
 
 SRCS		+=	handlers.c
+SRCS		+=	print_child_signal.c
 SRCS		+=	signal.c
+
+### srcs/utils/
+
+SRCS		+=	close_safe.c
 
 vpath %.c $(PATH_SRCS)
 

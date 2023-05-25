@@ -177,3 +177,16 @@ $
 $
 instructions$
 instructions$
+0
+minishell: lol: No such file or directory
+1
+includes
+libft
+Makefile
+minishell
+objs
+README.md
+srcs
+tests
+ls: cannot access 'pouet': No such file or directory
+0

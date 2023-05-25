@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/19 15:23:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 10:57:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,70 +14,52 @@
 
 extern t_global	g_global;
 
-static void	handle_error_path(t_command *cmd_data, char **path)
+static int	execute(t_command *cmd_data)
 {
-	if (*path == NULL)
-	{
-		update_error_val(NO_FILE);
-		print_error("%s: %s: ", MINISHELL, cmd_data->command[0]);
-		if (is_var_path_in_env(cmd_data->env, PATH_VAR) == true)
-			print_error("%s\n", CNF);
-		else
-			print_error("%s\n", NO_SUCH_FILE);
-	}
-	else if (is_cmd_accessible(*path) == false)
-	{
-		update_error_val(NO_ACCESS);
-		print_error("%s: %s: ", MINISHELL, *path);
-		perror(EMPTY_STR);
-		free(*path);
-		*path = NULL;
-	}
-}
-
-static char	*get_path(t_command *cmd_data)
-{
+	int		ret_val;
 	char	*path;
 
-	if (is_cmd_path(cmd_data) == true)
-		path = get_cmd_path(cmd_data);
+	ret_val = EXIT_FAILURE;
+	if (is_builtin(cmd_data) == true)
+		ret_val = exec_builtin(cmd_data);
 	else
 	{
-		path = get_path_from_env(cmd_data->command[0],
-				PATH_VAR, cmd_data->env);
-		handle_error_path(cmd_data, &path);
+		path = get_path(cmd_data);
+		add_deallocator(path, free);
+		ret_val = exec_binary(cmd_data, path);
 	}
-	return (path);
+	return (ret_val);
 }
 
-static void	dup_files(int in, int out)
+static int	execute_cmd(t_command *cmd_data)
 {
-	dup2(in, STDIN_FILENO);
-	dup2(out, STDOUT_FILENO);
-}
+	int	ret_val;
 
-static bool	is_executable_cmd(t_command *cmd)
-{
-	return (cmd->fdin != INVALID_FD
-		&& cmd->fdout != INVALID_FD
-		&& cmd->command != NULL);
+	if (is_executable_cmd(cmd_data) == true)
+	{
+		dup_files(cmd_data);
+		close_pipe_fds();
+		ret_val = execute(cmd_data);
+		revert_dup(cmd_data);
+	}
+	else
+		ret_val = (cmd_data->fdin == INVALID_FD
+				|| cmd_data->fdout == INVALID_FD);
+	return (ret_val);
 }
 
 void	execution(t_command *cmd_data)
 {
-	char	*path;
+	int	pid;
 
-	if (is_executable_cmd(cmd_data) == true)
+	if (g_global.cmd_nbr == 1)
+		g_global.last_ret_val = execute_cmd(cmd_data);
+	else
 	{
-		dup_files(cmd_data->fdin, cmd_data->fdout);
-		if (is_builtin(cmd_data) == true)
-			exec_builtin(cmd_data);
+		pid = fork();
+		if (pid == 0)
+			exit_shell(execute_cmd(cmd_data), false);
 		else
-		{
-			path = get_path(cmd_data);
-			add_deallocator(path, free);
-			exec_binary(cmd_data, path);
-		}
-		dup_files(g_global.stdin, g_global.stdout);
+			ft_lstadd_back(&(g_global.pid_lst), ft_lstnew((void *)(long)(pid)));
 	}
 }

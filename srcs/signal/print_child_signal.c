@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interpreter_utils.c                                :+:      :+:    :+:   */
+/*   print_child_signal.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 14:44:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/05 09:47:13 by mat              ###   ########.fr       */
+/*   Created: 2023/05/24 17:21:46 by rbroque           #+#    #+#             */
+/*   Updated: 2023/05/24 17:27:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	is_assign_mode(t_list *tokens)
+void	print_child_signal(const int status)
 {
-	t_toktype	type;
+	int	signum;
 
-	type = get_type_from_tok(tokens->content);
-	while (type != T_END)
+	if (WIFSIGNALED(status) == true)
 	{
-		if (type != T_ASSIGN && type != T_START)
-			return (false);
-		tokens = tokens->next;
-		type = get_type_from_tok(tokens->content);
+		signum = WTERMSIG(status);
+		if (signum == SIGQUIT)
+			ft_printf(QUIT_CDUMP);
+		if (signum == SIGQUIT || signum == SIGINT)
+			ft_printf(NEWLINE_STR);
 	}
-	return (true);
 }

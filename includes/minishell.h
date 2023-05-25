@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 10:24:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 11:19:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,8 +269,12 @@ typedef struct s_command
 {
 	char	**command;
 	char	**env;
+	size_t	index;
 	int		fdin;
 	int		fdout;
+	int		fderr;
+	int		prev_pipe;
+	int		pipe_fds[2];
 }				t_command;
 
 typedef struct s_deallocator
@@ -297,8 +301,14 @@ typedef struct s_global
 	int		last_ret_val;
 	t_list	*garbage;
 	t_list	*env;
+	t_list	*pid_lst;
+	t_list	*cmd_lst;
+	size_t	cmd_nbr;
+	size_t	cmd_index;
+	int		prev_pipe;
 	int		stdin;
 	int		stdout;
+	int		stderr;
 	int		hd_pipe[2];
 }				t_global;
 
@@ -383,9 +393,14 @@ bool		is_path_var(const char *env_line, const char *pathvar_name);
 
 void		execution(t_command *command);
 
+/// execution_utils.c
+
+char		*get_path(t_command *cmd_data);
+bool		is_executable_cmd(t_command *cmd);
+
 /// exec_binary.c
 
-void		exec_binary(t_command *cmd_data, char *path);
+int			exec_binary(t_command *cmd_data, char *path);
 
 ///  BUILTIN  ///
 
@@ -395,7 +410,7 @@ char		**dup_export_lst_to_array(t_list *env_lst);
 
 //// exec_buitlin.c
 
-void		exec_builtin(t_command *command);
+int			exec_builtin(t_command *command);
 
 //// is_builtin.c
 
@@ -464,6 +479,12 @@ char		*clean_path_comp(char *left, size_t *left_len,
 
 void		silent_trailing_slash(char *str, const size_t len);
 char		*ft_realpath(const char *path);
+
+///		WAITER		///
+
+//// wait_for_exec.c
+
+void		wait_for_exec(void);
 
 //			EXIT			//
 
@@ -538,7 +559,6 @@ void		delete_quote(t_vmachine *const machine);
 
 // free_manager.c
 
-void		free_command_lst(void *ptr);
 void		free_token_lst(void *ptr);
 void		free_manager(void);
 
@@ -559,17 +579,16 @@ void		init_shell(char **env);
 
 t_list		*interpreter(t_list *tokens, t_list *env);
 
-/// interpreter_utils.c
-
-bool		is_assign_mode(t_list *tokens);
-
 /// cmd_mode.c
 
+t_list		*get_cmd_env(t_list *glob_env, t_list *loc_env);
+void		process_assign(t_list **assign, t_list *tokens);
 t_list		*cmd_mode(t_list *tokens, t_list *env);
 
 /// cmd_mode_utils.c
 
 void		clear_local_env(t_list **env);
+void		init_cmd_mode(t_list *tokens);
 
 ///			COMMAND			///
 
@@ -669,6 +688,7 @@ void		print_error(const char *format, ...);
 /// line_utils.c
 
 void		clear_line(void);
+void		add_line_to_history(const char *line);
 
 /// prompt.c
 
@@ -689,6 +709,18 @@ void		update_fds(t_toktype toktype, t_token *tok, t_command *cmd);
 int			get_out_fd(char *out, t_toktype tok_type);
 int			get_in_fd(char *in, t_toktype tok_type);
 
+/// pipe.c
+
+void		close_parent(t_command *cmd_data);
+void		close_pipe_fds(void);
+void		assign_end_pipe(t_command *cmd_data);
+
+/// dup.c
+
+void		dup_files(t_command *cmd_data);
+void		dup_child(t_command *cmd_data);
+void		revert_dup(t_command *cmd_data);
+
 //			SIGNAL			//
 
 /// handlers.c
@@ -697,8 +729,18 @@ void		clear_line_handler(__attribute__((unused)) int signal);
 void		handle_sigint_default(__attribute__((unused)) int signal);
 void		handle_sigint_hd(__attribute__((unused))int signal);
 
+/// print_child_signal.c
+
+void		print_child_signal(const int status);
+
 /// signal.c
 
 void		update_signal_state(const t_sigstate state);
+
+//			UTILS			//
+
+/// close_safe.c
+
+void		close_safe(const int fd);
 
 #endif

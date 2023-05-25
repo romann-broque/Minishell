@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handlers.c                                         :+:      :+:    :+:   */
+/*   close_safe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/17 19:32:39 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/23 15:22:44 by rbroque          ###   ########.fr       */
+/*   Created: 2023/05/23 11:42:23 by rbroque           #+#    #+#             */
+/*   Updated: 2023/05/23 11:43:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
-
-void	clear_line_handler(__attribute__((unused)) int signal)
+void	close_safe(const int fd)
 {
-	clear_line();
-}
-
-void	handle_sigint_default(__attribute__((unused)) int signal)
-{
-	ft_printf(NEWLINE_STR);
-	clear_line();
-	g_global.last_ret_val = SIGINT_RETVAL;
-}
-
-void	handle_sigint_hd(__attribute__((unused))int signal)
-{
-	ft_printf(NEWLINE_STR);
-	exit_shell(SIGINT_RETVAL, false);
+	if (fd != INVALID_FD)
+		close(fd);
 }
