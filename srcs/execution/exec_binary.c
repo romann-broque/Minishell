@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_binary.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/24 17:37:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 14:32:09 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,9 @@ static int	exec_unique_cmd(t_command *cmd_data, char *path)
 	pid = fork();
 	if (pid == 0)
 		child_job(cmd_data, path);
-	else if (pid > 0)
-	{
-		waitpid(pid, &status, WUNTRACED);
-		ret_val = extract_return_status(status);
-		print_child_signal(status);
-	}
+	waitpid(pid, &status, WUNTRACED);
+	ret_val = extract_return_status(status);
+	print_child_signal(status);
 	return (ret_val);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_realpath.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:51:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 11:14:23 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 14:45:42 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_realpath(const char *path)
 	size_t	resolved_len;
 	char	left[PATH_MAX];
 	char	resolved[PATH_MAX];
+	char	*resolved_path;
 
 	ft_bzero(resolved, PATH_MAX);
 	init_realpath(path, resolved, left);
@@ -46,5 +47,7 @@ char	*ft_realpath(const char *path)
 	if (clean_path_comp(left, &left_len, resolved, &resolved_len) == NULL)
 		return (NULL);
 	silent_trailing_slash(resolved, resolved_len);
-	return (ft_strdup(resolved));
+	resolved_path = ft_strdup(resolved);
+	add_deallocator(resolved_path, free);
+	return (resolved_path);
 }

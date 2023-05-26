@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 20:09:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 14:42:24 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	init_pwd(void)
 
 	if (curr_pwd != NULL)
 	{
+		add_deallocator(curr_pwd, free);
 		update_cwd_var(curr_pwd);
 		old_pwd = ft_getenv(OLDPWD_VAR);
 		if (old_pwd == NULL || streq(old_pwd, EMPTY_STR) == true)
