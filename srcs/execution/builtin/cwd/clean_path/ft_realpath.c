@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:51:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/26 14:45:42 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/05/26 15:12:34 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,5 @@ char	*ft_realpath(const char *path)
 		return (NULL);
 	silent_trailing_slash(resolved, resolved_len);
 	resolved_path = ft_strdup(resolved);
-	add_deallocator(resolved_path, free);
 	return (resolved_path);
 }
