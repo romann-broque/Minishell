@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 18:42:50 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:52:36 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	change_var(
 			var->value = ft_strdup(value);
 			if (var->value == NULL)
 				exit_alloc();
+			rm_deallocator(g_global.resolve_tmp);
 		}
 		var->flags |= flags;
 	}

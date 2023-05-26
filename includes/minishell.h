@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 20:08:59 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:51:08 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,6 +311,7 @@ typedef struct s_global
 	int		stderr;
 	int		hd_pipe[2];
 	bool	is_stopped;
+	char	*resolve_tmp;
 }				t_global;
 
 /////////////////
@@ -570,6 +571,7 @@ void		free_manager(void);
 // tracker.c
 
 void		add_deallocator(void *ptr, void (*fct)(void *));
+void		rm_deallocator(void *ptr);
 void		init_tracker(void);
 
 //			INIT			//

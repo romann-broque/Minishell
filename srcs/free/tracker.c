@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   tracker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:27:19 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 15:46:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:46:55 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 extern t_global	g_global;
+
+static bool	is_same_deallocator(t_deallocator deal1, t_deallocator deal2)
+{
+	return (deal1.ptr == deal2.ptr);
+}
 
 static t_deallocator	*init_dealloc(void *ptr, void (*fct)(void *))
 {
@@ -25,6 +30,17 @@ static t_deallocator	*init_dealloc(void *ptr, void (*fct)(void *))
 		dealloc->free_fct = fct;
 	}
 	return (dealloc);
+}
+
+void	rm_deallocator(void *ptr)
+{
+	t_deallocator *const	ref = init_dealloc(ptr, NULL);
+
+	ft_list_remove_if(&(g_global.garbage),
+		(void *)&ref,
+		(bool (*)(void *, void *))is_same_deallocator,
+		free);
+	free(ref);
 }
 
 void	add_deallocator(void *ptr, void (*fct)(void *))
