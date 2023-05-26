@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 20:05:23 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 22:43:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	handle_command(const char *command)
 		exit_shell(g_global.last_ret_val, true);
 	else
 	{
-		add_deallocator(tokens, free_token_lst);
 		if (parser(tokens) == true)
 		{
 			expand_command(&tokens);

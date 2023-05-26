@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:28:45 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 18:33:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 22:55:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ t_list	*ft_lstnew_fatal(void *ptr, void (*free_fct)(void *))
 
 	node = NULL;
 	if (ptr != NULL)
-		node = ft_lstnew(ptr);
-	if (ptr == NULL || node == NULL)
 	{
-		free_fct(ptr);
-		exit_alloc();
+		node = ft_lstnew(ptr);
+		add_deallocator(ptr, free_fct);
+		add_deallocator(node, free);
 	}
+	if (ptr == NULL || node == NULL)
+		exit_alloc();
 	return (node);
 }
 

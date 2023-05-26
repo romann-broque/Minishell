@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 18:31:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 22:52:42 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -563,7 +563,7 @@ void		delete_quote(t_vmachine *const machine);
 
 // free_manager.c
 
-void		free_token_lst(void *ptr);
+void		free_token_lst(t_list *ptr);
 void		free_manager(void);
 
 // tracker.c

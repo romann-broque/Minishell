@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 20:00:51 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 23:15:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void	generate_cmd(
 			toktype = get_type_from_tok((*tokens)->content);
 		}
 	}
-	ft_lstclear(&cmd_env, (void (*)(void *))free_var);
 }
 
 static void	add_cmd(t_list **cmd_lst)
@@ -60,8 +59,6 @@ static void	add_cmd(t_list **cmd_lst)
 	assign_end_pipe(cmd);
 	++(g_global.cmd_index);
 	ft_lstaddback_fatal(cmd_lst, cmd, (void (*)(void *))free_command);
-	add_deallocator(ft_lstlast(*cmd_lst), free);
-	add_deallocator(cmd, (void (*)(void *))free_command);
 }
 
 static void	process_tok(

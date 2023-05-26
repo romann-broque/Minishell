@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:23:22 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/04 16:56:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 23:16:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	merge_gen_tok(t_list *tokens)
 			tokens->next = NULL;
 		}
 		((t_token *)(first_gen->content))->value = merge_str;
-		ft_lstclear(&(first_gen->next), (void (*)(void *))free_token);
 		first_gen->next = tmp_lst;
 	}
 }

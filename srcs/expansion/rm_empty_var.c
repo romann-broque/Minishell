@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:07:13 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 20:11:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 23:11:26 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	rm_empty_var(t_list **tokens)
 {
 	static t_token	tok_ref = {.type = T_VAR, .value = EMPTY_STR};
 
-	ft_list_remove_if(tokens, &tok_ref, tok_comp,
-		(void (*)(void *))(free_token));
+	ft_list_remove_if_without_free(tokens, &tok_ref, tok_comp);
 	ft_lstiter(*tokens, (void (*)(void *))flag_tok_gen);
 }

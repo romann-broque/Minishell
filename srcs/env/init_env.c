@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 18:42:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 22:39:42 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,19 @@ t_var	*init_var_from_str(const char *str)
 static t_list	*get_env_from_strs(char **env_strs)
 {
 	t_list	*env_lst;
+	t_list	*new_node;
+	t_var	*new_var;
 
 	env_lst = NULL;
 	while (*env_strs != NULL)
 	{
-		ft_lstaddback_fatal(&env_lst,
-			init_var_from_str(*env_strs), (void (*)(void *))free_var);
+		new_var = init_var_from_str(*env_strs);
+		if (new_var == NULL)
+			exit_alloc();
+		new_node = ft_lstnew(new_var);
+		if (new_node == NULL)
+			exit_alloc();
+		ft_lstadd_back(&env_lst, new_node);
 		++env_strs;
 	}
 	return (env_lst);

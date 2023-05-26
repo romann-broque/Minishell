@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:45:18 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 18:43:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 23:13:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,19 @@ static void	put_lexer_format(t_list **tokens)
 		init_token(T_END, NULL), (void (*)(void *))free_token);
 }
 
+static void	free_string_lst(t_list *lst)
+{
+	ft_lstclear(&lst, free);
+}
+
 t_list	*lexer_root(const char *str)
 {
 	t_list	*word_lst;
 	t_list	*tokens;
 
 	word_lst = get_words(str);
+	add_deallocator(word_lst, (void (*)(void *))free_string_lst);
 	tokens = tokenizer(word_lst);
-	ft_lstclear(&word_lst, free);
 	return (tokens);
 }
 

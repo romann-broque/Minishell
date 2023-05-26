@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:26:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 18:41:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 23:08:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,6 @@ static t_list	*get_split_gen(t_list *tokens)
 
 void	split_gen(t_list **tokens)
 {
-	t_list	*tmp;
-
 	if (*tokens != NULL)
-	{
-		tmp = (*tokens)->next;
 		*tokens = get_split_gen(*tokens);
-		ft_lstclear(&tmp, (void (*)(void *))free_token);
-	}
 }

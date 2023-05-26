@@ -157,36 +157,4 @@ int	main(int ac, char **av)
 		}
 	}
 }
-appended
-wouah
-lol
-wouah and lol are dead
-cat: result: Permission denied
-wouah
-
-
-instructions
-minishell: lol: Permission denied
-minishell: lol: Permission denied
-
-
-instructions
-instructions
-minishell: lol: Permission denied
-$
-$
-instructions$
-instructions$
-0
-minishell: lol: No such file or directory
-1
-includes
-libft
-Makefile
-minishell
-objs
-README.md
-srcs
-tests
-ls: cannot access 'pouet': No such file or directory
-0
+free(): double free detected in tcache 2

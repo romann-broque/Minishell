@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:28:17 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 01:21:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/26 22:52:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 extern t_global	g_global;
 
-void	free_token_lst(void *ptr)
+void	free_token_lst(t_list *lst)
 {
-	ft_lstclear((t_list **)&ptr, (void (*)(void *))free_token);
+	ft_lstclear(&lst, (void (*)(void *))free_token);
 }
 
 static void	run_deallocator(t_deallocator *dealloc)
