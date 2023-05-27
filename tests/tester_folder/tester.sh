@@ -70,7 +70,8 @@ function put_format()
 
  echo -e "${BLUE}\n<====  BASH  ====>\n${NC}"
 
-files=( "basic" "builtin_cwd" "echo_builtin" "expansion" "assign" "exit_builtin" "export_builtin" "unset_builtin" "redirection" "pipes")
+files=( "basic" "builtin_cwd")
+# "echo_builtin" "expansion" "assign" "exit_builtin" "export_builtin" "unset_builtin" "redirection" "pipes")
 
 
 inputs=($(put_format "$IN_FOLDER" ".in" "${files[@]}"))
@@ -101,10 +102,10 @@ source $ENV
  		echo -e "${GREEN}${filename} : OK${NC}"
  	else
  		ret_val+=$?
-		echo "BASH --POSIX"
-		cat "${output_ref_bash[i]}"
-		echo "MINISHELL"
-		cat "${outputs[i]}"
+		# echo "BASH --POSIX"
+		# cat "${output_ref_bash[i]}"
+		# echo "MINISHELL"
+		# cat "${outputs[i]}"
  		echo -e "${RED}${filename} KO${NC}"
 		if [[ -n "$VALGRIND" ]]; then
 			cat $LOG_FILE

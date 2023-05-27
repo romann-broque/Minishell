@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 00:45:18 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/26 23:13:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/27 18:49:05 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,9 @@
 
 static void	put_lexer_format(t_list **tokens)
 {
-	t_list	*tmp;
-
 	if ((*tokens)->content == NULL)
-	{
-		tmp = *tokens;
 		*tokens = ft_lstnew_fatal(
 				init_token(T_START, NULL), (void (*)(void *))free_token);
-		free(tmp);
-	}
 	else if (*tokens != NULL)
 		ft_lstaddfront_fatal(tokens,
 			init_token(T_START, NULL), (void (*)(void *))free_token);
