@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:29:03 by mat               #+#    #+#             */
-/*   Updated: 2023/05/24 17:37:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/27 12:52:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static int	exec_unique_cmd(t_command *cmd_data, char *path)
 	int	ret_val;
 
 	pid = fork();
+	ret_val = g_global.last_ret_val;
 	if (pid == 0)
 		child_job(cmd_data, path);
 	else if (pid > 0)

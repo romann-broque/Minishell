@@ -136,30 +136,30 @@ all 	:	$(MINISHELL_LIB) $(NAME)
 
 $(MINISHELL_LIB): $(MIN_OBJS)
 	ar rcs $@ $^
-	$(ECHOC) $(GREEN) "--> $(MINISHELL_LIB) COMPILED !"$(NC)"\n"
+#	$(ECHOC) $(GREEN) "--> $(MINISHELL_LIB) COMPILED !"$(NC)"\n"
 	echo -e $(BLUE) "\n====> Building CUNIT TESTS <===="$(NC)"\n"
 
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT) $(MINISHELL_LIB) $(LIBFT) $(LINKS)
-	$(ECHOC) $(GREEN) "--> $(NAME) COMPILED !"$(NC)"\n\n"
+#	$(ECHOC) $(GREEN) "--> $(NAME) COMPILED !"$(NC)"\n\n"
 
 $(OBJS) :	$(PATH_OBJS)/%.o: %.c Makefile $(HEADERS)
-	$(ECHO) $(ORANGE) "Compiling $<"
+#	$(ECHO) $(ORANGE) "Compiling $<"
 	mkdir -p $(PATH_OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean	:
 	$(RM) -r $(PATH_OBJS)
 	$(MAKE) -sC $(LIBFT_FOLDER) clean > /dev/null
-	$(ECHOC) $(GREEN) "--> .o files deleted !"$(NC)"\n"
+#	$(ECHOC) $(GREEN) "--> .o files deleted !"$(NC)"\n"
 
 fclean	:	clean
-	$(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
+#	$(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
 	$(MAKE) -sC $(LIBFT_FOLDER) fclean > /dev/null
 	$(RM) $(NAME)
-	$(ECHOC) $(GREEN) "--> $(NAME) deleted !"$(NC)"\n"
+#	$(ECHOC) $(GREEN) "--> $(NAME) deleted !"$(NC)"\n"
 	$(RM) $(MINISHELL_LIB)
-	$(ECHOC) $(GREEN) "--> $(MINISHELL_LIB) deleted !"$(NC)"\n"
+#	$(ECHOC) $(GREEN) "--> $(MINISHELL_LIB) deleted !"$(NC)"\n"
 
 re 		: fclean
 	echo -e $(YELLOW) "\nRebuilding..." $(NC)

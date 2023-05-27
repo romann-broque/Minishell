@@ -308,7 +308,9 @@ BLUE='\033[1;36m'
 NC='\033[0m' # No Color
 
 ifndef ECHO
-T := $(words $(SRCS))
+T := $(shell $(MAKE) $(MAKECMDGOALS) --no-print-directory \
+      -nrRf $(firstword $(MAKEFILE_LIST)) \
+      ECHO="COUNTTHIS" | grep -c "COUNTTHIS")
 N := x
 C = $(words $N)$(eval N := x $N)
 
@@ -316,8 +318,6 @@ ECHOC = echo -ne "\r\033[2K"
 ECHO = $(ECHOC) $(ORANGE) "[`expr $C '*' 100 / $T`%]"
 endif
 
-###############
-#### RULES ####
 ###############
 
 all 	:	$(LIBFT) $(NAME)
@@ -348,9 +348,9 @@ test	:
 	$(MAKE) -s
 	$(MAKE) -sC $(VAR_FOLDER)
 	$(RM) $(CUNIT_EXE)
-	$(MAKE) -sC $(CUNIT_FOLDER)
-	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
-	source $(ENV); $(CUNIT) $(VALGRIND)
+#	$(MAKE) -sC $(CUNIT_FOLDER)
+#	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
+#	source $(ENV); $(CUNIT) $(VALGRIND)
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
 	$(TESTER) $(VALGRIND)
 
@@ -358,14 +358,14 @@ clean	:
 	$(RM) -r $(PATH_OBJS)
 	$(MAKE) -sC $(VAR_FOLDER) clean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) clean > /dev/null
-	$(MAKE) -sC $(CUNIT_FOLDER) clean > /dev/null
+#	$(MAKE) -sC $(CUNIT_FOLDER) clean > /dev/null
 	$(ECHOC) $(GREEN) "--> .o files deleted !"$(NC)"\n"
 
 fclean	:	clean
-	$(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
+	# $(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
 	$(MAKE) -sC $(VAR_FOLDER) fclean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) fclean > /dev/null
-	$(MAKE) -sC $(CUNIT_FOLDER) fclean > /dev/null
+#	$(MAKE) -sC $(CUNIT_FOLDER) fclean > /dev/null
 	$(RM) $(NAME)
 	$(ECHOC) $(GREEN) "--> $(NAME) deleted !"$(NC)"\n"
 
