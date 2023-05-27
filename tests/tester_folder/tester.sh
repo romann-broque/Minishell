@@ -7,6 +7,7 @@ SUPPRESSION_FILE="${VALGRIND_FOLDER}"suppressions.supp
 LOG_FILE="${VALGRIND_FOLDER}"valgrind_min.out
 
 # Use the variable in the script
+VALGRIND=""
 if [[ "$valgrind" == "valgrind" ]]; then
 	VALGRIND="valgrind -s --leak-check=full --suppressions=$SUPPRESSION_FILE --log-file=$LOG_FILE --show-leak-kinds=all"
 fi
@@ -70,8 +71,8 @@ function put_format()
 
  echo -e "${BLUE}\n<====  BASH  ====>\n${NC}"
 
-files=( "basic" "builtin_cwd")
-# "echo_builtin" "expansion" "assign" "exit_builtin" "export_builtin" "unset_builtin" "redirection" "pipes")
+files=("basic" "builtin_cwd" "echo_builtin" "expansion" "assign")
+# "exit_builtin" "export_builtin" "unset_builtin" "redirection" "pipes")
 
 
 inputs=($(put_format "$IN_FOLDER" ".in" "${files[@]}"))
@@ -82,7 +83,7 @@ source $ENV
  for i in "${!inputs[@]}"; do
  	# Run the program and redirect the output to the corresponding output file
  	cat "${inputs[i]}" | bash --posix &> "${output_ref_bash[i]}"
- 	cat "${inputs[i]}" | ./minishell &> "${outputs[i]}"
+ 	cat "${inputs[i]}" | $VALGRIND ./minishell &> "${outputs[i]}"
  	ret_val+=$?
 	# Replace Error of each line with minishell
 	sed -i -e 's/^bash: line [0-9]*: /minishell: /g' "${output_ref_bash[i]}"
@@ -107,7 +108,7 @@ source $ENV
 		# echo "MINISHELL"
 		# cat "${outputs[i]}"
  		echo -e "${RED}${filename} KO${NC}"
-		if [[ -n "$VALGRIND" ]]; then
+		if [[ "$VALGRIND" != "" ]]; then
 			cat $LOG_FILE
 		fi
  	fi

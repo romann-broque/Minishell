@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/26 23:15:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/27 21:09:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	process_tok(
 	else if (toktype == T_GENERIC)
 	{
 		generate_cmd(cmd_lst, tokens, env, *local_env);
-		clear_local_env(local_env);
+		*local_env = NULL;
 	}
 	else
 	{
