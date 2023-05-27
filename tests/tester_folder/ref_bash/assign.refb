@@ -18,6 +18,7 @@ minishell: kiwi=green: command not found
 yellow
 minishell: kiwi=yellow: command not found
 minishell: cd: bin: No such file or directory
+
 minishell: cd: OLDPWD not set
 /bin
 /bin
