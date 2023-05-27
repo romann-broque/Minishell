@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 23:28:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/02 16:59:30 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/27 18:44:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,20 @@ static t_token	*set_token(char *word)
 
 t_list	*tokenizer(t_list *words)
 {
-	return (ft_lstmap(words,
-			(void *(*)(void *))set_token, (void (*)(void *))free_token));
+	t_list	*new_head;
+	t_list	*curr;
+
+	if (words == NULL)
+		return (NULL);
+	new_head = ft_lstnew(set_token(words->content));
+	curr = new_head;
+	add_deallocator(curr, (void (*)(void *))free_token_node);
+	while (words->next != NULL && curr != NULL)
+	{
+		curr->next = ft_lstnew(set_token(words->next->content));
+		curr = curr->next;
+		add_deallocator(curr, (void (*)(void *))free_token_node);
+		words = words->next;
+	}
+	return (new_head);
 }
