@@ -18,8 +18,8 @@ minishell: kiwi=green: command not found
 yellow
 minishell: kiwi=yellow: command not found
 minishell: cd: bin: No such file or directory
-
-minishell: cd: OLDPWD not set
+/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
+/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
 /bin
 /bin
 /bin

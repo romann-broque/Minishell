@@ -168,7 +168,6 @@ SRCS		+=	parser_error.c
 ### srcs/print/
 
 SRCS		+=	test_print.c
-SRCS		+=	print_error.c
 
 ### srcs/prompt/
 
