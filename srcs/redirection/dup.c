@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:31:37 by mat               #+#    #+#             */
-/*   Updated: 2023/05/25 11:19:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 13:02:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	dup_files(t_command *cmd_data)
 		dup2(cmd_data->fdin, STDIN_FILENO);
 	if (cmd_data->fdout != STDOUT_FILENO)
 		dup2(cmd_data->fdout, STDOUT_FILENO);
-	if (cmd_data->fderr != STDERR_FILENO)
-		dup2(cmd_data->fderr, STDERR_FILENO);
 }
 
 void	revert_dup(t_command *cmd_data)
@@ -30,6 +28,4 @@ void	revert_dup(t_command *cmd_data)
 		dup2(g_global.stdin, STDIN_FILENO);
 	if (cmd_data->fdout != STDOUT_FILENO)
 		dup2(g_global.stdout, STDOUT_FILENO);
-	if (cmd_data->fderr != STDERR_FILENO)
-		dup2(g_global.stderr, STDERR_FILENO);
 }

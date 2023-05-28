@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/27 21:19:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 13:01:29 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static void	init_pwd(void)
 
 	if (curr_pwd != NULL)
 	{
+		add_deallocator(curr_pwd, free);
 		update_cwd_var(curr_pwd);
 		old_pwd = ft_getenv(OLDPWD_VAR);
 		if (old_pwd == NULL || streq(old_pwd, EMPTY_STR) == true)
 			set_var_flag(OLDPWD_VAR, SLEEP_MASK);
 	}
-	free(curr_pwd);
 }
 
 static int	get_shlvl_value(void)
@@ -53,7 +53,6 @@ static void	init_fds(void)
 {
 	g_global.stdin = dup(STDIN_FILENO);
 	g_global.stdout = dup(STDOUT_FILENO);
-	g_global.stderr = dup(STDERR_FILENO);
 	g_global.hd_pipe[0] = INVALID_FD;
 	g_global.hd_pipe[1] = INVALID_FD;
 	g_global.prev_pipe = INVALID_FD;
@@ -62,12 +61,12 @@ static void	init_fds(void)
 void	init_shell(char **env)
 {
 	update_signal_state(S_SLEEP);
+	init_tracker();
 	init_env(&g_global, env);
 	g_global.pid_lst = NULL;
 	init_fds();
 	check_pos(SHELL_INIT);
 	init_pwd();
 	init_shlvl();
-	init_tracker();
 	update_signal_state(S_DEFAULT);
 }

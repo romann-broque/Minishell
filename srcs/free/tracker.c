@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:27:19 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 15:46:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 13:04:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	add_deallocator(void *ptr, void (*fct)(void *))
 
 	if (new_deal == NULL || dealloc == NULL)
 	{
+		if (fct != NULL)
+			fct(ptr);
 		free(dealloc);
 		free(new_deal);
 		exit_alloc();

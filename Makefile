@@ -277,17 +277,14 @@ CC			=	cc
 
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra
-
-ifneq ($(no_error), true)
-	CFLAGS		+=	-Werror
-endif
+CFLAGS		+=	-g3
 
 ifneq ($(no_error), true)
 	CFLAGS		+=	-Werror
 endif
 
 ifeq ($(debug), true)
-	CFLAGS	+= -fsanitize=address,undefined -g3
+	CFLAGS	+= -fsanitize=address,undefined
 endif
 
 ##############

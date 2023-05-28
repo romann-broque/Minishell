@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/27 19:07:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 12:43:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ static t_list	*get_env_from_strs(char **env_strs)
 			exit_alloc();
 		new_node = ft_lstnew(new_var);
 		if (new_node == NULL)
+		{
+			free_var(new_var);
 			exit_alloc();
+		}
 		ft_lstadd_back(&env_lst, new_node);
 		++env_strs;
 	}
