@@ -6,7 +6,7 @@ minishell: cd: too many arguments
 minishell: cd: blata: No such file or directory
 1
 ls: cannot access 'blata': No such file or directory
-2
+minishell: ?: command not found
 pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 1
 chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory

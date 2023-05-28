@@ -1,14 +1,14 @@
 /bin
 /bin
-/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell/tests
+minishell: cd: OLDPWD not set
 minishell: cd: ./bin: No such file or directory
-/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell/tests
-/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
+/bin
+/
 minishell: cd: bonjour: No such file or directory
 minishell: cd: repo: No such file or directory
-/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
-/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell /mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell/tests
-/bin /mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
+/
+/
+/bin
 /bin
 /usr
 /
@@ -27,20 +27,20 @@ minishell: cd: ../../tests/CUNIT/..: No such file or directory
 /home
 minishell: cd: too many arguments
 /mnt/nfs/homes/rbroque
-/home
-/home
+minishell: cd: OLDPWD not set
 /mnt/nfs/homes/rbroque
+minishell: cd: OLDPWD not set
 /mnt/nfs/homes/rbroque
-/home
+minishell: cd: OLDPWD not set
+minishell: cd: OLDPWD not set
 /mnt/nfs/homes/rbroque
-/mnt/nfs/homes/rbroque
-/home
+minishell: cd: OLDPWD not set
 /mnt/nfs/homes/rbroque
 mkdir: cannot create directory ‘new’: Permission denied
 minishell: cd: new: No such file or directory
 /mnt/nfs/homes/rbroque
 pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-/mnt/nfs/homes/rbroque/lol /mnt/nfs/homes/rbroque
+/mnt/nfs/homes/rbroque/lol
 chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 /mnt/nfs/homes/rbroque
 /mnt/nfs/homes/rbroque
@@ -50,7 +50,7 @@ minishell: cd: pouet: No such file or directory
 /dev/disk
 minishell: cd: ../../../../......./..////////: No such file or directory
 minishell: cd: /.//////./../../../......./..////////: No such file or directory
-/dev/disk
+minishell: cd: OLDPWD not set
+minishell: cd: OLDPWD not set
 /mnt/nfs/homes/rbroque
-/mnt/nfs/homes/rbroque /dev/disk
 /mnt/nfs/homes/rbroque
