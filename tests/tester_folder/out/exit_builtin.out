@@ -21,7 +21,6 @@ libft
 Makefile
 minishell
 objs
-out
 README.md
 srcs
 tests
@@ -57,7 +56,6 @@ libft
 Makefile
 minishell
 objs
-out
 README.md
 srcs
 tests
@@ -66,7 +64,6 @@ libft
 Makefile
 minishell
 objs
-out
 README.md
 srcs
 tests
