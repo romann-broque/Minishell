@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:35:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 13:01:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 16:45:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	close_fds(void)
 
 void	exit_shell(const int exit_value, const bool is_print)
 {
-	if (is_print == true)
+	if (is_print == true && isatty(STDIN_FILENO) == 1)
 		ft_dprintf(STDERR_FILENO, "%s\n", EXIT_MESSAGE);
 	free_manager();
 	ft_lstclear(&(g_global.env), (void (*)(void *))free_var);

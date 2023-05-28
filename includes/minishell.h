@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 16:15:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 16:50:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,6 +315,8 @@ typedef struct s_global
 	int		stdout;
 	int		hd_pipe[2];
 }				t_global;
+
+typedef char	*(*t_reader)(const char *);
 
 /////////////////
 /// FUNCTIONS ///
