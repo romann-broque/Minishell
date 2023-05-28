@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:48:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 19:17:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 21:22:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ static int	exit_num_arg(const char *second_arg, const long nb)
 
 static void	exit_invalid_arg(const char *invalid_arg)
 {
-	print_error("%s: %s: %s: %s\n",
-		MINISHELL, EXIT_BUILTIN, invalid_arg, NUM_ARG_REQ);
+	print_error("%s\n%s: %s: %s: %s\n",
+		EXIT_MESSAGE, MINISHELL, EXIT_BUILTIN, invalid_arg, NUM_ARG_REQ);
 	exit_shell(INCORRECT_USE, false);
 }
 

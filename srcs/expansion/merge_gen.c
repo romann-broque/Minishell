@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:23:22 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/26 23:16:36 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 21:38:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static bool	is_merge_tok(t_list *tokens)
 	if (tokens != NULL)
 	{
 		type = get_type_from_tok(tokens->content);
-		return (type == T_GENERIC || type == T_QGENERIC || type == T_ASSIGN);
+		return (type == T_GENERIC || type == T_QGENERIC
+			|| type == T_ASSIGN || type == T_VAR);
 	}
 	return (false);
 }
