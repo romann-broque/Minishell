@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:27:39 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 13:05:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 13:13:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	handle_error_path(t_command *cmd_data, char **path)
 	else if (is_cmd_accessible(*path) == false)
 	{
 		update_error_val(NO_ACCESS);
-		print_error("%s: %s: %s", MINISHELL, *path, strerror(errno));
+		print_error("%s: %s: %s\n", MINISHELL, *path, strerror(errno));
 		free(*path);
 		*path = NULL;
 	}

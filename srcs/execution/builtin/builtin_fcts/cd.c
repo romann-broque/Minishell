@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:36:27 by mat               #+#    #+#             */
-/*   Updated: 2023/05/01 11:22:35 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/28 13:17:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	handle_chdir_err(char *const cd_arg)
 {
-	print_error("%s: %s: %s: ", MINISHELL, CD_BUILTIN, cd_arg);
-	perror(EMPTY_STR);
+	print_error("%s: %s: %s: %s\n",
+		MINISHELL, CD_BUILTIN, cd_arg, strerror(errno));
 }
 
 static int	execute_cd(t_command *cmd_data)

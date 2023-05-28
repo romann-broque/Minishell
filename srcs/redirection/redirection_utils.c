@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 09:15:11 by mat               #+#    #+#             */
-/*   Updated: 2023/05/25 10:16:55 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 13:15:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int	get_out_fd(char *out, t_toktype tok_type)
 		mask |= O_APPEND;
 	fd = open(out, mask, perm_mask);
 	if (fd == -1)
-	{
-		print_error("%s: %s: ", MINISHELL, out);
-		perror(EMPTY_STR);
-	}
+		print_error("%s: %s: %s\n", MINISHELL, out, strerror(errno));
 	return (fd);
 }
 
@@ -46,9 +43,6 @@ int	get_in_fd(char *in, t_toktype tok_type)
 	if (access(in, F_OK) == 0)
 		fd = open(in, O_RDONLY);
 	if (fd == INVALID_FD)
-	{
-		print_error("%s: %s: ", MINISHELL, in);
-		perror(EMPTY_STR);
-	}
+		print_error("%s: %s: %s\n", MINISHELL, in, strerror(errno));
 	return (fd);
 }

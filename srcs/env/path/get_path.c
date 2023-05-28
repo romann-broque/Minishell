@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/05/01 11:05:50 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/28 13:17:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ char	*get_cmd_path(t_command *cmd_data)
 	path = dup_path_from_cmd(cmd_data);
 	if (path == NULL || is_cmd_accessible(path) == false)
 	{
-		print_error("%s: %s: ", MINISHELL, cmd_data->command[0]);
-		perror(EMPTY_STR);
+		print_error("%s: %s: %s\n",
+			MINISHELL, cmd_data->command[0], strerror(errno));
 		if (path == NULL)
 			update_error_val(NO_FILE);
 		else

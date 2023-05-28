@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:19:40 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 20:02:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 13:12:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,7 @@ int	ft_heredoc(const char *end_str)
 	if (pipe(hd_pipe) == 0)
 		fd_hd = process_heredoc(hd_pipe, end_str);
 	else
-	{
-		print_error("%s: %s: ", MINISHELL, HERE_DOC);
-		perror(EMPTY_STR);
-	}
+		print_error("%s: %s: %s\n", MINISHELL, HERE_DOC, strerror(errno));
 	close(hd_pipe[1]);
 	return (fd_hd);
 }

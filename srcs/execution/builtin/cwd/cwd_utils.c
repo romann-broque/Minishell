@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:30:29 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 13:17:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	check_pos(const char *caller)
 
 	if (curr_pwd == NULL)
 	{
-		print_error("%s: %s: %s: %s: ",
-			caller, ERROR_ACCESS_DIR, GETCWD, ERROR_ACCESS_PAR_DIR);
-		perror(EMPTY_STR);
+		print_error("%s: %s: %s: %s: %s\n",
+			caller, ERROR_ACCESS_DIR, GETCWD,
+			ERROR_ACCESS_PAR_DIR, strerror(errno));
 	}
 	free(curr_pwd);
 }
@@ -50,9 +50,9 @@ int	print_pos(void)
 	}
 	else
 	{
-		print_error("%s: %s: %s: %s: ",
-			PWD_BUILTIN, ERROR_ACCESS_DIR, GETCWD, ERROR_ACCESS_PAR_DIR);
-		perror(EMPTY_STR);
+		print_error("%s: %s: %s: %s: %s\n",
+			PWD_BUILTIN, ERROR_ACCESS_DIR, GETCWD,
+			ERROR_ACCESS_PAR_DIR, strerror(errno));
 		free(pos);
 		return (EXIT_FAILURE);
 	}
