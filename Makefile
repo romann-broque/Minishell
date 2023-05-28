@@ -111,6 +111,8 @@ SRCS	 	+=	expand_utils.c
 SRCS		+=	is_assign_tok.c
 SRCS	 	+=	merge_gen.c
 SRCS	 	+=	split_gen.c
+SRCS	 	+=	idle_utils.c
+SRCS	 	+=	rm_empty_var.c
 SRCS		+=	update_tok_type.c
 
 ### srcs/expansion/var/

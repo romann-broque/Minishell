@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 14:01:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 16:15:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@
 # define NUM_ARG_REQ			"numeric argument required"
 # define INVALID_ID				"not a valid identifier"
 # define NO_SUCH_FILE			"No such file or directory"
+# define AMB_REDIRECT			"ambiguous redirect"
 
 // char types
 
@@ -184,6 +185,8 @@ typedef enum e_toktype
 	T_START,
 	T_END,
 	T_INVALID,
+	T_VAR,
+	T_IDLE
 }			t_toktype;
 
 typedef enum e_toktype_short
@@ -202,6 +205,8 @@ typedef enum e_toktype_short
 	T_ST,
 	T_ED,
 	T_IVD,
+	T_V,
+	T_ID
 }			t_toktype_short;
 
 typedef enum e_var_state
@@ -522,6 +527,16 @@ void		merge_gen_lst(t_list *tokens);
 /// split_gen.c
 
 void		split_gen(t_list **tokens);
+
+/// rm_empty_var.c
+
+void		flag_var(t_list *tokens);
+void		rm_empty_var(t_list *tokens);
+
+/// idle_utils.c
+
+void		rm_useless_idle(t_list *tokens);
+void		idle_empty_var(t_list *tokens);
 
 /// update_tok_type.c
 
