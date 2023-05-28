@@ -6,13 +6,19 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/27 21:09:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 14:20:40 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 extern t_global	g_global;
+
+static bool	is_cmd_stopped(t_toktype toktype)
+{
+	return (toktype != T_END && toktype != T_PIPE
+		&& g_global.is_stopped == false);
+}
 
 static void	generate_cmd(
 	t_list **cmd_lst,
@@ -29,7 +35,7 @@ static void	generate_cmd(
 	new_cmd->env = dup_env_lst_to_array(cmd_env);
 	new_cmd->command = get_arg_array(*tokens);
 	toktype = get_type_from_tok((*tokens)->content);
-	while (toktype != T_END && toktype != T_PIPE)
+	while (is_cmd_stopped(toktype) == false)
 	{
 		if (toktype == T_GENERIC || toktype == T_ASSIGN)
 			append_to_arg_array(new_cmd, *tokens);
@@ -98,7 +104,7 @@ t_list	*cmd_mode(t_list *tokens, t_list *env)
 	local_env = NULL;
 	init_cmd_mode(tokens);
 	toktype = get_type_from_tok(tokens->content);
-	while (toktype != T_END)
+	while (toktype != T_END && g_global.is_stopped == false)
 	{
 		process_tok(&commands, &tokens, env, &local_env);
 		toktype = get_type_from_tok(tokens->content);

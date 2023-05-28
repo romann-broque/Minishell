@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 13:01:29 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 14:02:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	init_shell(char **env)
 	init_tracker();
 	init_env(&g_global, env);
 	g_global.pid_lst = NULL;
+	g_global.is_stopped = false;
 	init_fds();
 	check_pos(SHELL_INIT);
 	init_pwd();

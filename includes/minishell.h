@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 13:04:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 14:01:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,6 +304,7 @@ typedef struct s_global
 	t_list	*cmd_lst;
 	size_t	cmd_nbr;
 	size_t	cmd_index;
+	bool	is_stopped;
 	int		prev_pipe;
 	int		stdin;
 	int		stdout;

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:19:40 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 13:12:55 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 14:16:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ static int	hd_parent_waiting(const int fd)
 	exit_status = WEXITSTATUS(status);
 	g_global.last_ret_val = exit_status;
 	if (exit_status == SIGINT_RETVAL)
+	{
+		g_global.is_stopped = true;
 		return (INVALID_FD);
+	}
 	return (fd);
 }
 
@@ -60,7 +63,6 @@ static int	process_heredoc(int hd_pipe[2], const char *end_str)
 {
 	if (fork() == 0)
 	{
-		ft_memcpy(g_global.hd_pipe, hd_pipe, 2 * sizeof(int));
 		update_signal_state(S_HEREDOC);
 		fill_heredoc(hd_pipe[1], end_str);
 		exit_shell(EXIT_SUCCESS, false);
@@ -75,9 +77,12 @@ int	ft_heredoc(const char *end_str)
 
 	fd_hd = INVALID_FD;
 	if (pipe(hd_pipe) == 0)
+	{
+		ft_memcpy(g_global.hd_pipe, hd_pipe, 2 * sizeof(int));
 		fd_hd = process_heredoc(hd_pipe, end_str);
+	}
 	else
 		print_error("%s: %s: %s\n", MINISHELL, HERE_DOC, strerror(errno));
-	close(hd_pipe[1]);
+	close_safe(hd_pipe[1]);
 	return (fd_hd);
 }

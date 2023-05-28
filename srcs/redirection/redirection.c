@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:12:14 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:03:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 14:12:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	change_output(
 	)
 {
 	if (curr_cmd->fdout != STDOUT_FILENO)
-		close(curr_cmd->fdout);
+		close_safe(curr_cmd->fdout);
 	curr_cmd->fdout = get_out_fd(tok_value, tok_type);
 }
 
@@ -30,7 +30,7 @@ static void	change_input(
 )
 {
 	if (curr_cmd->fdin != STDIN_FILENO)
-		close(curr_cmd->fdin);
+		close_safe(curr_cmd->fdin);
 	curr_cmd->fdin = get_in_fd(tok_value, tok_type);
 }
 
