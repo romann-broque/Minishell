@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 14:20:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 14:21:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ extern t_global	g_global;
 
 static bool	is_cmd_stopped(t_toktype toktype)
 {
-	return (toktype != T_END && toktype != T_PIPE
-		&& g_global.is_stopped == false);
+	return (toktype == T_END || toktype == T_PIPE
+		|| g_global.is_stopped == true);
 }
 
 static void	generate_cmd(
