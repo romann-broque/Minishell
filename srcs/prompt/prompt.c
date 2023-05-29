@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:52:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 16:50:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 12:35:29 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,6 @@ static void	handle_command(const char *command)
 	}
 }
 
-// static char	*get_line(const char *prompt)
-// {
-// 	(void)prompt;
-// 	return (get_next_line(STDIN_FILENO));
-// }
-
 static void	get_command(const t_reader line_reader)
 {
 	char *const	line = line_reader(PROMPT);
@@ -73,18 +67,11 @@ static void	get_command(const t_reader line_reader)
 	update_signal_state(S_DEFAULT);
 }
 
-// static t_reader	get_reader_fct(const int is_interactive)
-// {
-// 	(void)is_interactive;
-// 	// if (is_interactive == 1)
-// 		return (readline);
-// 	// return (get_line);
-// }
-	// const int		is_interactive = isatty(STDIN_FILENO);
-	// const t_reader	line_reader = get_reader_fct(is_interactive);
-
 void	prompt(void)
 {
+	const int		is_interactive = isatty(STDIN_FILENO);
+	const t_reader	line_reader = get_reader_fct(is_interactive);
+
 	while (true)
-		get_command(readline);
+		get_command(line_reader);
 }

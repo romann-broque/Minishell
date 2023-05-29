@@ -1,5 +1,6 @@
 .
 ..
+axel
 .git
 .github
 .gitignore
@@ -17,6 +18,7 @@ tests
 .vscode
 .
 ..
+axel
 .git
 .github
 .gitignore
@@ -34,6 +36,7 @@ srcs
 tests
 .vscode
 bonjour
+axel
 includes
 libft
 Makefile
@@ -44,6 +47,7 @@ out2
 README.md
 srcs
 tests
+axel
 includes
 libft
 Makefile
@@ -54,6 +58,7 @@ out2
 README.md
 srcs
 tests
+axel
 includes
 libft
 Makefile
@@ -182,6 +187,7 @@ instructions$
 0
 minishell: lol: No such file or directory
 1
+axel
 includes
 libft
 Makefile

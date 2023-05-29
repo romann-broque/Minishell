@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 16:50:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 12:35:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -467,6 +467,7 @@ bool		is_prev_option(char **command);
 
 char		*ft_strstr(const char *big, const char *little);
 void		check_pos(const char *caller);
+void		init_cwd_var(const char *pwd);
 void		update_cwd_var(const char *new_pwd);
 int			print_pos(void);
 
@@ -709,6 +710,7 @@ void		print_error(const char *format, ...);
 
 void		clear_line(void);
 void		add_line_to_history(const char *line);
+t_reader	get_reader_fct(const int is_interactive);
 
 /// prompt.c
 
