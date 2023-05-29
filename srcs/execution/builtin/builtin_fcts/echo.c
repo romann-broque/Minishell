@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:28:37 by mdorr             #+#    #+#             */
-/*   Updated: 2023/05/29 13:44:06 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 14:02:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static bool	get_n_option(char ***strs)
 	is_option = false;
 	while (**strs != NULL && is_n_option(**strs) == true)
 	{
-			is_option = true;
-			++(*strs);
+		is_option = true;
+		++(*strs);
 	}
 	return (is_option);
 }

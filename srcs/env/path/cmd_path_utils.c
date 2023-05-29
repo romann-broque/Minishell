@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_path_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:58:46 by mat               #+#    #+#             */
-/*   Updated: 2023/05/02 16:56:53 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/29 13:57:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ char	*dup_path_from_cmd(t_command *cmd)
 {
 	char *const	path = ft_strdup(cmd->command[0]);
 
-	if (path != NULL && access(path, F_OK) == 0)
+	if (path != NULL)
 		return (path);
-	free(path);
 	return (NULL);
 }
 

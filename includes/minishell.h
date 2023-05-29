@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/29 12:35:24 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 13:59:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -376,10 +376,13 @@ void		clean_path(char **path);
 
 //// get_path.c
 
-bool		is_cmd_path(t_command *cmd);
-char		*get_cmd_path(t_command *cmd_data);
 char		*get_path_from_env(const char *suffix,
 				const char *pathvar_name, char **env);
+
+//// get_cmd_path.c
+
+bool		is_cmd_path(t_command *cmd);
+char		*get_cmd_path(t_command *cmd_data);
 
 //// path_access.c
 
