@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:28:37 by mdorr             #+#    #+#             */
-/*   Updated: 2023/05/15 10:29:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 13:44:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,36 @@
 
 extern t_global	g_global;
 
-static bool	is_n_option(char *first_argument)
+static bool	is_n_option(char *str)
 {
-	return (first_argument != NULL && streq(ECHO_OPT, first_argument) == true);
+	bool	is_option;
+
+	is_option = false;
+	if (*str == '-')
+	{
+		++str;
+		while (*str != '\0' && *str == 'n')
+		{
+			is_option = true;
+			++str;
+		}
+		if (*str != '\0')
+			is_option = false;
+	}
+	return (is_option);
+}
+
+static bool	get_n_option(char ***strs)
+{
+	bool	is_option;
+
+	is_option = false;
+	while (**strs != NULL && is_n_option(**strs) == true)
+	{
+			is_option = true;
+			++(*strs);
+	}
+	return (is_option);
 }
 
 int	echo_builtin(t_command *cmd_data)
@@ -26,9 +53,7 @@ int	echo_builtin(t_command *cmd_data)
 	size_t	i;
 
 	str_ptr = cmd_data->command + 1;
-	n_option = is_n_option(str_ptr[0]);
-	if (n_option == true)
-		str_ptr++;
+	n_option = get_n_option(&str_ptr);
 	i = 0;
 	while (str_ptr[i] != NULL)
 	{
