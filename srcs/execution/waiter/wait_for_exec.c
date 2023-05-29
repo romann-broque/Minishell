@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 02:16:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 19:37:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 static size_t	get_index_from_pid(const pid_t pid)
 {
@@ -21,7 +21,7 @@ static size_t	get_index_from_pid(const pid_t pid)
 	size_t				index;
 
 	index = 0;
-	pid_lst = g_global.pid_lst;
+	pid_lst = g_global->pid_lst;
 	while (pid_lst != NULL)
 	{
 		if (pid_lst->content == (void *)pid_nb)
@@ -38,8 +38,8 @@ static void	process_waiting(int *status)
 	size_t		pid_index;
 
 	pid_index = get_index_from_pid(pid);
-	if (pid_index + 1 == g_global.cmd_nbr)
-		g_global.last_ret_val = WEXITSTATUS(*status);
+	if (pid_index + 1 == g_global->cmd_nbr)
+		g_global->last_ret_val = WEXITSTATUS(*status);
 }
 
 void	wait_for_exec(void)
@@ -50,7 +50,7 @@ void	wait_for_exec(void)
 
 	is_sigprinted = false;
 	i = 0;
-	while (i < g_global.cmd_nbr)
+	while (i < g_global->cmd_nbr)
 	{
 		process_waiting(&status);
 		if (WIFSIGNALED(status) && is_sigprinted == false)

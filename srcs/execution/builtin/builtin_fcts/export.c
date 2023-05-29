@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:55:33 by mat               #+#    #+#             */
-/*   Updated: 2023/05/29 17:01:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 static void	export_to_env(char *arg)
 {
@@ -53,7 +53,7 @@ static int	print_export(void)
 	int		ret_val;
 
 	ret_val = EXIT_SUCCESS;
-	export_array = dup_export_lst_to_array(g_global.env);
+	export_array = dup_export_lst_to_array(g_global->env);
 	sort_strings(export_array);
 	index = 0;
 	while (export_array[index] != NULL)

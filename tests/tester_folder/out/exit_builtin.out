@@ -48,6 +48,10 @@ minishell: exit: too many arguments
 255
 minishell: exit: 9223372036854775808: numeric argument required
 2
+srcs/execution/builtin/builtin_fcts/exit.c:47:16: runtime error: signed integer overflow: 9223372036854775800 + 8 cannot be represented in type 'long'
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior srcs/execution/builtin/builtin_fcts/exit.c:47:16 in 
+srcs/execution/builtin/builtin_fcts/exit.c:53:9: runtime error: negation of -9223372036854775808 cannot be represented in type 'long'; cast to an unsigned type to negate this value to itself
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior srcs/execution/builtin/builtin_fcts/exit.c:53:9 in 
 0
 minishell: exit: -9223372036854775809: numeric argument required
 2

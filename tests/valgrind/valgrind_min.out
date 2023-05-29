@@ -1,222 +1,222 @@
-==792123== Memcheck, a memory error detector
-==792123== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==792123== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==792123== Command: ./minishell
-==792123== Parent PID: 791650
-==792123== 
-==792130== 
-==792130== HEAP SUMMARY:
-==792130==     in use at exit: 208,306 bytes in 228 blocks
-==792130==   total heap usage: 4,921 allocs, 4,693 frees, 346,794 bytes allocated
-==792130== 
-==792130== LEAK SUMMARY:
-==792130==    definitely lost: 0 bytes in 0 blocks
-==792130==    indirectly lost: 0 bytes in 0 blocks
-==792130==      possibly lost: 0 bytes in 0 blocks
-==792130==    still reachable: 0 bytes in 0 blocks
-==792130==         suppressed: 208,306 bytes in 228 blocks
-==792130== 
-==792130== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---792130-- 
---792130-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
---792130-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 4,115 bytes in 7 blocks
-==792130== 
-==792130== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==792144== 
-==792144== HEAP SUMMARY:
-==792144==     in use at exit: 208,775 bytes in 249 blocks
-==792144==   total heap usage: 17,698 allocs, 17,449 frees, 625,708 bytes allocated
-==792144== 
-==792144== LEAK SUMMARY:
-==792144==    definitely lost: 0 bytes in 0 blocks
-==792144==    indirectly lost: 0 bytes in 0 blocks
-==792144==      possibly lost: 0 bytes in 0 blocks
-==792144==    still reachable: 0 bytes in 0 blocks
-==792144==         suppressed: 208,775 bytes in 249 blocks
-==792144== 
-==792144== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---792144-- 
---792144-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
---792144-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 4,584 bytes in 28 blocks
-==792144== 
-==792144== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==792152== 
-==792152== HEAP SUMMARY:
-==792152==     in use at exit: 209,075 bytes in 264 blocks
-==792152==   total heap usage: 28,179 allocs, 27,915 frees, 860,416 bytes allocated
-==792152== 
-==792152== LEAK SUMMARY:
-==792152==    definitely lost: 0 bytes in 0 blocks
-==792152==    indirectly lost: 0 bytes in 0 blocks
-==792152==      possibly lost: 0 bytes in 0 blocks
-==792152==    still reachable: 0 bytes in 0 blocks
-==792152==         suppressed: 209,075 bytes in 264 blocks
-==792152== 
-==792152== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---792152-- 
---792152-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
---792152-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 4,884 bytes in 43 blocks
-==792152== 
-==792152== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==792153== 
-==792153== HEAP SUMMARY:
-==792153==     in use at exit: 209,075 bytes in 264 blocks
-==792153==   total heap usage: 28,180 allocs, 27,916 frees, 860,432 bytes allocated
-==792153== 
-==792153== LEAK SUMMARY:
-==792153==    definitely lost: 0 bytes in 0 blocks
-==792153==    indirectly lost: 0 bytes in 0 blocks
-==792153==      possibly lost: 0 bytes in 0 blocks
-==792153==    still reachable: 0 bytes in 0 blocks
-==792153==         suppressed: 209,075 bytes in 264 blocks
-==792153== 
-==792153== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---792153-- 
---792153-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
---792153-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 4,884 bytes in 43 blocks
-==792153== 
-==792153== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==792157== 
-==792157== HEAP SUMMARY:
-==792157==     in use at exit: 209,170 bytes in 270 blocks
-==792157==   total heap usage: 31,232 allocs, 30,962 frees, 930,673 bytes allocated
-==792157== 
-==792157== LEAK SUMMARY:
-==792157==    definitely lost: 0 bytes in 0 blocks
-==792157==    indirectly lost: 0 bytes in 0 blocks
-==792157==      possibly lost: 0 bytes in 0 blocks
-==792157==    still reachable: 0 bytes in 0 blocks
-==792157==         suppressed: 209,170 bytes in 270 blocks
-==792157== 
-==792157== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---792157-- 
---792157-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
---792157-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 4,979 bytes in 49 blocks
-==792157== 
-==792157== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==792158== 
-==792158== HEAP SUMMARY:
-==792158==     in use at exit: 209,170 bytes in 270 blocks
-==792158==   total heap usage: 31,289 allocs, 31,019 frees, 933,250 bytes allocated
-==792158== 
-==792158== LEAK SUMMARY:
-==792158==    definitely lost: 0 bytes in 0 blocks
-==792158==    indirectly lost: 0 bytes in 0 blocks
-==792158==      possibly lost: 0 bytes in 0 blocks
-==792158==    still reachable: 0 bytes in 0 blocks
-==792158==         suppressed: 209,170 bytes in 270 blocks
-==792158== 
-==792158== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---792158-- 
---792158-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
---792158-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 4,979 bytes in 49 blocks
-==792158== 
-==792158== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==792162== 
-==792162== HEAP SUMMARY:
-==792162==     in use at exit: 209,449 bytes in 285 blocks
-==792162==   total heap usage: 39,503 allocs, 39,218 frees, 1,121,338 bytes allocated
-==792162== 
-==792162== LEAK SUMMARY:
-==792162==    definitely lost: 0 bytes in 0 blocks
-==792162==    indirectly lost: 0 bytes in 0 blocks
-==792162==      possibly lost: 0 bytes in 0 blocks
-==792162==    still reachable: 0 bytes in 0 blocks
-==792162==         suppressed: 209,449 bytes in 285 blocks
-==792162== 
-==792162== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---792162-- 
---792162-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
---792162-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 5,258 bytes in 64 blocks
-==792162== 
-==792162== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==792163== 
-==792163== HEAP SUMMARY:
-==792163==     in use at exit: 209,449 bytes in 285 blocks
-==792163==   total heap usage: 39,550 allocs, 39,265 frees, 1,121,610 bytes allocated
-==792163== 
-==792163== LEAK SUMMARY:
-==792163==    definitely lost: 0 bytes in 0 blocks
-==792163==    indirectly lost: 0 bytes in 0 blocks
-==792163==      possibly lost: 0 bytes in 0 blocks
-==792163==    still reachable: 0 bytes in 0 blocks
-==792163==         suppressed: 209,449 bytes in 285 blocks
-==792163== 
-==792163== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---792163-- 
---792163-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
---792163-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 5,258 bytes in 64 blocks
-==792163== 
-==792163== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==792165== 
-==792165== HEAP SUMMARY:
-==792165==     in use at exit: 209,539 bytes in 291 blocks
-==792165==   total heap usage: 42,570 allocs, 42,279 frees, 1,191,404 bytes allocated
-==792165== 
-==792165== LEAK SUMMARY:
-==792165==    definitely lost: 0 bytes in 0 blocks
-==792165==    indirectly lost: 0 bytes in 0 blocks
-==792165==      possibly lost: 0 bytes in 0 blocks
-==792165==    still reachable: 0 bytes in 0 blocks
-==792165==         suppressed: 209,539 bytes in 291 blocks
-==792165== 
-==792165== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---792165-- 
---792165-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
---792165-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 5,348 bytes in 70 blocks
-==792165== 
-==792165== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==792177== 
-==792177== HEAP SUMMARY:
-==792177==     in use at exit: 209,918 bytes in 309 blocks
-==792177==   total heap usage: 55,001 allocs, 54,692 frees, 1,468,277 bytes allocated
-==792177== 
-==792177== LEAK SUMMARY:
-==792177==    definitely lost: 0 bytes in 0 blocks
-==792177==    indirectly lost: 0 bytes in 0 blocks
-==792177==      possibly lost: 0 bytes in 0 blocks
-==792177==    still reachable: 0 bytes in 0 blocks
-==792177==         suppressed: 209,918 bytes in 309 blocks
-==792177== 
-==792177== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---792177-- 
---792177-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
---792177-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 5,727 bytes in 88 blocks
-==792177== 
-==792177== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==792180== 
-==792180== HEAP SUMMARY:
-==792180==     in use at exit: 210,052 bytes in 315 blocks
-==792180==   total heap usage: 59,182 allocs, 58,867 frees, 1,560,486 bytes allocated
-==792180== 
-==792180== LEAK SUMMARY:
-==792180==    definitely lost: 0 bytes in 0 blocks
-==792180==    indirectly lost: 0 bytes in 0 blocks
-==792180==      possibly lost: 0 bytes in 0 blocks
-==792180==    still reachable: 0 bytes in 0 blocks
-==792180==         suppressed: 210,052 bytes in 315 blocks
-==792180== 
-==792180== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---792180-- 
---792180-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
---792180-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 5,861 bytes in 94 blocks
-==792180== 
-==792180== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==792123== 
-==792123== HEAP SUMMARY:
-==792123==     in use at exit: 210,188 bytes in 324 blocks
-==792123==   total heap usage: 62,316 allocs, 61,992 frees, 1,631,090 bytes allocated
-==792123== 
-==792123== LEAK SUMMARY:
-==792123==    definitely lost: 0 bytes in 0 blocks
-==792123==    indirectly lost: 0 bytes in 0 blocks
-==792123==      possibly lost: 0 bytes in 0 blocks
-==792123==    still reachable: 0 bytes in 0 blocks
-==792123==         suppressed: 210,188 bytes in 324 blocks
-==792123== 
-==792123== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
---792123-- 
---792123-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
---792123-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 5,997 bytes in 103 blocks
-==792123== 
-==792123== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==811298== Memcheck, a memory error detector
+==811298== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==811298== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==811298== Command: ./minishell
+==811298== Parent PID: 810764
+==811298== 
+==811302== 
+==811302== HEAP SUMMARY:
+==811302==     in use at exit: 208,306 bytes in 228 blocks
+==811302==   total heap usage: 4,875 allocs, 4,647 frees, 344,644 bytes allocated
+==811302== 
+==811302== LEAK SUMMARY:
+==811302==    definitely lost: 0 bytes in 0 blocks
+==811302==    indirectly lost: 0 bytes in 0 blocks
+==811302==      possibly lost: 0 bytes in 0 blocks
+==811302==    still reachable: 0 bytes in 0 blocks
+==811302==         suppressed: 208,306 bytes in 228 blocks
+==811302== 
+==811302== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--811302-- 
+--811302-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
+--811302-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 4,115 bytes in 7 blocks
+==811302== 
+==811302== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==811316== 
+==811316== HEAP SUMMARY:
+==811316==     in use at exit: 208,775 bytes in 249 blocks
+==811316==   total heap usage: 17,537 allocs, 17,288 frees, 621,848 bytes allocated
+==811316== 
+==811316== LEAK SUMMARY:
+==811316==    definitely lost: 0 bytes in 0 blocks
+==811316==    indirectly lost: 0 bytes in 0 blocks
+==811316==      possibly lost: 0 bytes in 0 blocks
+==811316==    still reachable: 0 bytes in 0 blocks
+==811316==         suppressed: 208,775 bytes in 249 blocks
+==811316== 
+==811316== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--811316-- 
+--811316-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
+--811316-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 4,584 bytes in 28 blocks
+==811316== 
+==811316== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==811324== 
+==811324== HEAP SUMMARY:
+==811324==     in use at exit: 209,075 bytes in 264 blocks
+==811324==   total heap usage: 27,913 allocs, 27,649 frees, 853,030 bytes allocated
+==811324== 
+==811324== LEAK SUMMARY:
+==811324==    definitely lost: 0 bytes in 0 blocks
+==811324==    indirectly lost: 0 bytes in 0 blocks
+==811324==      possibly lost: 0 bytes in 0 blocks
+==811324==    still reachable: 0 bytes in 0 blocks
+==811324==         suppressed: 209,075 bytes in 264 blocks
+==811324== 
+==811324== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--811324-- 
+--811324-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
+--811324-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 4,884 bytes in 43 blocks
+==811324== 
+==811324== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==811325== 
+==811325== HEAP SUMMARY:
+==811325==     in use at exit: 209,075 bytes in 264 blocks
+==811325==   total heap usage: 27,914 allocs, 27,650 frees, 853,046 bytes allocated
+==811325== 
+==811325== LEAK SUMMARY:
+==811325==    definitely lost: 0 bytes in 0 blocks
+==811325==    indirectly lost: 0 bytes in 0 blocks
+==811325==      possibly lost: 0 bytes in 0 blocks
+==811325==    still reachable: 0 bytes in 0 blocks
+==811325==         suppressed: 209,075 bytes in 264 blocks
+==811325== 
+==811325== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--811325-- 
+--811325-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
+--811325-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 4,884 bytes in 43 blocks
+==811325== 
+==811325== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==811326== 
+==811326== HEAP SUMMARY:
+==811326==     in use at exit: 209,170 bytes in 270 blocks
+==811326==   total heap usage: 30,931 allocs, 30,661 frees, 921,427 bytes allocated
+==811326== 
+==811326== LEAK SUMMARY:
+==811326==    definitely lost: 0 bytes in 0 blocks
+==811326==    indirectly lost: 0 bytes in 0 blocks
+==811326==      possibly lost: 0 bytes in 0 blocks
+==811326==    still reachable: 0 bytes in 0 blocks
+==811326==         suppressed: 209,170 bytes in 270 blocks
+==811326== 
+==811326== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--811326-- 
+--811326-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
+--811326-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 4,979 bytes in 49 blocks
+==811326== 
+==811326== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==811327== 
+==811327== HEAP SUMMARY:
+==811327==     in use at exit: 209,170 bytes in 270 blocks
+==811327==   total heap usage: 30,988 allocs, 30,718 frees, 924,004 bytes allocated
+==811327== 
+==811327== LEAK SUMMARY:
+==811327==    definitely lost: 0 bytes in 0 blocks
+==811327==    indirectly lost: 0 bytes in 0 blocks
+==811327==      possibly lost: 0 bytes in 0 blocks
+==811327==    still reachable: 0 bytes in 0 blocks
+==811327==         suppressed: 209,170 bytes in 270 blocks
+==811327== 
+==811327== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--811327-- 
+--811327-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
+--811327-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 4,979 bytes in 49 blocks
+==811327== 
+==811327== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==811331== 
+==811331== HEAP SUMMARY:
+==811331==     in use at exit: 209,449 bytes in 285 blocks
+==811331==   total heap usage: 39,107 allocs, 38,822 frees, 1,106,750 bytes allocated
+==811331== 
+==811331== LEAK SUMMARY:
+==811331==    definitely lost: 0 bytes in 0 blocks
+==811331==    indirectly lost: 0 bytes in 0 blocks
+==811331==      possibly lost: 0 bytes in 0 blocks
+==811331==    still reachable: 0 bytes in 0 blocks
+==811331==         suppressed: 209,449 bytes in 285 blocks
+==811331== 
+==811331== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--811331-- 
+--811331-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
+--811331-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 5,258 bytes in 64 blocks
+==811331== 
+==811331== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==811332== 
+==811332== HEAP SUMMARY:
+==811332==     in use at exit: 209,449 bytes in 285 blocks
+==811332==   total heap usage: 39,159 allocs, 38,874 frees, 1,108,168 bytes allocated
+==811332== 
+==811332== LEAK SUMMARY:
+==811332==    definitely lost: 0 bytes in 0 blocks
+==811332==    indirectly lost: 0 bytes in 0 blocks
+==811332==      possibly lost: 0 bytes in 0 blocks
+==811332==    still reachable: 0 bytes in 0 blocks
+==811332==         suppressed: 209,449 bytes in 285 blocks
+==811332== 
+==811332== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--811332-- 
+--811332-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
+--811332-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 5,258 bytes in 64 blocks
+==811332== 
+==811332== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==811334== 
+==811334== HEAP SUMMARY:
+==811334==     in use at exit: 209,539 bytes in 291 blocks
+==811334==   total heap usage: 42,144 allocs, 41,853 frees, 1,176,102 bytes allocated
+==811334== 
+==811334== LEAK SUMMARY:
+==811334==    definitely lost: 0 bytes in 0 blocks
+==811334==    indirectly lost: 0 bytes in 0 blocks
+==811334==      possibly lost: 0 bytes in 0 blocks
+==811334==    still reachable: 0 bytes in 0 blocks
+==811334==         suppressed: 209,539 bytes in 291 blocks
+==811334== 
+==811334== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--811334-- 
+--811334-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
+--811334-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 5,348 bytes in 70 blocks
+==811334== 
+==811334== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==811347== 
+==811347== HEAP SUMMARY:
+==811347==     in use at exit: 209,918 bytes in 309 blocks
+==811347==   total heap usage: 54,455 allocs, 54,146 frees, 1,450,119 bytes allocated
+==811347== 
+==811347== LEAK SUMMARY:
+==811347==    definitely lost: 0 bytes in 0 blocks
+==811347==    indirectly lost: 0 bytes in 0 blocks
+==811347==      possibly lost: 0 bytes in 0 blocks
+==811347==    still reachable: 0 bytes in 0 blocks
+==811347==         suppressed: 209,918 bytes in 309 blocks
+==811347== 
+==811347== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--811347-- 
+--811347-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
+--811347-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 5,727 bytes in 88 blocks
+==811347== 
+==811347== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==811350== 
+==811350== HEAP SUMMARY:
+==811350==     in use at exit: 210,052 bytes in 315 blocks
+==811350==   total heap usage: 58,596 allocs, 58,281 frees, 1,541,376 bytes allocated
+==811350== 
+==811350== LEAK SUMMARY:
+==811350==    definitely lost: 0 bytes in 0 blocks
+==811350==    indirectly lost: 0 bytes in 0 blocks
+==811350==      possibly lost: 0 bytes in 0 blocks
+==811350==    still reachable: 0 bytes in 0 blocks
+==811350==         suppressed: 210,052 bytes in 315 blocks
+==811350== 
+==811350== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--811350-- 
+--811350-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
+--811350-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 5,861 bytes in 94 blocks
+==811350== 
+==811350== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==811298== 
+==811298== HEAP SUMMARY:
+==811298==     in use at exit: 210,188 bytes in 324 blocks
+==811298==   total heap usage: 61,694 allocs, 61,370 frees, 1,610,109 bytes allocated
+==811298== 
+==811298== LEAK SUMMARY:
+==811298==    definitely lost: 0 bytes in 0 blocks
+==811298==    indirectly lost: 0 bytes in 0 blocks
+==811298==      possibly lost: 0 bytes in 0 blocks
+==811298==    still reachable: 0 bytes in 0 blocks
+==811298==         suppressed: 210,188 bytes in 324 blocks
+==811298== 
+==811298== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--811298-- 
+--811298-- used_suppression:     62 leak readline ./tests/valgrind/suppressions.supp:2 suppressed: 204,191 bytes in 221 blocks
+--811298-- used_suppression:      4 leak add_history ./tests/valgrind/suppressions.supp:8 suppressed: 5,997 bytes in 103 blocks
+==811298== 
+==811298== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

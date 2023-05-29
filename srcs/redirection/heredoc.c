@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:19:40 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 14:16:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 static char	*ft_readline(const char *prompt)
 {
@@ -50,10 +50,10 @@ static int	hd_parent_waiting(const int fd)
 	update_signal_state(S_SLEEP);
 	wait(&status);
 	exit_status = WEXITSTATUS(status);
-	g_global.last_ret_val = exit_status;
+	g_global->last_ret_val = exit_status;
 	if (exit_status == SIGINT_RETVAL)
 	{
-		g_global.is_stopped = true;
+		g_global->is_stopped = true;
 		return (INVALID_FD);
 	}
 	return (fd);
@@ -78,7 +78,7 @@ int	ft_heredoc(const char *end_str)
 	fd_hd = INVALID_FD;
 	if (pipe(hd_pipe) == 0)
 	{
-		ft_memcpy(g_global.hd_pipe, hd_pipe, 2 * sizeof(int));
+		ft_memcpy(g_global->hd_pipe, hd_pipe, 2 * sizeof(int));
 		fd_hd = process_heredoc(hd_pipe, end_str);
 	}
 	else

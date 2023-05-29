@@ -9,7 +9,6 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+=	srcs/
-PATH_SRCS	+=	srcs/batch/
 PATH_SRCS	+=	srcs/env/
 PATH_SRCS	+=	srcs/env/path/
 PATH_SRCS	+=	srcs/execution/
@@ -39,10 +38,6 @@ PATH_SRCS	+=	srcs/utils/
 ### srcs/
 
 SRCS	 	+=	minishell.c
-
-### srcs/batch/
-
-SRCS		+=	batch.c
 
 ### srcs/env/
 
@@ -131,6 +126,7 @@ SRCS		+=	tracker.c
 
 ### srcs/init/
 
+SRCS		+=	init_global.c
 SRCS		+=	init_shell.c
 
 ### srcs/interpreter/

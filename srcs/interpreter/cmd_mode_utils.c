@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:09:53 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 18:41:29 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 t_list	*get_cmd_env(t_list *glob_env, t_list *loc_env)
 {
@@ -67,7 +67,7 @@ static size_t	get_nb_cmd(t_list *tokens)
 
 void	init_cmd_mode(t_list *tokens)
 {
-	g_global.prev_pipe = INVALID_FD;
-	g_global.cmd_index = 0;
-	g_global.cmd_nbr = get_nb_cmd(tokens);
+	g_global->prev_pipe = INVALID_FD;
+	g_global->cmd_index = 0;
+	g_global->cmd_nbr = get_nb_cmd(tokens);
 }

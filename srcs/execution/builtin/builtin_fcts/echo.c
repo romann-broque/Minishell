@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:28:37 by mdorr             #+#    #+#             */
-/*   Updated: 2023/05/29 17:34:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 static bool	is_n_option(char *str)
 {

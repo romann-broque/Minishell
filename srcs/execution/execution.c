@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:52:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 19:09:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 18:10:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 static int	execute(t_command *cmd_data)
 {
@@ -55,14 +55,15 @@ void	execution(t_command *cmd_data)
 {
 	int	pid;
 
-	if (g_global.cmd_nbr == 1)
-		g_global.last_ret_val = execute_cmd(cmd_data);
+	if (g_global->cmd_nbr == 1)
+		g_global->last_ret_val = execute_cmd(cmd_data);
 	else
 	{
 		pid = fork();
 		if (pid == 0)
 			exit_shell(execute_cmd(cmd_data), false);
 		else
-			ft_lstadd_back(&(g_global.pid_lst), ft_lstnew((void *)(long)(pid)));
+			ft_lstadd_back(&(g_global->pid_lst),
+				ft_lstnew((void *)(long)(pid)));
 	}
 }

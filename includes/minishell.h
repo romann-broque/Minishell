@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/29 16:46:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 18:05:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,13 +323,6 @@ typedef char	*(*t_reader)(const char *);
 /// FUNCTIONS ///
 /////////////////
 
-//			BATCH				//
-
-///	batch.c
-
-bool		batch_mode(int ac, char **av);
-void		exec_batch(int ac, char **av);
-
 //			ENV					//
 
 /// change_var.c
@@ -598,6 +591,10 @@ void		add_deallocator(void *ptr, void (*fct)(void *));
 void		init_tracker(void);
 
 //			INIT			//
+
+/// init_global.c
+
+t_global	*init_global(void);
 
 /// init_shell.c
 

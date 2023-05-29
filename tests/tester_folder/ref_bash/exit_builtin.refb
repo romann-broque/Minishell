@@ -10,65 +10,19 @@ ls: cannot access 'blata': No such file or directory
 pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 1
 chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+minishell: cd: ..: Stale file handle
 minishell: bonjour: command not found
 127
-minishell: ./noperm: Permission denied
+touch: cannot touch 'noperm': Stale file handle
+chmod: cannot access 'noperm': Stale file handle
+minishell: ./noperm: Stale file handle
 126
-ls: cannot access 'pouet': No such file or directory
+chmod: cannot access 'noperm': Stale file handle
+rm: cannot remove 'noperm': Stale file handle
+ls: cannot access 'pouet': Stale file handle
 2
-axel
-includes
-libft
-Makefile
-minishell
-objs
-README.md
-srcs
-tests
+ls: cannot open directory '.': Stale file handle
 minishell: exit: too many arguments
-1
+2
+minishell: ./minishell: Stale file handle
 minishell: exit: bonjour: numeric argument required
-2
-0
-42
-minishell: exit: too many arguments
-1
-255
-minishell: exit: 234782384908273480723847238047283074: numeric argument required
-2
-minishell: exit: abc: numeric argument required
-2
-minishell: exit: abc: numeric argument required
-2
-0
-minishell: exit: too many arguments
-1
-minishell: exit: too many arguments
-1
-255
-minishell: exit: 9223372036854775808: numeric argument required
-2
-0
-minishell: exit: -9223372036854775809: numeric argument required
-2
-axel
-includes
-libft
-Makefile
-minishell
-objs
-README.md
-srcs
-tests
-axel
-includes
-libft
-Makefile
-minishell
-objs
-README.md
-srcs
-tests
-minishell: pouet: command not found
-127 127
-/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell

@@ -6,18 +6,18 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/28 14:21:58 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 static bool	is_cmd_stopped(t_toktype toktype)
 {
 	return (toktype == T_END || toktype == T_PIPE
-		|| g_global.is_stopped == true);
+		|| g_global->is_stopped == true);
 }
 
 static void	generate_cmd(
@@ -61,9 +61,9 @@ static void	add_cmd(t_list **cmd_lst)
 	if (cmd == NULL)
 		exit_alloc();
 	pipe(cmd->pipe_fds);
-	g_global.prev_pipe = cmd->pipe_fds[0];
+	g_global->prev_pipe = cmd->pipe_fds[0];
 	assign_end_pipe(cmd);
-	++(g_global.cmd_index);
+	++(g_global->cmd_index);
 	ft_lstaddback_fatal(cmd_lst, cmd, (void (*)(void *))free_command);
 }
 
@@ -104,7 +104,7 @@ t_list	*cmd_mode(t_list *tokens, t_list *env)
 	local_env = NULL;
 	init_cmd_mode(tokens);
 	toktype = get_type_from_tok(tokens->content);
-	while (toktype != T_END && g_global.is_stopped == false)
+	while (toktype != T_END && g_global->is_stopped == false)
 	{
 		process_tok(&commands, &tokens, env, &local_env);
 		toktype = get_type_from_tok(tokens->content);

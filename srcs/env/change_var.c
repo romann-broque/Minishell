@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:58:07 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/27 22:08:00 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 t_var	*get_var_from_env(const char *key, t_list *env)
 {
@@ -98,5 +98,5 @@ void	change_var(
 
 void	update_var(const char *key, const char *value, const uint8_t flags)
 {
-	change_var_glob(key, value, flags, &(g_global.env));
+	change_var_glob(key, value, flags, &(g_global->env));
 }

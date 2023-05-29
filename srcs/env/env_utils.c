@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:01:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 16:38:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 t_var	*init_var(const char *key, const char *value, const uint8_t flags)
 {
@@ -49,7 +49,7 @@ t_var	*dup_var(t_var *var)
 
 t_var	*get_var(const char *var_name)
 {
-	return (get_var_from_env(var_name, g_global.env));
+	return (get_var_from_env(var_name, g_global->env));
 }
 
 void	set_var_flag(const char *key, const uint8_t flags)
