@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/05/02 16:59:05 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/29 14:16:42 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,12 @@ void	handle_var_start(t_vmachine *const machine)
 	}
 	else
 	{
-		machine->line = cut_string_at(machine->line,
-				machine->index - 1, WRONG_VAR_LEN);
-		--(machine->index);
+		if (ft_isdigit(c))
+		{
+			machine->line = cut_string_at(machine->line,
+					machine->index - 1, WRONG_VAR_LEN);
+			--(machine->index);
+		}
 		change_state(machine->prev_state, machine);
 	}
 }
