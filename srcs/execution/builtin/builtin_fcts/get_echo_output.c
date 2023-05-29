@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo_utils.c                                       :+:      :+:    :+:   */
+/*   get_echo_output.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:04:29 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/29 16:05:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:28:45 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static size_t	get_echo_output_size(char **strs, const bool n_option)
 	i = 0;
 	while (i < strs_size)
 	{
-		output_size += ft_strlen(*strs);
+		output_size += ft_strlen(strs[i]);
 		++i;
 	}
 	if (strs_size > 0)

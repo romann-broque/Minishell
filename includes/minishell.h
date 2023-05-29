@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/29 16:06:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 16:46:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@
 # define INVALID_ID				"not a valid identifier"
 # define NO_SUCH_FILE			"No such file or directory"
 # define AMB_REDIRECT			"ambiguous redirect"
+# define WRITE_ERROR			"write error"
 
 // char types
 
@@ -476,7 +477,7 @@ char		*ft_strstr(const char *big, const char *little);
 void		check_pos(const char *caller);
 void		init_cwd_var(const char *pwd);
 void		update_cwd_var(const char *new_pwd);
-int			print_pos(void);
+int			print_pos(const char *caller);
 
 /// CLEAN_PATH ///
 

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/29 16:03:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:34:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,30 @@ void	check_pos(const char *caller)
 	free(curr_pwd);
 }
 
-int	print_pos(void)
+static int	print_pos_exec(const char *caller, char *cwd, char *pos)
+{
+	char		*printed_pos;
+
+	if (cwd != NULL && is_cmd_accessible(cwd) == true)
+		printed_pos = cwd;
+	else
+		printed_pos = pos;
+	if (ft_printf("%s\n", printed_pos) == -1)
+	{
+		print_error("%s: %s: %s: %s\n",
+			MINISHELL, caller, WRITE_ERROR, strerror(errno));
+		return (EXIT_FAILURE);
+	}
+}
+
+int	print_pos(const char *caller)
 {
 	char *const	cwd = ft_getenv(PWD_VAR);
 	char		*pos;
-	char		*printed_pos;
 
 	pos = getcwd(NULL, 0);
 	if (pos != NULL)
-	{
-		if (cwd != NULL && is_cmd_accessible(cwd) == true)
-			printed_pos = cwd;
-		else
-			printed_pos = pos;
-		ft_printf("%s\n", printed_pos);
-	}
+		print_pos_exec(caller, cwd, pos);
 	else
 	{
 		print_error("%s: %s: %s: %s: %s\n",
