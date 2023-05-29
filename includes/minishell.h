@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/29 14:34:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 16:06:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -434,6 +434,10 @@ int			cd_builtin(t_command *cmd_data);
 ///// echo.c
 
 int			echo_builtin(t_command	*cmd_data);
+
+///// get_echo_output.c
+
+char		*get_echo_output(char **strs, const bool n_option);
 
 ///// env.c
 

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:28:37 by mdorr             #+#    #+#             */
-/*   Updated: 2023/05/29 14:02:30 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 16:05:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,12 @@ int	echo_builtin(t_command *cmd_data)
 {
 	bool	n_option;
 	char	**str_ptr;
-	size_t	i;
+	char	*output;
 
 	str_ptr = cmd_data->command + 1;
 	n_option = get_n_option(&str_ptr);
-	i = 0;
-	while (str_ptr[i] != NULL)
-	{
-		ft_printf("%s", str_ptr[i]);
-		if (str_ptr[i + 1] != NULL)
-			ft_printf(SPACE_STR);
-		i++;
-	}
-	if (n_option == false)
-		ft_printf(NEWLINE_STR);
+	output = get_echo_output(str_ptr, n_option);
+	ft_printf(output);
+	free(output);
 	return (EXIT_SUCCESS);
 }

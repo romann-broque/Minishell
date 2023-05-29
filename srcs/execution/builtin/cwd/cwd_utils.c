@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/29 12:38:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 16:03:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,18 @@ void	check_pos(const char *caller)
 
 int	print_pos(void)
 {
-	const char	*cwd = ft_getenv(PWD_VAR);
+	char *const	cwd = ft_getenv(PWD_VAR);
 	char		*pos;
+	char		*printed_pos;
 
 	pos = getcwd(NULL, 0);
 	if (pos != NULL)
 	{
 		if (cwd != NULL && is_cmd_accessible(cwd) == true)
-			ft_printf("%s\n", cwd);
+			printed_pos = cwd;
 		else
-			ft_printf("%s\n", pos);
+			printed_pos = pos;
+		ft_printf("%s\n", printed_pos);
 	}
 	else
 	{

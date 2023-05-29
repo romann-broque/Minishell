@@ -77,6 +77,7 @@ SRCS	 	+=	is_builtin.c
 
 SRCS		+=	cd.c
 SRCS		+=	echo.c
+SRCS		+=	get_echo_output.c
 SRCS		+=	env.c
 SRCS	 	+=	exit.c
 SRCS		+=	export.c
