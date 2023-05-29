@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:34:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/29 12:29:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 13:03:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_pwd(void)
 		add_deallocator(curr_pwd, free);
 		init_cwd_var(curr_pwd);
 		old_pwd = ft_getenv(OLDPWD_VAR);
-		if (old_pwd == NULL || streq(old_pwd, EMPTY_STR) == true)
+		if (streq(old_pwd, EMPTY_STR) == true)
 			set_var_flag(OLDPWD_VAR, SLEEP_MASK);
 	}
 }

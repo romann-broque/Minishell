@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:00:10 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 13:15:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,25 @@ static bool	is_spec_arg(const char *arg)
 	return (arg == NULL
 		|| streq(arg, TIELD)
 		|| streq(arg, MINUS_SIGN));
+}
+
+static char	*get_var_value(const char *var_name, char **env)
+{
+	t_var	*var;
+	char	*var_value;
+
+	var_value = ft_getenv_local(var_name, env);
+	if (var_value == NULL)
+	{
+		var = get_var(var_name);
+		if (var != NULL)
+		{
+			if (var->flags == SLEEP_MASK)
+				return (NULL);
+			var_value = var->value;
+		}
+	}
+	return (var_value);
 }
 
 static char	*get_spec_path(const char *arg, char **env, bool *is_print)
@@ -32,7 +51,7 @@ static char	*get_spec_path(const char *arg, char **env, bool *is_print)
 		var_name = OLDPWD_VAR;
 		*is_print = true;
 	}
-	var_value = ft_getenv_local(var_name, env);
+	var_value = get_var_value(var_name, env);
 	spec_path = NULL;
 	if (var_value != NULL)
 		spec_path = ft_strdup(var_value);
