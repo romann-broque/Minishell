@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/05/29 14:01:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 19:12:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*get_path_from_env(
 
 	if (is_var_path_in_env(env, pathvar_name) == false
 		|| is_empty_str(suffix) == true
-		|| suffix[0] == DOT)
+		|| (streq(pathvar_name, PATH_VAR) && suffix[0] == DOT))
 		return (NULL);
 	path_array = get_split_path(env, pathvar_name);
 	if (path_array == NULL)
