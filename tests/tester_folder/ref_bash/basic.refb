@@ -21,4 +21,5 @@ minishell
 objs
 README.md
 srcs
+test
 tests

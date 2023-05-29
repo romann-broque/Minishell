@@ -24,6 +24,7 @@ minishell
 objs
 README.md
 srcs
+test
 tests
 minishell: exit: too many arguments
 1
@@ -59,6 +60,7 @@ minishell
 objs
 README.md
 srcs
+test
 tests
 axel
 includes
@@ -68,6 +70,7 @@ minishell
 objs
 README.md
 srcs
+test
 tests
 minishell: pouet: command not found
 127 127
