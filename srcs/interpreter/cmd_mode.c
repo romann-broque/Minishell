@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:32:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 20:16:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	generate_cmd(
 		else
 		{
 			update_fds(toktype, (*tokens)->next->content, new_cmd);
-			*tokens = (*tokens)->next;
+			if (toktype != T_IDLE)
+				*tokens = (*tokens)->next;
 		}
 		toktype = get_type_from_tok((*tokens)->next->content);
 		if (toktype != T_PIPE)
