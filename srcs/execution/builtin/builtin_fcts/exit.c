@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:48:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 16:18:14 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/29 13:21:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,20 @@ extern t_global	g_global;
 
 static bool	is_inbounds(long nb, long added_nb, bool is_neg)
 {
-	const long	bound = (LONG_MAX - is_neg - added_nb) / 10;
+	long	bound;
 
-	return (nb <= bound);
+	if (is_neg == true)
+	{
+		bound = LONG_MAX;
+		if (added_nb >= 1)
+			bound = (LONG_MAX - added_nb + 1) / 10;
+		return (nb <= bound);
+	}
+	else
+	{
+		bound = (LONG_MAX - added_nb) / 10;
+		return (nb <= bound);
+	}
 }
 
 static bool	check_and_updates_retval(long *ret_value, char *str)

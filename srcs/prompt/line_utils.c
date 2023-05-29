@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:16:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/29 13:18:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 13:33:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*get_line(const char *prompt)
 
 t_reader	get_reader_fct(const int is_interactive)
 {
+	(void)is_interactive;
 	if (is_interactive == 1)
 		return (readline);
 	return (get_line);
