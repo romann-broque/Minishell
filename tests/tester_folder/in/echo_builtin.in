@@ -12,4 +12,4 @@ echo -n "q"w "e" r"t"y
 echo "\nq"w      ""    "e" r"t"y
 "ec"ho -n "po'ue'e"e'e$PATH'$PWDt
 echo bonjour je -n suis mat
-exit
+exit 0

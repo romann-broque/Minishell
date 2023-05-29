@@ -18,3 +18,4 @@ export bonjour bouya=8
 printenv bouya
 export 5874 03843sohsrfs
 echo $?
+exit 0

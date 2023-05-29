@@ -19,5 +19,5 @@ $"PATH"
 '$"PATH"'
 "'$" PATH "'"
 ""'$" PATH "'""
-
-
+"'$"PATH"'"
+exit 0

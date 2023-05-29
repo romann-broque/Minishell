@@ -18,3 +18,4 @@ minishell: PATH: command not found
 minishell: $"PATH": command not found
 minishell: '$: command not found
 minishell: $" PATH ": command not found
+minishell: '$PATH': command not found

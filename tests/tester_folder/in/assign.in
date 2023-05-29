@@ -31,4 +31,4 @@ cd -
 CDPATH="/" cd bin
 pwd
 cd bin
-exit
+exit 0

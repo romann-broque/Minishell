@@ -42,10 +42,7 @@ minishell: cd: new: No such file or directory
 pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 /mnt/nfs/homes/rbroque/lol /mnt/nfs/homes/rbroque
 chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-minishell: cd: ..: Stale file handle
-pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+/mnt/nfs/homes/rbroque
 /mnt/nfs/homes/rbroque
 minishell: cd: pouet: No such file or directory
 /bin
