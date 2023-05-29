@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 21:14:17 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	handle_var_start(t_vmachine *const machine)
 	{
 		if (ft_isdigit(c))
 		{
-			machine->line = cut_string_at(machine->line,
-					machine->index - 1, WRONG_VAR_LEN);
 			--(machine->index);
+			machine->line = cut_string_at(machine->line,
+					machine->index, WRONG_VAR_LEN);
 		}
 		change_state(machine->prev_state, machine);
 	}

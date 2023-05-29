@@ -14,3 +14,10 @@ $"PATH"
 $,lol
 $1lol
 "$'PATH'"
+$'PATH'
+$"PATH"
+'$"PATH"'
+"'$" PATH "'"
+""'$" PATH "'""
+
+

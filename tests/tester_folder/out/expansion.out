@@ -12,4 +12,9 @@ minishell: /mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/mnt/nfs
 minishell: PATH: command not found
 minishell: $,lol: command not found
 minishell: lol: command not found
-minishell: 'PATH': command not found
+minishell: $'PATH': command not found
+minishell: PATH: command not found
+minishell: PATH: command not found
+minishell: $"PATH": command not found
+minishell: '$: command not found
+minishell: $" PATH ": command not found
