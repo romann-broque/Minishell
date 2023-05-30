@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/30 13:31:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/30 14:35:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -735,8 +735,8 @@ void		update_fds(t_toktype toktype, t_token *tok, t_command *cmd);
 
 /// redirection utils.c
 
-int			get_out_fd(char *out, t_toktype tok_type);
-int			get_in_fd(char *in, t_toktype tok_type);
+void		get_out_fd(int *fd, char *out, t_toktype tok_type);
+void		get_in_fd(int *fd, char *in, t_toktype tok_type);
 
 /// pipe.c
 
