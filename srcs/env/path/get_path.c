@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:49:59 by mat               #+#    #+#             */
-/*   Updated: 2023/05/01 11:05:50 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/29 19:12:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-bool	is_cmd_path(t_command *cmd)
-{
-	return (is_in_str(cmd->command[0], FWD_SLASH));
-}
-
-char	*get_cmd_path(t_command *cmd_data)
-{
-	char	*path;
-
-	path = dup_path_from_cmd(cmd_data);
-	if (path == NULL || is_cmd_accessible(path) == false)
-	{
-		print_error("%s: %s: ", MINISHELL, cmd_data->command[0]);
-		perror(EMPTY_STR);
-		if (path == NULL)
-			update_error_val(NO_FILE);
-		else
-		{
-			update_error_val(NO_ACCESS);
-			free(path);
-			path = NULL;
-		}
-	}
-	return (path);
-}
 
 static char	*get_complete_path(
 	const char *suffix,
@@ -91,7 +65,8 @@ char	*get_path_from_env(
 	char	*path;
 
 	if (is_var_path_in_env(env, pathvar_name) == false
-		|| is_empty_str(suffix) == true)
+		|| is_empty_str(suffix) == true
+		|| (streq(pathvar_name, PATH_VAR) && suffix[0] == DOT))
 		return (NULL);
 	path_array = get_split_path(env, pathvar_name);
 	if (path_array == NULL)

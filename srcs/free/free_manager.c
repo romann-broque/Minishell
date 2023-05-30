@@ -6,17 +6,17 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:28:17 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 01:21:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
-void	free_token_lst(void *ptr)
+void	free_token_node(t_list *lst)
 {
-	ft_lstclear((t_list **)&ptr, (void (*)(void *))free_token);
+	ft_lstdelone(lst, (void (*)(void *))free_token);
 }
 
 static void	run_deallocator(t_deallocator *dealloc)
@@ -27,9 +27,9 @@ static void	run_deallocator(t_deallocator *dealloc)
 
 void	free_manager(void)
 {
-	ft_lstiter(g_global.garbage, (void (*)(void *))run_deallocator);
-	ft_lstclear(&(g_global.garbage), free);
-	ft_lstclear(&(g_global.pid_lst), NULL);
-	g_global.pid_lst = NULL;
+	ft_lstiter(g_global->garbage, (void (*)(void *))run_deallocator);
+	ft_lstclear(&(g_global->garbage), free);
+	ft_lstclear(&(g_global->pid_lst), NULL);
+	g_global->pid_lst = NULL;
 	init_tracker();
 }

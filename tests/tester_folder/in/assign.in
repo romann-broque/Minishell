@@ -26,8 +26,9 @@ printenv kiwi
 exit
 "kiwi=yellow" ./minishell
 CDPATH="" cd bin
+echo $OLDPWD
 cd -
 CDPATH="/" cd bin
 pwd
 cd bin
-exit
+exit 0

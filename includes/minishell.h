@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 11:19:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/30 14:35:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,15 @@
 # define NUM_ARG_REQ			"numeric argument required"
 # define INVALID_ID				"not a valid identifier"
 # define NO_SUCH_FILE			"No such file or directory"
+# define AMB_REDIRECT			"ambiguous redirect"
+# define WRITE_ERROR			"write error"
 
 // char types
 
 # define TOK_LEXEME		"<>|&="
 # define WHITESPACES	" \t\n\v\f\r"
 # define SEPARATORS		" \t\n"
-# define SPECIAL_VAR	"?0"
+# define SPECIAL_VAR	"?0$"
 # define EMPTY_STR		""
 # define EQUAL_SIGN_STR	"="
 # define TIELD			"~"
@@ -151,7 +153,8 @@
 # define INCORRECT_USE	2
 # define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
-# define SIGINT_RETVAL			130
+# define SIGINT_RETVAL	130
+# define SIGQUIT_RETVAL	131
 
 // enum
 
@@ -184,6 +187,8 @@ typedef enum e_toktype
 	T_START,
 	T_END,
 	T_INVALID,
+	T_VAR,
+	T_IDLE
 }			t_toktype;
 
 typedef enum e_toktype_short
@@ -202,6 +207,8 @@ typedef enum e_toktype_short
 	T_ST,
 	T_ED,
 	T_IVD,
+	T_V,
+	T_ID
 }			t_toktype_short;
 
 typedef enum e_var_state
@@ -272,7 +279,6 @@ typedef struct s_command
 	size_t	index;
 	int		fdin;
 	int		fdout;
-	int		fderr;
 	int		prev_pipe;
 	int		pipe_fds[2];
 }				t_command;
@@ -305,23 +311,18 @@ typedef struct s_global
 	t_list	*cmd_lst;
 	size_t	cmd_nbr;
 	size_t	cmd_index;
+	bool	is_stopped;
 	int		prev_pipe;
 	int		stdin;
 	int		stdout;
-	int		stderr;
 	int		hd_pipe[2];
 }				t_global;
+
+typedef char	*(*t_reader)(const char *);
 
 /////////////////
 /// FUNCTIONS ///
 /////////////////
-
-//			BATCH				//
-
-///	batch.c
-
-bool		batch_mode(int ac, char **av);
-void		exec_batch(int ac, char **av);
 
 //			ENV					//
 
@@ -370,10 +371,13 @@ void		clean_path(char **path);
 
 //// get_path.c
 
-bool		is_cmd_path(t_command *cmd);
-char		*get_cmd_path(t_command *cmd_data);
 char		*get_path_from_env(const char *suffix,
 				const char *pathvar_name, char **env);
+
+//// get_cmd_path.c
+
+bool		is_cmd_path(t_command *cmd);
+char		*get_cmd_path(t_command *cmd_data);
 
 //// path_access.c
 
@@ -426,6 +430,10 @@ int			cd_builtin(t_command *cmd_data);
 
 int			echo_builtin(t_command	*cmd_data);
 
+///// get_echo_output.c
+
+char		*get_echo_output(char **strs, const bool n_option);
+
 ///// env.c
 
 int			env_builtin(t_command *cmd_data);
@@ -461,8 +469,9 @@ bool		is_prev_option(char **command);
 
 char		*ft_strstr(const char *big, const char *little);
 void		check_pos(const char *caller);
+void		init_cwd_var(const char *pwd);
 void		update_cwd_var(const char *new_pwd);
-int			print_pos(void);
+int			print_pos(const char *caller);
 
 /// CLEAN_PATH ///
 
@@ -487,6 +496,10 @@ char		*ft_realpath(const char *path);
 void		wait_for_exec(void);
 
 //			EXIT			//
+
+/// exit_alloc.c
+
+void		exit_alloc(void);
 
 /// exit_shell.c
 
@@ -515,10 +528,21 @@ void		remove_sep_tok(t_list **tokens);
 /// merge_gen.c
 
 void		merge_gen_lst(t_list *tokens);
+void		merge_gen_lst_assign(t_list *tokens);
 
 /// split_gen.c
 
 void		split_gen(t_list **tokens);
+
+/// rm_empty_var.c
+
+void		flag_var(t_list *tokens);
+void		rm_empty_var(t_list *tokens);
+
+/// idle_utils.c
+
+void		rm_useless_idle(t_list *tokens);
+void		idle_empty_var(t_list *tokens);
 
 /// update_tok_type.c
 
@@ -559,7 +583,7 @@ void		delete_quote(t_vmachine *const machine);
 
 // free_manager.c
 
-void		free_token_lst(void *ptr);
+void		free_token_node(t_list *ptr);
 void		free_manager(void);
 
 // tracker.c
@@ -568,6 +592,10 @@ void		add_deallocator(void *ptr, void (*fct)(void *));
 void		init_tracker(void);
 
 //			INIT			//
+
+/// init_global.c
+
+t_global	*init_global(void);
 
 /// init_shell.c
 
@@ -689,6 +717,7 @@ void		print_error(const char *format, ...);
 
 void		clear_line(void);
 void		add_line_to_history(const char *line);
+t_reader	get_reader_fct(const int is_interactive);
 
 /// prompt.c
 
@@ -706,8 +735,8 @@ void		update_fds(t_toktype toktype, t_token *tok, t_command *cmd);
 
 /// redirection utils.c
 
-int			get_out_fd(char *out, t_toktype tok_type);
-int			get_in_fd(char *in, t_toktype tok_type);
+void		get_out_fd(int *fd, char *out, t_toktype tok_type);
+void		get_in_fd(int *fd, char *in, t_toktype tok_type);
 
 /// pipe.c
 
@@ -742,5 +771,13 @@ void		update_signal_state(const t_sigstate state);
 /// close_safe.c
 
 void		close_safe(const int fd);
+
+/// list_fatal.c
+
+t_list		*ft_lstnew_fatal(void *ptr, void (*free_func)(void *));
+void		ft_lstaddback_fatal(t_list **lst,
+				void *ptr, void (*free_fct)(void *));
+void		ft_lstaddfront_fatal(t_list **lst,
+				void *ptr, void (*free_fct)(void *));
 
 #endif

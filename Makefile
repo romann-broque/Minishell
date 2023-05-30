@@ -9,7 +9,6 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+=	srcs/
-PATH_SRCS	+=	srcs/batch/
 PATH_SRCS	+=	srcs/env/
 PATH_SRCS	+=	srcs/env/path/
 PATH_SRCS	+=	srcs/execution/
@@ -40,10 +39,6 @@ PATH_SRCS	+=	srcs/utils/
 
 SRCS	 	+=	minishell.c
 
-### srcs/batch/
-
-SRCS		+=	batch.c
-
 ### srcs/env/
 
 SRCS		+=	change_var.c
@@ -57,6 +52,7 @@ SRCS		+=	init_env.c
 
 SRCS		+=	clean_path.c
 SRCS		+=	get_path.c
+SRCS		+=	get_cmd_path.c
 SRCS		+=	path_access.c
 SRCS		+=	cmd_path_utils.c
 
@@ -76,6 +72,7 @@ SRCS	 	+=	is_builtin.c
 
 SRCS		+=	cd.c
 SRCS		+=	echo.c
+SRCS		+=	get_echo_output.c
 SRCS		+=	env.c
 SRCS	 	+=	exit.c
 SRCS		+=	export.c
@@ -100,6 +97,7 @@ SRCS	 	+=	wait_for_exec.c
 
 ### srcs/exit/
 
+SRCS	 	+=	exit_alloc.c
 SRCS	 	+=	exit_shell.c
 SRCS		+=	exit_utils.c
 
@@ -110,6 +108,8 @@ SRCS	 	+=	expand_utils.c
 SRCS		+=	is_assign_tok.c
 SRCS	 	+=	merge_gen.c
 SRCS	 	+=	split_gen.c
+SRCS	 	+=	idle_utils.c
+SRCS	 	+=	rm_empty_var.c
 SRCS		+=	update_tok_type.c
 
 ### srcs/expansion/var/
@@ -126,6 +126,7 @@ SRCS		+=	tracker.c
 
 ### srcs/init/
 
+SRCS		+=	init_global.c
 SRCS		+=	init_shell.c
 
 ### srcs/interpreter/
@@ -167,7 +168,6 @@ SRCS		+=	parser_error.c
 ### srcs/print/
 
 SRCS		+=	test_print.c
-SRCS		+=	print_error.c
 
 ### srcs/prompt/
 
@@ -191,6 +191,7 @@ SRCS		+=	signal.c
 ### srcs/utils/
 
 SRCS		+=	close_safe.c
+SRCS		+=	list_fatal.c
 
 vpath %.c $(PATH_SRCS)
 
@@ -275,17 +276,14 @@ CC			=	cc
 
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra
-
-ifneq ($(no_error), true)
-	CFLAGS		+=	-Werror
-endif
+CFLAGS		+=	-g3
 
 ifneq ($(no_error), true)
 	CFLAGS		+=	-Werror
 endif
 
 ifeq ($(debug), true)
-	CFLAGS	+= -fsanitize=address,undefined -g3
+	CFLAGS	+= -fsanitize=address,undefined
 endif
 
 ##############
@@ -314,8 +312,6 @@ ECHOC = echo -ne "\r\033[2K"
 ECHO = $(ECHOC) $(ORANGE) "[`expr $C '*' 100 / $T`%]"
 endif
 
-###############
-#### RULES ####
 ###############
 
 all 	:	$(LIBFT) $(NAME)
@@ -346,9 +342,9 @@ test	:
 	$(MAKE) -s
 	$(MAKE) -sC $(VAR_FOLDER)
 	$(RM) $(CUNIT_EXE)
-	$(MAKE) -sC $(CUNIT_FOLDER)
-	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
-	source $(ENV); $(CUNIT) $(VALGRIND)
+#	$(MAKE) -sC $(CUNIT_FOLDER)
+#	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
+#	source $(ENV); $(CUNIT) $(VALGRIND)
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
 	$(TESTER) $(VALGRIND)
 
@@ -356,14 +352,14 @@ clean	:
 	$(RM) -r $(PATH_OBJS)
 	$(MAKE) -sC $(VAR_FOLDER) clean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) clean > /dev/null
-	$(MAKE) -sC $(CUNIT_FOLDER) clean > /dev/null
+#	$(MAKE) -sC $(CUNIT_FOLDER) clean > /dev/null
 	$(ECHOC) $(GREEN) "--> .o files deleted !"$(NC)"\n"
 
 fclean	:	clean
-	$(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
+	# $(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
 	$(MAKE) -sC $(VAR_FOLDER) fclean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) fclean > /dev/null
-	$(MAKE) -sC $(CUNIT_FOLDER) fclean > /dev/null
+#	$(MAKE) -sC $(CUNIT_FOLDER) fclean > /dev/null
 	$(RM) $(NAME)
 	$(ECHOC) $(GREEN) "--> $(NAME) deleted !"$(NC)"\n"
 

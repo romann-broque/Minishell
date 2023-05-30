@@ -3,22 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:48:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/22 16:18:14 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 static bool	is_inbounds(long nb, long added_nb, bool is_neg)
 {
-	const long	bound = (LONG_MAX - is_neg - added_nb) / 10;
+	long	bound;
 
-	return (nb <= bound);
+	if (is_neg == true)
+	{
+		bound = LONG_MAX;
+		if (added_nb >= 1)
+			bound = (LONG_MAX - added_nb + 1) / 10;
+		return (nb <= bound);
+	}
+	else
+	{
+		bound = (LONG_MAX - added_nb) / 10;
+		return (nb <= bound);
+	}
 }
 
 static bool	check_and_updates_retval(long *ret_value, char *str)
@@ -48,7 +59,7 @@ static bool	check_and_updates_retval(long *ret_value, char *str)
 
 static int	exit_num_arg(const char *second_arg, const long nb)
 {
-	if (second_arg == NULL && g_global.cmd_nbr == 1)
+	if (second_arg == NULL && g_global->cmd_nbr == 1)
 		exit_shell(nb, true);
 	else if (second_arg == NULL)
 		exit_shell(nb, false);
@@ -79,9 +90,9 @@ int	exit_builtin(t_command *cmd_data)
 		else
 			exit_invalid_arg(cmd_data->command[1]);
 	}
-	if (g_global.cmd_nbr == 1)
-		exit_shell(g_global.last_ret_val, true);
+	if (g_global->cmd_nbr == 1)
+		exit_shell(g_global->last_ret_val, true);
 	else
-		exit_shell(g_global.last_ret_val, false);
+		exit_shell(g_global->last_ret_val, false);
 	return (EXIT_SUCCESS);
 }

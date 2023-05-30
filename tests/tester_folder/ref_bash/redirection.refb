@@ -1,5 +1,6 @@
 .
 ..
+axel
 .git
 .github
 .gitignore
@@ -10,12 +11,14 @@ Makefile
 minishell
 objs
 out
+.pytest_cache
 README.md
 srcs
 tests
 .vscode
 .
 ..
+axel
 .git
 .github
 .gitignore
@@ -27,11 +30,13 @@ minishell
 objs
 out
 out2
+.pytest_cache
 README.md
 srcs
 tests
 .vscode
 bonjour
+axel
 includes
 libft
 Makefile
@@ -42,6 +47,7 @@ out2
 README.md
 srcs
 tests
+axel
 includes
 libft
 Makefile
@@ -52,6 +58,7 @@ out2
 README.md
 srcs
 tests
+axel
 includes
 libft
 Makefile
@@ -180,6 +187,7 @@ instructions$
 0
 minishell: lol: No such file or directory
 1
+axel
 includes
 libft
 Makefile

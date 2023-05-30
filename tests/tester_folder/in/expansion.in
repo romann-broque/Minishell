@@ -3,4 +3,21 @@
 /bin/echo " $pouet" pouet
 /bin/echo pouet$pouet
 $empty
-/bin/echo        "'"''"$pouet     " "'''''' "wouah   '' l   '""' ''"$PWD  $pouet" 
+/bin/echo        "'"''"$pouet     " "'''''' "wouah   '' l   '""' ''"$PWD  $pouet"
+/bin/echo $sdfsdf    $ouhf      lol
+"$PATH"
+$PATH
+'$PATH'
+"'$PATH'"
+"$PATH-:-$PATH"
+$"PATH"
+$,lol
+$1lol
+"$'PATH'"
+$'PATH'
+$"PATH"
+'$"PATH"'
+"'$" PATH "'"
+""'$" PATH "'""
+"'$"PATH"'"
+exit 0

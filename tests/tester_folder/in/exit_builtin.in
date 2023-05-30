@@ -81,4 +81,4 @@ echo $? $?
 
 echo $PATH
 
-exit
+exit 0

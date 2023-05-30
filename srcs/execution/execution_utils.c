@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:27:39 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/25 10:22:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 13:13:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,16 @@ static void	handle_error_path(t_command *cmd_data, char **path)
 	if (*path == NULL)
 	{
 		update_error_val(NO_FILE);
-		print_error("%s: %s: ", MINISHELL, cmd_data->command[0]);
 		if (is_var_path_in_env(cmd_data->env, PATH_VAR) == true)
-			print_error("%s\n", CNF);
+			print_error("%s: %s: %s\n", MINISHELL, cmd_data->command[0], CNF);
 		else
-			print_error("%s\n", NO_SUCH_FILE);
+			print_error("%s: %s: %s\n", MINISHELL,
+				cmd_data->command[0], NO_SUCH_FILE);
 	}
 	else if (is_cmd_accessible(*path) == false)
 	{
 		update_error_val(NO_ACCESS);
-		print_error("%s: %s: ", MINISHELL, *path);
-		perror(EMPTY_STR);
+		print_error("%s: %s: %s\n", MINISHELL, *path, strerror(errno));
 		free(*path);
 		*path = NULL;
 	}

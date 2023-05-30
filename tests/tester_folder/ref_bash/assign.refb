@@ -12,12 +12,13 @@ lol
 21
 red
 amazing
-/home/screw/.vscode-server/bin/b3e4e68a0bc097f0ae7907b217c1119af9e03435/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/Minishell
+/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
 pouet:/:/dev
 minishell: kiwi=green: command not found
 yellow
 minishell: kiwi=yellow: command not found
 minishell: cd: bin: No such file or directory
+
 minishell: cd: OLDPWD not set
 /bin
 /bin

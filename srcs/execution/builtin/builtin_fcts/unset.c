@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 09:57:44 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/08 11:15:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 static bool	is_same_varkey(t_var *var1, t_var *var2)
 {
@@ -23,7 +23,7 @@ static void	unset_arg(char *arg)
 {
 	const t_var	var_ref = {.key = arg};
 
-	ft_list_remove_if(&(g_global.env),
+	ft_list_remove_if(&(g_global->env),
 		(void *)&var_ref,
 		(bool (*)(void *, void *))is_same_varkey,
 		(void (*)(void *))free_var);

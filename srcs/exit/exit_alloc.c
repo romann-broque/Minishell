@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   exit_alloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 15:43:47 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 23:41:22 by rbroque          ###   ########.fr       */
+/*   Created: 2023/05/25 14:24:51 by rbroque           #+#    #+#             */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_error(const char *format, ...)
-{
-	va_list	arg;
+extern t_global	*g_global;
 
-	va_start(arg, format);
-	ft_vdprintf(STDERR_FILENO, format, arg);
-	va_end(arg);
+void	exit_alloc(void)
+{
+	print_error("%s: %s\n", MINISHELL, strerror(errno));
+	exit_shell(g_global->last_ret_val, false);
 }

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:10:28 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/25 15:50:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	append_to_arg_array(t_command *cmd, t_list *tokens)
 		while (dest[i] != NULL)
 			++i;
 		dest[i] = ft_strdup(get_str_from_tok(tokens->content));
+		if (dest[i] == NULL)
+			exit_alloc();
 	}
 }
 
@@ -51,9 +53,6 @@ char	**get_arg_array(t_list *tokens)
 
 	arg_array = (char **)ft_calloc(sizeof(char *), (size + 1));
 	if (arg_array == NULL)
-	{
-		perror(MALLOC_ERROR);
-		return (NULL);
-	}
+		exit_alloc();
 	return (arg_array);
 }

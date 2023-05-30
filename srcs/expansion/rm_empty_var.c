@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:07:13 by rbroque           #+#    #+#             */
-/*   Updated: 2023/04/26 20:11:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/28 16:14:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,8 @@ void	flag_var(t_list *tokens)
 	ft_lstiter(tokens, (void (*)(void *))flag_tok_var);
 }
 
-static int	tok_comp(t_token *tok1, t_token *tok2)
+void	rm_empty_var(t_list *tokens)
 {
-	if (tok1->type == tok2->type && streq(tok1->value, tok2->value) == true)
-		return (0);
-	return (1);
-}
-
-void	rm_empty_var(t_list **tokens)
-{
-	static t_token	tok_ref = {.type = T_VAR, .value = EMPTY_STR};
-
-	ft_list_remove_if(tokens, &tok_ref, tok_comp,
-		(void (*)(void *))(free_token));
-	ft_lstiter(*tokens, (void (*)(void *))flag_tok_gen);
+	idle_empty_var(tokens);
+	ft_lstiter(tokens, (void (*)(void *))flag_tok_gen);
 }

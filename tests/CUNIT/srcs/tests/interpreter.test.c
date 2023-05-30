@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:44:29 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 02:11:29 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cunit.test.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 static t_list	*get_list_from_array(t_token *array)
 {
@@ -83,7 +83,7 @@ static bool	is_cmd_valid(t_token *tok_array, t_command *cmd_array, const size_t 
 {
 	t_list	*tok_list = get_list_from_array(tok_array);
 	t_list	*cmd_exp = get_list_from_array_cmd(cmd_array, size_cmd_array);
-	t_list	*cmd_out = interpreter(tok_list, g_global.env);
+	t_list	*cmd_out = interpreter(tok_list, g_global->env);
 	bool	ret_val = comp_commands(cmd_out, cmd_exp);
 
 	ft_lstclear(&tok_list, NULL);
@@ -94,7 +94,7 @@ static bool	is_cmd_valid(t_token *tok_array, t_command *cmd_array, const size_t 
 
 void	interpreter__test(void)
 {
-	char	**env_array = dup_env_lst_to_array(g_global.env);
+	char	**env_array = dup_env_lst_to_array(g_global->env);
 	t_token	toks1[] = {
 		{.type = T_START, .value = NULL},
 		{.type = T_GENERIC, .value = "hola"},
@@ -173,13 +173,13 @@ void	interpreter__test(void)
 		},
 	};
 
-	g_global.prev_pipe = INVALID_FD;
+	g_global->prev_pipe = INVALID_FD;
 	CU_ASSERT_TRUE(is_cmd_valid(toks1, cmds1, 1));
-	g_global.prev_pipe = INVALID_FD;
+	g_global->prev_pipe = INVALID_FD;
 	CU_ASSERT_TRUE(is_cmd_valid(toks2, cmds2, 0));
-	g_global.prev_pipe = INVALID_FD;
+	g_global->prev_pipe = INVALID_FD;
 	CU_ASSERT_TRUE(is_cmd_valid(toks3, cmds3, 2));
-	g_global.prev_pipe = INVALID_FD;
+	g_global->prev_pipe = INVALID_FD;
 	CU_ASSERT_TRUE(is_cmd_valid(toks4, cmds4, 1));
 	free_strs(env_array);
 }

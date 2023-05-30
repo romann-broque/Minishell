@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:34:17 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/03 16:10:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cunit.test.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 void	change_var__test(void)
 {

@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 11:27:11 by mat               #+#    #+#             */
-/*   Updated: 2023/05/15 10:34:14 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cunit.test.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 static void	ASSERT_AND_FREE(char *str1, const char *str2)
 {
@@ -35,7 +35,7 @@ void	cmd_path__test(void)
 	char *str_out_t6;
 	char *str_out_t7;
 	char *str_out_t8;
-	char	**env_array = dup_env_lst_to_array(g_global.env);
+	char	**env_array = dup_env_lst_to_array(g_global->env);
 
 	t_command	cmd1 = {
 		.env = env_array,

@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   handle_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/05/02 16:59:05 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/30 10:59:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 void	replace_special_var(t_vmachine *const machine)
 {
 	const char		c = machine->line[machine->index];
 	const size_t	index = abs_index(SPECIAL_VAR, c);
-	char *const		last_ret_str = ft_itoa(g_global.last_ret_val);
-	char *const		array_str[] = {last_ret_str, ZERO_VAR};
+	char *const		last_ret_str = ft_itoa(g_global->last_ret_val);
+	char *const		array_str[] = {last_ret_str, ZERO_VAR, EMPTY_STR};
 
 	if (is_in_str(SEPARATORS, c) == false)
 		machine->line = replace_str_free(machine->line, array_str[index],
@@ -47,9 +47,12 @@ void	handle_var_start(t_vmachine *const machine)
 	}
 	else
 	{
-		machine->line = cut_string_at(machine->line,
-				machine->index - 1, WRONG_VAR_LEN);
-		--(machine->index);
+		if (ft_isdigit(c))
+		{
+			--(machine->index);
+			machine->line = cut_string_at(machine->line,
+					machine->index, WRONG_VAR_LEN);
+		}
 		change_state(machine->prev_state, machine);
 	}
 }

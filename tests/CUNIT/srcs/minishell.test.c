@@ -12,7 +12,7 @@
 
 #include "cunit.test.h"
 
-t_global	g_global;
+t_global	*g_global;
 
 void	set_tests(void)
 {
@@ -70,7 +70,7 @@ void	exec_tests(void)
 	CU_basic_run_tests();
 
 	// Cleanup the CUnit test registry
-	ft_lstclear(&(g_global.env), (void (*)(void *))free_var);
+	ft_lstclear(&(g_global->env), (void (*)(void *))free_var);
 	exit_tests();
 }
 
@@ -79,6 +79,8 @@ int	main(
 	__attribute__((unused))char **av,
 	char **env)
 {
-	init_env(&g_global, env);
+	// init_env(&g_global, env);
+	g_global = init_global();
+	init_env(g_global, env);
 	exec_tests();
 }

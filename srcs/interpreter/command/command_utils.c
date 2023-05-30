@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:42:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/24 23:54:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:49:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_global	g_global;
+extern t_global	*g_global;
 
 static char	*get_assign_from_var(t_var *var)
 {
@@ -33,15 +33,14 @@ t_command	*init_command(void)
 	cmd_data = (t_command *)malloc(sizeof(t_command));
 	if (cmd_data != NULL)
 	{
-		cmd_data->index = g_global.cmd_index;
+		cmd_data->index = g_global->cmd_index;
 		cmd_data->command = NULL;
 		cmd_data->env = NULL;
 		cmd_data->fdin = STDIN_FILENO;
 		cmd_data->fdout = STDOUT_FILENO;
-		cmd_data->fderr = dup(STDERR_FILENO);
 		cmd_data->pipe_fds[0] = INVALID_FD;
 		cmd_data->pipe_fds[1] = INVALID_FD;
-		cmd_data->prev_pipe = g_global.prev_pipe;
+		cmd_data->prev_pipe = g_global->prev_pipe;
 	}
 	return (cmd_data);
 }
@@ -53,16 +52,10 @@ void	free_command(t_command *cmd_data)
 		free_strs(cmd_data->command);
 		free_strs(cmd_data->env);
 		if (cmd_data->fdin != STDIN_FILENO)
-			close(cmd_data->fdin);
+			close_safe(cmd_data->fdin);
 		if (cmd_data->fdout != STDOUT_FILENO)
-			close(cmd_data->fdout);
-		if (cmd_data->fderr != STDERR_FILENO)
-			close(cmd_data->fderr);
-		if (g_global.cmd_nbr > 1)
-		{
-			close_safe(cmd_data->pipe_fds[0]);
-			close_safe(cmd_data->pipe_fds[1]);
-		}
+			close_safe(cmd_data->fdout);
+		close_parent(cmd_data);
 	}
 	free(cmd_data);
 }
