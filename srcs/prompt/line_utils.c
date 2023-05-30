@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:16:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/30 14:10:59 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/30 14:47:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@ void	add_line_to_history(const char *line)
 		add_history(line);
 }
 
-static char	*get_line(const char *prompt)
+static char	*get_line(__attribute__((unused)) const char *prompt)
 {
 	char *const	line = get_next_line(STDIN_FILENO);
 	char		*new_line_ptr;
 
-	(void)prompt;
 	if (line != NULL)
 	{
 		new_line_ptr = ft_strchr(line, NEWLINE);

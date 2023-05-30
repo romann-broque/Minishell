@@ -15,8 +15,8 @@ amazing
 /mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
 pouet:/:/dev
 minishell: kiwi=green: command not found
-yellow
-minishell: kiwi=yellow: command not found
+minishell: v: command not found
+minishell: syntax error near unclosed quote
 minishell: cd: bin: No such file or directory
 
 minishell: cd: OLDPWD not set

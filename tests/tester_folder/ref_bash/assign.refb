@@ -16,10 +16,5 @@ amazing
 pouet:/:/dev
 minishell: kiwi=green: command not found
 yellow
-minishell: kiwi=yellow: command not found
-minishell: cd: bin: No such file or directory
-
-minishell: cd: OLDPWD not set
-/bin
-/bin
-/bin
+minishell: unexpected EOF while looking for matching `"'
+minishell: syntax error: unexpected end of file
