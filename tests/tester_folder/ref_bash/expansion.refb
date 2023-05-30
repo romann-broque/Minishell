@@ -2,13 +2,13 @@
  $pouetpouet
      ls         pouet  pouet   pouet
 pouet ls pouet pouet
-'    ls         pouet  pouet        '''''' wouah  l "" /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy      ls         pouet  pouet  
+'    ls         pouet  pouet        '''''' wouah  l "" /mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell      ls         pouet  pouet  
 lol
-minishell: /home/screw/funcheck/host:/home/screw/funcheck/host:/home/screw/funcheck/host:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy: No such file or directory
-minishell: /home/screw/funcheck/host:/home/screw/funcheck/host:/home/screw/funcheck/host:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy: No such file or directory
+minishell: /mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell: No such file or directory
+minishell: /mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell: No such file or directory
 minishell: $PATH: command not found
-minishell: '/home/screw/funcheck/host:/home/screw/funcheck/host:/home/screw/funcheck/host:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy': No such file or directory
-minishell: /home/screw/funcheck/host:/home/screw/funcheck/host:/home/screw/funcheck/host:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy-:-/home/screw/funcheck/host:/home/screw/funcheck/host:/home/screw/funcheck/host:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy: No such file or directory
+minishell: '/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell': No such file or directory
+minishell: /mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell-:-/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell: No such file or directory
 minishell: PATH: command not found
 minishell: $,lol: command not found
 minishell: lol: command not found

@@ -11,6 +11,7 @@ Makefile
 minishell
 objs
 out
+.pytest_cache
 README.md
 srcs
 tests
@@ -29,6 +30,7 @@ minishell
 objs
 out
 out2
+.pytest_cache
 README.md
 srcs
 tests

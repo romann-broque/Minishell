@@ -1,14 +1,14 @@
 /bin
 /bin
-/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy/tests
+/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell/tests
 minishell: cd: ./bin: No such file or directory
-/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy/tests
-/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy
+/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell/tests
+/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
 minishell: cd: bonjour: No such file or directory
 minishell: cd: repo: No such file or directory
-/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy
-/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy/tests
-/bin /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy
+/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
+/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell /mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell/tests
+/bin /mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
 /bin
 /usr
 /
@@ -26,24 +26,27 @@ minishell: cd: ../../tests/CUNIT/..: No such file or directory
 /home
 /home
 minishell: cd: too many arguments
-/home/screw
+/mnt/nfs/homes/rbroque
 /home
 /home
-/home/screw
-/home/screw
+/mnt/nfs/homes/rbroque
+/mnt/nfs/homes/rbroque
 /home
-/home/screw
-/home/screw
+/mnt/nfs/homes/rbroque
+/mnt/nfs/homes/rbroque
 /home
-/home/screw
+/mnt/nfs/homes/rbroque
 mkdir: cannot create directory ‘new’: Permission denied
 minishell: cd: new: No such file or directory
-/home/screw
+/mnt/nfs/homes/rbroque
 pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-/home/screw/lol /home/screw
+/mnt/nfs/homes/rbroque/lol /mnt/nfs/homes/rbroque
 chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-/home/screw
-/home/screw
+minishell: cd: ..: Stale file handle
+pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+/mnt/nfs/homes/rbroque
 minishell: cd: pouet: No such file or directory
 /bin
 /dev/disk
@@ -51,6 +54,6 @@ minishell: cd: pouet: No such file or directory
 minishell: cd: ../../../../......./..////////: No such file or directory
 minishell: cd: /.//////./../../../......./..////////: No such file or directory
 /dev/disk
-/home/screw
-/home/screw /dev/disk
-/home/screw
+/mnt/nfs/homes/rbroque
+/mnt/nfs/homes/rbroque /dev/disk
+/mnt/nfs/homes/rbroque

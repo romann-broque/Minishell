@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/30 10:56:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/30 13:31:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,8 @@
 # define INCORRECT_USE	2
 # define IGNORE_TOK		1
 # define LAST_RETVAL	EXIT_SUCCESS
-# define SIGINT_RETVAL			130
+# define SIGINT_RETVAL	130
+# define SIGQUIT_RETVAL	131
 
 // enum
 
