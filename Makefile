@@ -232,42 +232,6 @@ LIBFT		 =	$(LIBFT_FOLDER)/libft.a
 
 LINKS += -lreadline
 
-################
-#### TESTER ####
-################
-
-TESTER_FOLDER	= ./tests/
-ENV_FOLDER		= $(TESTER_FOLDER)/env/
-ENV				= $(TESTER_FOLDER)/env/env.sh
-
-### NORM
-
-NORM			= $(TESTER_FOLDER)/norminette/norm.sh
-
-### MIN
-
-MINTEST_FOLDER	= $(TESTER_FOLDER)/tester_folder/
-TESTER			= $(MINTEST_FOLDER)/tester.sh
-
-### CUNIT
-
-CUNIT_FOLDER	= $(TESTER_FOLDER)/CUNIT/
-CUNIT			= $(CUNIT_FOLDER)/run_cunit.sh
-CUNIT_EXE		= $(CUNIT_FOLDER)/cunit
-
-### VALGRIND
-
-CURR_FOLDER_VALGRIND = ./tests/valgrind/
-SUPPRESSION_FILE	= $(CURR_FOLDER_VALGRIND)suppressions.supp
-
-### VAR
-
-VAR_FOLDER		= $(TESTER_FOLDER)/var/
-
-ifeq ($(valgrind), true)
-	VALGRIND	+= valgrind
-endif
-
 #####################
 #### COMPILATION ####
 #####################
@@ -334,32 +298,14 @@ run		: all
 	$(ECHOC) $(GREEN) "RUNNING $(NAME)"$(NC)"\n\n"
 	./$(NAME)
 
-norm	:
-	$(ECHOC) $(BLUE) "\n""NORM : "$(NC)""
-	./$(NORM)
-
-test	:
-	$(MAKE) -s
-	$(MAKE) -sC $(VAR_FOLDER)
-	$(RM) $(CUNIT_EXE)
-#	$(MAKE) -sC $(CUNIT_FOLDER)
-#	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
-#	source $(ENV); $(CUNIT) $(VALGRIND)
-	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
-	$(TESTER) $(VALGRIND)
-
 clean	:
 	$(RM) -r $(PATH_OBJS)
-	$(MAKE) -sC $(VAR_FOLDER) clean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) clean > /dev/null
-#	$(MAKE) -sC $(CUNIT_FOLDER) clean > /dev/null
 	$(ECHOC) $(GREEN) "--> .o files deleted !"$(NC)"\n"
 
 fclean	:	clean
-	# $(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
-	$(MAKE) -sC $(VAR_FOLDER) fclean > /dev/null
+	$(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
 	$(MAKE) -sC $(LIBFT_FOLDER) fclean > /dev/null
-#	$(MAKE) -sC $(CUNIT_FOLDER) fclean > /dev/null
 	$(RM) $(NAME)
 	$(ECHOC) $(GREEN) "--> $(NAME) deleted !"$(NC)"\n"
 
