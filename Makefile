@@ -304,9 +304,7 @@ BLUE='\033[1;36m'
 NC='\033[0m' # No Color
 
 ifndef ECHO
-T := $(shell $(MAKE) $(MAKECMDGOALS) --no-print-directory \
-      -nrRf $(firstword $(MAKEFILE_LIST)) \
-      ECHO="COUNTTHIS" | grep -c "COUNTTHIS")
+T := $(words $(SRCS))
 N := x
 C = $(words $N)$(eval N := x $N)
 

@@ -6,7 +6,7 @@ minishell: cd: too many arguments
 minishell: cd: blata: No such file or directory
 1
 ls: cannot access 'blata': No such file or directory
-minishell: ?: command not found
+2
 pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 1
 chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
@@ -27,31 +27,34 @@ srcs
 tests
 minishell: exit: too many arguments
 1
-minishell: our: command not found
-127
-minishell: it: command not found
-127
+minishell: exit: bonjour: numeric argument required
+2
 0
-minishell: 2: command not found
-127
-0
+42
+minishell: exit: too many arguments
+1
+255
 minishell: exit: 234782384908273480723847238047283074: numeric argument required
+2
+minishell: exit: abc: numeric argument required
+2
+minishell: exit: abc: numeric argument required
+2
 0
-minishell: 34: command not found
-127
+minishell: exit: too many arguments
+1
+minishell: exit: too many arguments
+1
+255
+minishell: exit: 9223372036854775808: numeric argument required
+2
+srcs/execution/builtin/builtin_fcts/exit.c:47:16: runtime error: signed integer overflow: 9223372036854775800 + 8 cannot be represented in type 'long'
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior srcs/execution/builtin/builtin_fcts/exit.c:47:16 in 
+srcs/execution/builtin/builtin_fcts/exit.c:53:9: runtime error: negation of -9223372036854775808 cannot be represented in type 'long'; cast to an unsigned type to negate this value to itself
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior srcs/execution/builtin/builtin_fcts/exit.c:53:9 in 
 0
-minishell: 3: command not found
-127
-minishell: abc: command not found
-127
-minishell: 223372036854775807: command not found
-127
-minishell: xit: command not found
-127
-minishell: 9223372036854775808: command not found
-127
 minishell: exit: -9223372036854775809: numeric argument required
-minishell: 2: command not found
+2
 axel
 includes
 libft
@@ -70,11 +73,6 @@ objs
 README.md
 srcs
 tests
-minishell: exit: -t: numeric argument required
-minishell: e2: command not found
+minishell: pouet: command not found
+127 127
 /mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/mnt/nfs/homes/rbroque/.local/bin:/mnt/nfs/homes/rbroque/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
-minishell: exit: too many arguments
-minishell: exit: abc: numeric argument required
-minishell: exit: abc: numeric argument required
-minishell: exit: too many arguments
-minishell: exit: bonj: numeric argument required
