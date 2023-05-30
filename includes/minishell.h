@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/29 18:05:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/30 10:56:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@
 # define TOK_LEXEME		"<>|&="
 # define WHITESPACES	" \t\n\v\f\r"
 # define SEPARATORS		" \t\n"
-# define SPECIAL_VAR	"?0"
+# define SPECIAL_VAR	"?0$"
 # define EMPTY_STR		""
 # define EQUAL_SIGN_STR	"="
 # define TIELD			"~"

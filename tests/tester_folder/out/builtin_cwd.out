@@ -1,14 +1,14 @@
 /bin
 /bin
-/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell/tests
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy/tests
 minishell: cd: ./bin: No such file or directory
-/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell/tests
-/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy/tests
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy
 minishell: cd: bonjour: No such file or directory
 minishell: cd: repo: No such file or directory
-/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
-/mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell /mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell/tests
-/bin /mnt/nfs/homes/rbroque/Code/STUD/Projects/Minishell
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy
+/home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy/tests
+/bin /home/screw/Desktop/Code/42_Projects/RENDER/Minishell_folder/minishell_cpy
 /bin
 /usr
 /
@@ -26,24 +26,24 @@ minishell: cd: ../../tests/CUNIT/..: No such file or directory
 /home
 /home
 minishell: cd: too many arguments
-/mnt/nfs/homes/rbroque
+/home/screw
 /home
 /home
-/mnt/nfs/homes/rbroque
-/mnt/nfs/homes/rbroque
+/home/screw
+/home/screw
 /home
-/mnt/nfs/homes/rbroque
-/mnt/nfs/homes/rbroque
+/home/screw
+/home/screw
 /home
-/mnt/nfs/homes/rbroque
+/home/screw
 mkdir: cannot create directory ‘new’: Permission denied
 minishell: cd: new: No such file or directory
-/mnt/nfs/homes/rbroque
+/home/screw
 pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-/mnt/nfs/homes/rbroque/lol /mnt/nfs/homes/rbroque
+/home/screw/lol /home/screw
 chdir: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-/mnt/nfs/homes/rbroque
-/mnt/nfs/homes/rbroque
+/home/screw
+/home/screw
 minishell: cd: pouet: No such file or directory
 /bin
 /dev/disk
@@ -51,6 +51,6 @@ minishell: cd: pouet: No such file or directory
 minishell: cd: ../../../../......./..////////: No such file or directory
 minishell: cd: /.//////./../../../......./..////////: No such file or directory
 /dev/disk
-/mnt/nfs/homes/rbroque
-/mnt/nfs/homes/rbroque /dev/disk
-/mnt/nfs/homes/rbroque
+/home/screw
+/home/screw /dev/disk
+/home/screw

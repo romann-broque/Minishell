@@ -79,6 +79,8 @@ int	main(
 	__attribute__((unused))char **av,
 	char **env)
 {
-	init_env(&g_global, env);
+	// init_env(&g_global, env);
+	g_global = init_global();
+	init_env(g_global, env);
 	exec_tests();
 }

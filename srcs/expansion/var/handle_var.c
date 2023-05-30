@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:17:44 by mat               #+#    #+#             */
-/*   Updated: 2023/05/29 21:14:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/30 10:59:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	replace_special_var(t_vmachine *const machine)
 	const char		c = machine->line[machine->index];
 	const size_t	index = abs_index(SPECIAL_VAR, c);
 	char *const		last_ret_str = ft_itoa(g_global->last_ret_val);
-	char *const		array_str[] = {last_ret_str, ZERO_VAR};
+	char *const		array_str[] = {last_ret_str, ZERO_VAR, EMPTY_STR};
 
 	if (is_in_str(SEPARATORS, c) == false)
 		machine->line = replace_str_free(machine->line, array_str[index],

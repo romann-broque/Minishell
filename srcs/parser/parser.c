@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:45:23 by mat               #+#    #+#             */
-/*   Updated: 2023/04/29 16:36:00 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/30 10:49:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,33 @@ static bool	is_valid_token(
 	return (tok != T_INVALID);
 }
 
-static bool	is_valid_parsing(t_list *tokens, const t_tokparse *rules)
+static void	skip_sep(t_list **tokens)
 {
-	return (tokens != NULL && get_type_from_tok(tokens->content) != T_END
-		&& is_valid_token(rules, get_type_from_tok(tokens->content),
-			tokens->next->content) == true);
+	t_toktype	type;
+
+	type = get_type_from_tok((*tokens)->next->content);
+	while (type == T_SEPARATOR)
+	{
+		*tokens = (*tokens)->next;
+		type = get_type_from_tok((*tokens)->next->content);
+	}
+}
+
+static bool	is_valid_parsing(t_list **tokens, const t_tokparse *rules)
+{
+	const t_toktype	type = get_type_from_tok((*tokens)->content);
+
+	if (type == T_START || type == T_PIPE)
+		skip_sep(tokens);
+	return (type != T_END
+		&& is_valid_token(rules, type, (*tokens)->next->content) == true);
 }
 
 bool	parser(t_list *tokens)
 {
 	const t_tokparse	*rules = init_pars_rules();
 
-	while (is_valid_parsing(tokens, rules) == true)
+	while (tokens != NULL && is_valid_parsing(&tokens, rules) == true)
 		tokens = tokens->next;
 	if (get_type_from_tok(tokens->content) != T_END)
 		print_pars_error(tokens->next->content);

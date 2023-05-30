@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 11:23:22 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/29 14:37:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/30 10:30:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,10 @@ static void	merge_gen_tok(t_list *tokens, const bool assign_state)
 
 void	merge_gen_lst(t_list *tokens)
 {
-	t_token	*tok;
-
 	while (tokens != NULL)
 	{
 		if (is_merge_tok(tokens, false) == true)
-		{
 			merge_gen_tok(tokens, false);
-			tok = tokens->content;
-		}
 		tokens = tokens->next;
 	}
 }

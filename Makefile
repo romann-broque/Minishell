@@ -344,9 +344,9 @@ test	:
 	$(MAKE) -s
 	$(MAKE) -sC $(VAR_FOLDER)
 	$(RM) $(CUNIT_EXE)
-#	$(MAKE) -sC $(CUNIT_FOLDER)
-#	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
-#	source $(ENV); $(CUNIT) $(VALGRIND)
+	$(MAKE) -sC $(CUNIT_FOLDER)
+	echo -e $(BLUE) "\n====> CUNIT TESTS"$(NC)"\n"
+	source $(ENV); $(CUNIT) $(VALGRIND)
 	echo -e $(BLUE) "\n====> MINISHELL TESTS"$(NC)"\n"
 	$(TESTER) $(VALGRIND)
 
@@ -354,14 +354,14 @@ clean	:
 	$(RM) -r $(PATH_OBJS)
 	$(MAKE) -sC $(VAR_FOLDER) clean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) clean > /dev/null
-#	$(MAKE) -sC $(CUNIT_FOLDER) clean > /dev/null
+	$(MAKE) -sC $(CUNIT_FOLDER) clean > /dev/null
 	$(ECHOC) $(GREEN) "--> .o files deleted !"$(NC)"\n"
 
 fclean	:	clean
 	# $(ECHOC) $(YELLOW) "Cleaning up $(NAME)..." $(NC)
 	$(MAKE) -sC $(VAR_FOLDER) fclean > /dev/null
 	$(MAKE) -sC $(LIBFT_FOLDER) fclean > /dev/null
-#	$(MAKE) -sC $(CUNIT_FOLDER) fclean > /dev/null
+	$(MAKE) -sC $(CUNIT_FOLDER) fclean > /dev/null
 	$(RM) $(NAME)
 	$(ECHOC) $(GREEN) "--> $(NAME) deleted !"$(NC)"\n"
 

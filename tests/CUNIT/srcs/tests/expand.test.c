@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:47:05 by mat               #+#    #+#             */
-/*   Updated: 2023/05/01 10:51:34 by mat              ###   ########.fr       */
+/*   Updated: 2023/05/30 11:03:51 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ void	expand__test(void)
 	const char	str_in_t31[] = "\"ech\"o$wouah'lol'";
 	const char	str_ref_t31[] = "echo'pouet pouet'lol";
 	const char	str_in_t32[] = "\"$\"";
-	const char	str_ref_t32[] = "";
+	const char	str_ref_t32[] = "$";
 	const char	str_in_t33[] = "$\"wouah$\"";
-	const char	str_ref_t33[] = "wouah";
+	const char	str_ref_t33[] = "wouah$";
 	const char	str_in_t34[] = "$\"$wouah$\"";
-	const char	str_ref_t34[] = "'pouet pouet'";
+	const char	str_ref_t34[] = "'pouet pouet'$";
 	const char	str_in_t35[] = "$wtf";
 	const char	str_ref_t35[] = "''";
 
