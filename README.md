@@ -37,7 +37,7 @@ Welcome to Minishell, a simple yet powerful Unix shell. Minishell provides a com
 
 #### Requirements
 
-You need first to install readline
+You need to install readline first
 
 ```shell
 sudo apt update
