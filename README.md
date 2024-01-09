@@ -35,6 +35,17 @@ Welcome to Minishell, a simple yet powerful Unix shell. Minishell provides a com
 
 ### 🚀 Getting Started
 
+#### Requirements
+
+You need first to install readline
+
+```shell
+sudo apt update
+sudo apt install libreadline-dev
+```
+
+#### Compilation
+
 To compile and run Minishell, use the provided Makefile. Here are the basic commands:
 
 ```shell
